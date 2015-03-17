@@ -2,13 +2,23 @@
 /**
  * @var \Sohoa\Framework\Environnement $this;
  */
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 
-Hoa\Database\Dal::initializeParameters(array(
-	'connection.list.default.dal' => Hoa\Database\Dal::PDO,
-	'connection.list.default.dsn' => 'sqlite:hoa://Application/Database/Maestria.db',
-	'connection.list.test.dal' => Hoa\Database\Dal::PDO,
-	'connection.list.test.dsn' => 'sqlite:hoa://Application/Database/Maestria-test.db',
-	'connection.autoload' => 'default',
-));
+$isDevMode = true;
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../Entities"), $isDevMode);
+
+$path = resolve(__DIR__ . '/../Database/Maestria-orm.db');
+
+// database configuration parameters
+$conn = array(
+    'driver' => 'pdo_sqlite',
+    'path' => $path,
+);
+
+$entityManager = EntityManager::create($conn, $config);
+
+$container = \Application\Maestria\Container::getInstance();
+$container->set('em', $entityManager);
 
 return array();

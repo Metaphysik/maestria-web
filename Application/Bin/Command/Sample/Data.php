@@ -37,28 +37,28 @@ namespace Application\Bin\Command\Sample;
         public function main()
         {
 
-            $command = null;
-            $test    = false;
-
-            while (false !== $c = $this->getOption($v)) switch ($c) {
-                case 't':
-                    $test = true;
-                    break;
-                case 'h':
-                case '?':
-                    return $this->usage();
-                    break;
-            }
-
-            require 'hoa://Application/Config/Environnement.php';
-
-            if($test === true)
-                \Hoa\Database\Dal::getInstance('test');
-
-            $this->readCapabilities();
-            $this->makeSomeUser();
-            $this->makeEvaluation();
-            $this->makeAnswer();
+//            $command = null;
+//            $test    = false;
+//
+//            while (false !== $c = $this->getOption($v)) switch ($c) {
+//                case 't':
+//                    $test = true;
+//                    break;
+//                case 'h':
+//                case '?':
+//                    return $this->usage();
+//                    break;
+//            }
+//
+//            require 'hoa://Application/Config/Environnement.php';
+//
+//            if($test === true)
+//                \Hoa\Database\Dal::getInstance('test');
+//
+//            $this->readCapabilities();
+//            $this->makeSomeUser();
+//            $this->makeEvaluation();
+//            $this->makeAnswer();
         }
 
         public function makeAnswer()
