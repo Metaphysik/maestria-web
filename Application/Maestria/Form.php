@@ -38,6 +38,13 @@ class Form
 
         $this->form();
         $this->validate();
+
+        call_user_func_array([$this, 'construct'], func_get_args());
+    }
+
+    public function construct()
+    {
+
     }
 
     /**

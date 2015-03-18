@@ -3,4 +3,6 @@
  * @var $this \Sohoa\Framework\View\Greut
  */
 
-echo $html;
+$this->inherits('hoa://Application/View/base.tpl.php');
+$this->block('content');
+$this->endblock();
