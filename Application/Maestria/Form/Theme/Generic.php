@@ -40,6 +40,7 @@ namespace Application\Maestria\Form\Theme {
 
         public function getError($name)
         {
+
             if ($this->hasError($name) === true) {
                 return $this->_errors[$name];
             }

@@ -101,9 +101,9 @@ namespace Application\Maestria\Form {
             return $this->_theme;
         }
 
-        public function render()
+        public function render($validation = false)
         {
-            return $this->getTheme()->form($this);
+            return $this->getTheme()->form($this, $validation);
         }
 
         public function setValidate($validate)

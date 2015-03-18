@@ -4,6 +4,6 @@ namespace Application\Maestria\Form\Theme {
 
     interface ITheme
     {
-        public function form(Form $form);
+        public function form(Form $form, $validation);
     }
 }
