@@ -5,10 +5,10 @@ namespace Application\Maestria {
     {
         public function reset()
         {
-            $this->_blocks =  [];
+            $this->_blocks     = [];
             $this->_blocknames = [];
-            $this->_headers = [];
-            $this->_file = '';
+            $this->_headers    = [];
+            $this->_file       = '';
         }
     }
 }

@@ -7,9 +7,6 @@
  */
 namespace Application\Bin\Command\Sqlite {
 
-    use Hoa\Console\Chrome\Text;
-    use Hoa\File\Finder;
-
     class Migrate extends \Hoa\Console\Dispatcher\Kit
     {
 
@@ -18,13 +15,13 @@ namespace Application\Bin\Command\Sqlite {
          *
          * @var \Hoa\Core\Bin\Welcome array
          */
-        protected $options = array(
-            array('help', \Hoa\Console\GetOption::NO_ARGUMENT, 'h'),
-            array('help', \Hoa\Console\GetOption::NO_ARGUMENT, '?'),
-        );
+        protected $options = [
+            ['help', \Hoa\Console\GetOption::NO_ARGUMENT, 'h'],
+            ['help', \Hoa\Console\GetOption::NO_ARGUMENT, '?'],
+        ];
 
-        protected $maxEleve = 5;
-        protected $maxQuestion = 5;
+        protected $maxEleve        = 5;
+        protected $maxQuestion     = 5;
         protected $defaultPassword = 'sample';
 
         /**
@@ -38,12 +35,14 @@ namespace Application\Bin\Command\Sqlite {
 
             $command = null;
 
-            while (false !== $c = $this->getOption($v)) switch ($c) {
+            while (false !== $c = $this->getOption($v)) {
+                switch ($c) {
 
-                case 'h':
-                case '?':
-                    return $this->usage();
-                    break;
+                    case 'h':
+                    case '?':
+                        return $this->usage();
+                        break;
+                }
             }
 
             var_dump(resolve('hoa://Application'));
@@ -62,9 +61,9 @@ namespace Application\Bin\Command\Sqlite {
             echo '   Sqlite:Migrate ' . "\n\n";
 
             echo $this->stylize('Options:', 'h1'), "\n";
-            echo $this->makeUsageOptionsList(array(
+            echo $this->makeUsageOptionsList([
                 'help' => 'This help.'
-            ));
+            ]);
 
             return;
         }

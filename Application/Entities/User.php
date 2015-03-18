@@ -1,20 +1,21 @@
 <?php
 namespace Application\Entities;
+
 /**
  * @Entity @Table(name="user")
  **/
 class User
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
+    /** @Id @Column(type="integer") @GeneratedValue * */
     protected $id;
     /** @Column(type="string") * */
 
     protected $name;
 
     public function getId()
-{
-    return $this->id;
-}
+    {
+        return $this->id;
+    }
 
     public function getName()
     {

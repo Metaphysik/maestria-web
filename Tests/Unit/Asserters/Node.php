@@ -13,10 +13,11 @@ class Node extends asserters\variable implements \arrayAccess, \Countable
 
     public function setWith($request)
     {
-        if($request instanceof \DOMNodeList)
+        if ($request instanceof \DOMNodeList) {
             $value = $request;
-        else
+        } else {
             return $this->fail('Node need DOMNodeList instance');
+        }
 
         parent::setWith($value);
     }

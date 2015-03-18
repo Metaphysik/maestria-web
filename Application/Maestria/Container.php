@@ -6,13 +6,14 @@ namespace Application\Maestria {
     {
 
         protected static $_instance = null;
-        protected $_object = array();
-        protected $_current = null;
+        protected        $_object   = [];
+        protected        $_current  = null;
 
         public static function getInstance()
         {
-            if (static::$_instance === null)
+            if (static::$_instance === null) {
                 static::$_instance = new static();
+            }
 
             return static::$_instance;
         }
@@ -29,14 +30,15 @@ namespace Application\Maestria {
 
         public function set($id, $object, $force = false)
         {
-            if (!$this->containerExists($id) or $force === true)
-                $this->_object[$id] = array(
+            if (!$this->containerExists($id) or $force === true) {
+                $this->_object[$id] = [
                     'init'     => $object,
-                    'argument' => array(),
-                    'calls'    => array(),
+                    'argument' => [],
+                    'calls'    => [],
                     'object'   => null,
                     'share'    => false
-                );
+                ];
+            }
 
             $this->setCurrentObject($id);
 
@@ -62,17 +64,17 @@ namespace Application\Maestria {
             return $this;
         }
 
-        public function call($method, Array $argument = array())
+        public function call($method, Array $argument = [])
         {
 
             $current                            = $this->getCurrentObject();
-            $this->_object[$current]['calls'][] = array($method, $argument);
+            $this->_object[$current]['calls'][] = [$method, $argument];
 
             return $this;
         }
 
 
-        public function argument(Array $argument = array())
+        public function argument(Array $argument = [])
         {
             $current                             = $this->getCurrentObject();
             $old                                 = $this->_object[$current]['argument'];
@@ -89,9 +91,11 @@ namespace Application\Maestria {
         protected function resolveArguments(Array $arguments)
         {
 
-            foreach ($arguments as $i => $argument)
-                if (is_string($argument) and $argument[0] === '@')
+            foreach ($arguments as $i => $argument) {
+                if (is_string($argument) and $argument[0] === '@') {
                     $arguments[$i] = $this->get(substr($argument, 1));
+                }
+            }
 
             return $arguments;
         }
@@ -103,45 +107,49 @@ namespace Application\Maestria {
 
         protected function initContainer($id)
         {
-            $container  = $this->_getContainer($id);
-            $init       = $container['init'];
-            $argument   = $this->resolveArguments($container['argument']);
-            $calls      = $container['calls'];
+            $container = $this->_getContainer($id);
+            $init      = $container['init'];
+            $argument  = $this->resolveArguments($container['argument']);
+            $calls     = $container['calls'];
 
-            if ($init instanceof \Closure)
+            if ($init instanceof \Closure) {
                 $this->_object[$id]['object'] = call_user_func_array($init, $argument);
-
-            elseif (is_string($init))
+            } elseif (is_string($init)) {
                 $this->_object[$id]['object'] = $this->initClassFromString($init, $argument);
+            } else {
+                $this->_object[$id]['object'] = &$init;
+            }
 
-            else
-                $this->_object[$id]['object'] = & $init;
-
-            if (!empty($calls))
-                foreach ($calls as $call)
-                    $this->initMethodFromString($this->_object[$id]['object'], $call[0], $this->resolveArguments($call[1]));
+            if (!empty($calls)) {
+                foreach ($calls as $call) {
+                    $this->initMethodFromString($this->_object[$id]['object'], $call[0],
+                        $this->resolveArguments($call[1]));
+                }
+            }
         }
 
-        protected function initClassFromString($classname, Array $argument = array())
+        protected function initClassFromString($classname, Array $argument = [])
         {
 
             $class = new \ReflectionClass($classname);
 
-            if (empty($argument) || false === $class->hasMethod('__construct'))
+            if (empty($argument) || false === $class->hasMethod('__construct')) {
                 return $class->newInstance();
+            }
 
             return $class->newInstanceArgs($argument);
         }
 
-        protected function initMethodFromString($object, $method, Array $argument = array())
+        protected function initMethodFromString($object, $method, Array $argument = [])
         {
             $r = new \ReflectionObject($object);
 
             if ($r->hasMethod($method) === true) {
-                if (empty($argument))
+                if (empty($argument)) {
                     $r->getMethod($method)->invoke($object);
-                else
+                } else {
                     $r->getMethod($method)->invokeArgs($object, $argument);
+                }
             }
         }
 
@@ -150,8 +158,9 @@ namespace Application\Maestria {
             if ($this->containerExists($id)) {
                 $container = $this->_getContainer($id);
 
-                if ($container['object'] === null or $container['share'] === false)
+                if ($container['object'] === null or $container['share'] === false) {
                     $this->initContainer($id);
+                }
 
                 return $this->_object[$id]['object'];
             } else {
@@ -162,8 +171,9 @@ namespace Application\Maestria {
 
         public function reset($id)
         {
-            if ($this->containerExists($id))
+            if ($this->containerExists($id)) {
                 $this->_object[$id]['object'] = null;
+            }
         }
     }
 }

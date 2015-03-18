@@ -11,11 +11,10 @@ class Router extends \Sohoa\Framework\Router
 
     public function construct()
     {
-        if(static::$_everLoad === false)
-        {
+        if (static::$_everLoad === false) {
             echo 'Load';
             parent::construct();
             static::$_everLoad = true;
         }
-    }   
+    }
 }

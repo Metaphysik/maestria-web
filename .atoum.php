@@ -10,7 +10,7 @@ More information on documentation:
 [fr] http://docs.atoum.org/fr/latest/lancement_des_tests.html#fichier-de-configuration
 */
 
-use \mageekguy\atoum;
+use mageekguy\atoum;
 
 $report = $script->addDefaultReport();
 
@@ -31,8 +31,8 @@ $coverageField->setRootUrl('http://url/of/web/site');
 $report->addField($coverageField);
 */
 
-$script->getRunner()->addTestsFromDirectory(__DIR__.'/Tests/Unit/Controller');
-$script->getRunner()->addTestsFromDirectory(__DIR__.'/Tests/Unit/Feature');
+$script->getRunner()->addTestsFromDirectory(__DIR__ . '/Tests/Unit/Controller');
+$script->getRunner()->addTestsFromDirectory(__DIR__ . '/Tests/Unit/Feature');
 
 
 /*

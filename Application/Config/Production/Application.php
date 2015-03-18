@@ -1,4 +1,4 @@
 <?php
 /**
- * @var \Sohoa\Framework\Environnement $this;
+ * @var \Sohoa\Framework\Environnement $this ;
  */

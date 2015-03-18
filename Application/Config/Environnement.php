@@ -1,24 +1,21 @@
 <?php
 /**
- * @var \Sohoa\Framework\Environnement $this;
+ * @var \Sohoa\Framework\Environnement $this ;
  */
-use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
 
 $isDevMode = true;
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../Entities"), $isDevMode);
-
-$path = resolve(__DIR__ . '/../Database/Maestria-orm.db');
-
-// database configuration parameters
-$conn = array(
+$config    = Setup::createAnnotationMetadataConfiguration([__DIR__ . "/../Entities"], $isDevMode);
+$path      = resolve(__DIR__ . '/../Database/Maestria-orm.db');
+$conn      = [
     'driver' => 'pdo_sqlite',
-    'path' => $path,
-);
+    'path'   => $path,
+];
 
 $entityManager = EntityManager::create($conn, $config);
+$container     = \Application\Maestria\Container::getInstance();
 
-$container = \Application\Maestria\Container::getInstance();
 $container->set('em', $entityManager);
 
-return array();
+return [];

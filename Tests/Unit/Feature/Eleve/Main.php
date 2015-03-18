@@ -1,6 +1,8 @@
 <?php
-namespace Application\Acl\Eleve { 
-    class Main {}
+namespace Application\Acl\Eleve {
+    class Main
+    {
+    }
 }
 
 namespace Application\Acl\Eleve\Tests\Unit {
@@ -16,17 +18,15 @@ namespace Application\Acl\Eleve\Tests\Unit {
         {
             $request = $this->request;
             $html    = $request->get('/')->html;
-            $html    = $request->post('/login', ['user' => 'eleve' , 'password' => 'eleve'])->html;
+            $html    = $request->post('/login', ['user' => 'eleve', 'password' => 'eleve'])->html;
 
             // echo $request;
 
             $this->if($item = $html->xquery('//a[@href="/user/4"]')[0])
-                ->string(trim($item->nodeValue))->isIdenticalTo('Eleve')
-            ;  
+                ->string(trim($item->nodeValue))->isIdenticalTo('Eleve');
 
             $this->if($item = $html->xquery('//ul[@class="nav navbar-nav"]/li/a/i'))
-                ->integer(count($item))->isIdenticalTo(0)
-            ;
+                ->integer(count($item))->isIdenticalTo(0);
         }
     }
 }
