@@ -1,24 +1,23 @@
 <?php
-namespace Application\Controller\Kit {
+namespace Application\Controller\Kit;
 
-    class Redirection extends \Sohoa\Framework\Kit\Redirector
+class Redirection extends \Sohoa\Framework\Kit\Redirector
+{
+    public function url($uri, $status = 302)
     {
-        public function url($uri, $status = 302)
-        {
-            $response = $this->view->getOutputStream();
-            $response->sendHeader('Location', $uri, true, $status);
+        $response = $this->view->getOutputStream();
+        $response->sendHeader('Location', $uri, true, $status);
 
-            return;
-        }
+        return;
+    }
 
-        public function redirect($ruleId, array $data = [], $secured = null, $status = 302)
-        {
-            $uri = $this->router->unroute($ruleId, $data, $secured);
+    public function redirect($ruleId, array $data = [], $secured = null, $status = 302)
+    {
+        $uri = $this->router->unroute($ruleId, $data, $secured);
 
-            $response = $this->view->getOutputStream();
-            $response->sendHeader('Location', $uri, true, $status);
+        $response = $this->view->getOutputStream();
+        $response->sendHeader('Location', $uri, true, $status);
 
-            return;
-        }
+        return;
     }
 }

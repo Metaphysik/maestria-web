@@ -1,133 +1,133 @@
 <?php
-namespace Application\Maestria\Form {
+namespace Application\Maestria\Form;
 
-    class Form extends Element
+class Form extends Element
+{
+    protected static $_instance  = [];
+    protected        $_name      = 'form';
+    protected        $_formid    = null;
+    protected        $_theme     = null;
+    protected        $_data      = [];
+    protected        $_check     = false;
+    protected        $_validator = null;
+
+    private function __construct($name)
     {
-        protected static $_instance = array();
-        protected $_name = 'form';
-        protected $_formid = null;
-        protected $_theme = null;
-        protected $_data = array();
-        protected $_check = false;
-        protected $_validator = null;
+        $this->_formid = $name;
+    }
 
-        public static function get($name)
-        {
-            if ($name === null or $name === '') {
-                throw new Exception("You must get an name for the form", 0);
-            }
-
-            if (!array_key_exists($name, static::$_instance)) {
-                static::$_instance[$name] = new static($name);
-            }
-
-            return static::$_instance[$name];
+    public static function get($name)
+    {
+        if ($name === null or $name === '') {
+            throw new Exception("You must get an name for the form", 0);
         }
 
-        private function __construct($name)
-        {
-            $this->_formid = $name;
+        if (!array_key_exists($name, static::$_instance)) {
+            static::$_instance[$name] = new static($name);
         }
 
-        public function getFormId()
-        {
-            return $this->_formid;
+        return static::$_instance[$name];
+    }
+
+    public function getFormId()
+    {
+        return $this->_formid;
+    }
+
+    public function useHttpData()
+    {
+        $this->setData(\Hoa\Http\Runtime::getData());
+
+        return $this;
+    }
+
+    public function getData($name = null)
+    {
+        if ($name === null) {
+            return $this->_data;
         }
 
-        public function useHttpData()
-        {
-            $this->setData(\Hoa\Http\Runtime::getData());
-
-            return $this;
+        if (array_key_exists($name, $this->_data)) {
+            return $this->_data[$name];
         }
 
-        public function getData($name = null)
-        {
-            if ($name === null) {
-                return $this->_data;
-            }
+        return null;
+    }
 
-            if (array_key_exists($name, $this->_data)) {
-                return $this->_data[$name];
-            }
-
-            return null;
+    public function setData($data = null)
+    {
+        if (!empty($data) and is_array($data)) {
+            $this->_data = $data;
         }
 
-        public function setData($data = null)
-        {
-            if (!empty($data) and is_array($data)) {
-                $this->_data = $data;
-            }
+        return $this;
+    }
 
-            return $this;
+    public function fill(array $data = [])
+    {
+        return $this->nocheck()->setData($data);
+    }
+
+    public function nocheck()
+    {
+        $this->_check = false;
+
+        return $this;
+    }
+
+    public function check()
+    {
+        $this->_check = true;
+
+        return $this;
+    }
+
+    public function getCheckStatus()
+    {
+        return $this->_check;
+    }
+
+    public function render($validation = false)
+    {
+        return $this->getTheme()->form($this, $validation);
+    }
+
+    public function getTheme()
+    {
+        if ($this->_theme === null) {
+            $this->_theme = new Theme\Bootstrap();
         }
 
-        public function fill(array $data = array())
-        {
-            return $this->nocheck()->setData($data);
+        return $this->_theme;
+    }
+
+    public function setTheme(\Sohoa\Framework\Form\Theme\ITheme $object)
+    {
+        $this->_theme = $object;
+        $this->_theme->setForm($this);
+    }
+
+    public function setValidate($validate)
+    {
+        $this->_validator = $validate;
+    }
+
+    public function isValid($data = [])
+    {
+        return $this->getValidator()->isValid($data);
+    }
+
+    public function getValidator()
+    {
+        if ($this->_validator === null) {
+            $this->_validator = new Validate\Check($this);
         }
 
-        public function nocheck()
-        {
-            $this->_check = false;
+        return $this->_validator;
+    }
 
-            return $this;
-        }
-
-        public function check()
-        {
-            $this->_check = true;
-
-            return $this;
-        }
-
-        public function getCheckStatus()
-        {
-            return $this->_check;
-        }
-
-        public function setTheme(\Sohoa\Framework\Form\Theme\ITheme $object)
-        {
-            $this->_theme = $object;
-            $this->_theme->setForm($this);
-        }
-
-        public function getTheme()
-        {
-            if($this->_theme === null)
-                $this->_theme = new Theme\Bootstrap();
-
-            return $this->_theme;
-        }
-
-        public function render($validation = false)
-        {
-            return $this->getTheme()->form($this, $validation);
-        }
-
-        public function setValidate($validate)
-        {
-            $this->_validator = $validate;
-        }
-
-        public function getValidator()
-        {
-            if ($this->_validator === null) {
-                $this->_validator = new Validate\Check($this);
-            }
-
-            return $this->_validator;
-        }
-
-        public function isValid($data = array())
-        {
-            return $this->getValidator()->isValid($data);
-        }
-
-        public function getErrors()
-        {
-            return $this->getValidator()->getErrors();
-        }
+    public function getErrors()
+    {
+        return $this->getValidator()->getErrors();
     }
 }

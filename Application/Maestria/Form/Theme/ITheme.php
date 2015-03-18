@@ -1,9 +1,9 @@
 <?php
-namespace Application\Maestria\Form\Theme {
-    use Application\Maestria\Form\Form;
+namespace Application\Maestria\Form\Theme;
 
-    interface ITheme
-    {
-        public function form(Form $form, $validation);
-    }
+use Application\Maestria\Form\Form;
+
+interface ITheme
+{
+    public function form(Form $form, $validation);
 }

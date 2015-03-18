@@ -1,51 +1,50 @@
 <?php
-namespace Application\Maestria\Form\Theme {
+namespace Application\Maestria\Form\Theme;
 
-    class Generic
+class Generic
+{
+    protected $_form   = null;
+    protected $_errors = [];
+
+    public function getForm()
     {
-        protected $_form = null;
-        protected $_errors = array();
+        return $this->_form;
+    }
 
-        public function setForm($form)
-        {
-            $this->_form = $form;
+    public function setForm($form)
+    {
+        $this->_form = $form;
+    }
+
+    public function setErrors(array $error)
+    {
+        $this->_errors = $error;
+    }
+
+    public function getError($name)
+    {
+
+        if ($this->hasError($name) === true) {
+            return $this->_errors[$name];
         }
 
-        public function getForm()
-        {
-            return $this->_form;
-        }
+        return null;
+    }
 
-        public function hasError($name)
-        {
+    public function hasError($name)
+    {
 
-            if (array_key_exists($name, $this->_errors) === false) {
-                return false;
-            }
-
-            foreach ($this->_errors[$name] as $value) {
-
-                if ($value !== null) {
-                    return true;
-                }
-            }
-
+        if (array_key_exists($name, $this->_errors) === false) {
             return false;
         }
 
-        public function setErrors(array $error)
-        {
-            $this->_errors = $error;
-        }
+        foreach ($this->_errors[$name] as $value) {
 
-        public function getError($name)
-        {
-
-            if ($this->hasError($name) === true) {
-                return $this->_errors[$name];
+            if ($value !== null) {
+                return true;
             }
-
-            return null;
         }
+
+        return false;
     }
 }

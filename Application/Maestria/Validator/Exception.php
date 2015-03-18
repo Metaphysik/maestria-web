@@ -1,4 +1,7 @@
 <?php
-namespace Application\Maestria\Validator {
-    class Exception extends \Hoa\Core\Exception\Exception {}
+namespace Application\Maestria\Validator;
+
+class Exception extends \Hoa\Core\Exception\Exception
+{
 }
+

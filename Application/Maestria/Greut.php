@@ -1,14 +1,13 @@
 <?php
-namespace Application\Maestria {
+namespace Application\Maestria;
 
-    class Greut extends \Sohoa\Framework\View\Greut
+class Greut extends \Sohoa\Framework\View\Greut
+{
+    public function reset()
     {
-        public function reset()
-        {
-            $this->_blocks     = [];
-            $this->_blocknames = [];
-            $this->_headers    = [];
-            $this->_file       = '';
-        }
+        $this->_blocks     = [];
+        $this->_blocknames = [];
+        $this->_headers    = [];
+        $this->_file       = '';
     }
 }

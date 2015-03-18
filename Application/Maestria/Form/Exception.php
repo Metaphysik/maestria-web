@@ -1,7 +1,6 @@
 <?php
-namespace Application\Maestria\Form {
+namespace Application\Maestria\Form;
 
-    class Exception extends \Hoa\Core\Exception\Exception
-    {
-    }
+class Exception extends \Hoa\Core\Exception\Exception
+{
 }

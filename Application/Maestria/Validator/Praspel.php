@@ -1,28 +1,29 @@
 <?php
-namespace Application\Maestria\Validator  {
-    class Praspel extends Validator
+namespace Application\Maestria\Validator;
+
+class Praspel extends Validator
+{
+    protected function _valid($data, $arguments)
     {
-        protected function _valid($data, $arguments)
-        {
-            if (count($arguments) === 1 and isset($arguments[0])) {
-                $argument       = $arguments[0];
-                $praspel        = \Hoa\Praspel\Praspel::interprete('@requires i: '.$argument.';');
-                $clause         = $praspel->getClause('requires');
-                $variable       = $clause['i'];
-                $this->realdom  = $argument;
-                $this->value    = $data;
+        if (count($arguments) === 1 and isset($arguments[0])) {
+            $argument      = $arguments[0];
+            $praspel       = \Hoa\Praspel\Praspel::interprete('@requires i: ' . $argument . ';');
+            $clause        = $praspel->getClause('requires');
+            $variable      = $clause['i'];
+            $this->realdom = $argument;
+            $this->value   = $data;
 
-                return $variable->predicate($data);
-            }
-
-            throw new Exception("Need only one argument", 1);
-
+            return $variable->predicate($data);
         }
 
-        protected function setMessage()
-        {
-            return  sprintf('The given value %s do not match %s', var_export($this->value, true), $this->realdom);
-        }
+        throw new Exception("Need only one argument", 1);
 
     }
+
+    protected function setMessage()
+    {
+        return sprintf('The given value %s do not match %s', var_export($this->value, true), $this->realdom);
+    }
+
 }
+

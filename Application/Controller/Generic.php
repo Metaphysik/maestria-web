@@ -1,22 +1,21 @@
 <?php
 
-namespace Application\Controller {
+namespace Application\Controller;
 
-    use Sohoa\Framework\Kit;
+use Sohoa\Framework\Kit;
 
-    class Generic extends Kit
+class Generic extends Kit
+{
+    public function form($data = [])
     {
-        public function form($data = [])
-        {
-            $form        = Form::get($this->_name);
-            $form['foo'] = (new Input())->label('Hello')->name('foo');
+        $form        = Form::get($this->_name);
+        $form['foo'] = (new Input())->label('Hello')->name('foo');
 
-            $validate = Validator::get($this->_name);
-            $validate->foo->required();
+        $validate = Validator::get($this->_name);
+        $validate->foo->required();
 
-            $form->setData($data);
-            $validate->setData($data);
-        }
-
+        $form->setData($data);
+        $validate->setData($data);
     }
+
 }

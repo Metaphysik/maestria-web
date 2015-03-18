@@ -1,16 +1,15 @@
 <?php
-namespace Application\Maestria\Form {
+namespace Application\Maestria\Form;
 
-    class Radio extends Select
+class Radio extends Select
+{
+    protected $_name       = 'input';
+    protected $_attributes = ['type' => 'radio'];
+
+    public function option($value, $label = null, $args = [])
     {
-        protected $_name = 'input';
-        protected $_attributes = ['type' => 'radio'];
+        $this->_options[] = [$value, $label, $args];
 
-        public function option($value, $label = null, $args = array())
-        {
-            $this->_options[] = [$value , $label, $args];
-
-            return $this;
-        }
+        return $this;
     }
 }

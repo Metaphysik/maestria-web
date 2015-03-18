@@ -1,7 +1,6 @@
 <?php
 namespace Application\Form;
 
-
 use Application\Maestria\Form\Form;
 use Application\Maestria\Validator;
 
@@ -26,6 +25,11 @@ class Generic
         $this->validate();
     }
 
+    public function form()
+    {
+        return null;
+    }
+
     public function validate()
     {
         return null;
@@ -43,11 +47,6 @@ class Generic
     public function noValidation()
     {
         return $this->_form->render();
-    }
-
-    public function form()
-    {
-        return null;
     }
 
     public function withValidation($data)
