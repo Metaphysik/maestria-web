@@ -7,7 +7,7 @@ class Login extends Generic
 {
     public function form()
     {
-        $form        = $this->_form;
+        $form   = $this->_form;
         $form[] = (new Input())->label('Babr')->id('d');
         $form[] = (new Input())->label('Babr')->id('ds');
         $form[] = (new Input())->label('Babr')->id('dsf');

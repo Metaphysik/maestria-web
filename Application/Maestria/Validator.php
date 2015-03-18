@@ -112,8 +112,9 @@ class Validator
             foreach ($element as $i => $validate) {
                 $v = $validate['object']->isValid($f($name));
                 if ($v === false) {
-                    $this->_errors[$name][] = ['class'   => get_class($validate['object']),
-                                               'message' => $validate['object']->getMessage()
+                    $this->_errors[$name][] = [
+                        'class'   => get_class($validate['object']),
+                        'message' => $validate['object']->getMessage()
                     ];
                     $valid                  = false;
                 }

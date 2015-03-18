@@ -1,5 +1,6 @@
 <?php
 namespace Application\Maestria;
+
 class Acl
 {
     protected $_acl       = null;
