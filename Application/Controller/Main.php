@@ -11,7 +11,7 @@ class Main extends Generic
     {
         $login = new Login();
 
-        echo $login(['foo' => '']);
+        echo $login(['d' => 'ddd']);
 
         return $this->greut->render();
     }

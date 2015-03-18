@@ -15,13 +15,10 @@ namespace Application\Maestria\Form\Theme {
             $id       = $form->getFormId();
             $validate = Validator::get($id);
 
-
-            if ($validation === true) {
-                if ($validate->isValid() === false) {
-                    $this->setErrors($validate->getErrors());
-                }
+            if ($validate->isValid() === false) {
+                $this->setErrors($validate->getErrors());
             }
-
+            
             $this->setForm($form);
 
             $out = '<form class="form-horizontal" role="form" ' . $form->getAttributeAsString() . '>';
