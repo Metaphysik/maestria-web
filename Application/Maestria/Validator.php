@@ -47,12 +47,12 @@ class Validator
     public function __call($name, $args)
     {
         if ($this->_type === 'validator') {
-            $instance = dnew('\Application\Maestria\Validator\\' . ucfirst($name));
+            $instance = dnew('\Application\Maestria\Validator\\' . ucfirst($name), $args);
             $instance->setData($this->getCurrentData());
             $instance->setName($this->_current);
             $instance->setArguments($args);
-        } elseif ($this->_type === 'filter') {
-            $instance = dnew('\Stdclass');
+        } else {
+            $instance = dnew('\Application\Maestria\Filter\\' . ucfirst($name), $args);
         }
 
         $this->_stack[$this->_current][] = ['type' => $this->_type, 'object' => $instance, 'error' => null];
@@ -67,6 +67,7 @@ class Validator
 
     public function getData($id = null)
     {
+        $this->parseData();
 
         if ($id === null) {
             return $this->_data;
@@ -77,6 +78,11 @@ class Validator
         }
 
         return null;
+    }
+
+    public function _setData($id, $value)
+    {
+        $this->_data[$id] = $value;
     }
 
     public function setData($data)
@@ -91,6 +97,28 @@ class Validator
         }
 
         return null;
+    }
+
+    public function parseData()
+    {
+        $data = $this->_data;
+        $f = function ($key) use (&$data) {
+            if (isset($data[$key])) {
+                return $data[$key];
+            }
+
+            return null;
+        };
+
+        foreach ($this->_stack as $name => $element) {
+            foreach ($element as $i => $validate) {
+
+                if($validate['type'] === 'filter') {
+                    $filter = $validate['object']->filter($f($name));
+                    $this->_setData($name, $filter);
+                }
+            }
+        }
     }
 
     public function isValid($data = null)
@@ -110,13 +138,15 @@ class Validator
 
         foreach ($this->_stack as $name => $element) {
             foreach ($element as $i => $validate) {
-                $v = $validate['object']->isValid($f($name));
-                if ($v === false) {
-                    $this->_errors[$name][] = [
-                        'class'   => get_class($validate['object']),
-                        'message' => $validate['object']->getMessage()
-                    ];
-                    $valid                  = false;
+                if($validate['type'] === 'validator') {
+                    $v = $validate['object']->isValid($f($name));
+                    if ($v === false) {
+                        $this->_errors[$name][] = [
+                            'class'   => get_class($validate['object']),
+                            'message' => $validate['object']->getMessage()
+                        ];
+                        $valid                  = false;
+                    }
                 }
             }
         }

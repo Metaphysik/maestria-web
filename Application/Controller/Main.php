@@ -9,9 +9,12 @@ class Main extends Generic
 {
     public function indexAction()
     {
-        $login = new Login();
+        $login            = new Login();
+        $this->data->html = $login(['d' => 'babab23', 'ds' => '0000'], true);
+        $data             = $login->getData();
 
-        echo $login();
+
+
 
         return $this->greut->render();
     }

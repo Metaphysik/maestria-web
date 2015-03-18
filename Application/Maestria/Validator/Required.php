@@ -5,7 +5,7 @@ class Required extends Validator
 {
     protected function _valid($data, $arguments)
     {
-        return (empty($data) !== true && $data !== null);
+        return (isset($data) === true && $data !== null);
     }
 
     protected function setMessage()

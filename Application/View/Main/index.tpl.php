@@ -1,3 +1,6 @@
 <?php
-/*** @var $this \Sohoa\Framework\View\Greut
+/**
+ * @var $this \Sohoa\Framework\View\Greut
  */
+
+echo $html;

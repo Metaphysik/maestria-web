@@ -1,9 +1,10 @@
 <?php
 namespace Application\Form;
 
+use Application\Maestria\Form;
 use Application\Maestria\Form\Input;
 
-class Login extends Generic
+class Login extends Form
 {
     public function form()
     {
@@ -19,5 +20,9 @@ class Login extends Generic
         $validate->d->required();
         $validate->ds->required();
         $validate->dsf->required();
+
+        $validate->d->filter->alpha();
+        $validate->ds->filter->integer(['operation' => 1]);
+
     }
 }
