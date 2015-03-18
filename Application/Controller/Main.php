@@ -8,7 +8,7 @@ class Main extends Generic
 {
     public function indexAction()
     {
-
+        return $this->greut->render();
     }
 }
 
