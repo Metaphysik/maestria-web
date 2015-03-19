@@ -112,10 +112,11 @@ class Validator
 
         foreach ($this->_stack as $name => $element) {
             foreach ($element as $i => $validate) {
-
                 if($validate['type'] === 'filter') {
-                    $filter = $validate['object']->filter($f($name));
-                    $this->_setData($name, $filter);
+                    if(isset($this->_data[$name])) {
+                        $filter = $validate['object']->filter($f($name));
+                        $this->_setData($name, $filter);
+                    }
                 }
             }
         }
@@ -125,6 +126,7 @@ class Validator
     {
         $data          = ($data === null) ? $this->getData() : $data;
         $this->_errors = [];
+
 
         $f = function ($key) use (&$data) {
             if (isset($data[$key])) {

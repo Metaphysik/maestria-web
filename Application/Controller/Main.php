@@ -10,13 +10,10 @@ class Main extends Generic
     public function indexAction()
     {
         $login            = new Login();
-        $this->data->html = $login(['d' => 'babab23', 'ds' => '0000'], true);
+        echo  $login(['d' => 'babab23', 'ds' => '122aaaa0001']);
         $data             = $login->getData();
 
-
-
-
-        return $this->greut->render();
+        var_dump($login->isValid(), $data);
     }
 }
 

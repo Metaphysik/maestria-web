@@ -101,29 +101,29 @@ class Form extends Element
         return $this->_theme;
     }
 
-    public function setTheme(\Sohoa\Framework\Form\Theme\ITheme $object)
+    public function setTheme(\Application\Maestria\Form\Theme\ITheme $object)
     {
         $this->_theme = $object;
         $this->_theme->setForm($this);
     }
 
-    public function setValidate($validate)
-    {
-        $this->_validator = $validate;
-    }
-
     public function isValid($data = [])
     {
-        return $this->getValidator()->isValid($data);
+        if (empty($data) === false) {
+            return $this->getValidator()->isValid();
+        } else {
+            return $this->getValidator()->isValid($data);
+        }
     }
 
     public function getValidator()
     {
-        if ($this->_validator === null) {
-            $this->_validator = new Validate\Check($this);
-        }
-
         return $this->_validator;
+    }
+
+    public function setValidator($validate)
+    {
+        $this->_validator = $validate;
     }
 
     public function getErrors()

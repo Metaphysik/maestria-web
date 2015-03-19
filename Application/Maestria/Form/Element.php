@@ -158,20 +158,6 @@ class Element implements \ArrayAccess
         return null;
     }
 
-    public function praspel($string)
-    {
-        return $this->need('praspel:' . $string);
-    }
-
-    public function need($string)
-    {
-        $array       = ['_'];
-        $string      = str_replace($array, '|', $string);
-        $array       = explode('|', $string);
-        $this->_need = array_merge($array, $this->_need);
-
-        return $this;
-    }
 
     public function optionnal()
     {

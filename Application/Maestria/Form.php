@@ -25,9 +25,10 @@ class Form
 
 
     /**
+     * @param  $data Array
      * @throws \Application\Maestria\Form\Exception
      */
-    public function __construct()
+    public function __construct($data = [])
     {
         $class           = get_class($this);
         $id              = substr($class, strrpos($class, '\\') + 1);
@@ -36,15 +37,13 @@ class Form
         $this->_form     = \Application\Maestria\Form\Form::get($id);
         $this->_validate = Validator::get($id);
 
+        $this->_form->setValidator($this->_validate);
+
+        $this->setData($data);
         $this->form();
         $this->validate();
 
         call_user_func_array([$this, 'construct'], func_get_args());
-    }
-
-    public function construct()
-    {
-
     }
 
     /**
@@ -63,6 +62,11 @@ class Form
         return null;
     }
 
+    public function construct()
+    {
+
+    }
+
     /**
      * @param null $data
      * @param bool $check
@@ -72,14 +76,17 @@ class Form
     {
         if ($check === true) {
             $this->_form->check();
+
             return $this->withValidation($data);
         } else {
             if ($data === null) {
                 $this->_form->nocheck();
+
                 return $this->noValidation();
             } else {
                 $this->setData($data);
                 $this->_form->nocheck();
+
                 return $this->noValidation();
             }
         }
@@ -105,7 +112,6 @@ class Form
     {
         $this->_validate->setData($data);
         $this->_form->setData($this->_validate->getData());
-
     }
 
     /**
@@ -115,6 +121,17 @@ class Form
     {
         return $this->_form->render();
 
+    }
+
+    public function isValid($data = [])
+    {
+        if (empty($data) === false) {
+            $this->setData($data);
+        }
+
+
+
+        return $this->_validate->isValid();
     }
 
     /**
