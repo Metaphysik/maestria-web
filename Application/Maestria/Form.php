@@ -93,6 +93,11 @@ class Form
 
     }
 
+    public function __toString()
+    {
+        return $this->__invoke();
+    }
+
     /**
      * @param $data
      * @return mixed

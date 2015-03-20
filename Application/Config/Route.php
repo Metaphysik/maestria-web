@@ -1,48 +1,48 @@
 <?php
-$this->setResource(\Sohoa\Framework\Router::REST_SHOW, null, null, '/(?<%s>[^/]+)');
-$this->setResource(\Sohoa\Framework\Router::REST_EDIT, null, null, '/(?<%s>[^/]+)/edit');
-$this->setResource(\Sohoa\Framework\Router::REST_UPDATE, null, 'post', '/(?<%s>[^/]+)/update');
-$this->setResource(\Sohoa\Framework\Router::REST_DESTROY, null, 'get', '/(?<%s>[^/]+)/destroy');
+
+$uia = '(?<uia>.+)@';
+
 
 //$this
-//     ->resource('professor',                               array('only' => array('index' , 'show')))
-//     ->resource('evaluation');
-//
+//    ->resource('professor', ['only' => ['index', 'show'], 'prefix' => $uia])
+//    ->resource('evaluation');
+
 //$this
 //    ->resource('evaluate')
-//    ->resource('resume',                                   array('only' => array('index', 'show')));
-//
+//    ->resource('resume', ['only' => ['index', 'show']]);
+
 //$class = $this
-//	->resource('classroom',                                array('only' => array('index', 'create', 'edit', 'update', 'show')));
-//
+//    ->resource('classroom', ['only' => ['index', 'create', 'edit', 'update', 'show']]);
+
 //$c = clone $class;
-//
-//$class->resource('dashboard',						       array('only' => array('index')));
-//$c    ->resource('result',	     						   array('only' => array('index')));
-//
+
+//$class->resource('dashboard', ['only' => ['index']]);
+//$c->resource('result', ['only' => ['index']]);
+
 //$this->resource('student');
-//$this->resource('theme',                                   array('only' => array('index', 'create')));
-//$this->resource('domain',                                  array('only' => array('index', 'create')));
-//$this->resource('know',                                    array('only' => array('index', 'create')));
-//
-$this->get('/', ['as' => 'mainindex', 'to' => 'Main#Index']);
-//$this->get('/error',                                       array('as' => 'mainerror',      'to' => 'Main#Error'));
-//$this->get('/login',                                       array('as' => 'mainconnect',    'to' => 'Main#Connect'));
-//$this->post('/login',                                      array('as' => 'mainlogin',      'to' => 'Main#Login'));
-//$this->get('/logout',                                      array('as' => 'mainlogout',     'to' => 'Main#Logout'));
-//$this->get('/register',                                    array('as' => 'mainregister',   'to' => 'Main#Register'));
-//$this->post('/register',                                   array('as' => 'maincreate',     'to' => 'Main#Create'));
-//$this->get('/user/',                                       array('as' => 'profilall',      'to' => 'Main#Profilall'));
-//$this->get('/user/(?<id>[^/]+)/?',                         array('as' => 'profiluser',     'to' => 'Main#Profil'));
-//$this->get('/user/(?<id>[^/]+)/edit',                      array('as' => 'profiledit',     'to' => 'Main#Profiledit'));
-//$this->post('/user/(?<id>[^/]+)/?',                        array('as' => 'profilupdate',   'to' => 'Main#Profilupdate'));
-//$this->post('/api/know/?',                                 array('as' => 'apicap',         'to' => 'Api#Know'));
-//$this->get('/api/domain/',                                 array('as' => 'apidomain',      'to' => 'Api#Domain'));
-//$this->get('/api/class/',                                  array('as' => 'apiclasse',      'to' => 'Api#Classeall'));
-//$this->get('/api/class/(?<classe>.*)',                     array('as' => 'apiclass',       'to' => 'Api#Classe'));
-//$this->get('/api/control/(?<clas>[^/]+)/eval/(?<eval>.*)', array('as' => 'apicontrol',     'to' => 'Api#Control'));
-//$this->get('/api/theme/?',                                 array('as' => 'apitheme',       'to' => 'Api#Theme'));
-//$this->get('/api/domaine/?',                               array('as' => 'apidomaine',     'to' => 'Api#Domaine'));
-//$this->get('/api/level/?',                                 array('as' => 'apilevel',       'to' => 'Api#Level'));
-//$this->get('/api/type/?',                                  array('as' => 'apitype',        'to' => 'Api#Type'));
-//$this->get('/api/users/?',                                 array('as' => 'apiusers',       'to' => 'Api#Users'));
+//$this->resource('theme', ['only' => ['index', 'create']]);
+//$this->resource('domain', ['only' => ['index', 'create']]);
+//$this->resource('know', ['only' => ['index', 'create']]);
+
+
+$this->get($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
+//$this->get($uia . '/error', ['as' => 'mainerror', 'to' => 'Main#Error']);
+//$this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
+//$this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
+//$this->get($uia . '/logout', ['as' => 'mainlogout', 'to' => 'Main#Logout']);
+//$this->get($uia . '/register', ['as' => 'mainregister', 'to' => 'Main#Register']);
+//$this->post($uia . '/register', ['as' => 'maincreate', 'to' => 'Main#Create']);
+//$this->get($uia . '/user/', ['as' => 'profilall', 'to' => 'Main#Profilall']);
+//$this->get($uia . '/user/(?<id>[^/]+)/?', ['as' => 'profiluser', 'to' => 'Main#Profil']);
+//$this->get($uia . '/user/(?<id>[^/]+)/edit', ['as' => 'profiledit', 'to' => 'Main#Profiledit']);
+//$this->post($uia . '/user/(?<id>[^/]+)/?', ['as' => 'profilupdate', 'to' => 'Main#Profilupdate']);
+//$this->post($uia . '/api/know/?', ['as' => 'apicap', 'to' => 'Api#Know']);
+//$this->get($uia . '/api/domain/', ['as' => 'apidomain', 'to' => 'Api#Domain']);
+//$this->get($uia . '/api/class/', ['as' => 'apiclasse', 'to' => 'Api#Classeall']);
+//$this->get($uia . '/api/class/(?<classe>.*)', ['as' => 'apiclass', 'to' => 'Api#Classe']);
+//$this->get($uia . '/api/control/(?<clas>[^/]+)/eval/(?<eval>.*)', ['as' => 'apicontrol', 'to' => 'Api#Control']);
+//$this->get($uia . '/api/theme/?', ['as' => 'apitheme', 'to' => 'Api#Theme']);
+//$this->get($uia . '/api/domaine/?', ['as' => 'apidomaine', 'to' => 'Api#Domaine']);
+//$this->get($uia . '/api/level/?', ['as' => 'apilevel', 'to' => 'Api#Level']);
+//$this->get($uia . '/api/type/?', ['as' => 'apitype', 'to' => 'Api#Type']);
+//$this->get($uia . '/api/users/?', ['as' => 'apiusers', 'to' => 'Api#Users']);
