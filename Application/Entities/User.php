@@ -1,9 +1,6 @@
 <?php
 namespace Application\Entities;
 
-/**
- * @Entity @Table(name="user")
- **/
 class User
 {
     protected $id;

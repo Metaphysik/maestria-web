@@ -1,36 +1,21 @@
-DB     := 'Application/Database/Maestria.db'
-DBD    := 'Application/Database'
-SQL    := 'Application/Database/maestria.sql'
 VENDOR := 'vendor'
 
 COMPOSER := $(shell if [ `which composer` ]; then echo 'composer'; else curl -sS https://getcomposer.org/installer | php > /dev/null 2>&1 ; echo './composer.phar'; fi;)
 
 db-reset:
-	if [ -f $(DB) ]; then rm -f $(DB); else echo "Database not exist yet"; fi;
+	Binaries/doctrine orm:schema-tool:drop
 
 db-install:
-	sqlite3 $(DB) < $(SQL)
-	chmod 0777 -R $(DBD)
 	chmod +x Binaries/sohoa
 	chmod +x Binaries/hoa
-	
+	chmod +x Binaries/doctrine
+	Binaries/doctrine orm:schema-tool:create
+
 db-peuplate:
-	make db-data
-	make db-sample
-
-db-data:
-	sqlite3 $(DB) < Application/Database/data.sql
-
-db-sample:
 	Binaries/sohoa application sample:data
 
-db:
-	make db-reset
-	make db-install
-	make db-data
-
 db-update:
-	sqlite3 $(DB) < Application/Database/update.1.sql
+	Binaries/doctrine orm:schema-tool:update
 
 update:
 	git pull -u origin master
@@ -40,9 +25,6 @@ update:
 install:
 	$(COMPOSER) install --no-dev
 	make log
-
-deploy:
-	cap nightly deploy deploy:all
 
 push:
 	git add --all
@@ -54,9 +36,3 @@ log:
 	chmod 0777 Application/Log
 	touch Application/Log/app.log
 	chmod 0777 Application/Log/app.log
-
-test:
-	sqlite3 Application/Database/Maestria-test.db < $(SQL)
-	sqlite3 Application/Database/Maestria-test.db < Application/Database/data.sql
-	sqlite3 Application/Database/Maestria-test.db < Application/Database/update.1.sql
-	Binaries/sohoa application sample:data --test
