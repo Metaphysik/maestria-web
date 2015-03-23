@@ -9,20 +9,17 @@ class Login extends Form
     public function form()
     {
         $form   = $this->_form;
-        $form[] = (new Input())->label('Babr')->id('d');
-        $form[] = (new Input())->label('Babr')->id('ds');
-        $form[] = (new Input())->label('Babr')->id('dsf');
+        $form[] = (new Input())->id('mail');
+        $form[] = (new Input())->id('mdp');
     }
 
     public function validate()
     {
         $validate = $this->_validate;
-        $validate->d->required();
-        $validate->ds->required();
-        $validate->dsf->required();
-
-        $validate->d->filter->alpha();
-        $validate->ds->filter->integer(['operation' => 1]);
-
+        $validate->mail
+            ->required()
+            ->email();
+        $validate->mdp
+            ->required();
     }
 }

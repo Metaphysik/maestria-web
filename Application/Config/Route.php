@@ -27,11 +27,11 @@ $uia = '(?<uia>.+)@';
 
 $this->get($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 //$this->get($uia . '/error', ['as' => 'mainerror', 'to' => 'Main#Error']);
-//$this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
-//$this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
-//$this->get($uia . '/logout', ['as' => 'mainlogout', 'to' => 'Main#Logout']);
-//$this->get($uia . '/register', ['as' => 'mainregister', 'to' => 'Main#Register']);
-//$this->post($uia . '/register', ['as' => 'maincreate', 'to' => 'Main#Create']);
+$this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
+$this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
+$this->get($uia . '/logout', ['as' => 'mainlogout', 'to' => 'Main#Logout']);
+$this->get($uia . '/register', ['as' => 'mainregister', 'to' => 'Main#Register']);
+$this->post($uia . '/register', ['as' => 'maincreate', 'to' => 'Main#Create']);
 //$this->get($uia . '/user/', ['as' => 'profilall', 'to' => 'Main#Profilall']);
 //$this->get($uia . '/user/(?<id>[^/]+)/?', ['as' => 'profiluser', 'to' => 'Main#Profil']);
 //$this->get($uia . '/user/(?<id>[^/]+)/edit', ['as' => 'profiledit', 'to' => 'Main#Profiledit']);

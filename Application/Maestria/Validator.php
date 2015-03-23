@@ -67,8 +67,6 @@ class Validator
 
     public function getData($id = null)
     {
-        $this->parseData();
-
         if ($id === null) {
             return $this->_data;
         }
@@ -78,6 +76,7 @@ class Validator
         }
 
         return null;
+
     }
 
     public function _setData($id, $value)
@@ -87,22 +86,16 @@ class Validator
 
     public function setData($data)
     {
-        $this->_data = $data;
-    }
-
-    public function getStack($name)
-    {
-        if (isset($this->_stack[$name])) {
-            return $this->_stack[$name];
+        if ($data !== null) {
+            $this->_data = $data;
+            $this->parseData();
         }
-
-        return null;
     }
 
     public function parseData()
     {
         $data = $this->_data;
-        $f = function ($key) use (&$data) {
+        $f    = function ($key) use (&$data) {
             if (isset($data[$key])) {
                 return $data[$key];
             }
@@ -112,14 +105,23 @@ class Validator
 
         foreach ($this->_stack as $name => $element) {
             foreach ($element as $i => $validate) {
-                if($validate['type'] === 'filter') {
-                    if(isset($this->_data[$name])) {
+                if ($validate['type'] === 'filter') {
+                    if (isset($this->_data[$name])) {
                         $filter = $validate['object']->filter($f($name));
                         $this->_setData($name, $filter);
                     }
                 }
             }
         }
+    }
+
+    public function getStack($name)
+    {
+        if (isset($this->_stack[$name])) {
+            return $this->_stack[$name];
+        }
+
+        return null;
     }
 
     public function isValid($data = null)
@@ -140,7 +142,7 @@ class Validator
 
         foreach ($this->_stack as $name => $element) {
             foreach ($element as $i => $validate) {
-                if($validate['type'] === 'validator') {
+                if ($validate['type'] === 'validator') {
                     $v = $validate['object']->isValid($f($name));
                     if ($v === false) {
                         $this->_errors[$name][] = [

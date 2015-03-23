@@ -7,15 +7,26 @@ use Sohoa\Framework\Kit;
 
 class Main extends Generic
 {
-    public function indexAction()
+    public function indexAction($uia)
     {
-        $login            = new Login(['d' => 'babab23', 'ds' => '122aaaa0001']);
-        echo  $login;
-        $data             = $login->getData();
+        $this->redirector->redirect('mainconnect', ['uia' => $uia]);
+    }
 
-        var_dump($data);
-        // var_dump($login->isValid(), $data);
-        //return $this->greut->render();
+    public function loginAction()
+    {
+        $login = new Login($_POST);
+
+        var_dump($login->isValid());
+    }
+
+    public function connectAction()
+    {
+        $this->greut->render();
+    }
+
+    public function logoutAction()
+    {
+
     }
 }
 

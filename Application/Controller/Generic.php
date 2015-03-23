@@ -12,6 +12,7 @@ class Generic extends Kit
     public function construct()
     {
         $this->readUia();
+        $this->readUserSession();
     }
 
     protected function readUia()
@@ -22,5 +23,19 @@ class Generic extends Kit
         $uia        = new Uia();
         $uia        = $uia->getBySlug($_uia);
         $this->_uia = $uia;
+
+        if(defined('UIA') === false) {
+            define('UIA', $uia->getSlug());
+        }
+    }
+
+    protected function readUserSession()
+    {
+        $session = new \Hoa\Session\Session('user');
+        if (isset($session['connect']) and $session['connect'] === true) {
+            $id = $session['id'];
+
+
+        }
     }
 }

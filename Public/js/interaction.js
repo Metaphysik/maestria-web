@@ -1,7 +1,7 @@
 //ouverture sous parties pages items pedas et classes
 $('body').on('click','ul li', function(){
 //petit coup d'ajax pour générer sous parties
-$(this).next('ul').slideToggle();
+$(this).toggleClass('actif').next('ul').slideToggle();
 });
 
 

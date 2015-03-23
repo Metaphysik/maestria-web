@@ -2,6 +2,7 @@
   "name": "sohoa/sohoa",
   "require": {
     "sohoa/framework": "*@dev",
+    "camael24/greut": "dev-master",
     "hoa/database": "~0.0",
     "hoa/praspel": "~0.0",
     "hoa/acl": "~0.0",

@@ -10,4 +10,9 @@ class Greut extends \Sohoa\Framework\View\Greut
         $this->_headers    = [];
         $this->_file       = '';
     }
+
+    public function getFramework()
+    {
+        return $this->_framework;
+    }
 }

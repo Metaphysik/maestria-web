@@ -115,8 +115,10 @@ class Form
      */
     public function setData($data)
     {
-        $this->_validate->setData($data);
-        $this->_form->setData($this->_validate->getData());
+        if($data !== null){
+            $this->_validate->setData($data);
+            $this->_form->setData($this->_validate->getData());
+        }
     }
 
     /**
@@ -145,7 +147,6 @@ class Form
     public function getData()
     {
         return $this->_validate->getData();
-
     }
 
     /**
