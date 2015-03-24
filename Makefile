@@ -1,9 +1,8 @@
 VENDOR := 'vendor'
-
 COMPOSER := $(shell if [ `which composer` ]; then echo 'composer'; else curl -sS https://getcomposer.org/installer | php > /dev/null 2>&1 ; echo './composer.phar'; fi;)
 
-db-reset:
-	Binaries/doctrine orm:schema-tool:drop
+db-drop:
+	Binaries/doctrine orm:schema-tool:drop --force
 
 db-install:
 	chmod +x Binaries/sohoa
@@ -14,23 +13,12 @@ db-install:
 db-peuplate:
 	Binaries/sohoa application sample:data
 
+db-reset:
+    db-drop
+    db-install
+
 db-update:
 	Binaries/doctrine orm:schema-tool:update
-
-update:
-	git pull -u origin master
-	$(COMPOSER) update --no-dev
-	make log
-
-install:
-	$(COMPOSER) install --no-dev
-	make log
-
-push:
-	git add --all
-	git commit -a -m "Update for push"
-	git push
-	make deploy
 
 log:
 	chmod 0777 Application/Log

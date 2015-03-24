@@ -16,7 +16,7 @@ class Main extends Generic
     {
         $login = new Login($_POST);
 
-        var_dump($login->isValid());
+        var_dump($login->isValid(), $login->getData());
     }
 
     public function connectAction()

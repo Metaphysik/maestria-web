@@ -7,6 +7,9 @@
  */
 namespace Application\Bin\Command\Sample;
 
+
+use Application\Model\Uia;
+
 class Data extends \Hoa\Console\Dispatcher\Kit
 {
 
@@ -29,7 +32,22 @@ class Data extends \Hoa\Console\Dispatcher\Kit
      */
     public function main()
     {
-        
+        require 'hoa://Application/Config/Environnement.php';
+
+        $this->hydrateUia();
+    }
+
+
+    public function hydrateUia()
+    {
+
+        $model = new Uia();
+
+        $model->insert('demo', 'Lycée de la démologie', '1 Place du Mont Blanc', 'Sarlat la Canéda', 'Dordogne',
+            'Aquitaine', 'Mr Toupasbo', 'https://gmkfreelogos.com/logos/I/img/Its__Demo.gif');
+
+        $model->insert('caraminot', 'Lycée Professionnel Pierre Caraminot', '15 Avenue du paradis', 'Egletons', 'Correze',
+            'Limousin', 'Mr Vraimentbobo', 'https://gmkfreelogos.com/logos/I/img/Its__Demo.gif');
     }
 
     /**
@@ -53,4 +71,4 @@ class Data extends \Hoa\Console\Dispatcher\Kit
 }
 
 __halt_compiler();
-Sample command
+Generate data
