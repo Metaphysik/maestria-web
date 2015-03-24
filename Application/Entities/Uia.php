@@ -4,7 +4,7 @@ namespace Application\Entities;
 /**
  * @Entity @Table(name="uia")
  **/
-class Uia extends Generic
+class Uia
 {
 
     /** @Id @Column(type="integer") @GeneratedValue * */
