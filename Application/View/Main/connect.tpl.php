@@ -23,7 +23,7 @@ $this->block('container');
 
                         <br/>
                         <br/>
-                        <a href="">Mot de passe perdu?</a> checkbox : Rester connecté
+                        <a href="/forgot">Mot de passe perdu?</a>
                 </section>
             </form>
 

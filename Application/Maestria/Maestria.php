@@ -11,6 +11,12 @@ class Maestria extends \Sohoa\Framework\Framework
         return $this->_acl;
     }
 
+    public function setErrorHandler($errorHandler)
+    {
+        $this->_errorHandler = $errorHandler;
+
+        return $this;
+    }
     public function setAcl()
     {
         $this->_acl = new Acl($this);

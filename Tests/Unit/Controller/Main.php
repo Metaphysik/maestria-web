@@ -11,10 +11,5 @@ class Main extends \atoum\test
         $this->define->request = '\Camael\Api\Tests\Unit\Asserters\Request';
     }
 
-    // index   => List all users
-    public function testIndex()
-    {
-
-    }
 }
 

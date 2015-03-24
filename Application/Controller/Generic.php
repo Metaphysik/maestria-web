@@ -20,12 +20,12 @@ class Generic extends Kit
 
     protected function readUia()
     {
-        $rule       = &$this->router->getTheRule();
-        $variables  = $rule[6];
-        $_uia       = isset($variables['uia']) ? $variables['uia'] : 'demo';
-        $uia        = new Uia();
-        $uia        = $uia->getBySlug($_uia);
-        $this->_uia = $uia;
+        $rule            = &$this->router->getTheRule();
+        $variables       = $rule[6];
+        $_uia            = isset($variables['uia']) ? $variables['uia'] : 'demo';
+        $uia             = new Uia();
+        $uia             = $uia->getBySlug($_uia);
+        $this->_uia      = $uia;
 
         if (defined('UIA') === false) {
             define('UIA', $uia->getSlug());
@@ -40,7 +40,6 @@ class Generic extends Kit
             $this->_connect          = true;
             $this->data->userIsLogin = true;
             $this->data->user        = &$this->_user;
-
         }
     }
 

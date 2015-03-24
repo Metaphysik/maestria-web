@@ -10,8 +10,8 @@
 </head>
 <body>
 <header>
-    <a href="index.html">Maestria</a> Evaluer c'est connaître et comprendre c'est progresser
-    <?php if(isset($userIsLogin) and $userIsLogin === true) { ?>
+    <a href="/">Maestria</a> Evaluer c'est connaître et comprendre c'est progresser
+    <?php if (isset($userIsLogin) and $userIsLogin === true) { ?>
         <div id="logzone">
             <?php
             /**
@@ -21,6 +21,10 @@
             ?>
             <div class="login"><?php echo $user->getRealName(); ?></div>
             <div class="logout"><a href="<?php echo $this->route->unroute('mainlogout'); ?>">DECONNEXION</a></div>
+        </div>
+    <?php } else { ?>
+        <div id="logzone">
+            <div class="logout"><a href="<?php echo $this->route->unroute('mainlogin'); ?>">CONNEXION</a></div>
         </div>
     <?php } ?>
 </header>
@@ -37,10 +41,13 @@
 
     <div class="flechebas"></div>
     <h3 class="eval"><a href="correction.html">CORRECTION</a></h3>
-    <br/>
 
-    <h3><a href="items.html">ITEMS PEDA</a></h3>
+    <?php if (isset($user) === true && $user->getIsAdmin() === true) { ?>
+        <br/>
 
+        <h3><a href="items.html">ITEMS PEDA</a></h3>
+
+    <?php } ?>
     <footer>
         <a href="">Contact</a>
         <a href="http://metaphysik.fr">Metaphysik</a>

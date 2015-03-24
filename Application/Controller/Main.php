@@ -69,5 +69,10 @@ class Main extends Generic
         return $this->redirector->redirect('mainindex', ['uia' => $uia]);
 
     }
+
+    public function errorAction()
+    {
+        echo 'aaaaa';
+    }
 }
 
