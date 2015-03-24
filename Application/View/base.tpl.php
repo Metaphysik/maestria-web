@@ -29,8 +29,7 @@
     <?php } ?>
 </header>
 <nav>
-
-    <h3><a href="classes.html">CLASSES</a></h3>
+    <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom', ['uia' => UIA]); ?>">CLASSES</a></h3>
 
     <h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
     <br/>
@@ -62,9 +61,6 @@
 <?php $this->endBlock() ?>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="/js/maestria.js"></script>
-<script>
-
-
-</script>
+<script src="/js/interaction.js"></script>
 </body>
 </html>

@@ -39,4 +39,12 @@ class Classroom extends Generic
 
         return true;
     }
+
+    public function getBySlug($uia) {
+        $slug = new Uia();
+        $slug = $slug->getBySlug($uia);
+        $uia  = $slug->getId();
+
+        return $this->_repository->findBy(['refUia' => $uia], null, 1);
+    }
 }
