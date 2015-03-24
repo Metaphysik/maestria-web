@@ -5,16 +5,22 @@ namespace Application\Controller;
 use Application\Form\Login;
 use Application\Model\User;
 use Hoa\Core\Exception\Exception;
+use Hoa\Session\Session;
 use Sohoa\Framework\Kit;
 
 class Main extends Generic
 {
     public function indexAction($uia)
     {
-        $this->redirector->redirect('mainconnect', ['uia' => $uia]);
+
+        if ($this->isConnected() === false) {
+            $this->redirector->redirect('mainconnect', ['uia' => $uia]);
+        }
+
+        $this->greut->render();
     }
 
-    public function loginAction()
+    public function loginAction($uia)
     {
         $login = new Login($_POST);
 
@@ -24,19 +30,22 @@ class Main extends Generic
             $user     = new User();
             $valid    = $user->connectByEmail($email, sha1($password));
 
-            if($valid === true) {
-                // Connect
+            if ($valid === true) {
                 /**
                  * @var $user \Application\Entities\User
                  */
-                $user = $user->getByEmail($email);
-                var_dump($user->getRealName());
-            }
-            else {
+                $user               = $user->getByEmail($email);
+                $session            = new Session('user');
+                $session['connect'] = true;
+                $session['id']      = $user->getId();
+                $session['user']    = $user;
+
+                $this->redirector->redirect('mainindex', ['uia' => $uia]);
+
+            } else {
                 throw new Exception('Credential are not valid');
             }
-        }
-        else {
+        } else {
             throw new Exception('Form are not valid');
         }
 
@@ -47,8 +56,17 @@ class Main extends Generic
         $this->greut->render();
     }
 
-    public function logoutAction()
+    public function logoutAction($uia)
     {
+        $session            = new Session('user');
+        $session['connect'] = false;
+        $session['id']      = null;
+        $session['user']    = [];
+
+        Session::destroy();
+
+
+        return $this->redirector->redirect('mainindex', ['uia' => $uia]);
 
     }
 }
