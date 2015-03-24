@@ -498,7 +498,7 @@ li.actif {
 }
 
 #domain section:hover {
-    opacity: 0.8:
+    opacity: 0.8;
 }
 
 #domain section div:nth-child(odd), #listeleve h5:nth-child(even) {

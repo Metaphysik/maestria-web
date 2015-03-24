@@ -1,7 +1,9 @@
 <?php
 namespace Application\Controller\Kit;
 
-class Redirection extends \Sohoa\Framework\Kit\Redirector
+use Sohoa\Framework\Kit\Redirector;
+
+class Redirection extends Redirector
 {
     public function url($uri, $status = 302)
     {
