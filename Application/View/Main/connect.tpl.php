@@ -16,8 +16,8 @@ $this->block('container');
 
                     <div><label for="mail">ADRESSE MAIL</label><input name="mail" id="mail"
                                                                       placeholder="adressedAlbert@metaphysik.fr"
-                                                                      value=""></div>
-                    <div><label for="mdp1">MOT DE PASSE</label><input name="mdp" id="mdp" type="password" value="">
+                                                                      value="admin@nowhere.com"></div>
+                    <div><label for="mdp1">MOT DE PASSE</label><input name="mdp" id="mdp" type="password" value="admin">
 
                         <div><label for="send"></label><input type="submit" value="Connexion"/></div>
 

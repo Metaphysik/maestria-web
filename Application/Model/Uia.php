@@ -4,8 +4,6 @@
 namespace Application\Model;
 
 
-use Hoa\Core\Exception\Exception;
-
 class Uia extends Generic
 {
 
@@ -14,39 +12,25 @@ class Uia extends Generic
         return $this->getBy('slug', $slug);
     }
 
-    public function getBy($column, $value)
+    public function getBySludId($slug)
     {
-        /**
-         * @var $entity \Application\Entities\Uia
-         */
-        $entity = $this->_repository->findBy([$column => $value]);
+        return $this->getBy('slug', $slug)->getId();
+    }
 
-        if (count($entity) === 1) {
-            return $entity[0];
-        } else {
-            throw new Exception('Item %s with value %s are not in database', 0, [$column, $value]);
+    public function insert($slug, $name, $address, $city, $dept, $region, $chiefidentity, $logourl)
+    {
+
+        if ($this->slugExist($slug) === false) {
+            return $this->_insert($slug, $name, $address, $city, $dept, $region, $chiefidentity, $logourl);
         }
+
+        return false;
     }
 
     public function slugExist($slug)
     {
         return $this->_exists('slug', $slug);
     }
-
-    protected function _exists($column, $value)
-    {
-        $e = $this->_repository->findBy([$column => $value], null, 1);
-
-        return (count($e) >= 1);
-    }
-
-    public function insert($slug, $name, $address, $city, $dept, $region, $chiefidentity, $logourl)
-    {
-
-        if($this->slugExist($slug) === false)
-            $this->_insert($slug, $name, $address, $city, $dept, $region, $chiefidentity, $logourl);
-    }
-
 
     protected function _insert($slug, $name, $address, $city, $dept, $region, $chiefidentity, $logourl)
     {
@@ -62,5 +46,7 @@ class Uia extends Generic
 
         $this->_em->persist($uia);
         $this->_em->flush();
+
+        return true;
     }
 }

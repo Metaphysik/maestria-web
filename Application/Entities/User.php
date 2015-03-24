@@ -1,19 +1,36 @@
 <?php
 namespace Application\Entities;
 
+/**
+ * @Entity @Table(name="user")
+ **/
 class User
 {
+    /** @Id @Column(type="integer") @GeneratedValue * */
     protected $id;
+    /** @Column(type="integer") * */
+    protected $refUia;
+    /** @Column(type="string") * */
     protected $login;
+    /** @Column(type="string") * */
     protected $email;
+    /** @Column(type="string") * */
     protected $password;
+    /** @Column(type="integer") * */
     protected $isAdmin;
+    /** @Column(type="integer") * */
     protected $isModerator;
+    /** @Column(type="integer") * */
     protected $isProfessor;
+    /** @Column(type="string") * */
     protected $realName;
+    /** @Column(type="string") * */
     protected $connectTime;
+    /** @Column(type="string") * */
     protected $registerTime;
+    /** @Column(type="string") * */
     protected $token;
+    /** @Column(type="integer") * */
     protected $status;
 
     /**
@@ -30,6 +47,22 @@ class User
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRefUia()
+    {
+        return $this->refUia;
+    }
+
+    /**
+     * @param mixed $refUia
+     */
+    public function setRefUia($refUia)
+    {
+        $this->refUia = $refUia;
     }
 
     /**

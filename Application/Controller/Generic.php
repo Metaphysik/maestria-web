@@ -34,7 +34,7 @@ class Generic extends Kit
         $session = new \Hoa\Session\Session('user');
         if (isset($session['connect']) and $session['connect'] === true) {
             $id = $session['id'];
-
+            
 
         }
     }
