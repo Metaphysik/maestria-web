@@ -3,8 +3,8 @@ namespace Application\Maestria\Form;
 
 class Select extends Element
 {
-    protected $_name    = 'select';
-    protected $_parent  = null;
+    protected $_name = 'select';
+    protected $_parent = null;
     protected $_options = [];
 
     public function option($value, $name = null, $args = [])

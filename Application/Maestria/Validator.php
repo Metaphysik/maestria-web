@@ -11,11 +11,11 @@ namespace Application\Maestria;
 class Validator
 {
     private static $_instance = null;
-    private        $_data     = [];
-    private        $_current  = '';
-    private        $_type     = 'validator';
-    private        $_stack    = [];
-    private        $_errors   = [];
+    private $_data = [];
+    private $_current = '';
+    private $_type = 'validator';
+    private $_stack = [];
+    private $_errors = [];
 
     /**
      * @param $id
@@ -95,7 +95,7 @@ class Validator
     public function parseData()
     {
         $data = $this->_data;
-        $f    = function ($key) use (&$data) {
+        $f = function ($key) use (&$data) {
             if (isset($data[$key])) {
                 return $data[$key];
             }
@@ -126,7 +126,7 @@ class Validator
 
     public function isValid($data = null)
     {
-        $data          = ($data === null) ? $this->getData() : $data;
+        $data = ($data === null) ? $this->getData() : $data;
         $this->_errors = [];
 
 
@@ -146,10 +146,10 @@ class Validator
                     $v = $validate['object']->isValid($f($name));
                     if ($v === false) {
                         $this->_errors[$name][] = [
-                            'class'   => get_class($validate['object']),
+                            'class' => get_class($validate['object']),
                             'message' => $validate['object']->getMessage()
                         ];
-                        $valid                  = false;
+                        $valid = false;
                     }
                 }
             }

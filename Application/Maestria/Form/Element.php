@@ -3,15 +3,15 @@ namespace Application\Maestria\Form;
 
 class Element implements \ArrayAccess
 {
-    protected $_name          = '';
-    protected $_attributes    = [];
+    protected $_name = '';
+    protected $_attributes = [];
     protected $_newAttributes = true;
-    protected $_child         = [];
-    protected $_id            = null;
-    protected $_label         = null;
-    protected $_parent        = null;
-    protected $_optionnal     = false;
-    protected $_need          = [];
+    protected $_child = [];
+    protected $_id = null;
+    protected $_label = null;
+    protected $_parent = null;
+    protected $_optionnal = false;
+    protected $_need = [];
 
     public function __call($name, $value)
     {
@@ -45,7 +45,7 @@ class Element implements \ArrayAccess
 
     public function id($id)
     {
-        $this->_id               = $id;
+        $this->_id = $id;
         $this->_attributes['id'] = $id;
         $this->name($id);
 
@@ -90,7 +90,7 @@ class Element implements \ArrayAccess
 
     public function insertBeforeLast($string)
     {
-        $last           = array_pop($this->_child);
+        $last = array_pop($this->_child);
         $this->_child[] = $string;
         $this->_child[] = $last;
     }

@@ -9,7 +9,7 @@ use Sohoa\Framework\Kit;
 class Generic extends Kit
 {
     protected $_uia;
-    protected $_user    = null;
+    protected $_user = null;
     protected $_connect = false;
 
     public function construct()
@@ -20,12 +20,12 @@ class Generic extends Kit
 
     protected function readUia()
     {
-        $rule            = &$this->router->getTheRule();
-        $variables       = $rule[6];
-        $_uia            = isset($variables['uia']) ? $variables['uia'] : 'demo';
-        $uia             = new Uia();
-        $uia             = $uia->getBySlug($_uia);
-        $this->_uia      = $uia;
+        $rule = &$this->router->getTheRule();
+        $variables = $rule[6];
+        $_uia = isset($variables['uia']) ? $variables['uia'] : 'demo';
+        $uia = new Uia();
+        $uia = $uia->getBySlug($_uia);
+        $this->_uia = $uia;
 
         if (defined('UIA') === false) {
             define('UIA', $uia->getSlug());
@@ -36,10 +36,10 @@ class Generic extends Kit
     {
         $session = new Session('user');
         if (isset($session['connect']) and $session['connect'] === true) {
-            $this->_user             = $session['user'];
-            $this->_connect          = true;
+            $this->_user = $session['user'];
+            $this->_connect = true;
             $this->data->userIsLogin = true;
-            $this->data->user        = &$this->_user;
+            $this->data->user = &$this->_user;
         }
     }
 

@@ -31,9 +31,9 @@ class UserClass extends Generic
         if ($uia === null) {
             $uia = UIA;
         }
-        if(is_string($uia) === true){
+        if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia  = $slug->getBySludId(UIA);
+            $uia = $slug->getBySludId(UIA);
         }
 
 

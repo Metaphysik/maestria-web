@@ -4,12 +4,12 @@ namespace Camael\Api\Tests\Unit\Mock;
 class Redirect extends \Application\Controller\Kit\Redirection
 {
     protected $dispatcher = null;
-    protected $fwk        = null;
+    protected $fwk = null;
 
     public function __construct($framework)
     {
         $this->dispatcher = $framework->getDispatcher();
-        $this->fwk        = $framework;
+        $this->fwk = $framework;
     }
 
     public function url($uri, $status = 302)

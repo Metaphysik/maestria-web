@@ -1,2 +1,8 @@
-body header,body nav,body #titre,#corps .boutons h4{display:none;}
-body #corps{padding:0px;background:white;}
+body header, body nav, body #titre, #corps .boutons h4 {
+    display: none;
+}
+
+body #corps {
+    padding: 0px;
+    background: white;
+}

@@ -12,6 +12,7 @@ $this->block('container');
         </section>
         <section id="contenu">
             <h3><?php echo $class; ?></h3>
+
             <p><?php echo $message; ?> in <?php echo $file; ?> at line <?php echo $line; ?></p>
         </section>
     </section>

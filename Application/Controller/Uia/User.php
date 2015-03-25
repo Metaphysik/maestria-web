@@ -12,26 +12,24 @@ class User extends Api
     {
         if (isset($_POST['label']) and isset($_POST['idclass'])) {
 
-            $this->log('Label : %s' , $_POST['label']);
-            $this->log('Id : %s' , $_POST['idclass']);
+            $this->log('Label : %s', $_POST['label']);
+            $this->log('Id : %s', $_POST['idclass']);
 
-            if(strlen($_POST['label']) > 2) {
+            if (strlen($_POST['label']) > 2) {
                 $label = $_POST['label'];
                 $id = $_POST['idclass'];
 
                 $model = new \Application\Model\User();
-                $bool  = $model->insertStudent($uia, $label);
+                $bool = $model->insertStudent($uia, $label);
 
-                if($bool === true and $model->id !== null) {
+                if ($bool === true and $model->id !== null) {
                     $m = new UserClass();
                     $m->associate($uia, $id, $model->id);
                     $this->ok($label);
-                }
-                else {
+                } else {
                     $this->nok('User exists %s', [$label]);
                 }
-            }
-            else {
+            } else {
                 $this->nok('class name must be contains 2 chars');
             }
         } else {

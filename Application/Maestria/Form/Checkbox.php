@@ -3,7 +3,7 @@ namespace Application\Maestria\Form;
 
 class Checkbox extends Select
 {
-    protected $_name       = 'input';
+    protected $_name = 'input';
     protected $_attributes = ['type' => 'checkbox'];
 
     public function option($value, $label, $name, $args = [])

@@ -20,8 +20,8 @@ namespace Application\Bin\Command\Sqlite {
             ['help', \Hoa\Console\GetOption::NO_ARGUMENT, '?'],
         ];
 
-        protected $maxEleve        = 5;
-        protected $maxQuestion     = 5;
+        protected $maxEleve = 5;
+        protected $maxQuestion = 5;
         protected $defaultPassword = 'sample';
 
         /**

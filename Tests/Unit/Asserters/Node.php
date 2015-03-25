@@ -9,7 +9,7 @@ class Node extends asserters\variable implements \arrayAccess, \Countable
 {
 
     protected $_errors = [];
-    protected $_xpath  = null;
+    protected $_xpath = null;
 
     public function setWith($request)
     {

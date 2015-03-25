@@ -3,10 +3,10 @@ namespace Application\Maestria\Validator;
 
 class Validator
 {
-    protected $_name      = '';
-    protected $_data      = null;
+    protected $_name = '';
+    protected $_data = null;
     protected $_arguments = [];
-    private   $_message   = null;
+    private $_message = null;
 
     public function getName()
     {
@@ -21,9 +21,9 @@ class Validator
     public function isValid($data = null, $arguments = null)
     {
         $this->_message = null;
-        $data           = ($data === null) ? $this->getData() : $data;
-        $arguments      = ($arguments === null) ? $this->getArguments() : $arguments;
-        $valid          = $this->_valid($data, $arguments);
+        $data = ($data === null) ? $this->getData() : $data;
+        $arguments = ($arguments === null) ? $this->getArguments() : $arguments;
+        $valid = $this->_valid($data, $arguments);
 
         if ($valid === false) {
             $this->_message = $this->setMessage();

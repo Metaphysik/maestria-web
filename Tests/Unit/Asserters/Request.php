@@ -4,11 +4,11 @@ namespace Camael\Api\Tests\Unit\Asserters;
 
 class Request extends \atoum\asserters\variable
 {
-    private $_host       = '';
-    private $_request    = null;
-    private $_router     = null;
+    private $_host = '';
+    private $_request = null;
+    private $_router = null;
     private $_dispatcher = null;
-    private $_view       = null;
+    private $_view = null;
 
     public function __construct()
     {
@@ -17,8 +17,8 @@ class Request extends \atoum\asserters\variable
         $dir = realpath(__DIR__ . '/../../../Public/');
         \Sohoa\Framework\Framework::initialize($dir);
 
-        $this->_framework          = new \Mock\Application\Maestria\Maestria();
-        $this->_router             = new \Mock\Application\Maestria\Router();
+        $this->_framework = new \Mock\Application\Maestria\Maestria();
+        $this->_router = new \Mock\Application\Maestria\Router();
         $this->_framework->_router = $this->_router;
 
         $this->_framework->getView()->setOutputStream(new \Camael\Api\Tests\Unit\Mock\Stringbuffer());
@@ -26,12 +26,12 @@ class Request extends \atoum\asserters\variable
         $this->_framework->kit('redirector', new \Camael\Api\Tests\Unit\Mock\Redirect($this->_framework));
 
         $this->_dispatcher = $this->_framework->getDispatcher();
-        $this->_view       = $this->_framework->getView();
+        $this->_view = $this->_framework->getView();
     }
 
     public function __call($name, $arg)
     {
-        $method  = ['get', 'post', 'put', 'patch', 'update', 'new', 'destroy'];
+        $method = ['get', 'post', 'put', 'patch', 'update', 'new', 'destroy'];
         $request = '';
 
         if (in_array($name, $method) === false) {

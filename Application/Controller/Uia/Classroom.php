@@ -19,15 +19,14 @@ class Classroom extends Api
     public function createActionAsync($uia)
     {
         if (isset($_POST['label'])) {
-            if(strlen($_POST['label']) > 2) {
+            if (strlen($_POST['label']) > 2) {
                 $label = $_POST['label'];
 
                 $model = new \Application\Model\Classroom();
                 $model->insert($uia, $label);
 
                 $this->ok($label);
-            }
-            else {
+            } else {
                 $this->nok('class name must be contains 2 chars');
             }
         } else {

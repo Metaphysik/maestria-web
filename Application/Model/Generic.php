@@ -18,9 +18,9 @@ class Generic
 
     public function __construct()
     {
-        $this->_em         = Container::getContainer('em');
-        $class             = get_class($this);
-        $entity            = substr($class, strrpos($class, '\\') + 1);
+        $this->_em = Container::getContainer('em');
+        $class = get_class($this);
+        $entity = substr($class, strrpos($class, '\\') + 1);
         $this->_repository = $this->getRepository($entity);
     }
 
@@ -31,7 +31,7 @@ class Generic
 
     public function get($id)
     {
-        $class  = get_class($this);
+        $class = get_class($this);
         $entity = substr($class, strrpos($class, '\\') + 1);
 
         return $this->_em->find('Application\Entities\\' . ucfirst($entity), $id);

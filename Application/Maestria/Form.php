@@ -30,11 +30,11 @@ class Form
      */
     public function __construct($data = [])
     {
-        $class           = get_class($this);
-        $id              = substr($class, strrpos($class, '\\') + 1);
-        $id              = strtolower($id);
-        $this->_name     = $id;
-        $this->_form     = \Application\Maestria\Form\Form::get($id);
+        $class = get_class($this);
+        $id = substr($class, strrpos($class, '\\') + 1);
+        $id = strtolower($id);
+        $this->_name = $id;
+        $this->_form = \Application\Maestria\Form\Form::get($id);
         $this->_validate = Validator::get($id);
 
         $this->_form->setValidator($this->_validate);
@@ -115,7 +115,7 @@ class Form
      */
     public function setData($data)
     {
-        if($data !== null){
+        if ($data !== null) {
             $this->_validate->setData($data);
             $this->_form->setData($this->_validate->getData());
         }
@@ -135,7 +135,6 @@ class Form
         if (empty($data) === false) {
             $this->setData($data);
         }
-
 
 
         return $this->_validate->isValid();

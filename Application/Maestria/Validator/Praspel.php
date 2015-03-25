@@ -6,12 +6,12 @@ class Praspel extends Validator
     protected function _valid($data, $arguments)
     {
         if (count($arguments) === 1 and isset($arguments[0])) {
-            $argument      = $arguments[0];
-            $praspel       = \Hoa\Praspel\Praspel::interprete('@requires i: ' . $argument . ';');
-            $clause        = $praspel->getClause('requires');
-            $variable      = $clause['i'];
+            $argument = $arguments[0];
+            $praspel = \Hoa\Praspel\Praspel::interprete('@requires i: ' . $argument . ';');
+            $clause = $praspel->getClause('requires');
+            $variable = $clause['i'];
             $this->realdom = $argument;
-            $this->value   = $data;
+            $this->value = $data;
 
             return $variable->predicate($data);
         }

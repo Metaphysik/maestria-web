@@ -11,7 +11,7 @@ class Log
 {
 
     protected static $_instance = null;
-    protected static $_logFile  = 'hoa://Application/Log/app.log';
+    protected static $_logFile = 'hoa://Application/Log/app.log';
 
     protected static function init()
     {
@@ -22,11 +22,11 @@ class Log
                 touch(static::$_logFile);
             }
 
-            $dateFormat    = "Y-m-d H:i:s";
-            $output        = "[%datetime%] [%channel%] [%level_name%] %message% %context%\n";
-            $formatter     = new LineFormatter($output, $dateFormat);
+            $dateFormat = "Y-m-d H:i:s";
+            $output = "[%datetime%] [%channel%] [%level_name%] %message% %context%\n";
+            $formatter = new LineFormatter($output, $dateFormat);
             $streamHandler = new StreamHandler(static::$_logFile, Logger::INFO);
-            $log           = new Logger('maestria');
+            $log = new Logger('maestria');
 
             $streamHandler->setFormatter($formatter);
             $log->pushHandler($streamHandler);

@@ -25,20 +25,20 @@ class Main extends Generic
         $login = new Login($_POST);
 
         if ($login->isValid() === true) {
-            $email    = $login->getData()['mail'];
+            $email = $login->getData()['mail'];
             $password = $login->getData()['mdp'];
-            $user     = new User();
-            $valid    = $user->connectByEmail($email, sha1($password));
+            $user = new User();
+            $valid = $user->connectByEmail($email, sha1($password));
 
             if ($valid === true) {
                 /**
                  * @var $user \Application\Entities\User
                  */
-                $user               = $user->getByEmail($email);
-                $session            = new Session('user');
+                $user = $user->getByEmail($email);
+                $session = new Session('user');
                 $session['connect'] = true;
-                $session['id']      = $user->getId();
-                $session['user']    = $user;
+                $session['id'] = $user->getId();
+                $session['user'] = $user;
 
                 $this->redirector->redirect('mainindex', ['uia' => $uia]);
 
@@ -58,10 +58,10 @@ class Main extends Generic
 
     public function logoutAction($uia)
     {
-        $session            = new Session('user');
+        $session = new Session('user');
         $session['connect'] = false;
-        $session['id']      = null;
-        $session['user']    = [];
+        $session['id'] = null;
+        $session['user'] = [];
 
         Session::destroy();
 

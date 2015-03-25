@@ -5,8 +5,8 @@ class Container
 {
 
     protected static $_instance = null;
-    protected        $_object   = [];
-    protected        $_current  = null;
+    protected $_object = [];
+    protected $_current = null;
 
     public static function getContainer($id)
     {
@@ -31,11 +31,11 @@ class Container
     {
         if (!$this->containerExists($id) or $force === true) {
             $this->_object[$id] = [
-                'init'     => $object,
+                'init' => $object,
                 'argument' => [],
-                'calls'    => [],
-                'object'   => null,
-                'share'    => false
+                'calls' => [],
+                'object' => null,
+                'share' => false
             ];
         }
 
@@ -57,7 +57,7 @@ class Container
     public function share($share = true)
     {
 
-        $current                          = $this->getCurrentObject();
+        $current = $this->getCurrentObject();
         $this->_object[$current]['share'] = $share;
 
         return $this;
@@ -71,7 +71,7 @@ class Container
     public function call($method, Array $argument = [])
     {
 
-        $current                            = $this->getCurrentObject();
+        $current = $this->getCurrentObject();
         $this->_object[$current]['calls'][] = [$method, $argument];
 
         return $this;
@@ -79,8 +79,8 @@ class Container
 
     public function argument(Array $argument = [])
     {
-        $current                             = $this->getCurrentObject();
-        $old                                 = $this->_object[$current]['argument'];
+        $current = $this->getCurrentObject();
+        $old = $this->_object[$current]['argument'];
         $this->_object[$current]['argument'] = array_merge($old, $argument);
 
         return $this;
@@ -96,9 +96,9 @@ class Container
     protected function initContainer($id)
     {
         $container = $this->_getContainer($id);
-        $init      = $container['init'];
-        $argument  = $this->resolveArguments($container['argument']);
-        $calls     = $container['calls'];
+        $init = $container['init'];
+        $argument = $this->resolveArguments($container['argument']);
+        $calls = $container['calls'];
 
         if ($init instanceof \Closure) {
             $this->_object[$id]['object'] = call_user_func_array($init, $argument);

@@ -3,13 +3,13 @@ namespace Application\Maestria\Form;
 
 class Form extends Element
 {
-    protected static $_instance  = [];
-    protected        $_name      = 'form';
-    protected        $_formid    = null;
-    protected        $_theme     = null;
-    protected        $_data      = [];
-    protected        $_check     = false;
-    protected        $_validator = null;
+    protected static $_instance = [];
+    protected $_name = 'form';
+    protected $_formid = null;
+    protected $_theme = null;
+    protected $_data = [];
+    protected $_check = false;
+    protected $_validator = null;
 
     private function __construct($name)
     {

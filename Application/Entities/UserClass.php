@@ -11,7 +11,8 @@ namespace Application\Entities;
 /**
  * @Entity @Table(name="userclass")
  **/
-class UserClass {
+class UserClass
+{
     /** @Id @Column(type="integer") @GeneratedValue * */
     protected $id;
     /** @Column(type="integer") * */

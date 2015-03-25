@@ -19,7 +19,7 @@ class Main extends \atoum\test
     public function testIndex()
     {
         $request = $this->request;
-        $html    = $request->get('/')->html;
+        $html = $request->get('/')->html;
 
         echo $request;
 //        $html    = $request->post('/login', ['user' => 'admin', 'password' => 'admin'])->html;

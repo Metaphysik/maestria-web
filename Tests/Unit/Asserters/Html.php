@@ -9,7 +9,7 @@ class Html extends asserters\variable
 {
 
     protected $_errors = [];
-    protected $_xpath  = null;
+    protected $_xpath = null;
 
     public function setWith($request)
     {
@@ -23,11 +23,11 @@ class Html extends asserters\variable
         $dom = new \DOMDocument();
 
         libxml_use_internal_errors(true);
-        $value         = $dom->loadHTML($value);
+        $value = $dom->loadHTML($value);
         $this->_errors = libxml_get_errors();
 
         foreach ($this->_errors as $key => $obj) {
-            $arg                 = [
+            $arg = [
                 $obj->line,
                 $obj->column,
                 $obj->code,
