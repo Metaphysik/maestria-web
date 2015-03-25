@@ -7,50 +7,17 @@ namespace Application\Maestria;
 
 class Router extends \Sohoa\Framework\Router
 {
-    protected static $_restfulRoutes = [
-        self::REST_INDEX   => [
-            self::ROUTE_ACTION      => 'index',
-            self::ROUTE_VERB        => 'get',
-            self::ROUTE_URI_PATTERN => '(?<uia>.*)@/'
-        ],
-        self::REST_NEW     => [
-            self::ROUTE_ACTION      => 'new',
-            self::ROUTE_VERB        => 'get',
-            self::ROUTE_URI_PATTERN => '(?<uia>.*)@/new'
-        ],
-        self::REST_SHOW    => [
-            self::ROUTE_ACTION      => 'show',
-            self::ROUTE_VERB        => 'get',
-            self::ROUTE_URI_PATTERN => '(?<uia>.*)@/(?<%s>[^/]+)'
-        ],
-        self::REST_CREATE  => [
-            self::ROUTE_ACTION      => 'create',
-            self::ROUTE_VERB        => 'post',
-            self::ROUTE_URI_PATTERN => '(?<uia>.*)@/'
-        ],
-        self::REST_EDIT    => [
-            self::ROUTE_ACTION      => 'edit',
-            self::ROUTE_VERB        => 'get',
-            self::ROUTE_URI_PATTERN => '(?<uia>.*)@/(?<%s>[^/]+)/edit'
-        ],
-        self::REST_UPDATE  => [
-            self::ROUTE_ACTION      => 'update',
-            self::ROUTE_VERB        => 'post',
-            self::ROUTE_URI_PATTERN => '(?<uia>.*)@/(?<%s>[^/]+)/update'
-        ],
-        self::REST_DESTROY => [
-            self::ROUTE_ACTION      => 'destroy',
-            self::ROUTE_VERB        => 'get',
-            self::ROUTE_URI_PATTERN => '(?<uia>.*)@/(?<%s>[^/]+/destroy)'
-        ],
-    ];
 
     protected static $_everLoad = false;
+
+    public static function getDomain()
+    {
+        return 'demo.maestria.dev';
+    }
 
     public function construct()
     {
         if (static::$_everLoad === false) {
-            echo 'Load';
             parent::construct();
             static::$_everLoad = true;
         }

@@ -20,6 +20,7 @@ namespace {
         $framework->setAcl();
 
         $router = $framework->getRouter();
+
         Log::info(
             $router->getMethod() . ': /' . $router->getURI(),
             [

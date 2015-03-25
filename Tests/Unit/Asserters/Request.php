@@ -18,13 +18,12 @@ class Request extends \atoum\asserters\variable
         \Sohoa\Framework\Framework::initialize($dir);
 
         $this->_framework          = new \Mock\Application\Maestria\Maestria();
-        $this->_router             = new \Mock\Sohoa\Framework\Router();
+        $this->_router             = new \Mock\Application\Maestria\Router();
         $this->_framework->_router = $this->_router;
 
         $this->_framework->getView()->setOutputStream(new \Camael\Api\Tests\Unit\Mock\Stringbuffer());
         $this->_framework->setAcl();
-        $this->_framework->kit('redirector',
-            new \Camael\Api\Tests\Unit\Mock\Redirect($this->_framework)); // Use mocked kit
+        $this->_framework->kit('redirector', new \Camael\Api\Tests\Unit\Mock\Redirect($this->_framework));
 
         $this->_dispatcher = $this->_framework->getDispatcher();
         $this->_view       = $this->_framework->getView();
@@ -45,6 +44,12 @@ class Request extends \atoum\asserters\variable
 
         if (isset($arg[1]) === true && is_array($arg[1]) === false) {
             throw new \Exception("Post argument must be an array", 1);
+        }
+
+        if (isset($arg[2]) === true) {
+            $this->_router->getMockController()->getDomain = $arg[2];
+        } else {
+            $this->_router->getMockController()->getDomain = 'demo.maestria.dev';
         }
 
         $this->_router->getMockController()->getMethod = $name;
