@@ -14,10 +14,12 @@ class UserClass extends Generic
 
     public function isAssociated($uia, $classe, $user)
     {
-
+        if ($uia === null) {
+            $uia = UIA;
+        }
         if ($uia === null) {
             $slug = new Uia();
-            $uia = $slug->getBySludId(UIA);
+            $uia = $slug->getBySludId($uia);
         }
 
         $e = $this->_repository->findBy(['refUia' => $uia, 'refClassroom' => $classe, 'refUser' => $user], null, 1);
@@ -33,7 +35,7 @@ class UserClass extends Generic
         }
         if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia = $slug->getBySludId(UIA);
+            $uia = $slug->getBySludId($uia);
         }
 
 

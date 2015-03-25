@@ -11,6 +11,9 @@ namespace Application\Bin\Command\Sample;
 use Application\Model\Classroom;
 use Application\Model\Uia;
 use Application\Model\User;
+use Application\Model\UserClass;
+use Faker\Factory;
+use mageekguy\atoum\tests\units\notEmptyTest;
 
 class Data extends \Hoa\Console\Dispatcher\Kit
 {
@@ -24,6 +27,11 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         ['help', \Hoa\Console\GetOption::NO_ARGUMENT, 'h'],
         ['help', \Hoa\Console\GetOption::NO_ARGUMENT, '?'],
         ['test', \Hoa\Console\GetOption::NO_ARGUMENT, 't'],
+    ];
+
+    protected $uias = [
+        'demo',
+        'caraminot'
     ];
 
     /**
@@ -59,41 +67,64 @@ class Data extends \Hoa\Console\Dispatcher\Kit
     {
         $user = new User();
 
-        $user->insert('demo', 'admin', 'admin@nowhere.com', sha1('admin'), 1, 1, 0, 'Admin Istrator', 0, time(), '', 2);
-        $user->insert('demo', 'modo', 'modo@nowhere.com', sha1('modo'), 0, 1, 0, 'Maude Erator', 0, time(), '', 2);
-        $user->insert('demo', 'prof', 'prof@nowhere.com', sha1('prof'), 0, 1, 0, 'Prof Essor', 0, time(), '', 2);
+        foreach($this->uias as $uia) {
+            $user->insert($uia, 'admin', 'admin@nowhere.com', sha1('admin'), 1, 1, 0, 'Admin Istrator', 0, time(), '', 2);
+            $user->insert($uia, 'modo', 'modo@nowhere.com', sha1('modo'), 0, 1, 0, 'Maude Erator', 0, time(), '', 2);
+            $user->insert($uia, 'prof', 'prof@nowhere.com', sha1('prof'), 0, 1, 0, 'Prof Essor', 0, time(), '', 2);
+        }
 
-        $user->insert('caraminot', 'admin', 'admin@nowhere.com', sha1('admin'), 1, 1, 0, 'Admin Istrator', 0, time(),
-            '', 2);
-        $user->insert('caraminot', 'modo', 'modo@nowhere.com', sha1('modo'), 0, 1, 0, 'Maude Erator', 0, time(), '', 2);
-        $user->insert('caraminot', 'prof', 'prof@nowhere.com', sha1('prof'), 0, 1, 0, 'Prof Essor', 0, time(), '', 2);
     }
 
     public function hydrateClassroom()
     {
         $class = new Classroom();
+        $classes = [
+          '1°S',
+            '1°ES',
+            '1°STI',
+            '2nd1',
+            '2nd2',
+            'TS',
+            'TSTI'
+        ];
 
-        $class->insert('demo', '1°S');
-        $class->insert('demo', '1°ES');
-        $class->insert('demo', '1°STI');
-        $class->insert('demo', '2nd1');
-        $class->insert('demo', '2nd2');
-        $class->insert('demo', 'TS');
-        $class->insert('demo', 'TSTI');
+        foreach($this->uias as $uia) {
+            foreach($classes as $classe) {
+                $class->insert($uia, $classe);
+            }
+        }
 
-        $class->insert('caraminot', '1°S');
-        $class->insert('caraminot', '1°ES');
-        $class->insert('caraminot', '1°STI');
-        $class->insert('caraminot', '2nd1');
-        $class->insert('caraminot', '2nd2');
-        $class->insert('caraminot', 'TS');
-        $class->insert('caraminot', 'TSTI');
     }
 
     public function hydateStudentAndAssociation()
     {
         // TODO : Association Student and Classes
+
+        $faker = Factory::create();
+        $uc = new UserClass();
+
+
+        foreach ($this->uias as $uia) {
+            for ($classe = 0; $classe < 7; $classe++) {
+                for($i = 0; $i < 20; $i++) {
+                    $id = $this->hydrateStudent($uia, $faker->name);
+                    $uc->associate($uia, $classe, $id);
+                }
+            }
+        }
+
+
     }
+
+    protected function hydrateStudent($uia, $name)
+    {
+        $user = new User();
+        $user->insertStudent($uia, $name);
+
+
+        return $user->id;
+    }
+
 
     /**
      * The command usage.
