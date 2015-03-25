@@ -30,4 +30,9 @@ class Error extends Kit
         $this->greut->render();
     }
 
+    public function exceptionActionAsync()
+    {
+        var_dump('d');
+    }
+
 }

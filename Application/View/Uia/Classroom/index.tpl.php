@@ -81,13 +81,28 @@ $this->endBlock();
 $this->block('js:script');
 ?>
     <script>
-        $('.classes .add').on('click', function () {
-            niveau = $(this).parents('ul').length;
+        $('body').on('keypress', '.newinput', function (event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                var t = $(this).parent().parent().parent();
+                console.log('d');
+                $.post('/classroom/', {"label": $(this).val()}, function (data) {
+                    data = jQuery.parseJSON(data);
+                    $(this).val('');
+                    t.end().before('<li>' + data.data + '<i class="aws edit fa fa-trash-o"></i><i class="aws edit fa fa-pencil"></i></li><ul></ul>');
+                    t.end().children().first().remove();
+
+                });
+            }
+        });
+
+        $('body').on('click', '.classes .add', function () {
+            var niveau = $(this).parents('ul').length;
             if (niveau == 2) {
-                $(this).before('<li><input type="text" placeholder="Nouvel élève"></li>');
+                $(this).before('<li><input type="text" placeholder="Nouvel élève" /></li>');
             }
             else {
-                $(this).before('<li><input type="text" placeholder="Nouvelle classe"></li>');
+                $(this).before('<li><input type="text" class="newinput" placeholder="Nouvelle classe" /></li>');
             }
 
         });
