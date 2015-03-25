@@ -20,18 +20,26 @@ $this->block('container');
                     ?>
                     <li>
                         <?php echo $classe->getLabel(); ?>
-                        <i class="aws edit fa fa-trash-o" data-id="<?php echo $classe->getId(); ?>"></i>
-                        <i class="aws edit fa fa-pencil"  data-id="<?php echo $classe->getId(); ?>"></i>
+                        <i class="aws del fa fa-trash-o" data-type="classe" data-id="<?php echo $classe->getId(); ?>"></i>
+                        <i class="aws edit fa fa-pencil" data-type="classe" data-id="<?php echo $classe->getId(); ?>"></i>
                     </li>
                     <ul>
-                        <li>Allan Wauters de Besterfeld<i class="aws edit fa fa-trash-o"></i><i
-                                class="aws edit fa fa-pencil"></i></li>
-                        <li>Nana Cerise<i class="aws edit fa fa-trash-o"></i><i class="aws edit fa fa-pencil"></i></li>
-                        <li>Nicolas<i class="aws edit fa fa-trash-o"></i><i class="aws edit fa fa-pencil"></i></li>
-                        <i class="aws add fa fa-check-square-o" title="Ajouter élève"></i>
+                    <?php
+                    if (isset($userByClasses[$classe->getId()]) === true) {
+                        foreach ($userByClasses[$classe->getId()] as $user) { ?>
+                            <li>
+                                <?php echo $user->getRealname(); ?>
+                                <i class="aws edit fa fa-trash-o" data-type="student" data-id="<?php echo $user->getId(); ?>"></i>
+                                <i class="aws del fa fa-pencil" data-type="student" data-id="<?php echo $user->getId(); ?>"></i>
+                            </li>
+                        <?php } ?>
+                    <?php } ?>
+                        <i class="aws add fa fa-check-square-o" title="Ajouter élève" data-type="student"
+                           data-id="<?php echo $classe->getId(); ?>"></i>
                     </ul>
                 <?php } ?>
-                <li><i class="aws add fa fa-check-square" title="Ajouter classe"></i></li>
+
+                <li><i class="aws add fa fa-check-square" data-type="classe"  title="Ajouter classe"></i></li>
         </section>
     </section>
 <?php
@@ -57,8 +65,10 @@ $this->block('js:script');
             .on('keypress', '.newinputeleve', function (event) {
             if (event.which == 13) {
                 event.preventDefault();
-                var t = $(this).parent().parent().parent();;
-                $.post('/user/', {"label": $(this).val()}, function (data) {
+                var t = $(this).parent().parent().parent();
+                var id = $(this).attr('data-id');
+
+                $.post('/user/', {"label": $(this).val(), "idclass": id}, function (data) {
                     console.log(data);
                     data = jQuery.parseJSON(data);
                     // $(this).val('');
@@ -70,7 +80,8 @@ $this->block('js:script');
         }).on('click', '.classes .add', function () {
             var niveau = $(this).parents('ul').length;
             if (niveau == 2) {
-                $(this).before('<li><input type="text" class="newinputeleve placeholder="Nouvel élève" /></li>');
+                var id = $(this).attr('data-id');
+                $(this).before('<li><input type="text" class="newinputeleve" data-id="'+id+'" placeholder="Nouvel élève" /></li>');
             }
             else {
                 $(this).before('<li><input type="text" class="newinputclass" placeholder="Nouvelle classe" /></li>');

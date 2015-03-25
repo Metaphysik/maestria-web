@@ -7,6 +7,8 @@ namespace Application\Model;
 class User extends Generic
 {
 
+    public $id = null;
+
     public function getByLogin($login)
     {
         return $this->getBy('login', $login);
@@ -15,6 +17,9 @@ class User extends Generic
     public function connectByLogin($login, $password, $uia = null)
     {
         if ($uia === null) {
+            $uia = UIA;
+        }
+        if(is_string($uia) === true){
             $slug = new Uia();
             $uia  = $slug->getBySludId(UIA);
         }
@@ -55,7 +60,7 @@ class User extends Generic
         $login = str_replace(' ', '-', $str);
         $login = strtolower($login);
 
-        return $this->insert($uia, $login, 'sample@nowhere.com', 'student', 0,0,0, $realName, 0, time(), '', '');
+        return $this->insert($uia, $login, $login.'@nowhere.com', sha1('student'), 0,0,0, $realName, 0, time(), '', '');
 
     }
 
@@ -137,6 +142,8 @@ class User extends Generic
 
         $this->_em->persist($user);
         $this->_em->flush();
+
+        $this->id = $user->getId();
 
         return true;
     }

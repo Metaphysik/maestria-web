@@ -11,6 +11,7 @@ class Classroom extends Api
     {
         $model = new \Application\Model\Classroom();
         $this->data->classes = $model->getBySlug($uia);
+        $this->data->userByClasses = $model->getStudentOrderByClasses($uia);
 
         $this->greut->render();
     }

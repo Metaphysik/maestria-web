@@ -21,7 +21,12 @@ class Generic
         $this->_em         = Container::getContainer('em');
         $class             = get_class($this);
         $entity            = substr($class, strrpos($class, '\\') + 1);
-        $this->_repository = $this->_em->getRepository('Application\Entities\\' . ucfirst($entity));
+        $this->_repository = $this->getRepository($entity);
+    }
+
+    public function getRepository($entity)
+    {
+        return $this->_em->getRepository('Application\Entities\\' . ucfirst($entity));
     }
 
     public function get($id)
