@@ -98,8 +98,6 @@ class Data extends \Hoa\Console\Dispatcher\Kit
 
     public function hydateStudentAndAssociation()
     {
-        // TODO : Association Student and Classes
-
         $faker = Factory::create();
         $uc = new UserClass();
 
@@ -112,8 +110,6 @@ class Data extends \Hoa\Console\Dispatcher\Kit
                 }
             }
         }
-
-
     }
 
     protected function hydrateStudent($uia, $name)
