@@ -39,6 +39,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $this->hydrateUia();
         $this->hydrateUser();
         $this->hydrateClassroom();
+        $this->hydateStudentAndAssociation();
     }
 
 
@@ -87,6 +88,11 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $class->insert('caraminot', '2nd2');
         $class->insert('caraminot', 'TS');
         $class->insert('caraminot', 'TSTI');
+    }
+
+    public function hydateStudentAndAssociation()
+    {
+        // TODO : Association Student and Classes
     }
 
     /**
