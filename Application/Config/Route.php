@@ -21,6 +21,7 @@ $uia = '(?<uia>.*)@';
 //$this->resource('know', ['only' => ['index', 'create']]);
 
 $this->resource('classroom', ['prefix' => $uia]);
+$this->resource('user', ['prefix' => $uia]);
 
 $this->get($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
 $this->get($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);

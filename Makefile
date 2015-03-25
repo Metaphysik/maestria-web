@@ -20,6 +20,9 @@ db-reset:
 db-update:
 	Binaries/doctrine orm:schema-tool:update
 
+db-right:
+    chmod 0777 Application/Maestria-orm.db
+
 log:
 	chmod 0777 Application/Log
 	touch Application/Log/app.log

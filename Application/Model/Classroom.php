@@ -45,6 +45,6 @@ class Classroom extends Generic
         $slug = $slug->getBySlug($uia);
         $uia  = $slug->getId();
 
-        return $this->_repository->findBy(['refUia' => $uia], null, 1);
+        return $this->_repository->findBy(['refUia' => $uia]);
     }
 }

@@ -5,26 +5,21 @@ namespace Application\Controller\Uia;
 
 use Application\Controller\Api;
 
-class Classroom extends Api
+class User extends Api
 {
-    public function indexAction($uia)
-    {
-        $model = new \Application\Model\Classroom();
-        $this->data->classes = $model->getBySlug($uia);
-
-        $this->greut->render();
-    }
-
     public function createActionAsync($uia)
     {
         if (isset($_POST['label'])) {
             if(strlen($_POST['label']) > 2) {
                 $label = $_POST['label'];
 
-                $model = new \Application\Model\Classroom();
-                $model->insert($uia, $label);
+                $model = new \Application\Model\User();
+                $bool  = $model->insertStudent($uia, 'Julien CLAUZEL');
 
-                $this->ok($label);
+                if($bool === true)
+                    $this->ok($label);
+                else
+                    $this->nok('User exists');
             }
             else {
                 $this->nok('class name must be contains 2 chars');
