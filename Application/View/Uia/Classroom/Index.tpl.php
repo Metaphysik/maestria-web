@@ -16,30 +16,36 @@ $this->block('container');
             </div>
             <ul>
                 <?php
-                foreach($classes as $classe) {
+                foreach ($classes as $classe) {
                     ?>
-                    <li>
+                    <li class="class">
                         <?php echo $classe->getLabel(); ?>
-                        <i class="aws del fa fa-trash-o" data-type="classe" data-id="<?php echo $classe->getId(); ?>"></i>
-                        <i class="aws edit fa fa-pencil" data-type="classe" data-id="<?php echo $classe->getId(); ?>"></i>
+                        <i class="aws del fa fa-trash-o" data-type="classe"
+                           data-id="<?php echo $classe->getId(); ?>"></i>
+                        <i class="aws edit fa fa-pencil" data-type="classe"
+                           data-id="<?php echo $classe->getId(); ?>"></i>
                     </li>
                     <ul>
-                    <?php
-                    if (isset($userByClasses[$classe->getId()]) === true) {
-                        foreach ($userByClasses[$classe->getId()] as $user) { ?>
-                            <li>
-                                <?php echo $user->getRealname(); ?>
-                                <i class="aws edit fa fa-trash-o" data-type="student" data-id="<?php echo $user->getId(); ?>"></i>
-                                <i class="aws del fa fa-pencil" data-type="student" data-id="<?php echo $user->getId(); ?>"></i>
-                            </li>
+                        <?php
+                        if (isset($userByClasses[$classe->getId()]) === true) {
+                            foreach ($userByClasses[$classe->getId()] as $user) {
+                                if ($user !== null) {
+                                    ?>
+                                    <li class="student">
+                                        <?php echo $user->getRealName(); ?>
+                                        <i class="aws del fa fa-trash-o" data-type="student"
+                                           data-id="<?php echo $user->getId(); ?>"></i>
+                                        <i class="aws edit fa fa-pencil" data-type="student"
+                                           data-id="<?php echo $user->getId(); ?>"></i>
+                                    </li>
+                                <?php }
+                            }?>
                         <?php } ?>
-                    <?php } ?>
                         <i class="aws add fa fa-check-square-o" title="Ajouter élève" data-type="student"
                            data-id="<?php echo $classe->getId(); ?>"></i>
                     </ul>
                 <?php } ?>
-
-                <li><i class="aws add fa fa-check-square" data-type="classe"  title="Ajouter classe"></i></li>
+                <li><i class="aws add fa fa-check-square" data-type="classe" title="Ajouter classe"></i></li>
         </section>
     </section>
 <?php
@@ -48,6 +54,17 @@ $this->block('js:script');
 ?>
     <script>
         $('body')
+            .on('click', '.classes .add', function () {
+                var niveau = $(this).parents('ul').length;
+                if (niveau == 2) {
+                    var id = $(this).attr('data-id');
+                    $(this).before('<li><input type="text" class="newinputeleve" data-id="' + id + '" placeholder="Nouvel élève" /></li>');
+                }
+                else {
+                    $(this).before('<li><input type="text" class="newinputclass" placeholder="Nouvelle classe" /></li>');
+                }
+
+            })
             .on('keypress', '.newinputclass', function (event) {
             if (event.which == 13) {
                 event.preventDefault();
@@ -61,8 +78,7 @@ $this->block('js:script');
 
                 });
             }
-        })
-            .on('keypress', '.newinputeleve', function (event) {
+        }).on('keypress', '.newinputeleve', function (event) {
             if (event.which == 13) {
                 event.preventDefault();
                 var t = $(this).parent().parent().parent();
@@ -77,16 +93,33 @@ $this->block('js:script');
 
                 });
             }
-        }).on('click', '.classes .add', function () {
-            var niveau = $(this).parents('ul').length;
-            if (niveau == 2) {
-                var id = $(this).attr('data-id');
-                $(this).before('<li><input type="text" class="newinputeleve" data-id="'+id+'" placeholder="Nouvel élève" /></li>');
-            }
-            else {
-                $(this).before('<li><input type="text" class="newinputclass" placeholder="Nouvelle classe" /></li>');
-            }
+        }).on('click', 'li.student > i.edit', function () {
+            var id = $(this).attr('data-id');
+            var newLabel = "Hello World";
 
+            $.post('/user/' + id + '/update', {"name": newLabel}, function (data) {
+                console.log(data);
+                data = jQuery.parseJSON(data);
+            });
+
+        }).on('click', 'li.student > i.del', function () {
+            var id = $(this).attr('data-id');
+            $.get('/user/' + id + '/destroy', function (data) {
+                console.log(data);
+                data = jQuery.parseJSON(data);
+            });
+        }).on('click', 'li.class > i.edit', function () {
+            var id = $(this).attr('data-id');
+            $.post('/classroom/' + id + '/update',{"label" : "TotoABord" }, function (data) {
+                console.log(data);
+                data = jQuery.parseJSON(data);
+            });
+        }).on('click', 'li.class > i.del', function () {
+            var id = $(this).attr('data-id');
+            $.get('/classroom/' + id + '/destroy', function (data) {
+                console.log(data);
+                data = jQuery.parseJSON(data);
+            });
         });
     </script>
 <?php $this->endblock(); ?>

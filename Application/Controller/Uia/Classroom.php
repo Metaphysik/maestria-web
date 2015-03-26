@@ -30,11 +30,49 @@ class Classroom extends Api
                 $this->nok('class name must be contains 2 chars');
             }
         } else {
-            $this->nok('Label input not exists');
+            $this->nok('Api error');
         }
 
 
         echo $this->getApiJson();
+    }
 
+    public function updateActionAsync($classroom_id)
+    {
+        if(isset($_POST['label']))
+        {
+            $class = new \Application\Model\Classroom();
+            /**
+             * @var $entity \Application\Entities\Classroom
+             */
+            $entity = $class->get($classroom_id);
+
+            $entity->setLabel($_POST['label']);
+            $class->update($entity);
+        }
+        else {
+            $this->nok('Api error');
+        }
+
+        echo $this->getApiJson();
+    }
+
+    public function destroyActionAsync($classroom_id)
+    {
+        $class = new \Application\Model\Classroom();
+        $entity = $class->get($classroom_id);
+
+        if(isset($entity))
+        {
+            // TODO : Delete UserClass association
+
+            $class->delete($entity);
+            $this->ok();
+        }
+        else {
+            $this->nok('Request invalid');
+        }
+
+        echo $this->getApiJson();
     }
 }

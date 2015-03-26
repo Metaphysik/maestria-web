@@ -1,4 +1,8 @@
 <?php
+$this->setResource(\Sohoa\Framework\Router::REST_SHOW, null, null, '/(?<%s>[^/]+)');
+$this->setResource(\Sohoa\Framework\Router::REST_EDIT, null, null, '/(?<%s>[^/]+)/edit');
+$this->setResource(\Sohoa\Framework\Router::REST_UPDATE, null, 'post', '/(?<%s>[^/]+)/update');
+$this->setResource(\Sohoa\Framework\Router::REST_DESTROY, null, 'get', '/(?<%s>[^/]+)/destroy');
 
 $uia = '(?<uia>.*)@';
 

@@ -32,7 +32,7 @@ class Error extends Kit
 
     public function exceptionActionAsync()
     {
-        var_dump('d');
+
     }
 
 }

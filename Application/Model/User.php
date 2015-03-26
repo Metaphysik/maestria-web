@@ -54,16 +54,23 @@ class User extends Generic
     public function insertStudent($uia, $realName)
     {
 
+       $login = $this->formatRealName($realName);
+
+        return $this->insert($uia, $login, $login . '@nowhere.com', sha1('student'), 0, 0, 0, $realName, 0, time(), '', '');
+
+    }
+
+    public function formatRealName($realName)
+    {
         $str = htmlentities($realName, ENT_NOQUOTES, 'utf-8');
         $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
         $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
         $str = preg_replace('#&[^;]+;#', '', $str);
-        $login = str_replace('_+.', '', $str);
-        $login = str_replace(' ', '-', $str);
-        $login = strtolower($login);
+        $str = str_replace('_+.', '', $str);
+        $str = str_replace(' ', '-', $str);
+        $str = strtolower($str);
 
-        return $this->insert($uia, $login, $login . '@nowhere.com', sha1('student'), 0, 0, 0, $realName, 0, time(), '', '');
-
+        return $str;
     }
 
     public function insert(

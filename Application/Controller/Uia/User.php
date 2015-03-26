@@ -36,8 +36,54 @@ class User extends Api
             $this->nok('api error');
         }
 
+        echo $this->getApiJson();
+    }
+
+    public function updateActionAsync($user_id)
+    {
+        if (isset($_POST['name'])) {
+
+            $realName = $_POST['name'];
+            $user = new \Application\Model\User();
+            $login = $user->formatRealName($realName);
+
+            /**
+             * @var $entity \Application\Entities\User
+             */
+            $entity = $user->get($user_id);
+
+            $entity->setRealName($realName);
+            $entity->setLogin($login);
+            $entity->setEmail($login.'@nowhere.com');
+            $entity->setPassword(sha1('student'));
+
+            $user->update($entity);
+
+        } else {
+            $this->nok('api error');
+        }
+
 
         echo $this->getApiJson();
+    }
 
+    public function destroyActionAsync($user_id)
+    {
+        $user = new \Application\Model\User();
+        /**
+         * @var $entity \Application\Entities\User
+         */
+        $entity = $user->get($user_id);
+
+
+        if($entity->isStudent() === true)
+        {
+            $user->delete($entity);
+        }
+        else {
+            $this->nok('You cant delete an student with this method');
+        }
+
+        echo $this->getApiJson();
     }
 }

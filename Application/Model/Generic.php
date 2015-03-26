@@ -24,6 +24,20 @@ class Generic
         $this->_repository = $this->getRepository($entity);
     }
 
+
+    public function update($entity)
+    {
+        $this->_em->persist($entity);
+        $this->_em->flush();
+    }
+
+    public function delete($entity)
+    {
+        $this->_em->remove($entity);
+        $this->_em->flush();
+    }
+
+
     public function getRepository($entity)
     {
         return $this->_em->getRepository('Application\Entities\\' . ucfirst($entity));
