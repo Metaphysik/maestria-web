@@ -29,6 +29,19 @@ class User extends Generic
         return (count($e) >= 1);
     }
 
+    public function pendingTrash($id)
+    {
+        /**
+         * @var $e \Application\Entities\User
+         */
+        $e = $this->get($id);
+
+        $e->setStatus(-1);
+        $this->update($e);
+
+        return true;
+    }
+
     public function connectByEmail($email, $password, $uia = null)
     {
         if ($uia === null) {
@@ -85,7 +98,8 @@ class User extends Generic
         $connectTime,
         $registerTime,
         $token,
-        $status
+        $status,
+        $birthdate = '0'
     )
     {
 
@@ -96,7 +110,7 @@ class User extends Generic
 
         if ($this->loginExist($login, $uia) === false and $this->emailExist($email, $uia) === false) {
             return $this->_insert($uia, $login, $email, $password, $isAdmin, $isModerator, $isProfessor, $realName,
-                $connectTime, $registerTime, $token, $status);
+                $connectTime, $registerTime, $token, $status, $birthdate);
         }
 
         return false;
@@ -134,7 +148,8 @@ class User extends Generic
         $connectTime,
         $registerTime,
         $token,
-        $status
+        $status,
+        $birthdate
     )
     {
         $user = new \Application\Entities\User();
@@ -150,6 +165,8 @@ class User extends Generic
         $user->setRegisterTime($registerTime);
         $user->setToken($token);
         $user->setStatus($status);
+        $user->setBirthdate($birthdate);
+
 
         $this->_em->persist($user);
         $this->_em->flush();

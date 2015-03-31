@@ -35,8 +35,10 @@ $this->block('container');
                                         <?php echo $user->getRealName(); ?>
                                         <i class="aws del fa fa-trash-o" data-type="student"
                                            data-id="<?php echo $user->getId(); ?>"></i>
-                                        <i class="aws edit fa fa-pencil" data-type="student"
-                                           data-id="<?php echo $user->getId(); ?>"></i>
+
+                                        <a href="<?php echo $this->route->unroute('editUiaUser', ['user_id' => $user->getId()]); ?>">
+                                        <i class="aws edit fa fa-pencil"></i>
+                                        </a>
                                     </li>
                                 <?php }
                             }?>
@@ -93,15 +95,6 @@ $this->block('js:script');
 
                 });
             }
-        }).on('click', 'li.student > i.edit', function () {
-            var id = $(this).attr('data-id');
-            var newLabel = "Hello World";
-
-            $.post('/user/' + id + '/update', {"name": newLabel}, function (data) {
-                console.log(data);
-                data = jQuery.parseJSON(data);
-            });
-
         }).on('click', 'li.student > i.del', function () {
             var id = $(this).attr('data-id');
             $.get('/user/' + id + '/destroy', function (data) {
@@ -110,10 +103,14 @@ $this->block('js:script');
             });
         }).on('click', 'li.class > i.edit', function () {
             var id = $(this).attr('data-id');
-            $.post('/classroom/' + id + '/update',{"label" : "TotoABord" }, function (data) {
-                console.log(data);
-                data = jQuery.parseJSON(data);
-            });
+                var txt = $(this).parent().text().trim();
+                var prompt = window.prompt('Nouveau nom  de la classe '+txt+'(#'+id+')', '');
+                if(prompt != null) {
+                    $.post('/classroom/' + id + '/update', {"label": prompt}, function (data) {
+                        console.log(data);
+                        data = jQuery.parseJSON(data);
+                    });
+                }
         }).on('click', 'li.class > i.del', function () {
             var id = $(this).attr('data-id');
             $.get('/classroom/' + id + '/destroy', function (data) {

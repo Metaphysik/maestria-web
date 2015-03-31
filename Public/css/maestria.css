@@ -665,6 +665,11 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+form section.col {
+    display: block;
+    width: 75%;
+}
+
 form section {
     display: inline-block;
     border: 1px solid black;

@@ -9,6 +9,9 @@ use Sohoa\Framework\Kit;
 class Generic extends Kit
 {
     protected $_uia;
+    /**
+     * @var \Application\Entities\User
+     */
     protected $_user = null;
     protected $_connect = false;
 
@@ -46,6 +49,44 @@ class Generic extends Kit
     protected function isConnected()
     {
         return ($this->_user !== null && $this->_connect === true);
+    }
+
+    protected function isAdmin()
+    {
+        if($this->_user === null)
+            return false;
+
+        return $this->_user->getIsAdmin();
+    }
+
+    protected function isModerator(){
+        if($this->_user === null)
+            return false;
+
+        return $this->_user->getIsModerator();
+    }
+
+    protected function isProfessor(){
+        if($this->_user === null)
+            return false;
+
+        return $this->_user->getIsProfessor();
+    }
+
+    protected function lvlAdmin()
+    {
+        return ($this->isAdmin() === true);
+    }
+
+    protected function lvlModo()
+    {
+        return ($this->isAdmin() === true || $this->isModerator() === true);
+    }
+
+    protected function lvlProf()
+    {
+
+        return ($this->isAdmin() === true || $this->isModerator() === true  || $this->isProfessor() === true);
     }
 
 

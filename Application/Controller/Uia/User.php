@@ -4,6 +4,7 @@
 namespace Application\Controller\Uia;
 
 use Application\Controller\Api;
+use Application\Controller\Exception\NotAllow;
 use Application\Model\UserClass;
 
 class User extends Api
@@ -17,10 +18,10 @@ class User extends Api
 
             if (strlen($_POST['label']) > 2) {
                 $label = $_POST['label'];
-                $id = $_POST['idclass'];
+                $id    = $_POST['idclass'];
 
                 $model = new \Application\Model\User();
-                $bool = $model->insertStudent($uia, $label);
+                $bool  = $model->insertStudent($uia, $label);
 
                 if ($bool === true and $model->id !== null) {
                     $m = new UserClass();
@@ -39,48 +40,64 @@ class User extends Api
         echo $this->getApiJson();
     }
 
-    public function updateActionAsync($user_id)
+    public function editAction($user_id)
     {
-        if (isset($_POST['name'])) {
+        /**
+         * @var $user \Application\Entities\User
+         */
+        $user_id            = intval($user_id);
+        $m_user             = new \Application\Model\User();
+        $user               = $m_user->get($user_id);
+        $this->data->profil = $user;
 
-            $realName = $_POST['name'];
-            $user = new \Application\Model\User();
-            $login = $user->formatRealName($realName);
 
-            /**
-             * @var $entity \Application\Entities\User
-             */
-            $entity = $user->get($user_id);
-
-            $entity->setRealName($realName);
-            $entity->setLogin($login);
-            $entity->setEmail($login.'@nowhere.com');
-            $entity->setPassword(sha1('student'));
-
-            $user->update($entity);
-
+        if ($this->lvlProf() || ($this->_user !== null && $this->_user->getId() === $user->getId())) {
+            $this->greut->render();
         } else {
-            $this->nok('api error');
+            throw new NotAllow('You attempt to acces on user.edit page with a acces level too low');
         }
 
 
-        echo $this->getApiJson();
     }
+
+    public function updateAction($user_id)
+    {
+        var_dump($_POST);
+    }
+
+//    public function updateActionAsync($user_id)
+//    {
+//        if (isset($_POST['name'])) {
+//
+//            $realName = $_POST['name'];
+//            $user = new \Application\Model\User();
+//            $login = $user->formatRealName($realName);
+//
+//            /**
+//             * @var $entity \Application\Entities\User
+//             */
+//            $entity = $user->get($user_id);
+//
+//            $entity->setRealName($realName);
+//            $entity->setLogin($login);
+//            $entity->setEmail($login.'@nowhere.com');
+//            $entity->setPassword(sha1('student'));
+//
+//            $user->update($entity);
+//
+//        } else {
+//            $this->nok('api error');
+//        }
+//
+//
+//        echo $this->getApiJson();
+//    }
 
     public function destroyActionAsync($user_id)
     {
         $user = new \Application\Model\User();
-        /**
-         * @var $entity \Application\Entities\User
-         */
-        $entity = $user->get($user_id);
 
-
-        if($entity->isStudent() === true)
-        {
-            $user->delete($entity);
-        }
-        else {
+        if ($user->pendingTrash($user_id) === false) {
             $this->nok('You cant delete an student with this method');
         }
 

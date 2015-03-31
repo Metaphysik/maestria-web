@@ -31,14 +31,16 @@ class User
     /** @Column(type="string") * */
     protected $token;
     /** @Column(type="integer") * */
-    protected $status;
+    protected $status; // -1 = Trash ; 0 = Non activate; 1 = Activate pending; 2 = Activate
+    /** @Column(type="string") * */
+    protected $birthdate;
 
     /**
      * @return mixed
      */
     public function getId()
     {
-        return $this->id;
+        return intval($this->id);
     }
 
     /**
@@ -46,7 +48,7 @@ class User
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = intval($id);
     }
 
     /**
@@ -250,5 +252,23 @@ class User
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
+    }
+
+    /**
+     * @param mixed $birthdate
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
     } // -1 = Ban, 0 = Non activate, 1 = pending, 2 = activate
+
+
 }

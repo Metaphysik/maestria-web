@@ -27,8 +27,8 @@ $uia = '(?<uia>.*)@';
 $this->resource('classroom', ['prefix' => $uia]);
 $this->resource('user', ['prefix' => $uia]);
 
-$this->get($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
-$this->get($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
+$this->any($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
+$this->any($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
 $this->get($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 $this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
 $this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);

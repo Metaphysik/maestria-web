@@ -71,8 +71,12 @@ class Classroom extends Generic
         foreach ($entities as $entity) {
             /**
              * @var $entity \Application\Entities\UserClass
+             * @var $e \Application\Entities\User
              */
-            $element[$entity->getRefClassroom()][] = $user->get($entity->getRefUser());
+            $e = $user->get($entity->getRefUser());
+            if($e->getStatus() >= 0) {
+                $element[$entity->getRefClassroom()][] = $e;
+            }
         }
 
         return $element;
