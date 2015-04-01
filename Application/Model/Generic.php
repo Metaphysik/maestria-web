@@ -15,6 +15,7 @@ class Generic
      * @var \Doctrine\ORM\EntityRepository
      */
     protected $_repository = null;
+    public $id = null;
 
     public function __construct()
     {

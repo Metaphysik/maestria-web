@@ -9,6 +9,9 @@ namespace Application\Bin\Command\Sample;
 
 
 use Application\Model\Classroom;
+use Application\Model\Domain;
+use Application\Model\Item;
+use Application\Model\Theme;
 use Application\Model\Uia;
 use Application\Model\User;
 use Application\Model\UserClass;
@@ -34,6 +37,16 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         'caraminot'
     ];
 
+    protected $classes = [
+        '1°S',
+        '1°ES',
+        '1°STI',
+        '2nd1',
+        '2nd2',
+        'TS',
+        'TSTI'
+    ];
+
     /**
      * The entry method.
      *
@@ -44,10 +57,12 @@ class Data extends \Hoa\Console\Dispatcher\Kit
     {
         require 'hoa://Application/Config/Environnement.php';
 
-        $this->hydrateUia();
-        $this->hydrateUser();
-        $this->hydrateClassroom();
-        $this->hydateStudentAndAssociation();
+//        $this->hydrateUia();
+//        $this->hydrateUser();
+//        $this->hydrateClassroom();
+//        $this->hydateStudentAndAssociation();
+//        $this->hydrateDomain();
+        $this->hydrateThemeItem();
     }
 
 
@@ -67,7 +82,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
     {
         $user = new User();
 
-        foreach($this->uias as $uia) {
+        foreach ($this->uias as $uia) {
             $user->insert($uia, 'admin', 'admin@nowhere.com', sha1('admin'), 1, 1, 0, 'Admin Istrator', 0, time(), '', 2);
             $user->insert($uia, 'modo', 'modo@nowhere.com', sha1('modo'), 0, 1, 0, 'Maude Erator', 0, time(), '', 2);
             $user->insert($uia, 'prof', 'prof@nowhere.com', sha1('prof'), 0, 1, 0, 'Prof Essor', 0, time(), '', 2);
@@ -78,18 +93,10 @@ class Data extends \Hoa\Console\Dispatcher\Kit
     public function hydrateClassroom()
     {
         $class = new Classroom();
-        $classes = [
-          '1°S',
-            '1°ES',
-            '1°STI',
-            '2nd1',
-            '2nd2',
-            'TS',
-            'TSTI'
-        ];
 
-        foreach($this->uias as $uia) {
-            foreach($classes as $classe) {
+
+        foreach ($this->uias as $uia) {
+            foreach ($this->classes as $classe) {
                 $class->insert($uia, $classe);
             }
         }
@@ -104,7 +111,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
 
         foreach ($this->uias as $uia) {
             for ($classe = 0; $classe < 7; $classe++) {
-                for($i = 0; $i < 20; $i++) {
+                for ($i = 0; $i < 20; $i++) {
                     $id = $this->hydrateStudent($uia, $faker->name);
                     $uc->associate($uia, $classe, $id);
                 }
@@ -117,8 +124,94 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $user = new User();
         $user->insertStudent($uia, $name);
 
-
         return $user->id;
+    }
+
+    public function hydrateThemeItem()
+    {
+        $connaissance = 'hoa://Application/Config/pedagogiques.csv';
+        $connaissance = new \Hoa\File\Read($connaissance);
+
+
+        while ($connaissance->eof() !== true) {
+            $line = str_getcsv($connaissance->readLine());
+            if ($line[0] !== '' and $line[0] !== '1') {
+                $id = trim($line[0]);
+                $th = trim($line[1]);
+                switch ($id[0]) {
+                    case '1':
+                        $do = 1;
+                        break;
+                    case '3':
+                        $do = 2;
+                        break;
+                    case '4':
+                        $do = 3;
+                        break;
+                    case '5':
+                        $do = 4;
+                        break;
+                    case '6':
+                        $do = 5;
+                        break;
+                    case '7':
+                        $do = 6;
+                        break;
+                    case '9':
+                        $do = 7;
+                        break;
+                    default:
+                        $do = 7;
+                        $ty = 1;
+                        break;
+                }
+
+                if ($th !== '') {
+                    $idTheme = $this->hydrateTheme($th, $do);
+                    $lvl = 1;
+                    for ($i = 2; $i < count($line); $i++) {
+                        if ($line[$i] !== '') {
+                            $this->hydrateItem($idTheme, $line[$i], $lvl);
+                        }
+                        $lvl++;
+                    }
+                }
+            }
+        }
+    }
+
+    protected function hydrateTheme($label, $ref)
+    {
+        $theme = new Theme();
+        $theme->insert($label, $ref);
+
+        return $theme->id;
+    }
+
+    protected function hydrateItem($theme, $label, $lvl)
+    {
+        $item = new Item();
+        $item->insert($theme, $label, 0, 2, $lvl);
+
+        return $item->id;
+    }
+
+    public function hydrateDomain()
+    {
+        $m_do = new Domain();
+        $domains = [
+            'Electricité',
+            'Physique',
+            'Optique',
+            'Chimie',
+            'Thermo-dynamique',
+            'Mathematique',
+            'Général'
+        ];
+
+        foreach ($domains as $domain) {
+            $m_do->insert($domain);
+        }
     }
 
 

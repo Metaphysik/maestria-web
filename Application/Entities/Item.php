@@ -22,6 +22,9 @@ class Item
     protected $type; // 0 = Base, 1 = User Submition
 
     /** @Column(type="integer") * */
+    protected $lvl;
+
+    /** @Column(type="integer") * */
     protected $status; // -1 = Trashed/Ban , 0 = unvalidate, 1 = validation progress, 2 = validate
 
     /**
@@ -103,6 +106,24 @@ class Item
     {
         $this->status = $status;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    /**
+     * @param mixed $lvl
+     */
+    public function setLvl($lvl)
+    {
+        $this->lvl = $lvl;
+    }
+
+
 
 
 }
