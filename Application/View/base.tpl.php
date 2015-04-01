@@ -31,20 +31,20 @@
 <nav>
     <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom'); ?>">CLASSES</a></h3>
 
-    <h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
+    <h3 class="synthese"><a href="/">SYNTHESE</a></h3>
     <br/>
 
-    <h3><a href="evals.html">EVALUATIONS</a></h3>
+    <h3><a href="/">EVALUATIONS</a></h3>
 
     <h3 id="evalchx" class="eval">PUISSANCE</h3>
 
     <div class="flechebas"></div>
-    <h3 class="eval"><a href="correction.html">CORRECTION</a></h3>
+    <h3 class="eval"><a href="/">CORRECTION</a></h3>
 
     <?php if (isset($user) === true && $user->getIsAdmin() === true) { ?>
         <br/>
 
-        <h3><a href="items.html">ITEMS PEDA</a></h3>
+        <h3><a href="<?php echo $this->route->unroute('indexUiaItem'); ?>">ITEMS PEDA</a></h3>
 
     <?php } ?>
     <footer>

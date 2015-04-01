@@ -27,6 +27,18 @@ $uia = '(?<uia>.*)@';
 $this->resource('classroom', ['prefix' => $uia, 'except' => ['new', 'show']]);
 $this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
 
+/**
+ *  Item, Domain, Theme
+ */
+$this->get($uia.'/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
+$this->post($uia.'/item/', ['as' => 'createUiaItem', 'to' => 'Uia\Item#create']);
+$this->post($uia.'/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);
+$this->post($uia.'/item/theme', ['as' => 'createUiaItemTheme', 'to' => 'Uia\Item#createTheme']);
+$this->post($uia.'/item/update', ['as' => 'updateUiaItem', 'to' => 'Uia\Item#update']);
+$this->post($uia.'/item/domain/update', ['as' => 'updateUiaItemDomain', 'to' => 'Uia\Item#updateDomain']);
+$this->post($uia.'/item/theme/update', ['as' => 'updateUiaItemTheme', 'to' => 'Uia\Item#updateTheme']);
+
+
 $this->any($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
 $this->any($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
 $this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);

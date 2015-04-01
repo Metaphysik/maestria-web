@@ -75,7 +75,8 @@ classes = {
         3: [333, 'Cun�gonde', 90, 100, 40, 100, 30, 60]
     }
 };
-//Chaque domaine a un ID de deux chiffre,on rajoute deux chiffres � cet ID pr avoir celui d'un theme fils et encore 1 pr un item
+//Chaque domaine a un ID de deux chiffre,on rajoute deux chiffres � cet ID
+// pr avoir celui d'un theme fils et encore 1 pr un item
 items = {
     1: {"nom": 'Physique'},
     2: {
