@@ -7,12 +7,19 @@ namespace Application\Model;
 class Domain extends Generic
 {
 
-
     public function labelExists($label) {
 
         $e = $this->_repository->findBy(['label' => $label], null, 1);
 
         return (count($e) >= 1);
+    }
+
+    public function getRecursiveInformation()
+    {
+
+        // TODO : Make it 
+
+        return [];
     }
 
     public function insert($label)

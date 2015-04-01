@@ -52,6 +52,16 @@ class Generic
         return $this->_em->find('Application\Entities\\' . ucfirst($entity), $id);
     }
 
+    public function all()
+    {
+        $class = get_class($this);
+        $entity = substr($class, strrpos($class, '\\') + 1);
+
+        return $this->_em->getRepository('Application\Entities\\' . ucfirst($entity))->findAll();
+    }
+
+
+
     public function getBy($column, $value)
     {
         $entity = $this->_repository->findBy([$column => $value]);

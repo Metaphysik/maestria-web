@@ -57,11 +57,11 @@ class Data extends \Hoa\Console\Dispatcher\Kit
     {
         require 'hoa://Application/Config/Environnement.php';
 
-//        $this->hydrateUia();
-//        $this->hydrateUser();
-//        $this->hydrateClassroom();
-//        $this->hydateStudentAndAssociation();
-//        $this->hydrateDomain();
+        $this->hydrateUia();
+        $this->hydrateUser();
+        $this->hydrateClassroom();
+        $this->hydateStudentAndAssociation();
+        $this->hydrateDomain();
         $this->hydrateThemeItem();
     }
 
@@ -76,6 +76,8 @@ class Data extends \Hoa\Console\Dispatcher\Kit
 
         $model->insert('caraminot', 'Lycée Professionnel Pierre Caraminot', '15 Avenue du paradis', 'Egletons',
             'Correze', 'Limousin', 'Mr Vraimentbobo', 'https://gmkfreelogos.com/logos/I/img/Its__Demo.gif');
+
+        echo '# UIA'."\n";
     }
 
     public function hydrateUser()
@@ -87,7 +89,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
             $user->insert($uia, 'modo', 'modo@nowhere.com', sha1('modo'), 0, 1, 0, 'Maude Erator', 0, time(), '', 2);
             $user->insert($uia, 'prof', 'prof@nowhere.com', sha1('prof'), 0, 1, 0, 'Prof Essor', 0, time(), '', 2);
         }
-
+        echo '# MASTER USER'."\n";
     }
 
     public function hydrateClassroom()
@@ -100,7 +102,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
                 $class->insert($uia, $classe);
             }
         }
-
+        echo '# CLASSROOM'."\n";
     }
 
     public function hydateStudentAndAssociation()
@@ -117,12 +119,16 @@ class Data extends \Hoa\Console\Dispatcher\Kit
                 }
             }
         }
+
+        echo '# STUDENT'."\n";
     }
 
     protected function hydrateStudent($uia, $name)
     {
         $user = new User();
         $user->insertStudent($uia, $name);
+
+        echo "\t".'> '.$name."\n";
 
         return $user->id;
     }
@@ -178,12 +184,16 @@ class Data extends \Hoa\Console\Dispatcher\Kit
                 }
             }
         }
+
+        echo '# ITEM'."\n";
     }
 
     protected function hydrateTheme($label, $ref)
     {
         $theme = new Theme();
         $theme->insert($label, $ref);
+
+        echo "\t".'> Theme  '.$label."\n";
 
         return $theme->id;
     }
@@ -192,6 +202,8 @@ class Data extends \Hoa\Console\Dispatcher\Kit
     {
         $item = new Item();
         $item->insert($theme, $label, 0, 2, $lvl);
+
+        echo "\t".'> Item '.$label."\n";
 
         return $item->id;
     }
@@ -212,6 +224,8 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         foreach ($domains as $domain) {
             $m_do->insert($domain);
         }
+
+        echo '# DOMAIN'."\n";
     }
 
 

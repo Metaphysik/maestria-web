@@ -71,21 +71,19 @@ $this->block('container');
 $this->endBlock();
 $this->block('js:script');
 ?>
-    <script>
+<script>
+    $('.items .add').on('click', function () {
+        niveau = $(this).parents('ul').length;
+        if (niveau == 3) {
+            $(this).before('<li><input type="text" placeholder="Nouvel item"></li>');
+        }
+        else if (niveau == 2) {
+            $(this).before('<li><input type="text" placeholder="Nouveau thème"></li>');
+        }
+        else {
+            $(this).before('<li><input type="text" placeholder="Nouveau domaine"></li>');
+        }
 
-        // list_item('ul', true, ic_list1, false);
-        $('.items .add').on('click', function () {
-            niveau = $(this).parents('ul').length;
-            if (niveau == 3) {
-                $(this).before('<li><input type="text" placeholder="Nouvel item"></li>');
-            }
-            else if (niveau == 2) {
-                $(this).before('<li><input type="text" placeholder="Nouveau thème"></li>');
-            }
-            else {
-                $(this).before('<li><input type="text" placeholder="Nouveau domaine"></li>');
-            }
-
-        });
-    </script>
+    });
+</script>
 <?php $this->endblock(); ?>
