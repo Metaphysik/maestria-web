@@ -29,7 +29,7 @@
     <?php } ?>
 </header>
 <nav>
-    <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom', ['uia' => UIA]); ?>">CLASSES</a></h3>
+    <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom'); ?>">CLASSES</a></h3>
 
     <h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
     <br/>

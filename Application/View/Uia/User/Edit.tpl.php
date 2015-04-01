@@ -25,14 +25,33 @@ $this->block('container');
                 <div><label for="email">Birthdate : </label><input type="date" name="birthdate" id="birthdate" value="<?php echo date('H:i:s d/m/Y', $profil->getBirthdate()); ?>" /></div>
                 <section id="changepsswd" class="col">
                     <h4>Gestion des mots de passe</h4>
-                    <div><label for="psswd">Nouveau Mot de passe: </label><input type="password" name="psswd" id="psswd"/></div>
-                    <div><label for="cpsswd">Confirmation Mot de passe: </label><input type="password" name="cpsswd" id="cpsswd"/></div>
+                    <div><label for="psswd">Nouveau Mot de passe : </label><input type="password" name="psswd" id="psswd"/></div>
+                    <div><label for="cpsswd">Confirmation Mot de passe : </label><input type="password" name="cpsswd" id="cpsswd"/></div>
                 </section>
                 <section id="adminZone" class="col">
                     <h4>Gestion des droits</h4>
                     <div><label for="isAdmin">Administrator : </label><input type="checkbox" name="isAdmin" id="isAdmin" <?php echo ($profil->getIsAdmin() === true) ? 'checked' : ''; ?>/></div>
                     <div><label for="isModo">Moderator : </label><input type="checkbox" name="isModo" id="isModo" <?php echo ($profil->getIsModerator() === true) ? 'checked' : ''; ?>/></div>
                     <div><label for="isProf">Professor : </label><input type="checkbox" name="isProf" id="isProf" <?php echo ($profil->getIsProfessor() === true) ? 'checked' : ''; ?>/></div>
+                    <div><label>Status :</label>   <?php
+                            switch($profil->getStatus())
+                            {
+                                case -1:
+                                    echo 'Ban/Pending to trash';
+                                    break;
+                                case 0;
+                                    echo 'Unactivate';
+                                    break;
+                                case 1;
+                                    echo 'Pending activate';
+                                    break;
+                                case 2;
+                                    echo 'Available';
+                                    break;
+                                default:
+                                    echo '#ERROR CALL AN ADMINISTRATOR#';
+                            }
+                        ?></div>
                 </section>
                 <input type="submit" value="ENREGISTRER" />
             </form>

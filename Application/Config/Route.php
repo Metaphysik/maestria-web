@@ -24,12 +24,12 @@ $uia = '(?<uia>.*)@';
 //$this->resource('domain', ['only' => ['index', 'create']]);
 //$this->resource('know', ['only' => ['index', 'create']]);
 
-$this->resource('classroom', ['prefix' => $uia]);
-$this->resource('user', ['prefix' => $uia]);
+$this->resource('classroom', ['prefix' => $uia, 'except' => ['new', 'show']]);
+$this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
 
 $this->any($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
 $this->any($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
-$this->get($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
+$this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 $this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
 $this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
 $this->get($uia . '/logout', ['as' => 'mainlogout', 'to' => 'Main#Logout']);

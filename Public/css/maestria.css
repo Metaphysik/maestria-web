@@ -688,12 +688,12 @@ form label {
     vertical-align: middle;
 }
 
-label + select, label + input {
+label + select, label + input, label + p{
     margin-left: 5px;
     vertical-align: middle;
 }
 
-select, input {
+select, input, form > div >p{
     text-align: center;
     width: 300px;
     -webkit-transition: all 0.2s ease-in-out;

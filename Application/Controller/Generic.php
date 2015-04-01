@@ -89,5 +89,13 @@ class Generic extends Kit
         return ($this->isAdmin() === true || $this->isModerator() === true  || $this->isProfessor() === true);
     }
 
+    protected function checkPost($key, $default = null)
+    {
+        if(isset($_POST[$key]) === true)
+            return $_POST[$key];
+
+        return $default;
+    }
+
 
 }
