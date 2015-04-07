@@ -7,7 +7,9 @@ namespace Application\Model;
 class Item extends Generic
 {
 
-
+    public function getByTheme($themeID) {
+            return $this->_repository->findBy(['refTheme' => $themeID]);
+        }
     public function labelExists($refTheme, $label) {
 
         $e = $this->_repository->findBy(

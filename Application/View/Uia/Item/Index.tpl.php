@@ -23,9 +23,10 @@ $this->block('container');
                 <?php
                 /**
                 * @var $d \Application\Entities\Domain
+                * @var $t \Application\Entities\Theme
+                * @var $i \Application\Entities\Item
                 */
                 foreach($domain->all() as $d) {
-                    // var_dump($theme->getBy('refDomain', $d->getId()));
                 ?>
                     <li>
                     <span><?php echo $d->getLabel(); ?></span>
@@ -34,6 +35,24 @@ $this->block('container');
                     <i class="aws edit fa fa-pencil"></i>
                     </li>
                     <ul>
+                        <?php foreach($theme->getByRef($d->getId()) as $t) { ?>
+                            <li data-id="<?php echo $t->getId(); ?>-<?php echo $d->getId(); ?>">
+                                <span><?php echo $t->getLabel(); ?></span>
+                                <i class="aws del fa fa-trash-o"></i>
+                                <i class="aws edit fa fa-pencil"></i>
+                            </li>
+                            <ul>
+                                <?php foreach($item->getByTheme($t->getId()) as $i) { ?>
+                                    <li data-id="<?php echo $i->getId(); ?>-<?php echo $t->getId(); ?>-<?php echo $d->getId(); ?>">
+                                        <span><?php echo $i->getLabel(); ?></span>
+                                        <i class="aws del fa fa-trash-o"></i>
+                                        <i class="aws edit fa fa-pencil"></i>
+                                    </li>
+                                <?php } ?>
+                                <span class="awsm add fa fa-check-square-o" title="Ajouter item"></span>
+                            </ul>
+                        <?php } ?>
+
                         <span class="awsm add fa fa-check-square-o" title="Ajouter item"></span>
                     </ul>
 <?php } ?>

@@ -8,6 +8,10 @@ class Theme extends Generic
 {
 
 
+    public function getByRef($domainId) {
+        return $this->_repository->findBy(['refDomain' => $domainId]);
+    }
+
     public function labelExists($label, $ref) {
 
         $e = $this->_repository->findBy(['label' => $label, 'refDomain' => $ref], null, 1);

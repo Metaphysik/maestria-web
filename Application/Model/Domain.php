@@ -14,14 +14,6 @@ class Domain extends Generic
         return (count($e) >= 1);
     }
 
-    public function getRecursiveInformation()
-    {
-
-        // TODO : Make it 
-
-        return [];
-    }
-
     public function insert($label)
     {
 
