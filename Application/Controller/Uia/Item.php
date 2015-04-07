@@ -10,14 +10,16 @@ namespace Application\Controller\Uia;
 
 use Application\Controller\Api;
 use Application\Model\Domain;
+use Application\Model\Theme;
 
 class Item extends Api{
     public function indexAction()
     {
-        $model = new Domain();
-        $data = $model->getRecursiveInformation();
+        $this->data->domain = new Domain();
+        $this->data->theme = new Theme();
+        $this->data->item = new \Application\Model\Item();
 
 
-
+        return $this->greut->render();
     }
 }
