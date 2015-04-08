@@ -19,7 +19,7 @@ $this->block('container');
             <div>
                 <h4>DOMAINE</h4><h4>THEMES</h4><h4>ITEMS</h4>
             </div>
-            <ul>
+            <ul class="domain">
                 <?php
                 /**
                  * @var $d \Application\Entities\Domain
@@ -29,22 +29,22 @@ $this->block('container');
                 foreach ($domain->all() as $d) {
                     ?>
                     <li>
-                        <span><?php echo $d->getLabel(); ?></span>
+                        <span><?php echo ucfirst($d->getLabel()); ?></span>
 
                         <i class="aws del fa fa-trash-o"></i>
                         <i class="aws edit fa fa-pencil"></i>
                     </li>
-                    <ul>
+                    <ul data-domain="<?php echo $d->getId(); ?>">
                         <?php foreach ($theme->getByRef($d->getId()) as $t) { ?>
-                            <li data-id="<?php echo $t->getId(); ?>-<?php echo $d->getId(); ?>">
-                                <span><?php echo $t->getLabel(); ?></span>
+                            <li>
+                                <span><?php echo ucfirst($t->getLabel()); ?></span>
                                 <i class="aws del fa fa-trash-o"></i>
                                 <i class="aws edit fa fa-pencil"></i>
                             </li>
-                            <ul>
+                            <ul data-theme="<?php echo $t->getId(); ?>">
                                 <?php foreach ($item->getByTheme($t->getId()) as $i) { ?>
-                                    <li data-id="<?php echo $i->getId(); ?>-<?php echo $t->getId(); ?>-<?php echo $d->getId(); ?>">
-                                        <span><?php echo $i->getLabel(); ?></span>
+                                    <li>
+                                        <span><?php echo ucfirst($i->getLabel()); ?></span>
                                         <i class="aws del fa fa-trash-o"></i>
                                         <i class="aws edit fa fa-pencil"></i>
                                     </li>
@@ -53,10 +53,11 @@ $this->block('container');
                             </ul>
                         <?php } ?>
 
-                        <span class="awsm add fa fa-check-square-o" title="Ajouter item"></span>
+                        <span class="awsm add fa fa-check-square-o" title="Ajouter Theme"></span>
                     </ul>
-                <?php } ?>
 
+                <?php } ?>
+                <span class="awsm add fa fa-check-square-o" title="Ajouter Domaine"></span>
         </section>
 
 
@@ -66,16 +67,54 @@ $this->endBlock();
 $this->block('js:script');
 ?>
     <script>
+        $('body')
+            .on('keypress', '.newdomain', function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                    $.post('/item/domain', {"label": $(this).val()}, function (data) {
+                        console.log(data);
+                    });
+                }
+            })
+            .on('keypress', '.newtheme', function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+
+                    var t = $(this).parent().parent();
+                    var did = t.attr('data-domain');
+
+                    $.post('/item/domain/' + did + '/theme', {"label": $(this).val()}, function (data) {
+                        console.log(data);
+                    });
+                }
+            })
+            .on('keypress', '.newitem', function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+
+                    var t = $(this).parent().parent();
+                    var tid = t.attr('data-theme');
+
+                    console.log(tid);
+
+                    $.post('/item/', {"label": $(this).val(), "theme": tid}, function (data) {
+                        console.log(data);
+                    });
+                }
+            })
+        ;
+
+
         $('.items .add').on('click', function () {
             niveau = $(this).parents('ul').length;
             if (niveau == 3) {
-                $(this).before('<li><input type="text" placeholder="Nouvel item"></li>');
+                $(this).before('<li><input type="text" class="newitem" placeholder="Nouvel item"></li>');
             }
             else if (niveau == 2) {
-                $(this).before('<li><input type="text" placeholder="Nouveau thème"></li>');
+                $(this).before('<li><input type="text" class="newtheme" placeholder="Nouveau thème"></li>');
             }
             else {
-                $(this).before('<li><input type="text" placeholder="Nouveau domaine"></li>');
+                $(this).before('<li><input type="text" class="newdomain" placeholder="Nouveau domaine"></li>');
             }
 
         });

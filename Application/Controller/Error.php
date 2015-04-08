@@ -30,9 +30,29 @@ class Error extends Kit
         $this->greut->render();
     }
 
-    public function exceptionActionAsync()
+    public function errorAction($class, $message, $file, $line)
     {
+        $this->data->class = $class;
+        $this->data->message = $message;
+        $this->data->file = $file;
+        $this->data->line = $line;
 
+        $this->greut->render(['error', 'exception']);
+    }
+
+    public function exceptionActionAsync($class, $message, $file, $line)
+    {
+        echo $message;
+    }
+
+    public function errorActionAsync($class, $message, $file, $line)
+    {
+        echo $message;
+    }
+
+    public function notfoundActionAsync($class, $message, $file, $line)
+    {
+        echo $message;
     }
 
 }
