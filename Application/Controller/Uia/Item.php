@@ -39,11 +39,12 @@ class Item extends Api
         echo $this->getApiJson();
     }
 
-    public function createThemeActionAsync($domain_id)
+    public function createThemeActionAsync()
     {
-        if (isset($_POST['label'])) {
-            $label = $_POST['label'];
-            $theme = new Theme();
+        if (isset($_POST['label']) and isset($_POST['domain'])) {
+            $domain_id = $_POST['domain'];
+            $label     = $_POST['label'];
+            $theme     = new Theme();
             $theme->insert($label, $domain_id);
 
             $this->ok($label);
@@ -63,6 +64,94 @@ class Item extends Api
 
             $item->insert($theme, $label, 1, 0, 0);
             $this->ok($label);
+        } else {
+            $this->nok('Api error');
+        }
+
+        echo $this->getApiJson();
+    }
+
+    public function updateDomainActionAsync()
+    {
+        if (isset($_POST['label']) and isset($_POST['id'])) {
+
+            $label  = $_POST['label'];
+            $id     = $_POST['id'];
+            $domain = new Domain();
+
+            if ($domain->labelExists($label) === false) {
+
+                /**
+                 * @var $entity \Application\Entities\Domain
+                 */
+                $entity = $domain->get($id);
+                $entity->setLabel($label);
+                $domain->update($entity);
+                $this->ok();
+            } else {
+                $this->nok('Label ever exists');
+            }
+        } else {
+            $this->nok('Api error');
+        }
+
+
+        echo $this->getApiJson();
+    }
+
+    public function updateThemeActionAsync()
+    {
+        if (isset($_POST['label']) and isset($_POST['id']) and isset($_POST['ref'])) {
+
+            $label  = $_POST['label'];
+            $id     = $_POST['id'];
+            $domain = $_POST['ref'];
+            $theme  = new Theme();
+
+            if ($theme->labelExists($label, $domain) === false) {
+
+                /**
+                 * @var $entity \Application\Entities\Theme
+                 */
+                $entity = $theme->get($id);
+                $entity->setLabel($label);
+
+                $theme->update($entity);
+
+                $this->ok();
+            } else {
+                $this->nok('Label ever exists');
+            }
+        } else {
+            $this->nok('Api error');
+        }
+
+
+        echo $this->getApiJson();
+    }
+
+    public function updateActionAsync()
+    {
+        if (isset($_POST['label']) and isset($_POST['tid']) and isset($_POST['id'])) {
+
+            $label = $_POST['label'];
+            $tid   = $_POST['tid'];
+            $id    = $_POST['id'];
+            $item  = new \Application\Model\Item();
+
+            if ($item->labelExists($tid, $label) === false) {
+                /**
+                 * @var $entity \Application\Entities\Item
+                 */
+                $entity = $item->get($id);
+
+                $entity->setLabel($label);
+                $item->update($entity);
+                $this->ok();
+
+            } else {
+                $this->nok('Label ever exists');
+            }
         } else {
             $this->nok('Api error');
         }

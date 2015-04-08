@@ -28,25 +28,27 @@ $this->block('container');
                  */
                 foreach ($domain->all() as $d) {
                     ?>
-                    <li>
-                        <span><?php echo ucfirst($d->getLabel()); ?></span>
+                    <li data-domain="<?php echo $d->getId(); ?>">
+                        <?php echo ucfirst($d->getLabel()); ?>
 
-                        <i class="aws del fa fa-trash-o"></i>
-                        <i class="aws edit fa fa-pencil"></i>
+                        <i class="aws domain del fa fa-trash-o"></i>
+                        <i class="aws domain edit fa fa-pencil"></i>
                     </li>
                     <ul data-domain="<?php echo $d->getId(); ?>">
                         <?php foreach ($theme->getByRef($d->getId()) as $t) { ?>
-                            <li>
-                                <span><?php echo ucfirst($t->getLabel()); ?></span>
-                                <i class="aws del fa fa-trash-o"></i>
-                                <i class="aws edit fa fa-pencil"></i>
+                            <li data-theme="<?php echo $t->getId(); ?>" data-domain="<?php echo $d->getId(); ?>">
+                                <?php echo ucfirst($t->getLabel()); ?>
+                                <i class="aws theme del  fa fa-trash-o"></i>
+                                <i class="aws theme edit fa fa-pencil"></i>
                             </li>
                             <ul data-theme="<?php echo $t->getId(); ?>">
                                 <?php foreach ($item->getByTheme($t->getId()) as $i) { ?>
-                                    <li>
-                                        <span><?php echo ucfirst($i->getLabel()); ?></span>
-                                        <i class="aws del fa fa-trash-o"></i>
-                                        <i class="aws edit fa fa-pencil"></i>
+                                    <li
+                                        data-theme="<?php echo $t->getId(); ?>"
+                                        data-item="<?php echo $i->getId(); ?>">
+                                        <?php echo ucfirst($i->getLabel()); ?>
+                                        <i class="aws ite del fa fa-trash-o"></i>
+                                        <i class="aws ite edit fa fa-pencil"></i>
                                     </li>
                                 <?php } ?>
                                 <span class="awsm add fa fa-check-square-o" title="Ajouter item"></span>
@@ -83,7 +85,7 @@ $this->block('js:script');
                     var t = $(this).parent().parent();
                     var did = t.attr('data-domain');
 
-                    $.post('/item/domain/' + did + '/theme', {"label": $(this).val()}, function (data) {
+                    $.post('/item/domain/theme', {"label": $(this).val(), "domain": did}, function (data) {
                         console.log(data);
                     });
                 }
@@ -95,8 +97,6 @@ $this->block('js:script');
                     var t = $(this).parent().parent();
                     var tid = t.attr('data-theme');
 
-                    console.log(tid);
-
                     $.post('/item/', {"label": $(this).val(), "theme": tid}, function (data) {
                         console.log(data);
                     });
@@ -104,6 +104,54 @@ $this->block('js:script');
             })
         ;
 
+        $('.domain+.edit').on('click', function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var id = $(this).parent().attr('data-domain');
+            var txt = $(this).parent().text().trim();
+            var prompt = window.prompt('Nouveau nom du domaine ' + txt + '(#' + id + ')', '');
+
+            if (prompt != null) {
+                $.post('/item/domain/update', {"label": prompt, "id": id}, function (data) {
+                    console.log(data);
+                });
+            }
+
+        });
+
+        $('.theme+.edit').on('click', function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var id = $(this).parent().attr('data-theme');
+            var did = $(this).parent().attr('data-domain');
+            var txt = $(this).parent().text().trim();
+            var prompt = window.prompt('Nouveau nom du theme ' + txt + '(#' + id + ')', '');
+
+            if (prompt != null) {
+                $.post('/item/domain/theme/update', {"label": prompt, "id": id, "ref": did}, function (data) {
+                    console.log(data);
+                });
+            }
+
+        });
+        $('.ite+.edit').on('click', function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var id = $(this).parent().attr('data-item');
+            var tid = $(this).parent().attr('data-theme');
+            var txt = $(this).parent().text().trim();
+            var prompt = window.prompt('Nouveau nom de l\'item ' + txt + '(#' + id + ')', '');
+
+            if (prompt != null) {
+                $.post('/item/'+id+'/update', {"label": prompt, "tid": tid, "id": id}, function (data) {
+                    console.log(data);
+                });
+            }
+
+        });
 
         $('.items .add').on('click', function () {
             niveau = $(this).parents('ul').length;
