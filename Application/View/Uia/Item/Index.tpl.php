@@ -110,7 +110,7 @@ $this->block('js:script');
             e.stopPropagation();
             var id = $(this).parent().attr('data-domain');
             var txt = $(this).parent().text().trim();
-            var prompt = window.prompt('Nouveau nom du domaine ' + txt + '(#' + id + ')', '');
+            var prompt = window.prompt('Nouveau nom du domaine '+"\n" + txt + '(#' + id + ')', '');
 
             if (prompt != null) {
                 $.post('/item/domain/update', {"label": prompt, "id": id}, function (data) {
@@ -127,7 +127,7 @@ $this->block('js:script');
             var id = $(this).parent().attr('data-theme');
             var did = $(this).parent().attr('data-domain');
             var txt = $(this).parent().text().trim();
-            var prompt = window.prompt('Nouveau nom du theme ' + txt + '(#' + id + ')', '');
+            var prompt = window.prompt('Nouveau nom du theme '+"\n" + txt + '(#' + id + ')', '');
 
             if (prompt != null) {
                 $.post('/item/domain/theme/update', {"label": prompt, "id": id, "ref": did}, function (data) {
@@ -143,7 +143,7 @@ $this->block('js:script');
             var id = $(this).parent().attr('data-item');
             var tid = $(this).parent().attr('data-theme');
             var txt = $(this).parent().text().trim();
-            var prompt = window.prompt('Nouveau nom de l\'item ' + txt + '(#' + id + ')', '');
+            var prompt = window.prompt('Nouveau nom de l\'item '+"\n" + txt + '(#' + id + ')', '');
 
             if (prompt != null) {
                 $.post('/item/'+id+'/update', {"label": prompt, "tid": tid, "id": id}, function (data) {
