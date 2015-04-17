@@ -47,4 +47,17 @@ class Item extends Generic
 
         return true;
     }
+
+    public function pendingTrash($id)
+    {
+        /**
+         * @var $e \Application\Entities\Item
+         */
+        $e = $this->get($id);
+
+        $e->setStatus(-1);
+        $this->update($e);
+
+        return true;
+    }
 }

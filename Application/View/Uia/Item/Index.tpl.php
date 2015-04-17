@@ -35,22 +35,26 @@ $this->block('container');
                     </li>
                     <ul data-domain="<?php echo $d->getId(); ?>">
                         <?php foreach ($theme->getByRef($d->getId()) as $t) { ?>
-                            <li data-theme="<?php echo $t->getId(); ?>" data-domain="<?php echo $d->getId(); ?>" class="theme">
+                            <li data-theme="<?php echo $t->getId(); ?>" data-domain="<?php echo $d->getId(); ?>"
+                                class="theme">
                                 <?php echo ucfirst($t->getLabel()); ?>
                                 <i class="aws del  fa fa-trash-o"></i>
                                 <i class="aws edit fa fa-pencil"></i>
                             </li>
                             <ul data-theme="<?php echo $t->getId(); ?>">
-                                <?php foreach ($item->getByTheme($t->getId()) as $i) { ?>
-                                    <li
-                                        data-theme="<?php echo $t->getId(); ?>"
-                                        data-item="<?php echo $i->getId(); ?>"
-                                        class="ite">
-                                        <?php echo ucfirst($i->getLabel()); ?>
-                                        <i class="aws del fa fa-trash-o"></i>
-                                        <i class="aws edit fa fa-pencil"></i>
-                                    </li>
-                                <?php } ?>
+                                <?php foreach ($item->getByTheme($t->getId()) as $i) {
+                                    if ($i->getStatus() >= 2) {
+                                        ?>
+                                        <li
+                                            data-theme="<?php echo $t->getId(); ?>"
+                                            data-item="<?php echo $i->getId(); ?>"
+                                            class="ite">
+                                            <?php echo ucfirst($i->getLabel()); ?>
+                                            <i class="aws del fa fa-trash-o"></i>
+                                            <i class="aws edit fa fa-pencil"></i>
+                                        </li>
+                                    <?php }
+                                } ?>
                                 <span class="awsm add fa fa-check-square-o" title="Ajouter item"></span>
                             </ul>
                         <?php } ?>
@@ -111,7 +115,7 @@ $this->block('js:script');
             e.stopPropagation();
             var id = $(this).parent().attr('data-domain');
             var txt = $(this).parent().text().trim();
-            var prompt = window.prompt('Nouveau nom du domaine '+"\n" + txt + '(#' + id + ')', '');
+            var prompt = window.prompt('Nouveau nom du domaine ' + "\n" + txt + '(#' + id + ')', '');
 
             if (prompt != null) {
                 $.post('/item/domain/update', {"label": prompt, "id": id}, function (data) {
@@ -125,9 +129,11 @@ $this->block('js:script');
             e.preventDefault();
             e.stopPropagation();
             var id = $(this).parent().attr('data-domain');
-            $.get('/item/domain/delete', {"id": id}, function (data) {
-                console.log(data);
-            });
+            if (window.confirm('Are you sure to delete this domain')) {
+                $.post('/item/domain/delete', {"id": id}, function (data) {
+                    console.log(data);
+                });
+            }
         });
 
         $('.theme > .edit').on('click', function (e) {
@@ -137,7 +143,7 @@ $this->block('js:script');
             var id = $(this).parent().attr('data-theme');
             var did = $(this).parent().attr('data-domain');
             var txt = $(this).parent().text().trim();
-            var prompt = window.prompt('Nouveau nom du theme '+"\n" + txt + '(#' + id + ')', '');
+            var prompt = window.prompt('Nouveau nom du theme ' + "\n" + txt + '(#' + id + ')', '');
 
             if (prompt != null) {
                 $.post('/item/domain/theme/update', {"label": prompt, "id": id, "ref": did}, function (data) {
@@ -151,10 +157,13 @@ $this->block('js:script');
 
             e.preventDefault();
             e.stopPropagation();
-            var id = $(this).parent().attr('data-domain');
-            $.get('/item/domain/theme/delete', {"id": id}, function (data) {
+            var id = $(this).parent().attr('data-theme');
+
+//            if(window.confirm('Are you sure to delete this theme')) {
+            $.post('/item/domain/theme/delete', {"id": id}, function (data) {
                 console.log(data);
             });
+//            }
         });
 
         $('.ite > .edit').on('click', function (e) {
@@ -164,10 +173,10 @@ $this->block('js:script');
             var id = $(this).parent().attr('data-item');
             var tid = $(this).parent().attr('data-theme');
             var txt = $(this).parent().text().trim();
-            var prompt = window.prompt('Nouveau nom de l\'item '+"\n" + txt + '(#' + id + ')', '');
+            var prompt = window.prompt('Nouveau nom de l\'item ' + "\n" + txt + '(#' + id + ')', '');
 
             if (prompt != null) {
-                $.post('/item/'+id+'/update', {"label": prompt, "tid": tid, "id": id}, function (data) {
+                $.post('/item/' + id + '/update', {"label": prompt, "tid": tid, "id": id}, function (data) {
                     console.log(data);
                 });
             }
@@ -178,10 +187,13 @@ $this->block('js:script');
 
             e.preventDefault();
             e.stopPropagation();
-            var id = $(this).parent().attr('data-domain');
-            $.get('/item/'+id+'/delete', {"id": id}, function (data) {
-                console.log(data);
-            });
+
+            var id = $(this).parent().attr('data-item');
+            if (window.confirm('Are you sure to delete this item')) {
+                $.post('/item/' + id + '/delete', {"id": id}, function (data) {
+                    console.log(data);
+                });
+            }
         });
 
         $('.items .add').on('click', function () {

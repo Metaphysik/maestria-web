@@ -158,4 +158,64 @@ class Item extends Api
 
         echo $this->getApiJson();
     }
+
+    public function deleteDomainActionAsync()
+    {
+
+        if (isset($_POST['id'])) {
+            $id  = $_POST['id'];
+            $dom = new Domain();
+            $ent = $dom->get($id);
+            if ($ent !== null) {
+                $dom->delete($ent);
+                $this->ok();
+            } else {
+                $this->nok('Ever deleted');
+            }
+        } else {
+            $this->nok('Api error');
+        }
+
+        echo $this->getApiJson();
+    }
+
+    public function deleteThemeActionAsync()
+    {
+
+        if (isset($_POST['id'])) {
+            $id     = $_POST['id'];
+            $theme  = new Theme();
+            $entity = $theme->get($id);
+            if ($entity !== null) {
+                $theme->delete($entity);
+                $this->ok();
+            } else {
+                $this->nok('Ever deleted');
+            }
+
+        } else {
+            $this->nok('Api error');
+        }
+
+        echo $this->getApiJson();
+    }
+
+    public function deleteActionAsync() {
+        if (isset($_POST['id'])) {
+            $id     = $_POST['id'];
+            $item = new \Application\Model\Item();
+            $entity = $item->get($id);
+            if ($entity !== null) {
+                $item->pendingTrash($id);
+                $this->ok();
+            } else {
+                $this->nok('Ever deleted');
+            }
+
+        } else {
+            $this->nok('Api error');
+        }
+
+        echo $this->getApiJson();
+    }
 }
