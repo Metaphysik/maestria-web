@@ -32,9 +32,12 @@ $this->get($uia.'/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
 $this->post($uia.'/item/', ['as' => 'createUiaItemDomainTheme', 'to' => 'Uia\Item#createItem']);
 $this->post($uia.'/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);
 $this->post($uia.'/item/domain/update', ['as' => 'updateUiaItemDomain', 'to' => 'Uia\Item#updateDomain']);
+$this->get($uia.'/item/domain/delete', ['as' => 'deleteUiaItemDomain', 'to' => 'Uia\Item#deleteDomain']);
 $this->post($uia.'/item/domain/theme', ['as' => 'createUiaItemTheme', 'to' => 'Uia\Item#createTheme']);
+$this->get($uia.'/item/domain/theme/delete', ['as' => 'deleteUiaItemTheme', 'to' => 'Uia\Item#deleteTheme']);
 $this->post($uia.'/item/domain/theme/update', ['as' => 'updateUiaItemTheme', 'to' => 'Uia\Item#updateTheme']);
 $this->post($uia.'/item/(?<item_id>[^/]+)/update', ['as' => 'updateUiaItem', 'to' => 'Uia\Item#update']);
+$this->get($uia.'/item/(?<item_id>[^/]+)/delete', ['as' => 'deleteUiaItem', 'to' => 'Uia\Item#delete']);
 
 $this->any($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
 $this->any($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);

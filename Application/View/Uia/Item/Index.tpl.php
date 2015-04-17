@@ -28,27 +28,27 @@ $this->block('container');
                  */
                 foreach ($domain->all() as $d) {
                     ?>
-                    <li data-domain="<?php echo $d->getId(); ?>">
+                    <li data-domain="<?php echo $d->getId(); ?>" class="domain">
                         <?php echo ucfirst($d->getLabel()); ?>
-
-                        <i class="aws domain del fa fa-trash-o"></i>
-                        <i class="aws domain edit fa fa-pencil"></i>
+                        <i class="aws del fa fa-trash-o"></i>
+                        <i class="aws edit fa fa-pencil"></i>
                     </li>
                     <ul data-domain="<?php echo $d->getId(); ?>">
                         <?php foreach ($theme->getByRef($d->getId()) as $t) { ?>
-                            <li data-theme="<?php echo $t->getId(); ?>" data-domain="<?php echo $d->getId(); ?>">
+                            <li data-theme="<?php echo $t->getId(); ?>" data-domain="<?php echo $d->getId(); ?>" class="theme">
                                 <?php echo ucfirst($t->getLabel()); ?>
-                                <i class="aws theme del  fa fa-trash-o"></i>
-                                <i class="aws theme edit fa fa-pencil"></i>
+                                <i class="aws del  fa fa-trash-o"></i>
+                                <i class="aws edit fa fa-pencil"></i>
                             </li>
                             <ul data-theme="<?php echo $t->getId(); ?>">
                                 <?php foreach ($item->getByTheme($t->getId()) as $i) { ?>
                                     <li
                                         data-theme="<?php echo $t->getId(); ?>"
-                                        data-item="<?php echo $i->getId(); ?>">
+                                        data-item="<?php echo $i->getId(); ?>"
+                                        class="ite">
                                         <?php echo ucfirst($i->getLabel()); ?>
-                                        <i class="aws ite del fa fa-trash-o"></i>
-                                        <i class="aws ite edit fa fa-pencil"></i>
+                                        <i class="aws del fa fa-trash-o"></i>
+                                        <i class="aws edit fa fa-pencil"></i>
                                     </li>
                                 <?php } ?>
                                 <span class="awsm add fa fa-check-square-o" title="Ajouter item"></span>
@@ -104,7 +104,8 @@ $this->block('js:script');
             })
         ;
 
-        $('.domain+.edit').on('click', function (e) {
+
+        $('.domain > .edit').on('click', function (e) {
 
             e.preventDefault();
             e.stopPropagation();
@@ -117,10 +118,19 @@ $this->block('js:script');
                     console.log(data);
                 });
             }
-
         });
 
-        $('.theme+.edit').on('click', function (e) {
+        $('.domain > .del').on('click', function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var id = $(this).parent().attr('data-domain');
+            $.get('/item/domain/delete', {"id": id}, function (data) {
+                console.log(data);
+            });
+        });
+
+        $('.theme > .edit').on('click', function (e) {
 
             e.preventDefault();
             e.stopPropagation();
@@ -136,7 +146,18 @@ $this->block('js:script');
             }
 
         });
-        $('.ite+.edit').on('click', function (e) {
+
+        $('.theme > .del').on('click', function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var id = $(this).parent().attr('data-domain');
+            $.get('/item/domain/theme/delete', {"id": id}, function (data) {
+                console.log(data);
+            });
+        });
+
+        $('.ite > .edit').on('click', function (e) {
 
             e.preventDefault();
             e.stopPropagation();
@@ -151,6 +172,16 @@ $this->block('js:script');
                 });
             }
 
+        });
+
+        $('.ite > .del').on('click', function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var id = $(this).parent().attr('data-domain');
+            $.get('/item/'+id+'/delete', {"id": id}, function (data) {
+                console.log(data);
+            });
         });
 
         $('.items .add').on('click', function () {
