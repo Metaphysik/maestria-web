@@ -3,6 +3,7 @@
 namespace Application\Controller;
 
 use Application\Form\Login;
+use Application\Model\Uia;
 use Application\Model\User;
 use Hoa\Core\Exception\Exception;
 use Hoa\Session\Session;
@@ -10,6 +11,24 @@ use Sohoa\Framework\Kit;
 
 class Main extends Generic
 {
+
+    public function allAction(){
+        header('Content-Type: text/html; charset=utf-8');
+        echo '<b>You must visit an Etablissement link</b> <i>'.UIA.'</i>'.'<br/>';
+
+        $uia = new Uia();
+        echo '<ul>';
+        foreach($uia->all() as $a)
+        {
+            /**
+             * @var $a \Application\Entities\Uia
+             */
+            echo '<li>'.$a->getName().' : '.$a->getSlug().'</li>';
+
+        }
+        echo '</ul>';
+    }
+
     public function indexAction($uia)
     {
 

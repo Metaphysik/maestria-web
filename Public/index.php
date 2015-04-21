@@ -13,8 +13,12 @@ namespace {
     session_cache_expire($minutes);
     ini_set('session.gc_maxlifetime', $minutes * 60);
 
+    // Fix nginx
+    $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
+
     try {
         $framework = new Maestria();
+
 
         $framework->kit('redirector', new Redirection());
         $framework->setAcl();
@@ -36,7 +40,8 @@ namespace {
         $framework->getRouter()->route('/');
         $framework->run();
 
-    } catch (\Hoa\Router\Exception\NotFound $e) {
+    }
+    catch (\Hoa\Router\Exception\NotFound $e) {
         Log::error(
             $e->getMessage(),
             [$e->getFile() . ':' . $e->getLine() . '#' . $e->getCode()]
@@ -51,7 +56,8 @@ namespace {
         $rule[6]['line'] = $e->getLine();
 
         $framework->run();
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
 
         Log::error(
             $e->getMessage(),
@@ -68,7 +74,8 @@ namespace {
 
         $framework->run();
 
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
 
         Log::error(
             $e->getMessage(),

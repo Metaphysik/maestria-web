@@ -14,16 +14,20 @@ db-peuplate:
 	Binaries/sohoa application sample:data
 
 db-reset:
-    db-drop
-    db-install
+	db-drop
+	db-install
 
 db-update:
-	Binaries/doctrine orm:schema-tool:update
+	Binaries/doctrine orm:schema-tool:update --force
 
 db-right:
-    chmod 0777 Application/Maestria-orm.db
+	chmod 0777 Application/Maestria-orm.db
 
 log:
 	chmod 0777 Application/Log
 	touch Application/Log/app.log
 	chmod 0777 Application/Log/app.log
+
+install:
+	make db-update
+	$(COMPOSER) update
