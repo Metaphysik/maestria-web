@@ -14,7 +14,14 @@ a {
 
 header {
     height: 65px;
+    padding-left: 160px;
 }
+
+section > ul {
+    width: 85%;
+}
+
+
 
 #logzone {
     background: rgb(216, 216, 216);
@@ -23,11 +30,6 @@ header {
     top: 2px;
     padding: 10px;
     cursor: pointer;
-}
-
-.error section {
-    background: rgb(216, 216, 216);
-    border: none;
 }
 
 .login {
@@ -39,20 +41,20 @@ header {
     text-align: center
 }
 
-.logo {
-    font-size: 30px;
-    margin: 0px 11px 0px 32px;
-}
-
 nav {
     position: absolute;
-    height: 600px;
+    height: 460px;
     width: 140px;
     padding-left: 20px;
     display: inline-block;
     background: white;
-    top: 55px;
+    top: 0px;
     z-index: 35;
+}
+
+.logo img {
+    width: 119px;
+    margin: 5px 0px 2px 10px;
 }
 
 h1, h3 {
@@ -74,8 +76,8 @@ nav h3 {
 }
 
 footer {
-    position: absolute;
-    bottom: 2px;
+    position: fixed; bottom: 0px
+    font-size: 15px;
 }
 
 #fleche {
@@ -114,7 +116,7 @@ footer {
 }
 
 .exit {
-    font-size: 65px;
+    font-size: 100px;
     float: right;
     cursor: pointer;
     z-index: 50;
@@ -122,8 +124,9 @@ footer {
 
 #inpopup {
     background: white;
-    margin: 10%;
-    width: 80%;
+    margin: 5%;
+    width: 90%;
+    overflow: auto;
 }
 
 #inpopup .titre {
@@ -158,6 +161,10 @@ footer {
     vertical-align: middle;
 }
 
+.itemchx .awsm, #chitem .awsm {
+    float: right;
+}
+
 #inpopup form {
     display: inline-block;
 }
@@ -169,27 +176,39 @@ footer {
 }
 
 #corps {
-    padding-left: 150px;
+    padding-left: 160px;
+    min-height: 600px;
+    width: 100%;
 }
 
 .classe {
     background: rgb(236, 76, 76);
 }
 
-h3.classe {
-    height: 87px;
-    font-size: 78px;
+#titre h3 {
+    overflow: hidden;
+    display: none;
+    padding: 10px 0px;
+    font-size: 46px;
+}
+
+#classe, #evalchx {
     cursor: pointer;
 }
 
-.login h3, .neweval h3, .classes h3, .evals h3, .items h3 {
-    display: none;
+#corps.evaluer h3, #corps.synthese h3, #corps.correction h3 {
+    display: block;
 }
 
-h1 {
+#titre .awsm {
+    margin: 0px 20px;
+}
+
+body h1 {
     text-align: center;
-    font-size: 35px;
-    padding: 30px 0px;
+    font-size: 46px;
+    margin: 0px;
+    padding: 10px;
 }
 
 #contenu {
@@ -213,14 +232,18 @@ h4 {
     color: grey;
 }
 
-.awsm, option span i {
+.awsm, option span {
+    font-family: FontAwesome;
     text-align: center;
     font-weight: normal;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
+}
+
+.awsm:hover {
+    opacity: 0.8;
 }
 
 /*******************Evaluer*************/
+
 #cases {
     background: white;
 }
@@ -348,11 +371,6 @@ h4 {
     background: rgb(216, 216, 216);
 }
 
-.evals #fleche, .neweval #fleche {
-    top: 190px;
-    border-right: 11px solid rgb(216, 216, 216);
-}
-
 .evals .titre {
     width: 244px;
     overflow: hidden;
@@ -362,11 +380,6 @@ h4 {
 /*******************Classes*************/
 .classes {
     background: rgb(216, 216, 216);
-}
-
-.classes #fleche {
-    top: 76px;
-    border-right: 11px solid rgb(216, 216, 216);
 }
 
 .items h4, .classes h4, .evals h4 {
@@ -397,7 +410,7 @@ li .del, li .edit {
 
 ul ul {
     display: none;
-    margin-left: 200px;
+    margin-left: 100px;
     padding: 0px;
 }
 
@@ -407,9 +420,9 @@ ul ul {
 
 .classes ul ul {
     -webkit-column-count: 2;
-    -webkit-column-gap: 150px;
+    -webkit-column-gap: 50px;
     -moz-column-count: 2;
-    -moz-column-gap: 150px;
+    -moz-column-gap: 50px;
 }
 
 li .awsm:hover {
@@ -420,11 +433,22 @@ li.actif {
     color: rgb(117, 154, 198);
 }
 
+li .mdp {
+    visibility: hidden;
+    margin: 10px;
+    font-style: italic;
+}
+
+li:hover .mdp {
+    visibility: visible;
+}
+
 .classes ul ul {
     counter-reset: numele;
 }
 
 .classes ul ul li {
+    border-left: 1px solid #000;
 }
 
 .classes ul ul li:before {
@@ -434,21 +458,19 @@ li.actif {
 
 /*******************synthese*************/
 .synthese {
-    background: rgb(117, 154, 198);
+    background: rgb(236, 76, 76); /* 117,154,198 */
 }
 
-.synthese #fleche {
-    top: 124px;
-    border-right: 11px solid #EC4C4C;
+.synthese #contenu {
+    padding-top: 20px;
 }
 
 #listeleve {
     padding-top: 30px;
-    top: 263px;
-    position: absolute;
     width: 196px;
     z-index: 45;
     background: rgba(255, 255, 255, 0.5);
+    display: inline-block;
 }
 
 #listeleve h5, #domain div {
@@ -458,17 +480,18 @@ li.actif {
 
 #listeleve h5 {
     background: rgb(255, 255, 255);
+    vertical-align: middle;
 }
 
-#listeleve h5:hover {
-    background: rgba(240, 240, 240, 0.3);
-    border-bottom: 1px solid black;
+#listeleve h5 .awsm {
+    font-size: 24px;
+    vertical-align: middle;
 }
 
 #domain {
-    padding-left: 200px;
+    display: inline-block;
     white-space: nowrap;
-    overflow-x: auto;
+    margin-left: -3px;
 }
 
 #domain section {
@@ -478,7 +501,7 @@ li.actif {
     text-align: center;
     cursor: pointer;
     border-left: 1px solid black;
-    margin-left: -4px;
+    margin-top: -20px;
 }
 
 #domain h6 {
@@ -494,6 +517,23 @@ li.actif {
     overflow: hidden;
     -ms-hyphens: auto;
     -o-hyphens: auto;
+}
+
+.visuel {
+    color: green;
+    height: 20px;
+    z-index: 50;
+    opacity: 0;
+}
+
+#domain section:hover .visuel {
+    opacity: 1;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+}
+
+.visuel.actif {
+    opacity: 1;
 }
 
 #domain section:hover {
@@ -589,7 +629,7 @@ li.actif {
 }
 
 .taxo .apprct, .item {
-    width: 100%;
+    width: 90%;
     text-align: justify;
     margin-bottom: 5px;
 }
@@ -659,22 +699,29 @@ form h4, input[type="submit"], #creer {
 }
 
 input[type="submit"] {
-    float: right;
     border-radius: 0px;
     margin-right: 50px;
     cursor: pointer;
 }
 
-form section.col {
-    display: block;
-    width: 75%;
-}
-
 form section {
-    display: inline-block;
+    display: block;
     border: 1px solid black;
+    width: 85%;
     margin: 4px;
     padding: 5px;
+}
+
+form > section > div > span  {
+    display: inline-block;
+    vertical-align: middle;
+    width: 300px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    border-radius: 2px;
+    margin-left: 20px;
+    border: none;
+    padding: 3px 0px;
 }
 
 form section div {
@@ -688,12 +735,12 @@ form label {
     vertical-align: middle;
 }
 
-label + select, label + input, label + p{
+label + select, label + input {
     margin-left: 5px;
     vertical-align: middle;
 }
 
-select, input, form > div >p{
+select, input {
     text-align: center;
     width: 300px;
     -webkit-transition: all 0.2s ease-in-out;
