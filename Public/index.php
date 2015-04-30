@@ -36,39 +36,42 @@ namespace {
         $framework->getRouter()->route('/');
         $framework->run();
 
-    } catch (\Hoa\Router\Exception\NotFound $e) {
-        Log::error(
-            $e->getMessage(),
-            [$e->getFile() . ':' . $e->getLine() . '#' . $e->getCode()]
-        );
-
-        $framework->getRouter()->route('/error/404');
-
-        $rule = &$framework->getRouter()->getTheRule();
-        $rule[6]['class'] = get_class($e);
-        $rule[6]['message'] = $e->getMessage();
-        $rule[6]['file'] = $e->getFile();
-        $rule[6]['line'] = $e->getLine();
-
-        $framework->run();
-    } catch (Exception $e) {
-
-        Log::error(
-            $e->getMessage(),
-            [$e->getFile() . ':' . $e->getLine() . '#' . $e->getCode()]
-        );
-
-        $framework->getRouter()->route('/error/exception');
-
-        $rule = &$framework->getRouter()->getTheRule();
-        $rule[6]['class'] = get_class($e);
-        $rule[6]['message'] = $e->getMessage();
-        $rule[6]['file'] = $e->getFile();
-        $rule[6]['line'] = $e->getLine();
-
-        $framework->run();
-
-    } catch (\Exception $e) {
+    }
+//    catch (\Hoa\Router\Exception\NotFound $e) {
+//        Log::error(
+//            $e->getMessage(),
+//            [$e->getFile() . ':' . $e->getLine() . '#' . $e->getCode()]
+//        );
+//
+//        $framework->getRouter()->route('/error/404');
+//
+//        $rule = &$framework->getRouter()->getTheRule();
+//        $rule[6]['class'] = get_class($e);
+//        $rule[6]['message'] = $e->getMessage();
+//        $rule[6]['file'] = $e->getFile();
+//        $rule[6]['line'] = $e->getLine();
+//
+//        $framework->run();
+//    }
+//    catch (Exception $e) {
+//
+//        Log::error(
+//            $e->getMessage(),
+//            [$e->getFile() . ':' . $e->getLine() . '#' . $e->getCode()]
+//        );
+//
+//        $framework->getRouter()->route('/error/exception');
+//
+//        $rule = &$framework->getRouter()->getTheRule();
+//        $rule[6]['class'] = get_class($e);
+//        $rule[6]['message'] = $e->getMessage();
+//        $rule[6]['file'] = $e->getFile();
+//        $rule[6]['line'] = $e->getLine();
+//
+//        $framework->run();
+//
+//    }
+    catch (\Exception $e) {
 
         Log::error(
             $e->getMessage(),
