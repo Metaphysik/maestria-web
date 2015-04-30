@@ -18,7 +18,7 @@ db-reset:
 	db-install
 
 db-update:
-	Binaries/doctrine orm:schema-tool:update
+	Binaries/doctrine orm:schema-tool:update --force
 
 db-right:
 	chmod 0777 Application/Maestria-orm.db
