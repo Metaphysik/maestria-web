@@ -22,6 +22,8 @@ class Greut extends \Sohoa\Framework\View\Greut
             $filename = $this->_paths.$filename;
         }
 
+        var_dump($filename);
+
         $resolve = resolve($filename, false);
         $realpath = realpath($resolve); // We need to use resolve beacause realpath dont use stream wrapper
 
