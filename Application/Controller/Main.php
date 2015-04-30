@@ -13,6 +13,7 @@ class Main extends Generic
 {
 
     public function allAction(){
+        header('Content-Type: text/html; charset=utf-8');
         echo '<b>You must visit an Etablissement link</b>';
 
         $uia = new Uia();
