@@ -33,6 +33,8 @@ class Generic extends Kit
         if (defined('UIA') === false) {
             define('UIA', $uia->getSlug());
         }
+
+        var_dump(UIA);
     }
 
     protected function readUserSession()
