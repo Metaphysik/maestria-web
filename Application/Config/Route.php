@@ -28,7 +28,7 @@ $this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
 /**
  *  Item, Domain, Theme
  */
-$this->any('/', ['as' => 'mainindex', 'to' => 'Main#All']);
+$this->any('/', ['as' => 'index', 'to' => 'Main#All']);
 $this->get($uia.'/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
 $this->post($uia.'/item/', ['as' => 'createUiaItemDomainTheme', 'to' => 'Uia\Item#createItem']);
 $this->post($uia.'/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);
