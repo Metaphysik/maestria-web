@@ -27,3 +27,6 @@ log:
 	chmod 0777 Application/Log
 	touch Application/Log/app.log
 	chmod 0777 Application/Log/app.log
+
+install:
+	make db-update	
