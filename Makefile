@@ -29,4 +29,4 @@ log:
 	chmod 0777 Application/Log/app.log
 
 install:
-	make db-update	
+	Binaries/doctrine orm:schema-tool:update
