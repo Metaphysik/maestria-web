@@ -19,7 +19,7 @@ namespace {
     try {
         $framework = new Maestria();
 
-        var_dump(resolve('hoa://Application/View/Uia/'));
+        var_dump(resolve('hoa://Application/View/Uia/Index.tpl.php'));
         $framework->kit('redirector', new Redirection());
         $framework->setAcl();
 
