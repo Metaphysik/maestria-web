@@ -41,6 +41,7 @@ $this->post($uia.'/item/(?<item_id>[^/]+)/delete', ['as' => 'deleteUiaItem', 'to
 
 $this->any($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
 $this->any($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
+$this->any('/error/404', ['as' => 'errornotfoundNoUia', 'to' => 'Error#Notfound']);
 $this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 $this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
 $this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
