@@ -4,7 +4,7 @@ $this->setResource(\Sohoa\Framework\Router::REST_EDIT, null, null, '/(?<%s>[^/]+
 $this->setResource(\Sohoa\Framework\Router::REST_UPDATE, null, 'post', '/(?<%s>[^/]+)/update');
 $this->setResource(\Sohoa\Framework\Router::REST_DESTROY, null, 'get', '/(?<%s>[^/]+)/destroy');
 
-$uia = '(?<uia>.+)@';
+$uia = '(?<uia>.*)@';
 
 
 //$this
