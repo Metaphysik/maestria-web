@@ -15,7 +15,7 @@ namespace {
 
     // Fix nginx
     $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
-    var_dump(resolve('hoa://Application/'));
+    var_dump(resolve('hoa://Application/View'));
     var_dump(resolve('hoa://Application/', true));
 
     try {
