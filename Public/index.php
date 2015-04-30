@@ -18,6 +18,7 @@ namespace {
 
     try {
         $framework = new Maestria();
+
         
         $framework->kit('redirector', new Redirection());
         $framework->setAcl();
