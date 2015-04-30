@@ -28,7 +28,9 @@ $this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
 /**
  *  Item, Domain, Theme
  */
+$this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 $this->any('/', ['as' => 'index', 'to' => 'Main#All']);
+
 $this->get($uia.'/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
 $this->post($uia.'/item/', ['as' => 'createUiaItemDomainTheme', 'to' => 'Uia\Item#createItem']);
 $this->post($uia.'/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);
@@ -39,11 +41,9 @@ $this->post($uia.'/item/domain/theme/delete', ['as' => 'deleteUiaItemTheme', 'to
 $this->post($uia.'/item/domain/theme/update', ['as' => 'updateUiaItemTheme', 'to' => 'Uia\Item#updateTheme']);
 $this->post($uia.'/item/(?<item_id>[^/]+)/update', ['as' => 'updateUiaItem', 'to' => 'Uia\Item#update']);
 $this->post($uia.'/item/(?<item_id>[^/]+)/delete', ['as' => 'deleteUiaItem', 'to' => 'Uia\Item#delete']);
-
 $this->any($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
 $this->any($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
 $this->any('/error/404', ['as' => 'errornotfoundNoUia', 'to' => 'Error#Notfound']);
-$this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 $this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
 $this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
 $this->get($uia . '/logout', ['as' => 'mainlogout', 'to' => 'Main#Logout']);
