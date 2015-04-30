@@ -30,8 +30,6 @@ class Generic extends Kit
         $uia = $uia->getBySlug($_uia);
         $this->_uia = $uia;
 
-        var_dump($variables);
-
         if (defined('UIA') === false) {
             define('UIA', $uia->getSlug());
         }

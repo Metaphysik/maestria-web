@@ -13,6 +13,9 @@ namespace {
     session_cache_expire($minutes);
     ini_set('session.gc_maxlifetime', $minutes * 60);
 
+    // Fix nginx
+    $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
+
     try {
         $framework = new Maestria();
 
