@@ -43,6 +43,7 @@ $this->any($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#
 $this->any($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
 $this->any('/error/404', ['as' => 'errornotfoundNoUia', 'to' => 'Error#Notfound']);
 $this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
+$this->any('/', ['as' => 'mainindex', 'to' => 'Main#All']);
 $this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
 $this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
 $this->get($uia . '/logout', ['as' => 'mainlogout', 'to' => 'Main#Logout']);

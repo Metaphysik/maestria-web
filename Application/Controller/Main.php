@@ -10,6 +10,11 @@ use Sohoa\Framework\Kit;
 
 class Main extends Generic
 {
+
+    public function allAction(){
+        echo 'MAESTRIA';
+    }
+
     public function indexAction($uia)
     {
 
