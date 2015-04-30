@@ -4,7 +4,7 @@ $this->setResource(\Sohoa\Framework\Router::REST_EDIT, null, null, '/(?<%s>[^/]+
 $this->setResource(\Sohoa\Framework\Router::REST_UPDATE, null, 'post', '/(?<%s>[^/]+)/update');
 $this->setResource(\Sohoa\Framework\Router::REST_DESTROY, null, 'get', '/(?<%s>[^/]+)/destroy');
 
-$uia = '(?<uia>.*)@';
+$uia = '(?<uia>.+)@';
 
 
 //$this
@@ -28,6 +28,7 @@ $this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
 /**
  *  Item, Domain, Theme
  */
+$this->any('/', ['as' => 'mainindex', 'to' => 'Main#All']);
 $this->get($uia.'/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
 $this->post($uia.'/item/', ['as' => 'createUiaItemDomainTheme', 'to' => 'Uia\Item#createItem']);
 $this->post($uia.'/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);
@@ -43,7 +44,6 @@ $this->any($uia . '/error/exception', ['as' => 'errorexception', 'to' => 'Error#
 $this->any($uia . '/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
 $this->any('/error/404', ['as' => 'errornotfoundNoUia', 'to' => 'Error#Notfound']);
 $this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
-$this->any('/', ['as' => 'mainindex', 'to' => 'Main#All']);
 $this->get($uia . '/login', ['as' => 'mainconnect', 'to' => 'Main#Connect']);
 $this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
 $this->get($uia . '/logout', ['as' => 'mainlogout', 'to' => 'Main#Logout']);
