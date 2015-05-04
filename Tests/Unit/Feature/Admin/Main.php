@@ -19,12 +19,12 @@ class Main extends \atoum\test
     public function testIndex()
     {
         $request = $this->request;
-        $html = $request->get('/')->html;
+        $html    = $request->get('/')->html;
 
         echo $request;
-//        $html    = $request->post('/login', ['user' => 'admin', 'password' => 'admin'])->html;
+        $html = $request->post('/login', ['mail' => 'admin@nowhere.com', 'mdp' => 'admin'])->html;
 //
-//        // echo $request;
+        echo $request;
 //
 //        $this->if($item = $html->xquery('//a[@href="/user/1"]')[0])
 //            ->string(trim($item->nodeValue))->isIdenticalTo('Administrateur');

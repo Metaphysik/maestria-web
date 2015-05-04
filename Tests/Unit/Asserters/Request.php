@@ -15,6 +15,7 @@ class Request extends \atoum\asserters\variable
         parent::__construct();
 
         $dir = realpath(__DIR__ . '/../../../Public/');
+        $_SERVER['HTTP_HOST'] = 'demo.maestria.dev';
         \Sohoa\Framework\Framework::initialize($dir);
 
         $this->_framework = new \Mock\Application\Maestria\Maestria();

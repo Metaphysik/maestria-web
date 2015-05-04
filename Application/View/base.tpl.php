@@ -1,6 +1,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
     "http://www.w3.org/TR/html4/strict.dtd">
 <html>
+<head>
+    <title>Maestria</title>
+    <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/maestria.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8"/>
+</head>
 <body>
 <header>
     Evaluation multicritère graphisée
@@ -56,11 +63,4 @@
 <?php $this->block('js:script'); ?>
 <?php $this->endBlock(); ?>
 </body>
-<head>
-    <title>Maestria</title>
-    <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-    <link href="/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/maestria.css" rel="stylesheet" type="text/css">
-    <meta charset="UTF-8"/>
-</head>
 </html>
