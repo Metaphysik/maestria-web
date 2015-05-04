@@ -1,3 +1,10 @@
+.neweval > section, .items > section, .evals > section, .classes > section {
+    width: 85%;
+}
+.classes > #contenu > form > section {
+    width: 99%;
+}
+
 * {
     margin: 0px;
     vertical-align: top;
@@ -16,12 +23,6 @@ header {
     height: 65px;
     padding-left: 160px;
 }
-
-section > ul {
-    width: 85%;
-}
-
-
 
 #logzone {
     background: rgb(216, 216, 216);
@@ -76,7 +77,8 @@ nav h3 {
 }
 
 footer {
-    position: fixed; bottom: 0px
+    position: absolute;
+    bottom: 2px;
     font-size: 15px;
 }
 
@@ -410,7 +412,7 @@ li .del, li .edit {
 
 ul ul {
     display: none;
-    margin-left: 100px;
+    margin-left: 200px;
     padding: 0px;
 }
 
@@ -629,7 +631,7 @@ li:hover .mdp {
 }
 
 .taxo .apprct, .item {
-    width: 90%;
+    width: 100%;
     text-align: justify;
     margin-bottom: 5px;
 }
@@ -699,29 +701,17 @@ form h4, input[type="submit"], #creer {
 }
 
 input[type="submit"] {
+    float: right;
     border-radius: 0px;
     margin-right: 50px;
     cursor: pointer;
 }
 
 form section {
-    display: block;
+    display: inline-block;
     border: 1px solid black;
-    width: 85%;
     margin: 4px;
     padding: 5px;
-}
-
-form > section > div > span  {
-    display: inline-block;
-    vertical-align: middle;
-    width: 300px;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    border-radius: 2px;
-    margin-left: 20px;
-    border: none;
-    padding: 3px 0px;
 }
 
 form section div {

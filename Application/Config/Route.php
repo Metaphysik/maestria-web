@@ -24,6 +24,7 @@ $uia = '(?<uia>.*)@';
 
 $this->resource('classroom', ['prefix' => $uia, 'except' => ['new', 'show']]);
 $this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
+$this->resource('evaluation', ['prefix' => $uia]);
 
 /**
  *  Item, Domain, Theme
