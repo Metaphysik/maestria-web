@@ -23,7 +23,7 @@ $this->block('container');
                     <input name="date" id="date" value="<?php echo date('d-m-Y'); ?>" type="date">
                 </div>
                 <div id="questions"><h4>QUESTIONS</h4></div>
-                <?php for($i = 1; $i <= 2; $i++) { ?>
+                <?php for($i = 1; $i <= 4; $i++) { ?>
                     <section class="float">
                         <div>
                             <label for="q<?php echo $i; ?>_title">TITRE</label>
