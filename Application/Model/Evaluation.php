@@ -22,6 +22,14 @@ class Evaluation extends Generic
         return false;
     }
 
+    public function get($id) {
+        $eval       = $this->getBy('id' , $id);
+        $questions  = new Question();
+        $questions  = $questions->getBy('refEvaluation', $id);
+
+        var_dump($eval, $questions);
+    }
+
 
     protected function _insert($uia, $userid, $title, $cdate, $udate)
     {

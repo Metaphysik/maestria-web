@@ -4,7 +4,7 @@
 namespace Application\Model;
 
 
-class Evaluation extends Generic
+class Question extends Generic
 {
 
     public function titleExists($eval, $title) {
