@@ -7,25 +7,27 @@ namespace Application\Model;
 class Evaluation extends Generic
 {
 
-    public function titleExists($title) {
+    public function titleExists($title)
+    {
 
         $e = $this->_repository->findBy(['title' => $title], null, 1);
 
         return (count($e) >= 1);
     }
 
-    public function insert($uia, $userid, $title)
+    public function insert($uia, $userid, $title, $date = false)
     {
-        if($this->titleExists($title) === false)
-            return $this->_insert($uia, $userid, $title, time(), time());
+        if ($date === false)
+            $date = time();
 
-        return false;
+        return $this->_insert($uia, $userid, $title, $date, $date);
     }
 
-    public function get($id) {
-        $eval       = $this->getBy('id' , $id);
-        $questions  = new Question();
-        $questions  = $questions->getBy('refEvaluation', $id);
+    public function get($id)
+    {
+        $eval = $this->getBy('id', $id);
+        $questions = new Question();
+        $questions = $questions->getBy('refEvaluation', $id);
 
         var_dump($eval, $questions);
     }
