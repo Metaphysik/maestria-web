@@ -39,6 +39,8 @@ class Evaluation extends Api
             $mQuestion = new Question();
             $mQuestion->insertMany($evaluation->id, $question);
         }
+
+        $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
     }
 
     protected function computeQuestion($post)
