@@ -14,7 +14,7 @@ $this->block('container');
 
         </section>
         <section id="contenu">
-            <form>
+            <form action="/evaluation/" method="post">
                 <div class="titre">
                     <h4 style="margin-top: -8px;">INFOS</h4>
                     <label for="title" class="titrant">TITRE</label>
