@@ -54,12 +54,13 @@
             <a href="metaphysik.fr">Metaphysik</a>
         </footer>-->
 </nav>
-
+<?php $this->block('popup'); ?>
 <section id="popup">
     <section id="inpopup">
 
     </section>
 </section>
+<?php $this->endBlock() ?>
 <?php $this->block('container'); ?>
 <?php $this->endBlock() ?>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>

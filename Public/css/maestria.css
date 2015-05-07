@@ -6,6 +6,10 @@
     width: 99%;
 }
 
+.hidden {
+    display: none;
+}
+
 * {
     margin: 0px;
     vertical-align: top;
@@ -129,7 +133,8 @@ footer {
     background: white;
     margin: 5%;
     width: 90%;
-    overflow: auto;
+    overflow-y: auto;
+    height: 650px;
 }
 
 #inpopup .titre {

@@ -5,7 +5,9 @@ namespace Application\Controller\Uia;
 
 
 use Application\Controller\Api;
-use Application\Model\Question;
+use Application\Model\Domain;
+use Application\Model\Item;
+use Application\Model\Theme;
 use Hoa\Core\Exception\Exception;
 
 class Evaluation extends Api
@@ -21,6 +23,10 @@ class Evaluation extends Api
 
     public function newAction()
     {
+        $this->data->domain = new Domain();
+        $this->data->theme  = new Theme();
+        $this->data->item   = new Item();
+
         $this->greut->render();
     }
 
@@ -36,6 +42,7 @@ class Evaluation extends Api
 
     public function createAction($uia)
     {
+
         $title = $this->checkPost('title');
         $date  = $this->checkPost('date');
 
@@ -44,23 +51,23 @@ class Evaluation extends Api
         }
 
         $question = $this->computeQuestion($_POST);
+        echo '<pre>';
+        print_r($question);
+//        $evaluation = new \Application\Model\Evaluation();
+//
+//        if ($this->_user instanceof \Application\Entities\User) {
+//            $evaluation->insert($uia, $this->_user->getId(), $title);
+//        }
+//
+//        if ($evaluation->id === null) {
+//            throw new Exception('Evaluation are not created');
+//        }
+//
+//        $mQuestion = new Question();
+//        $mQuestion->insertMany($evaluation->id, $question);
 
 
-        $evaluation = new \Application\Model\Evaluation();
-
-        if ($this->_user instanceof \Application\Entities\User) {
-            $evaluation->insert($uia, $this->_user->getId(), $title);
-        }
-
-        if ($evaluation->id === null) {
-            throw new Exception('Evaluation are not created');
-        }
-
-        $mQuestion = new Question();
-        $mQuestion->insertMany($evaluation->id, $question);
-
-
-        $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
+//        $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
     }
 
     protected function computeQuestion($post)
