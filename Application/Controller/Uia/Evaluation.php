@@ -23,7 +23,7 @@ class Evaluation extends Api
     public function createAction($uia)
     {
         $title = $this->checkPost('title');
-        $date = $this->checkPost('date');
+        $date  = $this->checkPost('date');
 
         if ($title === null or $date === null) {
             throw new Exception('API Error on create evaluation');
@@ -35,10 +35,13 @@ class Evaluation extends Api
         $evaluation = new \Application\Model\Evaluation();
         $evaluation->insert($uia, $this->_user->getId(), $title);
 
-        if($evaluation->id !== null) {
-            $mQuestion = new Question();
-            $mQuestion->insertMany($evaluation->id, $question);
+        if ($evaluation->id === null) {
+            throw new Exception('Evaluation are not created');
         }
+
+        $mQuestion = new Question();
+        $mQuestion->insertMany($evaluation->id, $question);
+
 
         $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
     }
@@ -50,8 +53,8 @@ class Evaluation extends Api
         $store = function ($i, $key, $value) use (&$questions) {
             $default = [
                 'title' => '',
-                'taxo' => 0,
-                'note' => 0,
+                'taxo'  => 0,
+                'note'  => 0,
                 'item1' => 0,
                 'item2' => 0
             ];
@@ -69,7 +72,7 @@ class Evaluation extends Api
             if ($key[0] === 'q') {
                 preg_match('#q([0-9]+)_(.*)#', $key, $m);
                 $number = intval($m[1]);
-                $title = $m[2];
+                $title  = $m[2];
 
                 $store($number, $title, $value);
             }
@@ -78,8 +81,9 @@ class Evaluation extends Api
         // Validate questions
 
         foreach ($questions as $i => $question) {
-            if (isset($question['title']) === false or $question['title'] === '')
+            if (isset($question['title']) === false or $question['title'] === '') {
                 unset($questions[$i]);
+            }
         }
 
         return $questions;

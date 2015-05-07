@@ -165,15 +165,15 @@ class Uia
     public function all()
     {
         return [
-            'id' => $this->id,
-            'slug' => $this->slug,
-            'name' => $this->name,
-            'address' => $this->address,
-            'city' => $this->city,
-            'dept' => $this->dept,
-            'region' => $this->region,
+            'id'            => $this->id,
+            'slug'          => $this->slug,
+            'name'          => $this->name,
+            'address'       => $this->address,
+            'city'          => $this->city,
+            'dept'          => $this->dept,
+            'region'        => $this->region,
             'chiefidentity' => $this->chiefidentity,
-            'logourl' => $this->logourl
+            'logourl'       => $this->logourl
         ];
     }
 

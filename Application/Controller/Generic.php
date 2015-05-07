@@ -12,7 +12,7 @@ class Generic extends Kit
     /**
      * @var \Application\Entities\User
      */
-    protected $_user = null;
+    protected $_user    = null;
     protected $_connect = false;
 
     public function construct()
@@ -23,11 +23,11 @@ class Generic extends Kit
 
     protected function readUia()
     {
-        $rule = &$this->router->getTheRule();
-        $variables = $rule[6];
-        $_uia = isset($variables['uia']) ? $variables['uia'] : 'demo';
-        $uia = new Uia();
-        $uia = $uia->getBySlug($_uia);
+        $rule       = &$this->router->getTheRule();
+        $variables  = $rule[6];
+        $_uia       = isset($variables['uia']) ? $variables['uia'] : 'demo';
+        $uia        = new Uia();
+        $uia        = $uia->getBySlug($_uia);
         $this->_uia = $uia;
 
         if (defined('UIA') === false) {
@@ -40,10 +40,10 @@ class Generic extends Kit
     {
         $session = new Session('user');
         if (isset($session['connect']) and $session['connect'] === true) {
-            $this->_user = $session['user'];
-            $this->_connect = true;
+            $this->_user             = $session['user'];
+            $this->_connect          = true;
             $this->data->userIsLogin = true;
-            $this->data->user = &$this->_user;
+            $this->data->user        = &$this->_user;
         }
     }
 
@@ -54,22 +54,27 @@ class Generic extends Kit
 
     protected function isAdmin()
     {
-        if($this->_user === null)
+        if ($this->_user === null) {
             return false;
+        }
 
         return $this->_user->getIsAdmin();
     }
 
-    protected function isModerator(){
-        if($this->_user === null)
+    protected function isModerator()
+    {
+        if ($this->_user === null) {
             return false;
+        }
 
         return $this->_user->getIsModerator();
     }
 
-    protected function isProfessor(){
-        if($this->_user === null)
+    protected function isProfessor()
+    {
+        if ($this->_user === null) {
             return false;
+        }
 
         return $this->_user->getIsProfessor();
     }
@@ -87,13 +92,14 @@ class Generic extends Kit
     protected function lvlProf()
     {
 
-        return ($this->isAdmin() === true || $this->isModerator() === true  || $this->isProfessor() === true);
+        return ($this->isAdmin() === true || $this->isModerator() === true || $this->isProfessor() === true);
     }
 
     protected function checkPost($key, $default = null)
     {
-        if(isset($_POST[$key]) === true)
+        if (isset($_POST[$key]) === true) {
             return $_POST[$key];
+        }
 
         return $default;
     }

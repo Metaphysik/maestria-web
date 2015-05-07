@@ -7,29 +7,32 @@ namespace Application\Model;
 class Item extends Generic
 {
 
-    public function getByTheme($themeID) {
-            return $this->_repository->findBy(['refTheme' => $themeID]);
-        }
-    public function labelExists($refTheme, $label) {
-
-        $e = $this->_repository->findBy(
-            [
-                'label' => $label,
-                'refTheme' => $refTheme
-            ], null, 1);
-
-        return (count($e) >= 1);
+    public function getByTheme($themeID)
+    {
+        return $this->_repository->findBy(['refTheme' => $themeID]);
     }
 
     public function insert($refTheme, $label, $type, $status, $lvl)
     {
 
-        if($this->labelExists($refTheme, $label) === false)
+        if ($this->labelExists($refTheme, $label) === false) {
             return $this->_insert($refTheme, $label, $type, $status, $lvl);
+        }
 
         return false;
     }
 
+    public function labelExists($refTheme, $label)
+    {
+
+        $e = $this->_repository->findBy(
+            [
+                'label'    => $label,
+                'refTheme' => $refTheme
+            ], null, 1);
+
+        return (count($e) >= 1);
+    }
 
     protected function _insert($refTheme, $label, $type, $status, $lvl)
     {

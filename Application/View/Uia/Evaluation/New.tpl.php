@@ -23,11 +23,12 @@ $this->block('container');
                     <input name="date" id="date" value="<?php echo date('d-m-Y'); ?>" type="date">
                 </div>
                 <div id="questions"><h4>QUESTIONS</h4></div>
-                <?php for($i = 1; $i <= 4; $i++) { ?>
+                <?php for ($i = 1; $i <= 4; $i++) { ?>
                     <section class="float">
                         <div>
                             <label for="q<?php echo $i; ?>_title">TITRE</label>
-                            <input name="q<?php echo $i; ?>_title" id="q<?php echo $i; ?>_title" placeholder="Titre de la question <?php echo $i; ?>"/>
+                            <input name="q<?php echo $i; ?>_title" id="q<?php echo $i; ?>_title"
+                                   placeholder="Titre de la question <?php echo $i; ?>"/>
                         </div>
                         <div>
                             <label for="q<?php echo $i; ?>_taxo">NIVEAU TAXONOMIQUE</label>
@@ -40,17 +41,21 @@ $this->block('container');
                         </div>
                         <div>
                             <label for="q<?php echo $i; ?>_note">POINTS</label>
-                            <input name="q<?php echo $i; ?>_note" id="q<?php echo $i; ?>_note" min="0" max="100" placeholder="0"
+                            <input name="q<?php echo $i; ?>_note" id="q<?php echo $i; ?>_note" min="0" max="100"
+                                   placeholder="0"
                                    type="number"/>
                         </div>
                         <div>
                             <label for="q<?php echo $i; ?>_item1"><i class="awsm fa fa-graduation-cap"></i> CONNAISSANCE</label>
-                            <input name="q<?php echo $i; ?>_item1" id="q<?php echo $i; ?>_item1" placeholder="A choisir parmi les items pédagogiques">
+                            <input name="q<?php echo $i; ?>_item1" id="q<?php echo $i; ?>_item1"
+                                   placeholder="A choisir parmi les items pédagogiques">
                             <i class="awsm fa fa-briefcase chitem"></i>
                         </div>
                         <div>
-                            <label for="q<?php echo $i; ?>_item2"><i class="awsm fa fa-cogs"></i> SAVOIR-FAIRE OU ATTITUDE</label>
-                            <input name="q<?php echo $i; ?>_item2" id="q<?php echo $i; ?>_item2" placeholder="A choisir parmi les items pédagogiques">
+                            <label for="q<?php echo $i; ?>_item2"><i class="awsm fa fa-cogs"></i> SAVOIR-FAIRE OU
+                                ATTITUDE</label>
+                            <input name="q<?php echo $i; ?>_item2" id="q<?php echo $i; ?>_item2"
+                                   placeholder="A choisir parmi les items pédagogiques">
                             <i class="awsm fa fa-briefcase chitem"></i>
                         </div>
                     </section>

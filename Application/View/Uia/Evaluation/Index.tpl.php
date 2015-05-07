@@ -21,12 +21,12 @@ $this->block('container');
                 <h4>EVALUATIONS</h4><h4>DATES</h4>
             </div>
             <ul>
-<!--                <li data-ideval="111">-->
-<!--                    <span class="titre">Puissance</span>-->
-<!--                    <span class="date">07/03/2015</span>-->
-<!--                    <span class="awsm del"></span>-->
-<!--                    <a href="/evaluation/1/edit"><i class="aws edit fa fa-pencil"></i></a>-->
-<!--                </li>-->
+                <!--                <li data-ideval="111">-->
+                <!--                    <span class="titre">Puissance</span>-->
+                <!--                    <span class="date">07/03/2015</span>-->
+                <!--                    <span class="awsm del"></span>-->
+                <!--                    <a href="/evaluation/1/edit"><i class="aws edit fa fa-pencil"></i></a>-->
+                <!--                </li>-->
                 <a href="/evaluation/new">
                     <i class="aws add fa fa-check-square" title="Nouvelle évaluation"></i>
                 </a>

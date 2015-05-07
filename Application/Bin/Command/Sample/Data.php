@@ -16,7 +16,6 @@ use Application\Model\Uia;
 use Application\Model\User;
 use Application\Model\UserClass;
 use Faker\Factory;
-use mageekguy\atoum\tests\units\notEmptyTest;
 
 class Data extends \Hoa\Console\Dispatcher\Kit
 {
@@ -77,7 +76,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $model->insert('caraminot', 'Lycée Professionnel Pierre Caraminot', '15 Avenue du paradis', 'Egletons',
             'Correze', 'Limousin', 'Mr Vraimentbobo', 'https://gmkfreelogos.com/logos/I/img/Its__Demo.gif');
 
-        echo '# UIA'."\n";
+        echo '# UIA' . "\n";
     }
 
     public function hydrateUser()
@@ -85,11 +84,12 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $user = new User();
 
         foreach ($this->uias as $uia) {
-            $user->insert($uia, 'admin', 'admin@nowhere.com', sha1('admin'), 1, 1, 0, 'Admin Istrator', 0, time(), '', 2);
+            $user->insert($uia, 'admin', 'admin@nowhere.com', sha1('admin'), 1, 1, 0, 'Admin Istrator', 0, time(), '',
+                2);
             $user->insert($uia, 'modo', 'modo@nowhere.com', sha1('modo'), 0, 1, 0, 'Maude Erator', 0, time(), '', 2);
             $user->insert($uia, 'prof', 'prof@nowhere.com', sha1('prof'), 0, 1, 0, 'Prof Essor', 0, time(), '', 2);
         }
-        echo '# MASTER USER'."\n";
+        echo '# MASTER USER' . "\n";
     }
 
     public function hydrateClassroom()
@@ -102,13 +102,13 @@ class Data extends \Hoa\Console\Dispatcher\Kit
                 $class->insert($uia, $classe);
             }
         }
-        echo '# CLASSROOM'."\n";
+        echo '# CLASSROOM' . "\n";
     }
 
     public function hydateStudentAndAssociation()
     {
         $faker = Factory::create();
-        $uc = new UserClass();
+        $uc    = new UserClass();
 
 
         foreach ($this->uias as $uia) {
@@ -120,7 +120,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
             }
         }
 
-        echo '# STUDENT'."\n";
+        echo '# STUDENT' . "\n";
     }
 
     protected function hydrateStudent($uia, $name)
@@ -128,7 +128,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $user = new User();
         $user->insertStudent($uia, $name);
 
-        echo "\t".'> '.$name."\n";
+        echo "\t" . '> ' . $name . "\n";
 
         return $user->id;
     }
@@ -174,7 +174,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
 
                 if ($th !== '') {
                     $idTheme = $this->hydrateTheme($th, $do);
-                    $lvl = 1;
+                    $lvl     = 1;
                     for ($i = 2; $i < count($line); $i++) {
                         if ($line[$i] !== '') {
                             $this->hydrateItem($idTheme, $line[$i], $lvl);
@@ -185,7 +185,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
             }
         }
 
-        echo '# ITEM'."\n";
+        echo '# ITEM' . "\n";
     }
 
     protected function hydrateTheme($label, $ref)
@@ -193,7 +193,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $theme = new Theme();
         $theme->insert($label, $ref);
 
-        echo "\t".'> Theme  '.$label."\n";
+        echo "\t" . '> Theme  ' . $label . "\n";
 
         return $theme->id;
     }
@@ -203,14 +203,14 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $item = new Item();
         $item->insert($theme, $label, 0, 2, $lvl);
 
-        echo "\t".'> Item '.$label."\n";
+        echo "\t" . '> Item ' . $label . "\n";
 
         return $item->id;
     }
 
     public function hydrateDomain()
     {
-        $m_do = new Domain();
+        $m_do    = new Domain();
         $domains = [
             'Electricité',
             'Physique',
@@ -225,7 +225,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
             $m_do->insert($domain);
         }
 
-        echo '# DOMAIN'."\n";
+        echo '# DOMAIN' . "\n";
     }
 
 

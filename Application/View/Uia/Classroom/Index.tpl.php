@@ -36,12 +36,13 @@ $this->block('container');
                                         <i class="aws del fa fa-trash-o" data-type="student"
                                            data-id="<?php echo $user->getId(); ?>"></i>
 
-                                        <a href="<?php echo $this->route->unroute('editUiaUser', ['user_id' => $user->getId()]); ?>">
-                                        <i class="aws edit fa fa-pencil"></i>
+                                        <a href="<?php echo $this->route->unroute('editUiaUser',
+                                            ['user_id' => $user->getId()]); ?>">
+                                            <i class="aws edit fa fa-pencil"></i>
                                         </a>
                                     </li>
                                 <?php }
-                            }?>
+                            } ?>
                         <?php } ?>
                         <i class="aws add fa fa-check-square-o" title="Ajouter élève" data-type="student"
                            data-id="<?php echo $classe->getId(); ?>"></i>
@@ -68,55 +69,55 @@ $this->block('js:script');
 
             })
             .on('keypress', '.newinputclass', function (event) {
-            if (event.which == 13) {
-                event.preventDefault();
-                var t = $(this).parent().parent().parent();
-                $.post('/classroom/', {"label": $(this).val()}, function (data) {
-                    console.log(data);
-                    data = jQuery.parseJSON(data);
-                    $(this).val('');
-                    t.end().before('<li>' + data.data + '<i class="aws edit fa fa-trash-o"></i><i class="aws edit fa fa-pencil"></i></li><ul></ul>');
-                    t.end().children().first().remove();
+                if (event.which == 13) {
+                    event.preventDefault();
+                    var t = $(this).parent().parent().parent();
+                    $.post('/classroom/', {"label": $(this).val()}, function (data) {
+                        console.log(data);
+                        data = jQuery.parseJSON(data);
+                        $(this).val('');
+                        t.end().before('<li>' + data.data + '<i class="aws edit fa fa-trash-o"></i><i class="aws edit fa fa-pencil"></i></li><ul></ul>');
+                        t.end().children().first().remove();
 
-                });
-            }
-        }).on('keypress', '.newinputeleve', function (event) {
-            if (event.which == 13) {
-                event.preventDefault();
-                var t = $(this).parent().parent().parent();
+                    });
+                }
+            }).on('keypress', '.newinputeleve', function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                    var t = $(this).parent().parent().parent();
+                    var id = $(this).attr('data-id');
+
+                    $.post('/user/', {"label": $(this).val(), "idclass": id}, function (data) {
+                        console.log(data);
+                        data = jQuery.parseJSON(data);
+                        // $(this).val('');
+                        // t.end().before('<li>' + data.data + '<i class="aws edit fa fa-trash-o"></i><i class="aws edit fa fa-pencil"></i></li><ul></ul>');
+                        //t.end().children().first().remove();
+
+                    });
+                }
+            }).on('click', 'li.student > i.del', function () {
                 var id = $(this).attr('data-id');
-
-                $.post('/user/', {"label": $(this).val(), "idclass": id}, function (data) {
+                $.get('/user/' + id + '/destroy', function (data) {
                     console.log(data);
                     data = jQuery.parseJSON(data);
-                    // $(this).val('');
-                    // t.end().before('<li>' + data.data + '<i class="aws edit fa fa-trash-o"></i><i class="aws edit fa fa-pencil"></i></li><ul></ul>');
-                    //t.end().children().first().remove();
-
                 });
-            }
-        }).on('click', 'li.student > i.del', function () {
-            var id = $(this).attr('data-id');
-            $.get('/user/' + id + '/destroy', function (data) {
-                console.log(data);
-                data = jQuery.parseJSON(data);
-            });
-        }).on('click', 'li.class > i.edit', function () {
-            var id = $(this).attr('data-id');
+            }).on('click', 'li.class > i.edit', function () {
+                var id = $(this).attr('data-id');
                 var txt = $(this).parent().text().trim();
-                var prompt = window.prompt('Nouveau nom  de la classe '+txt+'(#'+id+')', '');
-                if(prompt != null) {
+                var prompt = window.prompt('Nouveau nom  de la classe ' + txt + '(#' + id + ')', '');
+                if (prompt != null) {
                     $.post('/classroom/' + id + '/update', {"label": prompt}, function (data) {
                         console.log(data);
                         data = jQuery.parseJSON(data);
                     });
                 }
-        }).on('click', 'li.class > i.del', function () {
-            var id = $(this).attr('data-id');
-            $.get('/classroom/' + id + '/destroy', function (data) {
-                console.log(data);
-                data = jQuery.parseJSON(data);
+            }).on('click', 'li.class > i.del', function () {
+                var id = $(this).attr('data-id');
+                $.get('/classroom/' + id + '/destroy', function (data) {
+                    console.log(data);
+                    data = jQuery.parseJSON(data);
+                });
             });
-        });
     </script>
 <?php $this->endblock(); ?>

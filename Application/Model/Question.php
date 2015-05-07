@@ -9,6 +9,54 @@ use Hoa\Core\Exception\Exception;
 class Question extends Generic
 {
 
+    public function insertMany($eval, $questions)
+    {
+        if (is_array($questions) === false) {
+            throw new Exception('Question must be an array');
+        }
+
+        foreach ($questions as $question) {
+            $title = $question['title'];
+            $taxo  = $question['taxo'];
+            $point = $question['note'];
+            $item1 = $question['item1'];
+            $item2 = $question['item2'];
+
+            if ($taxo === '') {
+                $taxo = 0;
+            } else {
+                $taxo = intval($taxo);
+            }
+            if ($point === '') {
+                $point = 0;
+            } else {
+                $point = intval($point);
+            }
+            if ($item1 === '') {
+                $item1 = 0;
+            } else {
+                $item1 = intval($item1);
+            }
+            if ($item2 === '') {
+                $item2 = 0;
+            } else {
+                $item2 = intval($item2);
+            }
+
+            $this->insert($eval, $title, $taxo, $point, $item1, $item2);
+        }
+    }
+
+    public function insert($eval, $title, $taxo, $point, $item1, $item2)
+    {
+
+        if ($this->titleExists($eval, $title) === false) {
+            $this->_insert($eval, $title, $taxo, $point, $item1, $item2);
+        }
+
+        return false;
+    }
+
     public function titleExists($eval, $title)
     {
 
@@ -16,52 +64,6 @@ class Question extends Generic
 
         return (count($e) >= 1);
     }
-
-    public function insertMany($eval, $questions)
-    {
-        if (is_array($questions) === false)
-            throw new Exception('Question must be an array');
-
-        foreach($questions as $question) {
-            $title = $question['title'];
-            $taxo = $question['taxo'];
-            $point = $question['note'];
-            $item1 = $question['item1'];
-            $item2 = $question['item2'];
-
-            if($taxo === '')
-                $taxo = 0;
-            else
-                $taxo = intval($taxo);
-            if($point === '')
-                $point = 0;
-            else
-                $point = intval($point);
-            if($item1 === '')
-                $item1 = 0;
-            else
-                $item1 = intval($item1);
-            if($item2 === '')
-                $item2 = 0;
-            else
-                $item2 = intval($item2);
-
-
-
-            $this->insert($eval, $title, $taxo, $point, $item1, $item2);
-        }
-
-    }
-
-    public function insert($eval, $title, $taxo, $point, $item1, $item2)
-    {
-
-        if ($this->titleExists($eval, $title) === false)
-            $this->_insert($eval, $title, $taxo, $point, $item1, $item2);
-
-        return false;
-    }
-
 
     protected function _insert($eval, $title, $taxo, $point, $item1, $item2)
     {

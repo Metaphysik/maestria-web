@@ -3,20 +3,20 @@ namespace Application\Maestria;
 
 class Acl
 {
-    protected $_acl = null;
+    protected $_acl       = null;
     protected $_framework = null;
-    protected $_resource = [];
+    protected $_resource  = [];
 
     public function __construct(\Sohoa\Framework\Framework $framework)
     {
-        $this->_acl = \Hoa\Acl\Acl::getInstance();
+        $this->_acl       = \Hoa\Acl\Acl::getInstance();
         $this->_framework = $framework;
 
-        $admin = new \Hoa\Acl\Group('admin');
+        $admin     = new \Hoa\Acl\Group('admin');
         $professor = new \Hoa\Acl\Group('professor');
         $moderator = new \Hoa\Acl\Group('moderator');
-        $student = new \Hoa\Acl\Group('student');
-        $resource = new \Hoa\Acl\Resource('foo');
+        $student   = new \Hoa\Acl\Group('student');
+        $resource  = new \Hoa\Acl\Resource('foo');
 
         if ($this->_acl->groupExists('admin') === false) {
             $this->_acl->addGroup($admin);
@@ -50,7 +50,7 @@ class Acl
 
 
         foreach ($rules as $rule) {
-            $call = null;
+            $call   = null;
             $action = null;
 
             if (isset($rule[4])) {
@@ -123,7 +123,7 @@ class Acl
 
     public function addUser($label, $group)
     {
-        $user = new \Hoa\Acl\User($label);
+        $user     = new \Hoa\Acl\User($label);
         $resource = $this->_acl->getResource('foo');
         $user->addGroup($group);
 

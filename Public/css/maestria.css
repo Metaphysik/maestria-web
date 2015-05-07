@@ -1,6 +1,7 @@
 .neweval > section, .items > section, .evals > section, .classes > section {
     width: 85%;
 }
+
 .classes > #contenu > form > section {
     width: 99%;
 }
