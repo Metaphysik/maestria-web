@@ -46,8 +46,8 @@ class Evaluation extends Generic
     {
         $eval      = $this->getBy('id', $id);
         $questions = new Question();
-        $questions = $questions->getBy('refEvaluation', $id);
+        $questions = $questions->getAllBy('refEvaluation', $id);
 
-        var_dump($eval, $questions);
+        return ['evaluation' => $eval, 'questions' => $questions];
     }
 }

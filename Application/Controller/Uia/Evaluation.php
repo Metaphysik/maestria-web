@@ -5,6 +5,7 @@ namespace Application\Controller\Uia;
 
 
 use Application\Controller\Api;
+use Application\Model\Item;
 use Application\Model\Question;
 use Hoa\Core\Exception\Exception;
 
@@ -24,6 +25,16 @@ class Evaluation extends Api
         $this->greut->render();
     }
 
+    public function showAction($evaluation_id)
+    {
+        $evaluation             = new \Application\Model\Evaluation();
+        $evaluation             = $evaluation->get($evaluation_id);
+        $this->data->evaluation = $evaluation['evaluation'];
+        $this->data->questions  = $evaluation['questions'];
+
+        $this->greut->render();
+    }
+
     public function createAction($uia)
     {
         $title = $this->checkPost('title');
@@ -37,7 +48,10 @@ class Evaluation extends Api
 
 
         $evaluation = new \Application\Model\Evaluation();
-        $evaluation->insert($uia, $this->_user->getId(), $title);
+
+        if ($this->_user instanceof \Application\Entities\User) {
+            $evaluation->insert($uia, $this->_user->getId(), $title);
+        }
 
         if ($evaluation->id === null) {
             throw new Exception('Evaluation are not created');
