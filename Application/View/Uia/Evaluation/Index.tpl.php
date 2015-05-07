@@ -1,9 +1,7 @@
 <?php
 /**
  * @var $this \Sohoa\Framework\View\Greut
- * @var $domain \Application\Model\Domain
- * @var $theme \Application\Model\Theme
- * @var $item \Application\Model\Item
+ * @var $evaluations Array
  */
 
 $this->inherits('hoa://Application/View/base.tpl.php');
@@ -21,12 +19,24 @@ $this->block('container');
                 <h4>EVALUATIONS</h4><h4>DATES</h4>
             </div>
             <ul>
-                <!--                <li data-ideval="111">-->
-                <!--                    <span class="titre">Puissance</span>-->
-                <!--                    <span class="date">07/03/2015</span>-->
-                <!--                    <span class="awsm del"></span>-->
-                <!--                    <a href="/evaluation/1/edit"><i class="aws edit fa fa-pencil"></i></a>-->
-                <!--                </li>-->
+                <?php if (isset($evaluations) === true) { ?>
+                    <?php foreach ($evaluations as $evaluation) {
+                        /**
+                         * @var $evaluation \Application\Entities\Evaluation
+                         */
+                        ?>
+                        <li data-ideval="111">
+                            <span class="titre">
+                                <a href="/evaluation/<?php echo $evaluation->getId(); ?>">
+                                    <?php echo $evaluation->getTitle(); ?>
+                                </a>
+                            </span>
+                            <span class="date"><?php echo date('d-m-Y', $evaluation->getCreatedate()); ?></span>
+                            <a href="/evaluation/<?php echo $evaluation->getId(); ?>/destroy"><i class="aws del fa fa-trash"></i></a>
+                            <a href="/evaluation/<?php echo $evaluation->getId(); ?>/edit"><i class="aws edit fa fa-pencil"></i></a>
+                        </li>
+                    <?php } ?>
+                <?php } ?>
                 <a href="/evaluation/new">
                     <i class="aws add fa fa-check-square" title="Nouvelle évaluation"></i>
                 </a>

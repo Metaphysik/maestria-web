@@ -12,6 +12,10 @@ class Evaluation extends Api
 {
     public function indexAction()
     {
+        $evaluations             = new \Application\Model\Evaluation();
+        $evaluations             = $evaluations->all();
+        $this->data->evaluations = $evaluations;
+
         $this->greut->render();
     }
 
