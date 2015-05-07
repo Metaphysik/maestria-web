@@ -66,35 +66,6 @@ class Question extends Generic
         return (count($e) >= 1);
     }
 
-    public function getAllBy($column, $value)
-    {
-        $entites = $this->_repository->findBy([$column => $value]);
-
-        foreach($entites as $i => $entite){
-            /**
-             * @var $entite \Application\Entities\Question
-             */
-
-            $item = new \Application\Model\Item();
-
-            $item1 = $item->get($entite->getItem1());
-            if($item1 instanceof Item) {
-                $item1 = $item1->getLabel();
-                $entite->setItem1($item1);
-            }
-
-            $item2 = $item->get($entite->getItem2());
-            if($item2 instanceof Item) {
-                $item2 = $item2->getLabel();
-                $entite->setItem2($item2);
-            }
-
-        }
-
-        return $entites;
-    }
-
-
     protected function _insert($eval, $title, $taxo, $point, $item1, $item2)
     {
         $quest = new \Application\Entities\Question();
@@ -112,5 +83,32 @@ class Question extends Generic
         $this->id = $quest->getId();
 
         return true;
+    }
+
+    public function getAllBy($column, $value)
+    {
+        $entites = $this->_repository->findBy([$column => $value]);
+
+        foreach ($entites as $i => $entite) {
+            /**
+             * @var $entite \Application\Entities\Question
+             */
+
+            $item  = new \Application\Model\Item();
+            $item1 = $item->get($entite->getItem1());
+            if ($item1 instanceof Item) {
+                $item1 = $item1->getLabel();
+                $entite->setItem1($item1);
+            }
+
+            $item2 = $item->get($entite->getItem2());
+            if ($item2 instanceof Item) {
+                $item2 = $item2->getLabel();
+                $entite->setItem2($item2);
+            }
+
+        }
+
+        return $entites;
     }
 }

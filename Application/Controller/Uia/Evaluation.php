@@ -5,7 +5,6 @@ namespace Application\Controller\Uia;
 
 
 use Application\Controller\Api;
-use Application\Model\Item;
 use Application\Model\Question;
 use Hoa\Core\Exception\Exception;
 

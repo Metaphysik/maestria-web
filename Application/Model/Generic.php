@@ -7,7 +7,7 @@ use Hoa\Core\Exception\Exception;
 class Generic
 {
 
-    public    $id          = null;
+    public $id = null;
     /**
      * @var \Doctrine\ORM\EntityManager
      */

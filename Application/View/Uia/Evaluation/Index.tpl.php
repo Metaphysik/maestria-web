@@ -32,8 +32,10 @@ $this->block('container');
                                 </a>
                             </span>
                             <span class="date"><?php echo date('d-m-Y', $evaluation->getCreatedate()); ?></span>
-                            <a href="/evaluation/<?php echo $evaluation->getId(); ?>/destroy"><i class="aws del fa fa-trash"></i></a>
-                            <a href="/evaluation/<?php echo $evaluation->getId(); ?>/edit"><i class="aws edit fa fa-pencil"></i></a>
+                            <a href="/evaluation/<?php echo $evaluation->getId(); ?>/destroy"><i
+                                    class="aws del fa fa-trash"></i></a>
+                            <a href="/evaluation/<?php echo $evaluation->getId(); ?>/edit"><i
+                                    class="aws edit fa fa-pencil"></i></a>
                         </li>
                     <?php } ?>
                 <?php } ?>

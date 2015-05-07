@@ -41,10 +41,22 @@ $this->block('container');
                             <div>
                                 <label for="q<?php echo $i; ?>_taxo">NIVEAU TAXONOMIQUE</label>
                                 <select disabled>
-                                    <option value="1" <?php echo (($question->getTaxo() === 1) ? 'selected="selected"' : ''); ?>>Connaissance</option>
-                                    <option value="2" <?php echo (($question->getTaxo() === 2) ? 'selected="selected"' : ''); ?>>Compréhension</option>
-                                    <option value="3" <?php echo (($question->getTaxo() === 3) ? 'selected="selected"' : ''); ?>>Application</option>
-                                    <option value="4" <?php echo (($question->getTaxo() === 4) ? 'selected="selected"' : ''); ?>>Analyse</option>
+                                    <option
+                                        value="1" <?php echo(($question->getTaxo() === 1) ? 'selected="selected"' : ''); ?>>
+                                        Connaissance
+                                    </option>
+                                    <option
+                                        value="2" <?php echo(($question->getTaxo() === 2) ? 'selected="selected"' : ''); ?>>
+                                        Compréhension
+                                    </option>
+                                    <option
+                                        value="3" <?php echo(($question->getTaxo() === 3) ? 'selected="selected"' : ''); ?>>
+                                        Application
+                                    </option>
+                                    <option
+                                        value="4" <?php echo(($question->getTaxo() === 4) ? 'selected="selected"' : ''); ?>>
+                                        Analyse
+                                    </option>
                                 </select>
                             </div>
                             <div>
@@ -54,13 +66,13 @@ $this->block('container');
                             <div>
                                 <label for="q<?php echo $i; ?>_item1"><i class="awsm fa fa-graduation-cap"></i>
                                     CONNAISSANCE</label>
-                                <input readonly value="<?php echo $question->getItem1(); ?>" />
+                                <input readonly value="<?php echo $question->getItem1(); ?>"/>
                                 <i class="awsm fa fa-briefcase chitem"></i>
                             </div>
                             <div>
                                 <label for="q<?php echo $i; ?>_item2"><i class="awsm fa fa-cogs"></i> SAVOIR-FAIRE OU
                                     ATTITUDE</label>
-                                <input readonly value="<?php echo $question->getItem2(); ?>" />
+                                <input readonly value="<?php echo $question->getItem2(); ?>"/>
                                 <i class="awsm fa fa-briefcase chitem"></i>
                             </div>
                         </section>
