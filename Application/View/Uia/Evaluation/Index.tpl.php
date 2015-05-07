@@ -31,7 +31,7 @@ $this->block('container');
                                     <?php echo $evaluation->getTitle(); ?>
                                 </a>
                             </span>
-                            <span class="date"><?php echo date('d-m-Y', $evaluation->getCreatedate()); ?></span>
+                            <span class="date"><?php echo date('d-m-Y H:i:s', $evaluation->getUpdatedate()); ?></span>
                             <a href="/evaluation/<?php echo $evaluation->getId(); ?>/destroy"><i
                                     class="aws del fa fa-trash"></i></a>
                             <a href="/evaluation/<?php echo $evaluation->getId(); ?>/edit"><i

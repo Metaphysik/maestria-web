@@ -70,7 +70,7 @@ $this->block('container');
                     <input name="title" id="title" value="<?php echo $eval->getTitle(); ?>">
                     <label for="date">DATE</label>
                     <input name="date" id="date" value="<?php echo date('d-m-Y', $eval->getCreatedate()); ?>"
-                           type="date">
+                           type="date" readonly>
                 </div>
                 <div id="questions"><h4>QUESTIONS</h4></div>
                 <?php
@@ -128,7 +128,7 @@ $this->block('container');
                                        class="hidden"/>
                                 <input id="q<?php echo $question->getId(); ?>_item1"
                                        placeholder="A choisir parmi les items pédagogiques"
-                                       value="<?php echo $question->getItem1(); ?>"/>
+                                       value="<?php echo $question->getItem1(); ?>" readonly/>
                                 <i class=" awsm fa fa-briefcase chitem"></i>
                             </div>
                             <div>
@@ -141,7 +141,7 @@ $this->block('container');
                                        class="hidden"/>
                                 <input id="q<?php echo $question->getId(); ?>_item2"
                                        placeholder="A choisir parmi les items pédagogiques"
-                                       value="<?php echo $question->getItem2(); ?>"/>
+                                       value="<?php echo $question->getItem2(); ?>" readonly/>
                                 <i class=" awsm fa fa-briefcase chitem"></i>
                             </div>
                         </section>

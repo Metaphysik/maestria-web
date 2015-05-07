@@ -23,15 +23,6 @@ class Evaluation extends Api
         $this->greut->render();
     }
 
-    public function newAction()
-    {
-        $this->data->domain = new Domain();
-        $this->data->theme  = new Theme();
-        $this->data->item   = new Item();
-
-        $this->greut->render();
-    }
-
     public function showAction($evaluation_id)
     {
         $evaluation             = new \Application\Model\Evaluation();
@@ -40,13 +31,6 @@ class Evaluation extends Api
         $this->data->questions  = $evaluation['questions'];
 
         $this->greut->render();
-    }
-
-    public function updateAction($evaluation_id)
-    {
-        echo '<pre>';
-        print_r($_POST);
-
     }
 
     public function destroyAction($uia, $evaluation_id)
@@ -79,32 +63,58 @@ class Evaluation extends Api
         $this->greut->render();
     }
 
-    public function createAction($uia)
+    public function updateAction($uia,$evaluation_id)
     {
+        /**
+         * @var $evaluation \Application\Entities\Evaluation
+         * @var $questions Array
+         * @var $question \Application\Entities\Question
+         */
 
-        $title = $this->checkPost('title');
-        $date  = $this->checkPost('date');
+        $mevaluation = new \Application\Model\Evaluation();
+        $mquestion = new Question();
+        $stack       = $mevaluation->get($evaluation_id);
+        $evaluation  = $stack['evaluation'];
+        $questions   = $stack['questions'];
+        $title       = $this->checkPost('title');
+        $q           = $this->computeQuestion($_POST);
 
-        if ($title === null or $date === null) {
+        if ($title === null) {
             throw new Exception('API Error on create evaluation');
         }
 
-        $question = $this->computeQuestion($_POST);
+        $evaluation->setTitle($title);
+        $evaluation->setUpdatedate(time());
 
-        $evaluation = new \Application\Model\Evaluation();
+        foreach($questions as $question) {
+            if(isset($q[$question->getId()]) === true) // Update
+            {
+                $value = $q[$question->getId()];
 
-        if ($this->_user instanceof User) {
-            $evaluation->insert($uia, $this->_user->getId(), $title);
+                if($value['title'] !== $question->getTitle())
+                    $question->setTitle($value['title']);
+
+                if($value['taxo'] !== $question->getTaxo())
+                    $question->setTaxo($value['taxo']);
+
+                if($value['note'] !== $question->getPoint())
+                    $question->setPoint($value['note']);
+
+                if($value['item1'] !== $question->getItem1id())
+                    $question->setItem1($value['item1']);
+
+                if($value['item2'] !== $question->getItem2id())
+                    $question->setItem2($value['item2']);
+            }
+
+            // insert question
+            // delete question
+
+            // udapte model
+            $mevaluation->update($question);
         }
 
-        if ($evaluation->id === null) {
-            throw new Exception('Evaluation are not created');
-        }
-
-        $mQuestion = new Question();
-        $mQuestion->insertMany($evaluation->id, $question);
-
-        $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
+        $this->redirector->redirect('showUiaEvaluation', ['uia' => $uia, 'evaluation_id' => $evaluation_id]);
     }
 
     protected function computeQuestion(
@@ -149,6 +159,43 @@ class Evaluation extends Api
         }
 
         return $questions;
+    }
+
+    public function newAction()
+    {
+        $this->data->domain = new Domain();
+        $this->data->theme  = new Theme();
+        $this->data->item   = new Item();
+
+        $this->greut->render();
+    }
+
+    public function createAction($uia)
+    {
+
+        $title = $this->checkPost('title');
+        $date  = $this->checkPost('date');
+
+        if ($title === null or $date === null) {
+            throw new Exception('API Error on create evaluation');
+        }
+
+        $question = $this->computeQuestion($_POST);
+
+        $evaluation = new \Application\Model\Evaluation();
+
+        if ($this->_user instanceof User) {
+            $evaluation->insert($uia, $this->_user->getId(), $title);
+        }
+
+        if ($evaluation->id === null) {
+            throw new Exception('Evaluation are not created');
+        }
+
+        $mQuestion = new Question();
+        $mQuestion->insertMany($evaluation->id, $question);
+
+        $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
     }
 
 }
