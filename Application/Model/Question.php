@@ -48,6 +48,11 @@ class Question extends Generic
         }
     }
 
+    public function getByEvaluation($idEvaluation)
+    {
+        return $this->getAllBy('refEvaluation', $idEvaluation);
+    }
+
     public function insert($eval, $title, $taxo, $point, $item1, $item2)
     {
 

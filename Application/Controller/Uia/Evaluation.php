@@ -7,6 +7,7 @@ namespace Application\Controller\Uia;
 use Application\Controller\Api;
 use Application\Model\Domain;
 use Application\Model\Item;
+use Application\Model\Question;
 use Application\Model\Theme;
 use Hoa\Core\Exception\Exception;
 
@@ -40,6 +41,23 @@ class Evaluation extends Api
         $this->greut->render();
     }
 
+    public function destroyAction($uia, $evaluation_id)
+    {
+        $model      = new Question();
+        $questions  = $model->getByEvaluation($evaluation_id);
+        $evaluation = new \Application\Model\Evaluation();
+        $eval       = $evaluation->get($evaluation_id);
+        $eval       = $eval['evaluation'];
+
+
+        foreach ($questions as $question) {
+            $model->delete($question);
+        }
+
+        $evaluation->delete($eval);
+        $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
+    }
+
     public function createAction($uia)
     {
 
@@ -51,27 +69,26 @@ class Evaluation extends Api
         }
 
         $question = $this->computeQuestion($_POST);
-        echo '<pre>';
-        print_r($question);
-//        $evaluation = new \Application\Model\Evaluation();
-//
-//        if ($this->_user instanceof \Application\Entities\User) {
-//            $evaluation->insert($uia, $this->_user->getId(), $title);
-//        }
-//
-//        if ($evaluation->id === null) {
-//            throw new Exception('Evaluation are not created');
-//        }
-//
-//        $mQuestion = new Question();
-//        $mQuestion->insertMany($evaluation->id, $question);
 
+        $evaluation = new \Application\Model\Evaluation();
 
-//        $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
+        if ($this->_user instanceof \Application\Entities\User) {
+            $evaluation->insert($uia, $this->_user->getId(), $title);
+        }
+
+        if ($evaluation->id === null) {
+            throw new Exception('Evaluation are not created');
+        }
+
+        $mQuestion = new Question();
+        $mQuestion->insertMany($evaluation->id, $question);
+
+        $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
     }
 
-    protected function computeQuestion($post)
-    {
+    protected function computeQuestion(
+        $post
+    ) {
         $questions = [];
 
         $store = function ($i, $key, $value) use (&$questions) {
