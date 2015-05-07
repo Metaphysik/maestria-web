@@ -5,6 +5,7 @@ namespace Application\Controller\Uia;
 
 
 use Application\Controller\Api;
+use Application\Entities\User;
 use Application\Model\Domain;
 use Application\Model\Item;
 use Application\Model\Question;
@@ -41,6 +42,13 @@ class Evaluation extends Api
         $this->greut->render();
     }
 
+    public function updateAction($evaluation_id)
+    {
+        echo '<pre>';
+        print_r($_POST);
+
+    }
+
     public function destroyAction($uia, $evaluation_id)
     {
         $model      = new Question();
@@ -58,6 +66,19 @@ class Evaluation extends Api
         $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
     }
 
+    public function editAction($evaluation_id)
+    {
+        $evaluation            = new \Application\Model\Evaluation();
+        $evaluation            = $evaluation->get($evaluation_id);
+        $this->data->domain    = new Domain();
+        $this->data->theme     = new Theme();
+        $this->data->item      = new Item();
+        $this->data->eval      = $evaluation['evaluation'];
+        $this->data->questions = $evaluation['questions'];
+
+        $this->greut->render();
+    }
+
     public function createAction($uia)
     {
 
@@ -72,7 +93,7 @@ class Evaluation extends Api
 
         $evaluation = new \Application\Model\Evaluation();
 
-        if ($this->_user instanceof \Application\Entities\User) {
+        if ($this->_user instanceof User) {
             $evaluation->insert($uia, $this->_user->getId(), $title);
         }
 

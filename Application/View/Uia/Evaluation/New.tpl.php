@@ -71,7 +71,7 @@ $this->block('container');
                 /**
                  * @var $i Integer
                  */
-                for ($i = 1; $i <= 4; $i++) { ?>
+                for ($i = 1; $i <= 30; $i++) { ?>
                     <section class="float">
                         <div>
                             <label for="q<?php echo $i; ?>_title">TITRE</label>
@@ -108,8 +108,8 @@ $this->block('container');
                         </div>
                     </section>
                 <?php } ?>
-                <div class="add"><i class="awsm fa fa-plus-square" title="Ajouter évaluation"></i> AJOUTER QUESTION
-                </div>
+<!--                <div class="add"><i class="awsm fa fa-plus-square" title="Ajouter évaluation"></i> AJOUTER QUESTION-->
+<!--                </div>-->
                 <input id="creer" value="ENREGISTRER" type="submit">
             </form>
         </section>
