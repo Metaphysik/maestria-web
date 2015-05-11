@@ -200,10 +200,11 @@ class Item extends Api
         echo $this->getApiJson();
     }
 
-    public function deleteActionAsync() {
+    public function deleteActionAsync()
+    {
         if (isset($_POST['id'])) {
             $id     = $_POST['id'];
-            $item = new \Application\Model\Item();
+            $item   = new \Application\Model\Item();
             $entity = $item->get($id);
             if ($entity !== null) {
                 $item->pendingTrash($id);

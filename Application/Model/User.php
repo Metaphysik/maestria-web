@@ -21,7 +21,7 @@ class User extends Generic
         }
         if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia = $slug->getBySludId(UIA);
+            $uia  = $slug->getBySludId(UIA);
         }
 
         $e = $this->_repository->findBy(['refUia' => $uia, 'login' => $login, 'password' => $password], null, 1);
@@ -46,7 +46,7 @@ class User extends Generic
     {
         if ($uia === null) {
             $slug = new Uia();
-            $uia = $slug->getBySludId(UIA);
+            $uia  = $slug->getBySludId(UIA);
         }
 
         $e = $this->_repository->findBy(['refUia' => $uia, 'email' => $email, 'password' => $password], null, 1);
@@ -58,7 +58,7 @@ class User extends Generic
     {
         if ($uia === null) {
             $slug = new Uia();
-            $uia = $slug->getBySludId(UIA);
+            $uia  = $slug->getBySludId(UIA);
         }
 
         return $this->_repository->findBy(['refUia' => $uia, 'email' => $email], null, 1)[0];
@@ -67,9 +67,10 @@ class User extends Generic
     public function insertStudent($uia, $realName)
     {
 
-       $login = $this->formatRealName($realName);
+        $login = $this->formatRealName($realName);
 
-        return $this->insert($uia, $login, $login . '@nowhere.com', sha1('student'), 0, 0, 0, $realName, 0, time(), '', '');
+        return $this->insert($uia, $login, $login . '@nowhere.com', sha1('student'), 0, 0, 0, $realName, 0, time(), '',
+            '');
 
     }
 
@@ -100,12 +101,11 @@ class User extends Generic
         $token,
         $status,
         $birthdate = '0'
-    )
-    {
+    ) {
 
         $slug = new Uia();
         $slug = $slug->getBySlug($uia);
-        $uia = $slug->getId();
+        $uia  = $slug->getId();
 
 
         if ($this->loginExist($login, $uia) === false and $this->emailExist($email, $uia) === false) {
@@ -150,8 +150,7 @@ class User extends Generic
         $token,
         $status,
         $birthdate
-    )
-    {
+    ) {
         $user = new \Application\Entities\User();
         $user->setRefUia($uia);
         $user->setLogin($login);

@@ -115,12 +115,23 @@ class User
         $this->password = $password;
     }
 
+    public function isStudent()
+    {
+
+        $admin = $this->getIsAdmin();
+        $modo  = $this->getIsModerator();
+        $prof  = $this->getIsProfessor();
+
+        return ($admin === false && $modo === false && $prof === false) ? true : false;
+
+    }
+
     /**
      * @return mixed
      */
     public function getIsAdmin()
     {
-        return ($this->isAdmin === 1) ? true: false;;
+        return ($this->isAdmin === 1) ? true : false;;
     }
 
     /**
@@ -136,7 +147,7 @@ class User
      */
     public function getIsModerator()
     {
-        return ($this->isModerator === 1) ? true: false;
+        return ($this->isModerator === 1) ? true : false;
     }
 
     /**
@@ -152,7 +163,7 @@ class User
      */
     public function getIsProfessor()
     {
-        return ($this->isProfessor === 1) ? true: false;
+        return ($this->isProfessor === 1) ? true : false;
     }
 
     /**
@@ -161,17 +172,6 @@ class User
     public function setIsProfessor($isProfessor)
     {
         $this->isProfessor = $isProfessor;
-    }
-
-
-    public function isStudent() {
-
-        $admin = $this->getIsAdmin();
-        $modo = $this->getIsModerator();
-        $prof = $this->getIsProfessor();
-
-        return ($admin === false && $modo === false && $prof === false) ? true : false;
-
     }
 
     /**

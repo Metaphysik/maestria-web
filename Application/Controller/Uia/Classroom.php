@@ -9,8 +9,8 @@ class Classroom extends Api
 {
     public function indexAction($uia)
     {
-        $model = new \Application\Model\Classroom();
-        $this->data->classes = $model->getBySlug($uia);
+        $model                     = new \Application\Model\Classroom();
+        $this->data->classes       = $model->getBySlug($uia);
         $this->data->userByClasses = $model->getStudentOrderByClasses($uia);
 
         $this->greut->render();
@@ -39,8 +39,7 @@ class Classroom extends Api
 
     public function updateActionAsync($classroom_id)
     {
-        if(isset($_POST['label']))
-        {
+        if (isset($_POST['label'])) {
             $class = new \Application\Model\Classroom();
             /**
              * @var $entity \Application\Entities\Classroom
@@ -49,8 +48,7 @@ class Classroom extends Api
 
             $entity->setLabel($_POST['label']);
             $class->update($entity);
-        }
-        else {
+        } else {
             $this->nok('Api error');
         }
 
@@ -59,17 +57,15 @@ class Classroom extends Api
 
     public function destroyActionAsync($classroom_id)
     {
-        $class = new \Application\Model\Classroom();
+        $class  = new \Application\Model\Classroom();
         $entity = $class->get($classroom_id);
 
-        if(isset($entity))
-        {
+        if (isset($entity)) {
             // TODO : Delete UserClass association
 
             $class->delete($entity);
             $this->ok();
-        }
-        else {
+        } else {
             $this->nok('Request invalid');
         }
 

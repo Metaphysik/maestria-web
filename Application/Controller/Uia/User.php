@@ -18,10 +18,10 @@ class User extends Api
 
             if (strlen($_POST['label']) > 2) {
                 $label = $_POST['label'];
-                $id = $_POST['idclass'];
+                $id    = $_POST['idclass'];
 
                 $model = new \Application\Model\User();
-                $bool = $model->insertStudent($uia, $label);
+                $bool  = $model->insertStudent($uia, $label);
 
                 if ($bool === true and $model->id !== null) {
                     $m = new UserClass();
@@ -45,12 +45,10 @@ class User extends Api
         /**
          * @var $user \Application\Entities\User
          */
-        $user_id = intval($user_id);
-        $m_user = new \Application\Model\User();
-        $user = $m_user->get($user_id);
+        $user_id            = intval($user_id);
+        $m_user             = new \Application\Model\User();
+        $user               = $m_user->get($user_id);
         $this->data->profil = $user;
-
-
 
 
         if ($this->lvlProf() || ($this->_user !== null && $this->_user->getId() === $user->getId())) {
@@ -65,22 +63,22 @@ class User extends Api
     public function updateAction($user_id)
     {
         $user_id = intval($user_id);
-        $m_user = new \Application\Model\User();
-        $user = $m_user->get($user_id);
+        $m_user  = new \Application\Model\User();
+        $user    = $m_user->get($user_id);
 
 
         if ($this->lvlProf() || ($this->_user !== null && $this->_user->getId() === $user->getId())) {
 
 
             $realname = $this->checkPost('name');
-            $login = $this->checkPost('login');
-            $bday = $this->checkPost('birthdate');
-            $email = $this->checkPost('email');
-            $psswd = trim($this->checkPost('psswd'));
-            $cpsswd = trim($this->checkPost('cpsswd'));
-            $isAdmin = $this->checkPost('isAdmin', 'off');
-            $isModo = $this->checkPost('isModo', 'off');
-            $isProf = $this->checkPost('isProf', 'off');
+            $login    = $this->checkPost('login');
+            $bday     = $this->checkPost('birthdate');
+            $email    = $this->checkPost('email');
+            $psswd    = trim($this->checkPost('psswd'));
+            $cpsswd   = trim($this->checkPost('cpsswd'));
+            $isAdmin  = $this->checkPost('isAdmin', 'off');
+            $isModo   = $this->checkPost('isModo', 'off');
+            $isProf   = $this->checkPost('isProf', 'off');
 
             /**
              * @var $user \Application\Entities\User
@@ -111,22 +109,19 @@ class User extends Api
             if ($this->_user !== null && $this->_user->getIsAdmin() === true) {
                 if ($isAdmin === 'on') {
                     $user->setIsAdmin(1);
-                }
-                else {
+                } else {
                     $user->setIsAdmin(0);
                 }
 
                 if ($isModo === 'on') {
                     $user->setIsModerator(1);
-                }
-                else {
+                } else {
                     $user->setIsModerator(0);
                 }
 
                 if ($isProf === 'on') {
                     $user->setIsProfessor(1);
-                }
-                else {
+                } else {
                     $user->setIsProfessor(0);
                 }
             }

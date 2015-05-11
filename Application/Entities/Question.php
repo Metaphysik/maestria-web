@@ -136,5 +136,25 @@ class Question
         $this->item2 = $item2;
     }
 
+    public function setItem1id($id)
+    {
+        $this->item1id = $id;
+    }
+
+
+    public function setItem2id($id)
+    {
+        $this->item2id = $id;
+    }
+    public function getItem1id()
+    {
+        return $this->item1id;
+    }
+
+    public function getItem2id()
+    {
+        return $this->item2id;
+    }
+
 
 }

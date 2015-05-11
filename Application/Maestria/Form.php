@@ -30,11 +30,11 @@ class Form
      */
     public function __construct($data = [])
     {
-        $class = get_class($this);
-        $id = substr($class, strrpos($class, '\\') + 1);
-        $id = strtolower($id);
-        $this->_name = $id;
-        $this->_form = \Application\Maestria\Form\Form::get($id);
+        $class           = get_class($this);
+        $id              = substr($class, strrpos($class, '\\') + 1);
+        $id              = strtolower($id);
+        $this->_name     = $id;
+        $this->_form     = \Application\Maestria\Form\Form::get($id);
         $this->_validate = Validator::get($id);
 
         $this->_form->setValidator($this->_validate);
@@ -44,6 +44,17 @@ class Form
         $this->validate();
 
         call_user_func_array([$this, 'construct'], func_get_args());
+    }
+
+    /**
+     * @param $data
+     */
+    public function setData($data)
+    {
+        if ($data !== null) {
+            $this->_validate->setData($data);
+            $this->_form->setData($this->_validate->getData());
+        }
     }
 
     /**
@@ -65,6 +76,11 @@ class Form
     public function construct()
     {
 
+    }
+
+    public function __toString()
+    {
+        return $this->__invoke();
     }
 
     /**
@@ -93,11 +109,6 @@ class Form
 
     }
 
-    public function __toString()
-    {
-        return $this->__invoke();
-    }
-
     /**
      * @param $data
      * @return mixed
@@ -108,17 +119,6 @@ class Form
 
         return $this->_form->render();
 
-    }
-
-    /**
-     * @param $data
-     */
-    public function setData($data)
-    {
-        if ($data !== null) {
-            $this->_validate->setData($data);
-            $this->_form->setData($this->_validate->getData());
-        }
     }
 
     /**

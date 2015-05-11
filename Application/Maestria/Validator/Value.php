@@ -6,8 +6,8 @@ class Value extends Validator
     protected function _valid($data, $arguments)
     {
         $this->data = intval($data);
-        $this->min = (isset($arguments[0]) and $arguments[0] !== null) ? $arguments[0] : -PHP_INT_MAX;
-        $this->max = (isset($arguments[1]) and $arguments[1] !== null) ? $arguments[1] : PHP_INT_MAX;
+        $this->min  = (isset($arguments[0]) and $arguments[0] !== null) ? $arguments[0] : -PHP_INT_MAX;
+        $this->max  = (isset($arguments[1]) and $arguments[1] !== null) ? $arguments[1] : PHP_INT_MAX;
 
         return ($this->data >= $this->min && $this->data <= $this->max);
 

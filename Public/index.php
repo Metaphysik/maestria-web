@@ -4,7 +4,6 @@ namespace {
     use Application\Controller\Kit\Redirection;
     use Application\Maestria\Log;
     use Application\Maestria\Maestria;
-    use Hoa\Core\Exception\Exception;
 
     require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -19,7 +18,7 @@ namespace {
     try {
         $framework = new Maestria();
 
-        
+
         $framework->kit('redirector', new Redirection());
         $framework->setAcl();
 

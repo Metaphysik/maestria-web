@@ -30,12 +30,16 @@
 </header>
 <nav>
     <a href="/" class="logo"><img src="/img/maestria.jpg" alt="logo maestria"/></a>
+
     <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom'); ?>">CLASSES</a></h3>
+
     <h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
     <br/>
+
     <h3><a href="/evaluation/">EVALUATIONS</a></h3>
 
     <h3 id="evalchx" class="eval">PUISSANCE</h3>
+
     <div class="flechebas"></div>
     <h3 class="eval"><a href="/">CORRECTION</a></h3>
 
@@ -45,17 +49,18 @@
 
     <?php } ?>
 
-<!--    <footer>
-        <a href="http://metaphysik.fr/manuel/projet.php#contact">Contact</a>|
-        <a href="metaphysik.fr">Metaphysik</a>
-    </footer>-->
+    <!--    <footer>
+            <a href="http://metaphysik.fr/manuel/projet.php#contact">Contact</a>|
+            <a href="metaphysik.fr">Metaphysik</a>
+        </footer>-->
 </nav>
-
+<?php $this->block('popup'); ?>
 <section id="popup">
     <section id="inpopup">
 
     </section>
 </section>
+<?php $this->endBlock() ?>
 <?php $this->block('container'); ?>
 <?php $this->endBlock() ?>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>

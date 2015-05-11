@@ -17,21 +17,12 @@ class Evaluation extends Generic
 
     public function insert($uia, $userid, $title, $date = false)
     {
-        if ($date === false)
+        if ($date === false) {
             $date = time();
+        }
 
         return $this->_insert($uia, $userid, $title, $date, $date);
     }
-
-    public function get($id)
-    {
-        $eval = $this->getBy('id', $id);
-        $questions = new Question();
-        $questions = $questions->getBy('refEvaluation', $id);
-
-        var_dump($eval, $questions);
-    }
-
 
     protected function _insert($uia, $userid, $title, $cdate, $udate)
     {
@@ -49,5 +40,14 @@ class Evaluation extends Generic
         $this->id = $eval->getId();
 
         return true;
+    }
+
+    public function get($id)
+    {
+        $eval      = $this->getBy('id', $id);
+        $questions = new Question();
+        $questions = $questions->getAllBy('refEvaluation', $id);
+
+        return ['evaluation' => $eval, 'questions' => $questions];
     }
 }

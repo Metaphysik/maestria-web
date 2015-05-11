@@ -1,8 +1,13 @@
 .neweval > section, .items > section, .evals > section, .classes > section {
     width: 85%;
 }
+
 .classes > #contenu > form > section {
     width: 99%;
+}
+
+.hidden {
+    display: none;
 }
 
 * {
@@ -128,7 +133,8 @@ footer {
     background: white;
     margin: 5%;
     width: 90%;
-    overflow: auto;
+    overflow-y: auto;
+    height: 650px;
 }
 
 #inpopup .titre {

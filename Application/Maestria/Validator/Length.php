@@ -8,7 +8,7 @@ class Length extends Validator
         $this->min = null;
         $this->max = null;
         $this->len = null;
-        $this->s = strlen($data);
+        $this->s   = strlen($data);
 
         if (count($arguments) === 2) {
             $this->min = $arguments[0];

@@ -12,21 +12,6 @@ namespace Application\Model;
 class UserClass extends Generic
 {
 
-    public function isAssociated($uia, $classe, $user)
-    {
-        if ($uia === null) {
-            $uia = UIA;
-        }
-        if ($uia === null) {
-            $slug = new Uia();
-            $uia = $slug->getBySludId($uia);
-        }
-
-        $e = $this->_repository->findBy(['refUia' => $uia, 'refClassroom' => $classe, 'refUser' => $user], null, 1);
-
-        return (count($e) >= 1);
-    }
-
     public function associate($uia, $classe, $user)
     {
 
@@ -35,14 +20,30 @@ class UserClass extends Generic
         }
         if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia = $slug->getBySludId($uia);
+            $uia  = $slug->getBySludId($uia);
         }
 
 
-        if ($this->isAssociated($uia, $classe, $user) === false)
+        if ($this->isAssociated($uia, $classe, $user) === false) {
             return $this->_insert($uia, $classe, $user);
+        }
 
         return false;
+    }
+
+    public function isAssociated($uia, $classe, $user)
+    {
+        if ($uia === null) {
+            $uia = UIA;
+        }
+        if ($uia === null) {
+            $slug = new Uia();
+            $uia  = $slug->getBySludId($uia);
+        }
+
+        $e = $this->_repository->findBy(['refUia' => $uia, 'refClassroom' => $classe, 'refUser' => $user], null, 1);
+
+        return (count($e) >= 1);
     }
 
     protected function _insert($uia, $classe, $user)

@@ -15,7 +15,7 @@ class Bootstrap extends Generic implements ITheme
         $id       = $form->getFormId();
         $validate = Validator::get($id);
 
-        if ($form->getCheckStatus() ===  true && $validate->isValid() === false) {
+        if ($form->getCheckStatus() === true && $validate->isValid() === false) {
             $this->setErrors($validate->getErrors());
         }
 
