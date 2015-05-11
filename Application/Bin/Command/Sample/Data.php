@@ -10,7 +10,9 @@ namespace Application\Bin\Command\Sample;
 
 use Application\Model\Classroom;
 use Application\Model\Domain;
+use Application\Model\Evaluation;
 use Application\Model\Item;
+use Application\Model\Question;
 use Application\Model\Theme;
 use Application\Model\Uia;
 use Application\Model\User;
@@ -57,12 +59,13 @@ class Data extends \Hoa\Console\Dispatcher\Kit
     {
         require 'hoa://Application/Config/Environnement.php';
 
-        $this->hydrateUia();
-        $this->hydrateUser();
-        $this->hydrateClassroom();
-        $this->hydateStudentAndAssociation();
-        $this->hydrateDomain();
-        $this->hydrateThemeItem();
+//        $this->hydrateUia();
+//        $this->hydrateUser();
+//        $this->hydrateClassroom();
+//        $this->hydateStudentAndAssociation();
+//        $this->hydrateDomain();
+//        $this->hydrateThemeItem();
+        $this->hydrateEvaluation();
     }
 
 
@@ -123,6 +126,24 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         echo '# STUDENT'."\n";
     }
 
+    protected function hydrateEvaluation() {
+
+        $faker = Factory::create();
+
+        foreach($this->uias as $uias) {
+            for ($i = 0; $i <= 6; $i++) {
+                $evaluation = new Evaluation();
+                $evaluation->insert($uias, 1, $faker->sentence());
+                $id = $evaluation->id;
+                $questions = new Question();
+
+                for($i = 0; $i <= 20; $i++) {
+                    $questions->insert($id, $faker->sentence(), 1, $i, $i+1, $i+50);
+                }
+        }
+        }
+
+    }
     protected function hydrateStudent($uia, $name)
     {
         $user = new User();
