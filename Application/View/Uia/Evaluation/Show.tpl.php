@@ -66,12 +66,25 @@ $this->block('container');
                             <div>
                                 <label for="q<?php echo $i; ?>_item1"><i class="awsm fa fa-graduation-cap"></i>
                                     CONNAISSANCE</label>
-                                <input readonly value="<?php echo $question->getItem1(); ?>"/>
+                                <?php
+                                if ($question->getItem1() !== 0) {
+                                    echo '<input id="q'.$i.'_item1" readonly value="' . $question->getItem1() . '"/>';
+                                } else {
+                                    echo '<input placeholder="A choisir parmi les items pédagogiques" readonly/>';
+                                }
+                                ?>
                             </div>
                             <div>
                                 <label for="q<?php echo $i; ?>_item2"><i class="awsm fa fa-cogs"></i> SAVOIR-FAIRE OU
                                     ATTITUDE</label>
-                                <input readonly value="<?php echo $question->getItem2(); ?>"/>
+                                <?php
+                                if ($question->getItem2() !== 0) {
+                                    echo '<input id="q'.$i.'_item2" readonly value="' . $question->getItem2() . '"/>';
+                                } else {
+                                    echo '<input placeholder="A choisir parmi les items pédagogiques" readonly/>';
+                                }
+                                ?>
+
                             </div>
                         </section>
                     <?php }
