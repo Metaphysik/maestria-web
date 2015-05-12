@@ -30,6 +30,8 @@ class Evaluation extends Api
         $this->data->evaluation = $evaluation['evaluation'];
         $this->data->questions  = $evaluation['questions'];
 
+        $this->select_evaluation($evaluation_id);
+
         $this->greut->render();
     }
 
@@ -60,6 +62,7 @@ class Evaluation extends Api
         $this->data->eval      = $evaluation['evaluation'];
         $this->data->questions = $evaluation['questions'];
 
+        $this->no_evaluation();
         $this->greut->render();
     }
 

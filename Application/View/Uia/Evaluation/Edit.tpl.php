@@ -13,7 +13,7 @@ $this->block('popup', 'replace');
     <section id="popup">
         <section id="inpopup">
             <section class="titre optaff">
-                <div class="awsm exit"></div>
+                <div class="awsm exit"><i class="fa fa-close"></i></div>
                 <h3>CHOISIR L'ITEM</h3></section>
             <section class="contenu itemchx">Selectionner l'item voulu
                 <ul>

@@ -131,16 +131,20 @@ class Data extends \Hoa\Console\Dispatcher\Kit
         $faker = Factory::create();
 
         foreach($this->uias as $uias) {
-            for ($i = 0; $i <= 6; $i++) {
-                $evaluation = new Evaluation();
-                $evaluation->insert($uias, 1, $faker->sentence());
-                $id = $evaluation->id;
-                $questions = new Question();
+            foreach([3,6] as $profid) {
+                for ($i = 0; $i <= 6; $i++) {
+                    $evaluation = new Evaluation();
+                    echo $faker->sentence() . "\n";
+                    $evaluation->insert($uias, $profid, $faker->sentence());
+                    $id        = $evaluation->id;
+                    $questions = new Question();
 
-                for($i = 0; $i <= 20; $i++) {
-                    $questions->insert($id, $faker->sentence(), 1, $i, $i+1, $i+50);
+                    for ($i = 1; $i <= 20; $i++) {
+                        echo "\t" . $faker->sentence() . "\n";
+                        $questions->insert($id, $faker->sentence(), 1, $i, $i+1, $i+50);
+                    }
                 }
-        }
+            }
         }
 
     }
@@ -221,7 +225,7 @@ class Data extends \Hoa\Console\Dispatcher\Kit
 
     protected function hydrateItem($theme, $label, $lvl)
     {
-        $item = new Item();
+        $item = new \Application\Model\Item();
         $item->insert($theme, $label, 0, 2, $lvl);
 
         echo "\t" . '> Item ' . $label . "\n";

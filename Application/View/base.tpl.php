@@ -38,10 +38,26 @@
 
     <h3><a href="/evaluation/">EVALUATIONS</a></h3>
 
-    <h3 id="evalchx" class="eval">PUISSANCE</h3>
+    <?php
+    /**
+     * @var $selected_evaluation \Application\Entities\Evaluation
+     */
 
-    <div class="flechebas"></div>
-    <h3 class="eval"><a href="/">CORRECTION</a></h3>
+    if (isset($selected_evaluation) === true) {
+        if (is_object($selected_evaluation)) {
+            echo '<h3 id="evalchx" class="eval">' . $selected_evaluation->getTitle() . '</h3>';
+        }
+    }
+    if (isset($selected_evaluation) === true and is_object($selected_evaluation)) {
+        ?>
+        <div class="flechebas"></div>
+        <h3 class="eval"><a href="<?= $this->route->unroute('showUiaCorrection',
+                ['correction_id' => $selected_evaluation->getId()]); ?>"> CORRECTION</a></h3>
+        <div class="flechebas"></div>
+        <h3 class="eval"><a href="<?= $this->route->unroute('editUiaEvaluation',
+                ['evaluation_id' => $selected_evaluation->getId()]); ?>"> EDITION</a></h3>
+    <?php } ?>
+
 
     <?php if (isset($user) === true && $user->getIsAdmin() === true) { ?>
         <br/>
@@ -54,13 +70,53 @@
             <a href="metaphysik.fr">Metaphysik</a>
         </footer>-->
 </nav>
-<?php $this->block('popup'); ?>
-<section id="popup">
-    <section id="inpopup">
+<?php $this->block('popup');
+if (isset($evaluations) and isset($user)) {
+    ?>
+    <section id="popup">
+        <section id="inpopup">
+            <section class="titre eval">
+                <div class="awsm exit"><i class="fa fa-close"></i></div>
+                <h3>Choix de l'évaluation</h3>
+            </section>
 
+            <section class="contenu itemchx">
+                <h1>Mes Evaluations</h1>
+                <?php
+                /**
+                 * @var $user \Application\Entities\User
+                 * @var $evaluations Array
+                 * @var $evaluation \Application\Entities\Evaluation
+                 */
+
+
+                $eval = function ($evaluation) {
+                    return '<a href="' . $this->route->unroute('showUiaEvaluation',
+                        ['evaluation_id' => $evaluation->getId()]) . '"><h6>' . $evaluation->getTitle() .
+                    '</h6></a>';
+                };
+
+                foreach ($evaluations as $evaluation) {
+                    if ($evaluation->getRefuser() === $user->getId()) {
+                        echo $eval($evaluation);
+                    }
+                }
+                ?>
+                <h1>Evaluations</h1>
+                <?php
+                foreach ($evaluations as $evaluation) {
+                    if ($evaluation->getRefuser() !== $user->getId()) {
+                        echo $eval($evaluation);
+                    }
+                }
+
+                ?>
+            </section>
+        </section>
     </section>
-</section>
-<?php $this->endBlock() ?>
+<?php
+}
+$this->endBlock() ?>
 <?php $this->block('container'); ?>
 <?php $this->endBlock() ?>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>

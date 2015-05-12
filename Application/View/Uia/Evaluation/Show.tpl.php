@@ -28,7 +28,7 @@ $this->block('container');
                 <div id="questions"><h4>QUESTIONS</h4></div>
                 <?php
                 if (isset($questions) === true) {
-                    foreach ($questions as $question) {
+                    foreach ($questions as $i => $question) {
                         /**
                          * @var $question \Application\Entities\Question
                          */

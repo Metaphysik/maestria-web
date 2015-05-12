@@ -25,6 +25,7 @@ $uia = '(?<uia>.*)@';
 $this->resource('classroom', ['prefix' => $uia, 'except' => ['new', 'show']]);
 $this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
 $this->resource('evaluation', ['prefix' => $uia]);
+$this->resource('correction', ['prefix' => $uia]);
 
 /**
  *  Item, Domain, Theme
@@ -50,7 +51,6 @@ $this->post($uia . '/login', ['as' => 'mainlogin', 'to' => 'Main#Login']);
 $this->get($uia . '/logout', ['as' => 'mainlogout', 'to' => 'Main#Logout']);
 $this->get($uia . '/register', ['as' => 'mainregister', 'to' => 'Main#Register']);
 $this->post($uia . '/register', ['as' => 'maincreate', 'to' => 'Main#Create']);
-
 
 //$this->get($uia . '/user/', ['as' => 'profilall', 'to' => 'Main#Profilall']);
 //$this->get($uia . '/user/(?<id>[^/]+)/?', ['as' => 'profiluser', 'to' => 'Main#Profil']);
