@@ -14,13 +14,6 @@ $('.classe').on('click', function () {
     }
     genererpopup("classe", "CHOIX DE LA CLASSE", 'classechx">', liste);
 });
-$('#popup').on('click', '.evalchx h6', function () {
-    IDeval = $(this).data('ideval');
-    $('#evalchx').html($(this).html());
-//changer l'information Ã©valuation remplie ou pas
-    $('#popup').slideToggle();
-}).on('click', '.classechx h6', function () {
-    $('#popup').slideToggle();
-}).on('click', ' .exit', function () {
+$('#popup').on('click', ' .exit', function () {
     $('#popup').slideToggle();
 });

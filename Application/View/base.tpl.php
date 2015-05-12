@@ -89,7 +89,6 @@ if (isset($evaluations) and isset($user)) {
                  * @var $evaluation \Application\Entities\Evaluation
                  */
 
-
                 $eval = function ($evaluation) {
                     return '<a href="' . $this->route->unroute('showUiaEvaluation',
                         ['evaluation_id' => $evaluation->getId()]) . '"><h6>' . $evaluation->getTitle() .
