@@ -3,17 +3,17 @@ $('body').on('click', 'ul li', function () {
 });
 
 $('#evalchx').on('click', function () {
-    $('#popup').slideToggle();
+    $('#popup').slideDown();
 });
-
 
 $('.classe').on('click', function () {
-    liste = "";
-    for (var i in classes) {
-        liste += '<h6 data-idclasse="' + i + '">' + classes[i]['nom'] + '</h6>';
-    }
-    genererpopup("classe", "CHOIX DE LA CLASSE", 'classechx">', liste);
+    $('#popupclasse').slideDown();
 });
+
 $('#popup').on('click', ' .exit', function () {
-    $('#popup').slideToggle();
+    $('#popup').slideUp();
+});
+
+$('#popupclasse').on('click', ' .exit', function () {
+    $('#popupclasse').slideUp();
 });

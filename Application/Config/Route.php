@@ -33,6 +33,7 @@ $this->resource('correction', ['prefix' => $uia]);
 $this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 $this->any('/', ['as' => 'index', 'to' => 'Main#All']);
 
+$this->get($uia . '/api/classe/(?<classe>[^/]+)/users/', ['as' => 'indexApiUser', 'to' => 'Api\User#index']);
 $this->get($uia . '/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
 $this->post($uia . '/item/', ['as' => 'createUiaItemDomainTheme', 'to' => 'Uia\Item#createItem']);
 $this->post($uia . '/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);

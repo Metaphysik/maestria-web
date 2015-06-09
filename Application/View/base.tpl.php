@@ -91,7 +91,7 @@ if (isset($evaluations) and isset($user)) {
 
                 $eval = function ($evaluation) {
                     return '<a href="' . $this->route->unroute('showUiaEvaluation',
-                        ['evaluation_id' => $evaluation->getId()]) . '"><h6>' . $evaluation->getTitle() .
+                        ['evaluation_id' => $evaluation->getId()]) . '" data-ideval="'.$evaluation->getId().'"><h6>' . $evaluation->getTitle() .
                     '</h6></a>';
                 };
 
