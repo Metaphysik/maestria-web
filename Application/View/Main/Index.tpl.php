@@ -20,11 +20,10 @@ $this->block('popup', 'append');
     </section>
     <section id="popupevl">
         <section id="inpopup">
-            <section class="">
+            <section class="titre eval">
                 <div class="awsm exit"></div>
-                <h3>Hello</h3></section>
-            <section id="popupevlcontent">
-                <p>F</p>
+                <h3 class="username"></h3></section>
+            <section id="popupevlcontent" class="contenu inputresult">
             </section>
         </section>
     </section>
@@ -95,7 +94,7 @@ $this->block('js:script');
                         html += '<span><i class="fa fa-star" style="color:rgb(0,255,0)"></i></span>';
                         html += '</div>';
                         html += '</div>';
-                        html += '<div class="prctg">'+users[i].note+'</div>';
+                        html += '<div class="prctg">' + users[i].note + '</div>';
                         html += '</article>';
                     }
 
@@ -105,25 +104,79 @@ $this->block('js:script');
             }
         });
 
-        $('body').on('click' , '.elv', function () {
+        $('body').on('click', '.elv', function () {
 
 
             if (current_class != null && current_eval != null) {
-                $('#popupevl').slideDown();
+
 
                 current_elv = $(this).data('idelv');
+                var html = '';
 
-                $.get("/api/eval/"+current_eval+"/user/"+current_elv+"/", function (data) {
+                $.get("/api/eval/" + current_eval + "/user/" + current_elv + "/", function (data) {
 
-                    console.log(data);
+                    var json = JSON.parse(data);
+                    var questions = json.data;
+                    var log = json.log[0];
 
-                    // <div><span class="awsm"></span> Comprendre<span class="note">/2</span></div><div><span class="awsm"></span> la puissance est une énergie par unité de temps</div><div><span class="awsm"></span> Savoir s'exprimer à l'aide du langage scientifique</div></aside><div class="input"><div data-val="2">A</div><div data-val="1">B</div><div data-val="0">C</div></div></article><article data-idque="1235"><aside><h5>2)Calcul Puissance</h5><div><span class="awsm"></span> Appliquer<span class="note">/3</span></div><div><span class="awsm"></span> la puissance est une énergie par unité de temps</div><div><span class="awsm"></span> Savoir utiliser une calculatrice</div></aside><div class="input"><div data-val="2">A</div><div data-val="1">B</div><div data-val="0">C</div></div></article><div class="boutons"><h4 data-idelv="3202">EVALUER Allann Wauters de Besterfeld</h4>
+                    // data.log[0] = name
+                    // data.log[1] = next
+                    // data.log[2] = previous
 
+                    var user = log[0];
+                    var next = log[1];
+                    var prev = log[2];
+
+
+                    console.log(user);
+
+                    for (var i = 0; i < questions.length; i++) {
+
+                        var q = questions[i];
+
+
+                        html += '<article data-id="' + q.id + '"><aside><h5>' + (i + 1) + ') ' + q.title + '</h5>';
+                        html += '<div><span class="awsm"></span> Appliquer';
+                        html += '<span class="note">/' + q.note + '</span></div>' +
+                        '<div><span class="awsm"></span> ' + q.item1 + '</div>' +
+                        '<div><span class="awsm"></span> ' + q.item2 + '</div>' +
+                        '</aside><div class="input">';
+                        if (q.current == 2) {
+                            html += '<div data-val="2" class="inputSelected">A</div>';
+                        }
+                        else {
+                            html += '<div data-val="2">A</div>';
+                        }
+
+                        if (q.current == 1) {
+                            html += '<div data-val="1"  class="inputSelected">B</div>';
+                        }
+                        else {
+                            html += '<div data-val="1">B</div>';
+                        }
+
+                        if (q.current == 0) {
+                            html += '<div data-val="0"  class="inputSelected">C</div>';
+                        }
+                        else {
+                            html += '<div data-val="0">C</div>';
+                        }
+                        html += '</div></article>';
+                    }
+
+                    // Set student name in title
+                    $('.username').text('EVALUER ' + user.name + ' SUR ' + user.currentevalname);
+
+                    // Set button for next / previous
+
+
+                    $("#popupevlcontent").html(html);
 
                 });
 
 
-                $("#popupevlcontent").html('<p>fooooo</p>');
+                $('#popupevl').slideDown();
+
             }
         });
 
