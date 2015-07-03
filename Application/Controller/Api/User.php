@@ -22,8 +22,13 @@ class User extends _Api
                  * @var $entity \Application\Entities\User
                  */
                 $formatClassroom[] = [
-                    'id'   => $entity->getId(),
-                    'name' => $entity->getRealName()
+                    'id'     => $entity->getId(),
+                    'name'   => $entity->getRealName(),
+                    'book'   => 0,
+                    'rotate' => 0,
+                    'wrench' => 0,
+                    'star'   => 0,
+                    'note'   => 60
                 ];
             }
 

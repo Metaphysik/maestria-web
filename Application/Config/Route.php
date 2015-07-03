@@ -34,6 +34,9 @@ $this->any($uia . '/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 $this->any('/', ['as' => 'index', 'to' => 'Main#All']);
 
 $this->get($uia . '/api/classe/(?<classe>[^/]+)/users/', ['as' => 'indexApiUser', 'to' => 'Api\User#index']);
+$this->get($uia . '/api/eval/(?<eval>[^/]+)/user/(?<user>[^/]+)/', ['as' => 'getApiAnswer', 'to' => 'Api\Answer#get']);
+$this->post($uia . '/api/eval/(?<eval>[^/]+)/user/(?<user>[^/]+)/', ['as' => 'postApiAnswer', 'to' => 'Api\Answer#post']);
+
 $this->get($uia . '/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
 $this->post($uia . '/item/', ['as' => 'createUiaItemDomainTheme', 'to' => 'Uia\Item#createItem']);
 $this->post($uia . '/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);

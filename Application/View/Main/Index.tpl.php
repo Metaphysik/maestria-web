@@ -18,6 +18,17 @@ $this->block('popup', 'append');
             </section>
         </section>
     </section>
+    <section id="popupevl">
+        <section id="inpopup">
+            <section class="">
+                <div class="awsm exit"></div>
+                <h3>Hello</h3></section>
+            <section id="popupevlcontent">
+                <p>F</p>
+            </section>
+        </section>
+    </section>
+
 <?php
 $this->endblock();
 $this->block('container');
@@ -45,6 +56,7 @@ $this->block('js:script');
     <script>
         var current_class = null;
         var current_eval = null;
+        var current_elv = null;
 
 
         $('.classechx > h6').click(function () {
@@ -73,19 +85,45 @@ $this->block('js:script');
 
                     for (var i = 0; i < users.length; i++) {
 
-                        html += '<article draggable="true" data-idelv="' + users[i].id + '">';
-                        html += '<div class="awsm perso" style="color:rgb(255,153,0)"></div>';
+                        html += '<article class="elv" draggable="true" data-idelv="' + users[i].id + '">';
+                        html += '<div class="awsm perso" style="color:rgb(255,153,0)"><i class="fa fa-user"></i></div>';
                         html += '<div class="nom">' + users[i].name + '</div>';
-                        html += '<div class="awsm taxo" style="color:rgb(51,255,0)"><span></span>';
-                        html += '<span style="color:rgb(0,255,0)"></span><span style="color:rgb(255,204,0)"></span>';
-                        html += '<span style="color:rgb(0,255,0)"></span></div>';
-                        html += '<div class="prctg">60</div>';
+                        html += '<div class="awsm taxo" style="color:rgb(51,255,0)">';
+                        html += '<span><i class="fa fa-book"></i></span>';
+                        html += '<span><i class="fa fa-rotate-left" style="color:rgb(0,255,0)"></i></span>';
+                        html += '<span><i class="fa fa-wrench" style="color:rgb(255,204,0)"></i></span>';
+                        html += '<span><i class="fa fa-star" style="color:rgb(0,255,0)"></i></span>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '<div class="prctg">'+users[i].note+'</div>';
                         html += '</article>';
                     }
 
                     $('#cases').html(html);
 
                 });
+            }
+        });
+
+        $('body').on('click' , '.elv', function () {
+
+
+            if (current_class != null && current_eval != null) {
+                $('#popupevl').slideDown();
+
+                current_elv = $(this).data('idelv');
+
+                $.get("/api/eval/"+current_eval+"/user/"+current_elv+"/", function (data) {
+
+                    console.log(data);
+
+                    // <div><span class="awsm"></span> Comprendre<span class="note">/2</span></div><div><span class="awsm"></span> la puissance est une énergie par unité de temps</div><div><span class="awsm"></span> Savoir s'exprimer à l'aide du langage scientifique</div></aside><div class="input"><div data-val="2">A</div><div data-val="1">B</div><div data-val="0">C</div></div></article><article data-idque="1235"><aside><h5>2)Calcul Puissance</h5><div><span class="awsm"></span> Appliquer<span class="note">/3</span></div><div><span class="awsm"></span> la puissance est une énergie par unité de temps</div><div><span class="awsm"></span> Savoir utiliser une calculatrice</div></aside><div class="input"><div data-val="2">A</div><div data-val="1">B</div><div data-val="0">C</div></div></article><div class="boutons"><h4 data-idelv="3202">EVALUER Allann Wauters de Besterfeld</h4>
+
+
+                });
+
+
+                $("#popupevlcontent").html('<p>fooooo</p>');
             }
         });
 

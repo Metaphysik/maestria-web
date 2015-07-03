@@ -17,3 +17,7 @@ $('#popup').on('click', ' .exit', function () {
 $('#popupclasse').on('click', ' .exit', function () {
     $('#popupclasse').slideUp();
 });
+
+$('#popupevl').on('click', ' .exit', function () {
+    $('#popupevl').slideUp();
+});
