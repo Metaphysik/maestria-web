@@ -25,12 +25,12 @@ class Answer extends _Api
         $log = [
             0 => [
                 'id'              => 111111,
-                'name'            => 'Julien is the best',
+                'name'            => 'Julien is the best'.rand(),
                 'currentevalname' => 'PUISSANCE'
             ],
             1 => [
                 'id'   => 111111,
-                'name' => 'Julien is the best'
+                'name' => 'Mel the teacher'
             ],
             2 => [
                 'id'   => 52222,
@@ -44,12 +44,12 @@ class Answer extends _Api
         for ($i = 0; $i <= 10; $i++) {
             $a[] = [
                 'id'      => rand(),
-                'title'   => 'Definition de la puissance',
+                'title'   => 'Definition de la puissance'.rand(),
                 'taxo'    => 'Comprendre', // Un int ?
                 'item1'   => 'aaa ....',
                 'item2'   => 'bbb ....',
-                'note'    => 0, // -1 Non rep, 0=C , 1=B, 2=A
-                'current' => rand(-1, 2)
+                'note'    => rand(1,15),
+                'current' => rand(-1, 2) // -1 Non rep, 0=C , 1=B, 2=A
 
             ];
         }

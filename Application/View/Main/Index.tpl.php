@@ -104,81 +104,93 @@ $this->block('js:script');
             }
         });
 
-        $('body').on('click', '.elv', function () {
+        var evaluateAnStudent = function (idStudent) {
+            var html = '';
+
+            $.get("/api/eval/" + current_eval + "/user/" + current_elv + "/", function (data) {
+
+                var json = JSON.parse(data);
+                var questions = json.data;
+                var log = json.log[0];
+
+                // data.log[0] = name
+                // data.log[1] = next
+                // data.log[2] = previous
+
+                var user = log[0];
+                var next = log[1];
+                var prev = log[2];
 
 
-            if (current_class != null && current_eval != null) {
+                console.log(user);
+
+                for (var i = 0; i < questions.length; i++) {
+
+                    var q = questions[i];
 
 
-                current_elv = $(this).data('idelv');
-                var html = '';
-
-                $.get("/api/eval/" + current_eval + "/user/" + current_elv + "/", function (data) {
-
-                    var json = JSON.parse(data);
-                    var questions = json.data;
-                    var log = json.log[0];
-
-                    // data.log[0] = name
-                    // data.log[1] = next
-                    // data.log[2] = previous
-
-                    var user = log[0];
-                    var next = log[1];
-                    var prev = log[2];
-
-
-                    console.log(user);
-
-                    for (var i = 0; i < questions.length; i++) {
-
-                        var q = questions[i];
-
-
-                        html += '<article data-id="' + q.id + '"><aside><h5>' + (i + 1) + ') ' + q.title + '</h5>';
-                        html += '<div><span class="awsm"></span> Appliquer';
-                        html += '<span class="note">/' + q.note + '</span></div>' +
-                        '<div><span class="awsm"></span> ' + q.item1 + '</div>' +
-                        '<div><span class="awsm"></span> ' + q.item2 + '</div>' +
-                        '</aside><div class="input">';
-                        if (q.current == 2) {
-                            html += '<div data-val="2" class="inputSelected">A</div>';
-                        }
-                        else {
-                            html += '<div data-val="2">A</div>';
-                        }
-
-                        if (q.current == 1) {
-                            html += '<div data-val="1"  class="inputSelected">B</div>';
-                        }
-                        else {
-                            html += '<div data-val="1">B</div>';
-                        }
-
-                        if (q.current == 0) {
-                            html += '<div data-val="0"  class="inputSelected">C</div>';
-                        }
-                        else {
-                            html += '<div data-val="0">C</div>';
-                        }
-                        html += '</div></article>';
+                    html += '<article data-id="' + q.id + '"><aside><h5>' + (i + 1) + ') ' + q.title + '</h5>';
+                    html += '<div><span class="awsm"></span> Appliquer';
+                    html += '<span class="note">/' + q.note + '</span></div>' +
+                    '<div><span class="awsm"></span> ' + q.item1 + '</div>' +
+                    '<div><span class="awsm"></span> ' + q.item2 + '</div>' +
+                    '</aside><div class="input">';
+                    if (q.current == 2) {
+                        html += '<div data-val="2" class="btnNote inputSelected">A</div>';
+                    }
+                    else {
+                        html += '<div data-val="2" class="btnNote">A</div>';
                     }
 
-                    // Set student name in title
-                    $('.username').text('EVALUER ' + user.name + ' SUR ' + user.currentevalname);
+                    if (q.current == 1) {
+                        html += '<div data-val="1"  class="btnNote inputSelected">B</div>';
+                    }
+                    else {
+                        html += '<div data-val="1" class="btnNote">B</div>';
+                    }
 
-                    // Set button for next / previous
+                    if (q.current == 0) {
+                        html += '<div data-val="0"  class="btnNote inputSelected">C</div>';
+                    }
+                    else {
+                        html += '<div data-val="0" class="btnNote">C</div>';
+                    }
+                    html += '</div></article>';
+                }
+
+                // Set student name in title
+                $('.username').text('EVALUER ' + user.name + ' SUR ' + user.currentevalname);
+
+                // Set button for next / previous
+
+                html += '<div class="boutons"><h4 data-idelv="' + prev.id + '">EVALUER ' + prev.name + '</h4>' +
+                '<h4 style="float:right" data-idelv="' + next.id + '">EVALUER ' + next.name + '</h4></div>'
 
 
-                    $("#popupevlcontent").html(html);
+                $("#popupevlcontent").html(html);
 
-                });
+            });
+
+        };
 
 
+        $('body').on('click', '.elv', function () {
+            if (current_class != null && current_eval != null) {
+                current_elv = $(this).data('idelv');
+                evaluateAnStudent(current_elv);
                 $('#popupevl').slideDown();
 
             }
-        });
+        }).on('click', '.boutons', function () {
+            if (current_class != null && current_eval != null) {
+                var id = $(this).data('idelv');
+                evaluateAnStudent(id);
+                console.log('Evaluate an other :p')
+            }
+        }).on('click', '.btnNote', function () {
+            console.log('Change note !!!!!');
+        })
+
 
     </script>
 <?php
