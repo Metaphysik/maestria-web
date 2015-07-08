@@ -107,7 +107,9 @@ $this->block('js:script');
         var evaluateAnStudent = function (idStudent) {
             var html = '';
 
-            $.get("/api/eval/" + current_eval + "/user/" + current_elv + "/", function (data) {
+            var url = "/api/eval/" + current_eval + "/user/" + current_elv + "/"
+            console.log(url);
+            $.get(url, function (data) {
 
                 var json = JSON.parse(data);
                 var questions = json.data;
@@ -163,9 +165,14 @@ $this->block('js:script');
 
                 // Set button for next / previous
 
-                html += '<div class="boutons"><h4 data-idelv="' + prev.id + '">EVALUER ' + prev.name + '</h4>' +
-                '<h4 style="float:right" data-idelv="' + next.id + '">EVALUER ' + next.name + '</h4></div>'
+                html += '<div class="boutons">';
 
+                if (prev != undefined)
+                    html += '<h4 data-idelv="' + prev.id + '">EVALUER ' + prev.name + '</h4>';
+                if (next != undefined)
+                    html += '<h4 style="float:right" data-idelv="' + next.id + '">EVALUER ' + next.name + '</h4>'
+
+                html += '</div>';
 
                 $("#popupevlcontent").html(html);
 

@@ -31,6 +31,11 @@ class UserClass extends Generic
         return false;
     }
 
+    public function getFirstClasse($uia, $user) {
+        return $this->_repository->findBy(['refUser' => $user], null, 1);
+    }
+
+
     public function isAssociated($uia, $classe, $user)
     {
         if ($uia === null) {

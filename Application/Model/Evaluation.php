@@ -42,6 +42,11 @@ class Evaluation extends Generic
         return true;
     }
 
+    public function getInformation($id)
+    {
+        return $this->getBy('id', $id);
+    }
+
     public function get($id)
     {
         $eval      = $this->getBy('id', $id);
