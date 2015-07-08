@@ -107,7 +107,7 @@ $this->block('js:script');
         var evaluateAnStudent = function (idStudent) {
             var html = '';
 
-            var url = "/api/eval/" + current_eval + "/user/" + current_elv + "/"
+            var url = "/api/eval/" + current_eval + "/user/" + idStudent + "/"
             console.log(url);
             $.get(url, function (data) {
 
@@ -174,7 +174,7 @@ $this->block('js:script');
 
                 html += '</div>';
 
-                $("#popupevlcontent").html(html);
+                $("#popupevlcontent").empty().html(html);
 
             });
 
@@ -188,11 +188,10 @@ $this->block('js:script');
                 $('#popupevl').slideDown();
 
             }
-        }).on('click', '.boutons', function () {
+        }).on('click', '.boutons > h4', function () {
             if (current_class != null && current_eval != null) {
                 var id = $(this).data('idelv');
                 evaluateAnStudent(id);
-                console.log('Evaluate an other :p')
             }
         }).on('click', '.btnNote', function () {
             console.log('Change note !!!!!');
