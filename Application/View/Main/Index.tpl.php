@@ -131,32 +131,47 @@ $this->block('js:script');
                     var q = questions[i];
 
 
-                    html += '<article data-id="' + q.id + '"><aside><h5>' + (i + 1) + ') ' + q.title + '</h5>';
+                    html += '<article class="note" data-id="' + q.id + '"><aside><h5>' + (i + 1) + ') ' + q.title + '</h5>';
                     html += '<div><span class="awsm"></span> Appliquer';
                     html += '<span class="note">/' + q.note + '</span></div>' +
                     '<div><span class="awsm"></span> ' + q.item1 + '</div>' +
                     '<div><span class="awsm"></span> ' + q.item2 + '</div>' +
                     '</aside><div class="input">';
-                    if (q.current == 2) {
-                        html += '<div data-val="2" class="btnNote inputSelected">A</div>';
-                    }
-                    else {
-                        html += '<div data-val="2" class="btnNote">A</div>';
-                    }
 
-                    if (q.current == 1) {
-                        html += '<div data-val="1"  class="btnNote inputSelected">B</div>';
-                    }
-                    else {
-                        html += '<div data-val="1" class="btnNote">B</div>';
-                    }
 
-                    if (q.current == 0) {
-                        html += '<div data-val="0"  class="btnNote inputSelected">C</div>';
-                    }
-                    else {
-                        html += '<div data-val="0" class="btnNote">C</div>';
-                    }
+                    html += '<p class="options">' +
+                    '<input type="radio" id="i_'+ q.id +'" name="u_'+ q.id +'" value="2" checked/>' +
+                    '<label class="top">A</label><br />' +
+
+                    '<input type="radio" id="i_'+ q.id +'" name="u_'+ q.id +'" value="1"/>' +
+                    '<label class="mid">B</label><br />' +
+
+                    '<input type="radio" id="i_'+ q.id +'" name="u_'+ q.id +'" value="0"/>' +
+                    '<label class="min">C</label><br />' +
+                    '</p>';
+
+
+//                    if (q.current == 2) {
+//                        html += '<div data-val="2" class="btnNote inputSelected">A</div>';
+//                    }
+//                    else {
+//                        html += '<div data-val="2" class="btnNote">A</div>';
+//                    }
+//
+//                    if (q.current == 1) {
+//                        html += '<div data-val="1"  class="btnNote inputSelected">B</div>';
+//                    }
+//                    else {
+//                        html += '<div data-val="1" class="btnNote">B</div>';
+//                    }
+//
+//                    if (q.current == 0) {
+//                        html += '<div data-val="0"  class="btnNote inputSelected">C</div>';
+//                    }
+//                    else {
+//                        html += '<div data-val="0" class="btnNote">C</div>';
+//                    }
+
                     html += '</div></article>';
                 }
 
@@ -194,7 +209,9 @@ $this->block('js:script');
                 evaluateAnStudent(id);
             }
         }).on('click', '.btnNote', function () {
-            console.log('Change note !!!!!');
+//            $('article.note').each(function () {
+//                console.log($(this).data('id'));
+//            })
         })
 
 

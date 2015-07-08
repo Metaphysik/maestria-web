@@ -341,7 +341,16 @@ h4 {
     overflow: hidden;
 }
 
-.input div {
+.options {
+    display: flex;
+    height: 25px;
+}
+
+.options input[type=radio], input[type=checkbox] {
+    display: none;
+}
+
+.options input[type=radio] + label {
     display: inline-block;
     width: 71px;
     border-radius: 30px;
@@ -350,32 +359,34 @@ h4 {
     cursor: pointer;
     margin: 0px;
     font-size: 25px;
+    height: 20px;
+    line-height: 20px;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
 }
 
-.inputSelected {
-    border: solid 3px #000000;
+.options input[type=radio]:hover + label {
+    background-color: yellow;
+}
+
+.options input[type=radio]:checked + label {
+    background-color: #ff0000;
+}
+
+.options input[type=radio]:checked + label.top {
+    background-color: green;
+}
+
+.options input[type=radio]:checked + label.mid {
+    background-color: orange;
+}
+
+.options input[type=radio]:checked + label.min {
+    background-color: red;
 }
 
 .optaffchx input {
     width: 230px;
-}
-
-.input div:hover, .input div.actif {
-    color: white;
-}
-
-.input div:nth-child(1) {
-    background: #00ff00;
-}
-
-.input div:nth-child(2) {
-    background: #FF9C19;
-}
-
-.input div:nth-child(3) {
-    background: #ff0000;
 }
 
 /*******************Evaluations*************/
