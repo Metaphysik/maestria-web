@@ -12,6 +12,11 @@ use Application\Model\UserClass;
 
 class Answer extends _Api
 {
+    public function GetAction($uia, $eval, $user)
+    {
+        $this->GetActionAsync($uia, $eval, $user);
+    }
+
     public function GetActionAsync($uia, $eval, $user)
     {
         /**
@@ -20,6 +25,7 @@ class Answer extends _Api
          * @var $uc \Application\Entities\UserClass
          * @var $prev \Application\Entities\User
          * @var $next \Application\Entities\User
+         * @var $answer \Application\Entities\Answer
          */
 
         $users        = new User();
@@ -35,7 +41,7 @@ class Answer extends _Api
         $classes = new Classroom();
         $classe  = $classes->getStudentOrderByClasses($uia);
         $ucs     = new UserClass();
-        $uc      = $ucs->getFirstClasse($uia, intval($user));
+        $uc      = $ucs->getFirstClasse($this->_uia->getId(), intval($user));
         $uc      = $uc[0];
         $prev    = false;
         $next    = false;
@@ -87,6 +93,18 @@ class Answer extends _Api
         $a                 = [];
         $questions         = new Question();
         $question_iterator = $questions->getByEvaluation($eval);
+        $answers           = new \Application\Model\Answer();
+        $answers           = $answers->getAnswer($this->_uia->getId(), $current_user->getId(), $evaluation->getId());
+        $sort_answers      = [];
+
+        if (empty($answers) === false) {
+            $answer  = $answers[0];
+            $answers = json_decode($answer->getAnswer(), true);
+
+            foreach ($answers as $q => $note) {
+                $sort_answers[$q] = $note;
+            }
+        }
 
 
         foreach ($question_iterator as $question) {
@@ -97,11 +115,13 @@ class Answer extends _Api
             $a[] = [
                 'id'      => $question->getId(),
                 'title'   => $question->getTitle(),
-                'taxo'    => $question->getTaxo(), // Un int ?
+                'taxo'    => $question->getTaxo(),
+                // Un int ?
                 'item1'   => $question->getItem1(),
                 'item2'   => $question->getItem2(),
                 'note'    => $question->getPoint(),
-                'current' => -1 // -1 Non rep, 0=C , 1=B, 2=A
+                'current' => (isset($sort_answers[$question->getId()])) ? $sort_answers[$question->getId()] : -1
+                // -1 Non rep, 0=C , 1=B, 2=A
             ];
         }
 
@@ -114,9 +134,41 @@ class Answer extends _Api
 
     }
 
-    public function PostActionAsync($uia, $eval, $user)
+    public function PostActionAsync($uia, $eval)
     {
-        var_dump($_POST);
+        if (isset($_POST['elmt'])) {
+            $elmt    = json_decode($_POST['elmt'], true);
+            $answers = [];
+            $model   = new \Application\Model\Answer();
+            $user    = 0;
 
+            foreach ($elmt as $e) {
+                $match = [];
+                preg_match('#u(\d+)e(\d+)q(\d+)#', $e['name'], $match);
+
+                if (isset($match[1]) and $match[1] !== '') {
+                    $answers[$match[3]] = $e['value'];
+
+                    if ($user === 0) {
+                        $user = $match[1];
+                    } else {
+                        if ($user !== $match[1]) {
+                            $this->nok('User not match :(');
+                        }
+                    }
+                }
+            }
+            if ($this->getStatusCode() === 200) {
+                if ($model->exists($this->_uia->getId(), $user, $eval) === true) {
+                    $model->modify($this->_uia->getId(), $user, $eval, json_encode($answers));
+                } else {
+                    $model->insert($this->_uia->getId(), $user, $eval, $answers);
+                }
+            }
+        } else {
+            $this->nok('Elmt key are not found !');
+        }
+
+        echo $this->getApiJson();
     }
 }

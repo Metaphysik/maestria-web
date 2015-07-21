@@ -10,6 +10,10 @@ class Answer extends Generic
     public function insert($uia, $user, $eval, $answer)
     {
 
+        if (is_array($answer)) {
+            $answer = json_encode($answer);
+        }
+
         if ($this->exists($uia, $user, $eval) === false) {
             $this->_insert($uia, $user, $eval, $answer);
         } else {
@@ -31,7 +35,7 @@ class Answer extends Generic
             $slug = new Uia();
             $uia  = $slug->getBySludId(UIA);
         }
-        $e = $this->_repository->findBy(['refUia' => $uia, 'refUser' => $user, 'refEval' => $eval], null, 1);
+        $e = $this->_repository->findBy(['refUia' => $uia, 'refUser' => $user, 'refEval' => $eval]);
 
         return (count($e) >= 1);
     }
@@ -61,6 +65,8 @@ class Answer extends Generic
          * @var $a \Application\Entities\Answer
          */
         $a = $this->getAnswer($uia, $user, $eval);
+        $a = $a[0];
+
         $a->setAnswer($answer);
 
         $this->update($a);

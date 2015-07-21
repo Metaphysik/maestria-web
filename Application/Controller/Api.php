@@ -20,6 +20,11 @@ class Api extends Generic
         }
     }
 
+    public function getStatusCode()
+    {
+        return $this->_message['status'];
+    }
+
     public function ok($message = 'ok', $data = [])
     {
         if ($this->status(static::$ok) === true) {

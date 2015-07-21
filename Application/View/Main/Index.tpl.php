@@ -129,12 +129,35 @@ $this->block('js:script');
                         '<div><span class="awsm"></span> ' + q.item2 + '</div>' +
                         '</aside><div class="input">';
 
-                    html += '<p class="options">' +
-                        '<input type="radio" id="i' + user.id + 'q' + q.id + '" name="u' + user.id + 'q' + q.id + '" value="2" /><label for="i' + user.id + 'q' + q.id + '"class="top">A</label>' +
-                        '<input type="radio" id="i' + user.id + 'q' + q.id + '" name="u' + user.id + 'q' + q.id + '" value="1"/><label for="i' + user.id + 'q' + q.id + '" class="mid">B</label>' +
-                        '<input type="radio" id="i' + user.id + 'q' + q.id + '" name="u' + user.id + 'q' + q.id + '" value="0"/><label for="i' + user.id + 'q' + q.id + '" class="min">C</label>' +
-                        '<input type="radio" id="i' + user.id + 'q' + q.id + '" name="u' + user.id + 'q' + q.id + '" value="-1" checked="checked" />' + // TODO: Modify here
-                        '</p>';
+                    var uid = 'u' + user.id + 'e' + current_eval + 'q' + q.id;
+                    var iid = 'i' + user.id + 'e' + current_eval + 'q' + q.id;
+
+                    html += '<p class="options">';
+                    if (q.current == 2) {
+                        html += '<input type="radio" id="' + iid + '1" name="' + uid + '" value="2" checked /><label for="' + iid + '1" class="top">A</label>';
+                    }
+                    else {
+                        html += '<input type="radio" id="' + iid + '1" name="' + uid + '" value="2"/><label for="' + iid + '1" class="top">A</label>';
+                    }
+                    if (q.current == 1) {
+                        html += '<input type="radio" id="' + iid + '2" name="' + uid + '" value="1" checked /><label for="' + iid + '2" class="mid">B</label>';
+                    }
+                    else {
+                        html += '<input type="radio" id="' + iid + '2" name="' + uid + '" value="1"/><label for="' + iid + '2" class="mid">B</label>';
+                    }
+                    if (q.current == 0) {
+                        html += '<input type="radio" id="' + iid + '3" name="' + uid + '" value="0" checked /><label for="' + iid + '3" class="min">C</label>';
+                    }
+                    else {
+                        html += '<input type="radio" id="' + iid + '3" name="' + uid + '" value="0"/><label for="' + iid + '3" class="min">C</label>';
+                    }
+                    if (q.current == -1) {
+                        html += '<input type="radio" id="' + iid + '4" name="' + uid + '" value="-1" checked />'; // TODO: Modify here
+                    }
+                    else {
+                        html += '<input type="radio" id="' + iid + '4" name="' + uid + '" value="-1"/>'; // TODO: Modify here
+                    }
+                    html += '</p>';
 
                     html += '</div></article>';
                 }
@@ -146,10 +169,13 @@ $this->block('js:script');
 
                 html += '<div class="boutons">';
 
-                if (prev != undefined)
+                if (prev != undefined) {
                     html += '<h4 data-idelv="' + prev.id + '">EVALUER ' + prev.name + '</h4>';
-                if (next != undefined)
+                }
+
+                if (next != undefined) {
                     html += '<h4 style="float:right" data-idelv="' + next.id + '">EVALUER ' + next.name + '</h4>'
+                }
 
                 html += '</div>';
                 $("#popupevlcontent").empty().html(html);
@@ -176,6 +202,7 @@ $this->block('js:script');
         }).on('click', '.options > input', function () {
             if (current_class != null && current_eval != null) {
                 form_state = true;
+                console.log($(this).attr('id'));
                 sendForm();
             }
         });
@@ -183,15 +210,24 @@ $this->block('js:script');
         function sendForm() {
             var table = [];
             $('input:checked').each(function (i, e) {
-                var x = {[$(e).attr('name')]:$(e).val()};
-                table.push(x);
+                    table.push(
+                        {
+                            name: $(e).attr('name'),
+                            value: $(e).val()
+                        });
+                }
+            )
+            ;
+            table = JSON.stringify(table);
+            $.post('/api/eval/' + current_eval + '/', 'elmt=' + table, function (data) {
+                // console.log(data)
             });
-            console.log(table);
+
         }
 
-//        current_eval = 6;
+//        current_eval = 4;
 //        current_class = 1;
-//        evaluateAnStudent(67);
+//        evaluateAnStudent(82);
 //        $('#popupevl').slideDown();
 
     </script>

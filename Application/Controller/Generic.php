@@ -9,6 +9,9 @@ use Sohoa\Framework\Kit;
 
 class Generic extends Kit
 {
+    /**
+     * @var \Application\Entities\Uia
+     */
     protected $_uia;
     /**
      * @var \Application\Entities\User
