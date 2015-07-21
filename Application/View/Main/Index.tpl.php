@@ -104,27 +104,18 @@ $this->block('js:script');
             }
         });
 
-        var evaluateAnStudent = function (idStudent) {
+        var evaluateAnStudent = function (idStudent, eval) {
             var html = '';
-
-            var url = "/api/eval/" + current_eval + "/user/" + idStudent + "/"
+            var url = "/api/eval/" + current_eval + "/user/" + idStudent + "/";
             console.log(url);
             $.get(url, function (data) {
 
                 var json = JSON.parse(data);
                 var questions = json.data;
                 var log = json.log[0];
-
-                // data.log[0] = name
-                // data.log[1] = next
-                // data.log[2] = previous
-
-                var user = log[0];
-                var next = log[1];
-                var prev = log[2];
-
-
-                console.log(user);
+                var user = log[0]; // current user
+                var next = log[1]; // next user
+                var prev = log[2]; // previous user
 
                 for (var i = 0; i < questions.length; i++) {
 
@@ -134,43 +125,16 @@ $this->block('js:script');
                     html += '<article class="note" data-id="' + q.id + '"><aside><h5>' + (i + 1) + ') ' + q.title + '</h5>';
                     html += '<div><span class="awsm"></span> Appliquer';
                     html += '<span class="note">/' + q.note + '</span></div>' +
-                    '<div><span class="awsm"></span> ' + q.item1 + '</div>' +
-                    '<div><span class="awsm"></span> ' + q.item2 + '</div>' +
-                    '</aside><div class="input">';
-
+                        '<div><span class="awsm"></span> ' + q.item1 + '</div>' +
+                        '<div><span class="awsm"></span> ' + q.item2 + '</div>' +
+                        '</aside><div class="input">';
 
                     html += '<p class="options">' +
-                    '<input type="radio" id="i_'+ q.id +'" name="u_'+ q.id +'" value="2" checked/>' +
-                    '<label class="top">A</label><br />' +
-
-                    '<input type="radio" id="i_'+ q.id +'" name="u_'+ q.id +'" value="1"/>' +
-                    '<label class="mid">B</label><br />' +
-
-                    '<input type="radio" id="i_'+ q.id +'" name="u_'+ q.id +'" value="0"/>' +
-                    '<label class="min">C</label><br />' +
-                    '</p>';
-
-
-//                    if (q.current == 2) {
-//                        html += '<div data-val="2" class="btnNote inputSelected">A</div>';
-//                    }
-//                    else {
-//                        html += '<div data-val="2" class="btnNote">A</div>';
-//                    }
-//
-//                    if (q.current == 1) {
-//                        html += '<div data-val="1"  class="btnNote inputSelected">B</div>';
-//                    }
-//                    else {
-//                        html += '<div data-val="1" class="btnNote">B</div>';
-//                    }
-//
-//                    if (q.current == 0) {
-//                        html += '<div data-val="0"  class="btnNote inputSelected">C</div>';
-//                    }
-//                    else {
-//                        html += '<div data-val="0" class="btnNote">C</div>';
-//                    }
+                        '<input type="radio" id="i' + user.id + 'q' + q.id + '" name="u' + user.id + 'q' + q.id + '" value="2" /><label for="i' + user.id + 'q' + q.id + '"class="top">A</label>' +
+                        '<input type="radio" id="i' + user.id + 'q' + q.id + '" name="u' + user.id + 'q' + q.id + '" value="1"/><label for="i' + user.id + 'q' + q.id + '" class="mid">B</label>' +
+                        '<input type="radio" id="i' + user.id + 'q' + q.id + '" name="u' + user.id + 'q' + q.id + '" value="0"/><label for="i' + user.id + 'q' + q.id + '" class="min">C</label>' +
+                        '<input type="radio" id="i' + user.id + 'q' + q.id + '" name="u' + user.id + 'q' + q.id + '" value="-1" checked="checked" />' + // TODO: Modify here
+                        '</p>';
 
                     html += '</div></article>';
                 }
@@ -188,17 +152,17 @@ $this->block('js:script');
                     html += '<h4 style="float:right" data-idelv="' + next.id + '">EVALUER ' + next.name + '</h4>'
 
                 html += '</div>';
-
                 $("#popupevlcontent").empty().html(html);
-
             });
 
         };
 
+        form_state = false;
 
         $('body').on('click', '.elv', function () {
             if (current_class != null && current_eval != null) {
                 current_elv = $(this).data('idelv');
+                sendForm();
                 evaluateAnStudent(current_elv);
                 $('#popupevl').slideDown();
 
@@ -206,14 +170,29 @@ $this->block('js:script');
         }).on('click', '.boutons > h4', function () {
             if (current_class != null && current_eval != null) {
                 var id = $(this).data('idelv');
+                sendForm();
                 evaluateAnStudent(id);
             }
-        }).on('click', '.btnNote', function () {
-//            $('article.note').each(function () {
-//                console.log($(this).data('id'));
-//            })
-        })
+        }).on('click', '.options > input', function () {
+            if (current_class != null && current_eval != null) {
+                form_state = true;
+                sendForm();
+            }
+        });
 
+        function sendForm() {
+            var table = [];
+            $('input:checked').each(function (i, e) {
+                var x = {[$(e).attr('name')]:$(e).val()};
+                table.push(x);
+            });
+            console.log(table);
+        }
+
+//        current_eval = 6;
+//        current_class = 1;
+//        evaluateAnStudent(67);
+//        $('#popupevl').slideDown();
 
     </script>
 <?php

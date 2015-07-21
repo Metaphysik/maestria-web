@@ -1,3 +1,5 @@
+
+
 .neweval > section, .items > section, .evals > section, .classes > section {
     width: 85%;
 }
@@ -340,50 +342,48 @@ h4 {
     height: 26px;
     overflow: hidden;
 }
-
-.options {
-    display: flex;
-    height: 25px;
-}
-
-.options input[type=radio], input[type=checkbox] {
+input[type=radio], input[type=checkbox] {
     display: none;
 }
 
-.options input[type=radio] + label {
+input[type=radio] + label {
+    content: "";
+    text-align: center;
+    background-color: #aaa;
     display: inline-block;
     width: 71px;
     border-radius: 30px;
     padding: 5px;
-    text-align: center;
     cursor: pointer;
     margin: 0px;
     font-size: 25px;
     height: 20px;
     line-height: 20px;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
 }
 
-.options input[type=radio]:hover + label {
+input[type=radio]:hover + label {
     background-color: yellow;
 }
 
-.options input[type=radio]:checked + label {
+label:hover {
+    background-color: yellow;
+}
+
+input[type=radio]:checked + label {
     background-color: #ff0000;
 }
-
-.options input[type=radio]:checked + label.top {
+input[type=radio]:checked + label.top {
     background-color: green;
 }
-
-.options input[type=radio]:checked + label.mid {
+input[type=radio]:checked + label.mid {
     background-color: orange;
 }
-
-.options input[type=radio]:checked + label.min {
+input[type=radio]:checked + label.min {
     background-color: red;
 }
+
+
+
 
 .optaffchx input {
     width: 230px;
