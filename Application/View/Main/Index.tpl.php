@@ -87,11 +87,11 @@ $this->block('js:script');
                         html += '<article class="elv" draggable="true" data-idelv="' + users[i].id + '">';
                         html += '<div class="awsm perso" style="color:rgb(255,153,0)"><i class="fa fa-user"></i></div>';
                         html += '<div class="nom">' + users[i].name + '</div>';
-                        html += '<div class="awsm taxo" style="color:rgb(51,255,0)">';
-                        html += '<span><i class="fa fa-book"></i></span>';
-                        html += '<span><i class="fa fa-rotate-left" style="color:rgb(0,255,0)"></i></span>';
-                        html += '<span><i class="fa fa-wrench" style="color:rgb(255,204,0)"></i></span>';
-                        html += '<span><i class="fa fa-star" style="color:rgb(0,255,0)"></i></span>';
+                        html += '<div class="awsm taxo" style="color:rgb(51,255,0)">'; // Make color
+                        html += '<span><i class="fa fa-book"></i></span>'; // Make color
+                        html += '<span><i class="fa fa-rotate-left" style="color:rgb(0,255,0)"></i></span>'; // Make color
+                        html += '<span><i class="fa fa-wrench" style="color:rgb(255,204,0)"></i></span>'; // Make color
+                        html += '<span><i class="fa fa-star" style="color:rgb(0,255,0)"></i></span>'; // Make color
                         html += '</div>';
                         html += '</div>';
                         html += '<div class="prctg">' + users[i].note + '</div>';
@@ -219,16 +219,14 @@ $this->block('js:script');
             )
             ;
             table = JSON.stringify(table);
-            $.post('/api/eval/' + current_eval + '/', 'elmt=' + table, function (data) {
-                // console.log(data)
-            });
+            $.post('/api/eval/' + current_eval + '/', 'elmt=' + table);
 
         }
 
-//        current_eval = 4;
-//        current_class = 1;
-//        evaluateAnStudent(82);
-//        $('#popupevl').slideDown();
+        //        current_eval = 4;
+        //        current_class = 1;
+        //        evaluateAnStudent(82);
+        //        $('#popupevl').slideDown();
 
     </script>
 <?php
