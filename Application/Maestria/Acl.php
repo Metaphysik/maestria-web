@@ -16,7 +16,7 @@ class Acl
         $professor = new \Hoa\Acl\Group('professor');
         $moderator = new \Hoa\Acl\Group('moderator');
         $student   = new \Hoa\Acl\Group('student');
-        $resource  = new \Hoa\Acl\Resource('foo');
+        $resource  = new \Hoa\Acl\Service('foo');
 
         if ($this->_acl->groupExists('admin') === false) {
             $this->_acl->addGroup($admin);
