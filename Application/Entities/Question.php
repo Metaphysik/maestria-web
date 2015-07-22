@@ -24,6 +24,9 @@ class Question
     /** @Column(type="integer") * */
     protected $item2;
 
+    protected $item1id;
+    protected $item2id;
+
     /**
      * @return mixed
      */

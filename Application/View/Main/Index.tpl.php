@@ -216,8 +216,7 @@ $this->block('js:script');
                             value: $(e).val()
                         });
                 }
-            )
-            ;
+            );
             table = JSON.stringify(table);
             $.post('/api/eval/' + current_eval + '/', 'elmt=' + table);
 

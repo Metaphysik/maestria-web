@@ -66,7 +66,7 @@ class Evaluation extends Api
         $this->greut->render();
     }
 
-    public function updateAction($uia,$evaluation_id)
+    public function updateAction($uia, $evaluation_id)
     {
         /**
          * @var $evaluation \Application\Entities\Evaluation
@@ -75,13 +75,14 @@ class Evaluation extends Api
          */
 
         $mevaluation = new \Application\Model\Evaluation();
-        $mquestion = new Question();
+        $mquestion   = new Question();
         $stack       = $mevaluation->get($evaluation_id);
         $evaluation  = $stack['evaluation'];
         $questions   = $stack['questions'];
         $title       = $this->checkPost('title');
         $q           = $this->computeQuestion($_POST);
 
+        var_dump($q);
         if ($title === null) {
             throw new Exception('API Error on create evaluation');
         }
@@ -89,40 +90,76 @@ class Evaluation extends Api
         $evaluation->setTitle($title);
         $evaluation->setUpdatedate(time());
 
-        foreach($questions as $question) {
-            if(isset($q[$question->getId()]) === true) // Update
-            {
+        // Update
+        foreach ($questions as $k => $question) {
+            if (isset($q[$question->getId()]) === true) {
                 $value = $q[$question->getId()];
 
-                if($value['title'] !== $question->getTitle())
+                if ($value['title'] !== $question->getTitle()) {
                     $question->setTitle($value['title']);
+                }
 
-                if($value['taxo'] !== $question->getTaxo())
+                if ($value['taxo'] !== $question->getTaxo()) {
                     $question->setTaxo($value['taxo']);
+                }
 
-                if($value['note'] !== $question->getPoint())
+                if ($value['note'] !== $question->getPoint()) {
                     $question->setPoint($value['note']);
+                }
 
-                if($value['item1'] !== $question->getItem1id())
+                if ($value['item1'] !== $question->getItem1id()) {
                     $question->setItem1($value['item1']);
+                }
 
-                if($value['item2'] !== $question->getItem2id())
+                if ($value['item2'] !== $question->getItem2id()) {
                     $question->setItem2($value['item2']);
+                }
+
+                unset($q[$question->getId()]);
             }
-
-            // insert question
-            // delete question
-
-            // udapte model
+            // update model
             $mevaluation->update($question);
         }
+
+        // insert question
+        $newQuestion = new Question();
+        foreach ($q as $question) {
+            $title = $question['title'];
+            $taxo  = $question['taxo'];
+            $point = $question['note'];
+            $item1 = $question['item1'];
+            $item2 = $question['item2'];
+
+            if ($taxo === '') {
+                $taxo = 0;
+            } else {
+                $taxo = intval($taxo);
+            }
+            if ($point === '') {
+                $point = 0;
+            } else {
+                $point = intval($point);
+            }
+            if ($item1 === '') {
+                $item1 = 0;
+            } else {
+                $item1 = intval($item1);
+            }
+            if ($item2 === '') {
+                $item2 = 0;
+            } else {
+                $item2 = intval($item2);
+            }
+
+            $newQuestion->insert($evaluation_id, $title, $taxo, $point, $item1, $item2);
+        }
+
 
         $this->redirector->redirect('showUiaEvaluation', ['uia' => $uia, 'evaluation_id' => $evaluation_id]);
     }
 
-    protected function computeQuestion(
-        $post
-    ) {
+    protected function computeQuestion($post)
+    {
         $questions = [];
 
         $store = function ($i, $key, $value) use (&$questions) {
@@ -145,11 +182,11 @@ class Evaluation extends Api
 
         foreach ($post as $key => $value) {
             if ($key[0] === 'q') {
-                preg_match('#q([0-9]+)_(.*)#', $key, $m);
-                $number = intval($m[1]);
-                $title  = $m[2];
-
-                $store($number, $title, $value);
+                if (preg_match('#q(\-?[0-9]+)_(.*)#', $key, $m) > 0) {
+                    $number = intval($m[1]);
+                    $title  = $m[2];
+                    $store($number, $title, $value);
+                }
             }
         }
 
