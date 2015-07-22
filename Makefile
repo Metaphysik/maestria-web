@@ -10,7 +10,7 @@ db-install:
 	chmod +x Binaries/doctrine
 	Binaries/doctrine orm:schema-tool:create
 
-db-peuplate:
+db-random:
 	Binaries/sohoa application sample:data
 
 db-reset:

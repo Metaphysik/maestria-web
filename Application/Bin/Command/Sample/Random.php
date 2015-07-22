@@ -19,7 +19,7 @@ use Application\Model\User;
 use Application\Model\UserClass;
 use Faker\Factory;
 
-class Data extends \Hoa\Console\Dispatcher\Kit
+class Random extends \Hoa\Console\Dispatcher\Kit
 {
 
     /**

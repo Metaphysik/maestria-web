@@ -65,6 +65,7 @@ class Classroom extends Generic
             $slug = new Uia();
             $uia  = $slug->getBySludId(UIA);
         }
+
         $element  = [];
         $user     = new User();
         $entities = $this->getRepository('UserClass')->findBy(['refUia' => $uia]);

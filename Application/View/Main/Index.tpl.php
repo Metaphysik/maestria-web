@@ -12,9 +12,14 @@ $this->block('popup', 'append');
                 <div class="awsm exit"></div>
                 <h3>CHOIX DE LA CLASSE</h3></section>
             <section class="contenu classechx">
-                <h6 data-idclasse="1" data-lvl="3" data-niv="1">3<sup>1</sup></h6>
-                <h6 data-idclasse="2" data-lvl="3" data-niv="2">3<sup>2</sup></h6>
-                <h6 data-idclasse="3" data-lvl="3" data-niv="3">3<sup>3</sup></h6>
+
+                <?php foreach ($classes as $classe) {
+                    /**
+                     * @var $classe \Application\Entities\Classroom
+                     */
+                    echo '<h6 data-idclasse="'.$classe->getId().'" data-lvl="3" data-niv="1">'.$classe->getLabel().'</h6>';
+                } ?>
+
             </section>
         </section>
     </section>
@@ -60,10 +65,9 @@ $this->block('js:script');
 
         $('.classechx > h6').click(function () {
             current_class = $(this).data('idclasse');
-            lvl = $(this).data('lvl');
-            niv = $(this).data('niv');
 
-            $('#classe').html(lvl + '<sup>' + niv + '</sup>');
+
+            $('#classe').html($(this).text());
             $('#popupclasse').slideUp()
         });
 

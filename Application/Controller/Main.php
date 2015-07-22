@@ -3,6 +3,7 @@
 namespace Application\Controller;
 
 use Application\Form\Login;
+use Application\Model\Classroom;
 use Application\Model\Uia;
 use Application\Model\User;
 use Hoa\Core\Exception\Exception;
@@ -35,6 +36,10 @@ class Main extends Generic
         if ($this->isConnected() === false) {
             $this->redirector->redirect('mainconnect', ['uia' => $uia]);
         }
+
+
+        $classe              = new Classroom();
+        $this->data->classes = $classe->getBySlug($uia);
 
         $this->greut->render();
     }
