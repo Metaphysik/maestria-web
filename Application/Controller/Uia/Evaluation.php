@@ -81,7 +81,7 @@ class Evaluation extends Api
         $questions   = $stack['questions'];
         $title       = $this->checkPost('title');
         $q           = $this->computeQuestion($_POST);
-        
+
         if ($title === null) {
             throw new Exception('API Error on create evaluation');
         }

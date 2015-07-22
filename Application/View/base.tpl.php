@@ -31,33 +31,32 @@
 <nav>
     <a href="/" class="logo"><img src="/img/maestria.jpg" alt="logo maestria"/></a>
 
-    <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom'); ?>">CLASSES</a></h3>
 
-    <h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
-    <br/>
+    <?php if (isset($user) === true && ($user->getIsProfessor() === true || $user->getIsModerator() === true || $user->getIsAdmin() === true)) { ?>
+        <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom'); ?>">CLASSES</a></h3>
 
-    <h3><a href="/evaluation/">EVALUATIONS</a></h3>
+        <h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
+        <br/>
 
-    <?php
-    /**
-     * @var $selected_evaluation \Application\Entities\Evaluation
-     */
+        <h3><a href="/evaluation/">EVALUATIONS</a></h3>
 
-    if (isset($selected_evaluation) === true) {
-        if (is_object($selected_evaluation)) {
-            echo '<h3 id="evalchx" class="eval">' . $selected_evaluation->getTitle() . '</h3>';
+        <?php
+        /**
+         * @var $selected_evaluation \Application\Entities\Evaluation
+         */
+
+        if (isset($selected_evaluation) === true) {
+            if (is_object($selected_evaluation)) {
+                echo '<h3 id="evalchx" class="eval">' . $selected_evaluation->getTitle() . '</h3>';
+            }
         }
-    }
-    if (isset($selected_evaluation) === true and is_object($selected_evaluation)) {
-        ?>
-        <div class="flechebas"></div>
-        <h3 class="eval"><a href="<?= $this->route->unroute('showUiaCorrection',
-                ['correction_id' => $selected_evaluation->getId()]); ?>"> CORRECTION</a></h3>
-        <div class="flechebas"></div>
-        <h3 class="eval"><a href="<?= $this->route->unroute('editUiaEvaluation',
-                ['evaluation_id' => $selected_evaluation->getId()]); ?>"> EDITION</a></h3>
+        if (isset($selected_evaluation) === true and is_object($selected_evaluation)) {
+            ?>
+            <div class="flechebas"></div>
+            <h3 class="eval"><a href="<?= $this->route->unroute('editUiaEvaluation',
+                    ['evaluation_id' => $selected_evaluation->getId()]); ?>"> EDITION</a></h3>
+        <?php } ?>
     <?php } ?>
-
 
     <?php if (isset($user) === true && $user->getIsAdmin() === true) { ?>
         <br/>
@@ -91,7 +90,7 @@ if (isset($evaluations) and isset($user)) {
 
                 $eval = function ($evaluation) {
                     return '<a href="' . $this->route->unroute('showUiaEvaluation',
-                        ['evaluation_id' => $evaluation->getId()]) . '" data-ideval="'.$evaluation->getId().'"><h6>' . $evaluation->getTitle() .
+                        ['evaluation_id' => $evaluation->getId()]) . '" data-ideval="' . $evaluation->getId() . '"><h6>' . $evaluation->getTitle() .
                     '</h6></a>';
                 };
 
@@ -113,7 +112,7 @@ if (isset($evaluations) and isset($user)) {
             </section>
         </section>
     </section>
-<?php
+    <?php
 }
 $this->endBlock() ?>
 <?php $this->block('container'); ?>

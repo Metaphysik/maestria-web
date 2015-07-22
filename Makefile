@@ -21,12 +21,11 @@ db-update:
 	Binaries/doctrine orm:schema-tool:update --force
 
 db-right:
-	chmod 0777 Application/Maestria-orm.db
+	chmod 0777 -R Application/Database
 
 log:
-	chmod 0777 Application/Log
 	touch Application/Log/app.log
-	chmod 0777 Application/Log/app.log
+	chmod 0777 -R Application/Log
 
 install:
 	make db-update
