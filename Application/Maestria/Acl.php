@@ -3,12 +3,16 @@ namespace Application\Maestria;
 
 class Acl
 {
+    /**
+     * @var \Hoa\Acl\Acl
+     */
     protected $_acl       = null;
     protected $_framework = null;
     protected $_resource  = [];
 
     public function __construct(\Sohoa\Framework\Framework $framework)
     {
+
         $this->_acl       = \Hoa\Acl\Acl::getInstance();
         $this->_framework = $framework;
 
@@ -34,8 +38,8 @@ class Acl
             $this->_acl->addGroup($student);
         }
 
-        if ($this->_acl->resourceExists('foo') === false) {
-            $this->_acl->addResource($resource);
+        if ($this->_acl->serviceExists('foo') === false) {
+            $this->_acl->addService($resource);
         }
 
         $this->load();
