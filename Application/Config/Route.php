@@ -36,12 +36,13 @@ $this->any('/', ['as' => 'index', 'to' => 'Main#All']);
 $this->get($uia . '/api/classe/(?<classe>[^/]+)/users/', ['as' => 'indexApiUser', 'to' => 'Api\User#index']);
 $this->get($uia . '/api/eval/(?<eval>[^/]+)/user/(?<user>[^/]+)/', ['as' => 'getApiAnswer', 'to' => 'Api\Answer#get']);
 $this->post($uia . '/api/eval/(?<eval>[^/]+)/', ['as' => 'postApiAnswer', 'to' => 'Api\Answer#post']);
+$this->post($uia . '/question/(?<qid>[^/]+)/delete', ['as' => 'deleteQuestion', 'to' => 'Uia\Question#delete']);
 
 $this->get($uia . '/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
 $this->post($uia . '/item/', ['as' => 'createUiaItemDomainTheme', 'to' => 'Uia\Item#createItem']);
 $this->post($uia . '/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);
-$this->post($uia . '/item/domain/update', ['as' => 'updateUiaItemDomain', 'to' => 'Uia\Item#updateDomain']);
 $this->post($uia . '/item/domain/delete', ['as' => 'deleteUiaItemDomain', 'to' => 'Uia\Item#deleteDomain']);
+$this->post($uia . '/item/domain/update', ['as' => 'updateUiaItemDomain', 'to' => 'Uia\Item#updateDomain']);
 $this->post($uia . '/item/domain/theme', ['as' => 'createUiaItemTheme', 'to' => 'Uia\Item#createTheme']);
 $this->post($uia . '/item/domain/theme/delete', ['as' => 'deleteUiaItemTheme', 'to' => 'Uia\Item#deleteTheme']);
 $this->post($uia . '/item/domain/theme/update', ['as' => 'updateUiaItemTheme', 'to' => 'Uia\Item#updateTheme']);

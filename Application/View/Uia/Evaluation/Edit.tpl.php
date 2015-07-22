@@ -73,7 +73,8 @@ $this->block('container');
                     <input name="date" id="date" value="<?php echo date('d-m-Y', $eval->getCreatedate()); ?>"
                            type="date" readonly>
                 </div>
-                <div id="questions"><div id="qTitle"><h4>QUESTIONS</h4></div>
+                <div id="questions">
+                    <div id="qTitle"><h4>QUESTIONS</h4></div>
                     <?php
                     /**
                      * @var $questions Array
@@ -88,6 +89,7 @@ $this->block('container');
                                            id="q<?php echo $question->getId(); ?>_title"
                                            placeholder="Titre de la question <?php echo $question->getId(); ?>"
                                            value="<?php echo $question->getTitle(); ?>"/>
+                                    <i class="delete-question fa fa-trash"></i>
                                 </div>
                                 <div>
                                     <label for="q<?php echo $question->getId(); ?>_taxo">NIVEAU TAXONOMIQUE</label>
@@ -190,13 +192,31 @@ $this->block('js:script');
                 var html = newQuestion('-' + number, number);
                 child.after(html);
             }
+        });
+
+        $('body').on('click', '.delete-question', function () {
+            var section = $(this).parent().parent();
+            var id = section.data('id');
+
+            if (confirm('Are you sure to delete this question ?')) {
+                if (section.data('new') != true) {
+                    $.post('/question/' + section.data('id') + '/delete', '', function (data) {
+                        section.remove();
+                    })
+                }
+                else {
+                    section.remove();
+                }
+            }
+
 
         });
 
+
         function newQuestion(i, b) {
             console.log(i, b);
-            var html = '<section class="float" data-id="' + b + '">' +
-                '<div><label for="q' + i + '_title">TITRE</label><input name="q' + i + '_title" id="q' + i + '_title" placeholder="Titre de la question 1" /></div>' +
+            var html = '<section class="float" data-id="' + b + '" data-new="true">' +
+                '<div><label for="q' + i + '_title">TITRE</label><input name="q' + i + '_title" id="q' + i + '_title" placeholder="Titre de la question 1" /><i class="delete-question fa fa-trash"></i></div>' +
                 '<div><label for="q' + i + '_taxo">NIVEAU TAXONOMIQUE</label>' +
                 '<select name="q' + i + '_taxo" id="q' + i + '_taxo">' +
                 '<option value="1">Connaissance</option>' +
