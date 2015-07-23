@@ -1,0 +1,31 @@
+
+#logzone {
+    background: rgb(216, 216, 216);
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.login {
+    text-transform: uppercase;
+}
+
+.logout {
+    font-size: 12px;
+    text-align: center
+}
+
+/*******************login*************/
+.login {
+    background: rgb(216, 216, 216);
+}
+
+.login section {
+    border: none;
+}
+
+.login select {
+    width: 300px;
+}

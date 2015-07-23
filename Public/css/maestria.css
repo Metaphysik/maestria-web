@@ -1,832 +1,967 @@
-
-
-.neweval > section, .items > section, .evals > section, .classes > section {
-    width: 85%;
-}
-
-.classes > #contenu > form > section {
-    width: 99%;
-}
-
-.hidden {
-    display: none;
-}
-
+/* line 1, ../../Application/Stylesheet/include/general.scss */
 * {
-    margin: 0px;
-    vertical-align: top;
+  margin: 0px;
+  vertical-align: top;
 }
 
+/* line 6, ../../Application/Stylesheet/include/general.scss */
 body {
-    font-family: Questrial, Arial;
+  font-family: Questrial, Arial;
 }
 
+/* line 10, ../../Application/Stylesheet/include/general.scss */
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
+/* line 15, ../../Application/Stylesheet/include/general.scss */
 header {
-    height: 65px;
-    padding-left: 160px;
+  height: 65px;
+  padding-left: 160px;
 }
 
-#logzone {
-    background: rgb(216, 216, 216);
-    position: absolute;
-    right: 10px;
-    top: 2px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.login {
-    text-transform: uppercase;
-}
-
-.logout {
-    font-size: 12px;
-    text-align: center
-}
-
-nav {
-    position: absolute;
-    height: 460px;
-    width: 140px;
-    padding-left: 20px;
-    display: inline-block;
-    background: white;
-    top: 0px;
-    z-index: 35;
-}
-
-.logo img {
-    width: 119px;
-    margin: 5px 0px 2px 10px;
-}
-
-h1, h3 {
-    text-align: center;
-    text-transform: uppercase;
-}
-
-nav h3 {
-    padding: 10px 5px;
-    background: rgb(216, 216, 216);
-    margin: 10px;
-    font-size: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.eval {
-    background: rgb(69, 231, 194);
-}
-
-footer {
-    position: absolute;
-    bottom: 2px;
-    font-size: 15px;
-}
-
-#fleche {
-    border: 9px solid transparent;
-    width: 0px;
-    position: absolute;
-    left: 130px;
-}
-
-.flechebas {
-    border: 9px solid transparent;
-    width: 0px;
-    position: absolute;
-    left: 65px;
-    border-top: 9px solid rgb(69, 231, 194);
-    margin-top: -10px;
-}
-
-.flechedroite {
-    border: 12px solid transparent;
-    width: 0px;
-    position: absolute;
-    left: 140px;
-    border-left: 9px solid rgb(216, 216, 216);
-    top: 12px;
-}
-
-#popup, #popupclasse, #popupevl {
-    position: fixed;
-    top: 0px;
-    height: 700px;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 48;
-    display: none;
-}
-
-.exit {
-    font-size: 100px;
-    float: right;
-    cursor: pointer;
-    z-index: 50;
-}
-
-#inpopup {
-    background: white;
-    margin: 5%;
-    width: 90%;
-    overflow-y: auto;
-    height: 650px;
-}
-
-#inpopup .titre {
-    height: 100px;
-}
-
-#inpopup h3 {
-    font-size: 36px;
-    padding-top: 33px;
-}
-
-#inpopup .contenu {
-    padding: 10px 10px 100px 10px;
-}
-
-/* #inpopup div{margin:10px;} */
-#inpopup h6 {
-    background: rgb(96, 96, 96);
-    font-size: 20px;
-    color: white;
-    padding: 8px;
-    display: inline-block;
-    margin: 5px;
-    cursor: pointer;
-    vertical-align: middle;
-    width: 300px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-#inpopup .awsm, #inpopup input {
-    vertical-align: middle;
-}
-
-.itemchx .awsm, #chitem .awsm {
-    float: right;
-}
-
-#inpopup form {
-    display: inline-block;
-}
-
-#chitem {
-    display: inline-block;
-    margin-left: 40px;
-    width: 30%;
-}
-
-#corps {
-    padding-left: 160px;
-    min-height: 600px;
-    width: 100%;
-}
-
-.classe {
-    background: rgb(236, 76, 76);
-}
-
-#titre h3 {
-    overflow: hidden;
-    display: none;
-    padding: 10px 0px;
-    font-size: 46px;
-}
-
-#classe, #evalchx {
-    cursor: pointer;
-}
-
-#corps.evaluer h3, #corps.synthese h3, #corps.correction h3 {
-    display: block;
-}
-
-#titre .awsm {
-    margin: 0px 20px;
-}
-
+/* line 21, ../../Application/Stylesheet/include/general.scss */
 body h1 {
-    text-align: center;
-    font-size: 46px;
-    margin: 0px;
-    padding: 10px;
+  text-align: center;
+  font-size: 46px;
+  margin: 0px;
+  padding: 10px;
 }
 
+/* line 28, ../../Application/Stylesheet/include/general.scss */
 #contenu {
-    background: white;
-    padding: 5px;
-    margin: 10px;
+  background: white;
+  padding: 5px;
+  margin: 10px;
 }
 
+/* line 34, ../../Application/Stylesheet/include/general.scss */
 h4 {
-    display: inline-block;
-    margin: 5px;
-    padding: 5px;
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
 }
 
+/* line 40, ../../Application/Stylesheet/include/general.scss */
 .boutons h4 {
-    background: rgb(216, 216, 216);
-    cursor: pointer;
+  background: #d8d8d8;
+  cursor: pointer;
 }
 
+/* line 45, ../../Application/Stylesheet/include/general.scss */
 .boutons h4.actif {
-    color: grey;
+  color: grey;
 }
 
+/* line 49, ../../Application/Stylesheet/include/general.scss */
 .awsm, option span {
-    font-family: FontAwesome;
-    text-align: center;
-    font-weight: normal;
+  font-family: FontAwesome;
+  text-align: center;
+  font-weight: normal;
 }
 
+/* line 55, ../../Application/Stylesheet/include/general.scss */
 .awsm:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
-/*******************Evaluer*************/
-
-#cases {
-    background: white;
-}
-
-.evaluer article {
-    display: inline-block;
-    border: 1px solid black;
-    height: 130px;
-    width: 140px;
-    font-size: 23px;
-    text-align: center;
-    cursor: pointer;
-}
-
-[draggable] {
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.evaluer .perso {
-    font-size: 33px;
-}
-
-.evaluer .nom {
-    height: 40px;
-    font-size: 20px;
-    word-wrap: break-word;
-    hyphens: auto;
-    word-break: break-all;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -o-hyphens: auto;
-}
-
-.evaluer .taxo {
-    margin: 4px 0px;
-}
-
-.evaluer .taxo span {
-    margin: 0px 5px;
-}
-
-.evaluer .prctg {
-    font-size: 23px;
-    font-weight: bold;
-}
-
-.optaff {
-    background: rgb(255, 233, 111);
-}
-
-.inputresult article {
-    width: 250px;
-    display: inline-block;
-    height: 135px;
-    border: 1px solid rgb(117, 154, 198);
-    padding: 0px 1px;
-}
-
-.inputresult h5 {
-    margin: 0px;
-    font-size: 15px;
-    text-align: center;
-    background: rgb(69, 231, 194);
-}
-
-.inputresult aside {
-    height: 95px;
-}
-
-.inputresult aside div:nth-child(2) {
-    height: 15px;
-    font-style: italic;
-}
-
-.inputresult aside .note {
-    float: right;
-}
-
-.inputresult aside div {
-    margin: 2px;
-    font-size: 12px;
-    height: 26px;
-    overflow: hidden;
-}
-
-input[type=radio], input[type=checkbox] {
-    display: none;
-}
-
-input[type=radio] + label {
-    content: "";
-    text-align: center;
-    background-color: #aaa;
-    display: inline-block;
-    width: 71px;
-    border-radius: 30px;
-    padding: 5px;
-    cursor: pointer;
-    margin: 0 0;
-    font-size: 25px;
-    height: 20px;
-    line-height: 20px;
-}
-
-input[type=radio]:hover + label {
-    background-color: yellow;
-}
-input[type=radio]:checked + label {
-    background-color: #ff0000;
-}
-input[type=radio]:checked + label.top {
-    background-color: green;
-}
-input[type=radio]:checked + label.mid {
-    background-color: orange;
-}
-input[type=radio]:checked + label.min {
-    background-color: red;
-}
-
-.optaffchx input {
-    width: 230px;
-}
-
-/*******************Evaluations*************/
-.evals, .neweval {
-    background: rgb(216, 216, 216);
-}
-
-.evals .titre {
-    width: 244px;
-    overflow: hidden;
-    display: inline-block;
-}
-
-/*******************Classes*************/
-.classes {
-    background: rgb(216, 216, 216);
-}
-
-.items h4, .classes h4, .evals h4 {
-    margin: 0px 80px 0px 36px;
-}
-
-.items .awsm, .classes .awsm {
-    cursor: pointer;
-}
-
-li {
-    list-style: none;
-    cursor: pointer;
-    padding-top: 6px;
-    border-bottom: 1px solid white;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-}
-
-li:hover {
-    border-bottom: 1px solid rgb(117, 154, 198);
-}
-
-li .del, li .edit {
-    float: right;
-    margin-left: 20px;
-}
-
-ul ul {
-    display: none;
-    margin-left: 200px;
-    padding: 0px;
-}
-
-#popup ul ul {
-    margin-left: 20px;
-}
-
-.classes ul ul {
-    -webkit-column-count: 2;
-    -webkit-column-gap: 50px;
-    -moz-column-count: 2;
-    -moz-column-gap: 50px;
-}
-
-li .awsm:hover {
-    color: rgb(117, 154, 198);
-}
-
-li.actif {
-    color: rgb(117, 154, 198);
-}
-
-li .mdp {
-    visibility: hidden;
-    margin: 10px;
-    font-style: italic;
-}
-
-li:hover .mdp {
-    visibility: visible;
-}
-
-.classes ul ul {
-    counter-reset: numele;
-}
-
-.classes ul ul li {
-    border-left: 1px solid #000;
-}
-
-.classes ul ul li:before {
-    counter-increment: numele;
-    content: counter(numele) ". ";
-}
-
-/*******************synthese*************/
-.synthese {
-    background: rgb(236, 76, 76); /* 117,154,198 */
-}
-
-.synthese #contenu {
-    padding-top: 20px;
-}
-
-#listeleve {
-    padding-top: 30px;
-    width: 196px;
-    z-index: 45;
-    background: rgba(255, 255, 255, 0.5);
-    display: inline-block;
-}
-
-#listeleve h5, #domain div {
-    height: 30px;
-    border-bottom: 1px solid black;
-}
-
-#listeleve h5 {
-    background: rgb(255, 255, 255);
-    vertical-align: middle;
-}
-
-#listeleve h5 .awsm {
-    font-size: 24px;
-    vertical-align: middle;
-}
-
-#domain {
-    display: inline-block;
-    white-space: nowrap;
-    margin-left: -3px;
-}
-
-#domain section {
-    width: 70px;
-    display: inline-block;
-    background: white;
-    text-align: center;
-    cursor: pointer;
-    border-left: 1px solid black;
-    margin-top: -20px;
-}
-
-#domain h6 {
-    height: 30px;
-    text-align: center;
-    word-wrap: break-word;
-    hyphens: auto;
-    font-size: 10px;
-    word-break: break-all;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    width: 60px;
-    overflow: hidden;
-    -ms-hyphens: auto;
-    -o-hyphens: auto;
-}
-
-.visuel {
-    color: green;
-    height: 20px;
-    z-index: 50;
-    opacity: 0;
-}
-
-#domain section:hover .visuel {
-    opacity: 1;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-}
-
-.visuel.actif {
-    opacity: 1;
-}
-
-#domain section:hover {
-    opacity: 0.8;
-}
-
-#domain section div:nth-child(odd), #listeleve h5:nth-child(even) {
-    background: rgb(240, 240, 240);
-}
-
-#domain .ouvert1 h6, #domain .ouvert2 h6 {
-    background: rgb(216, 189, 120);
-}
-
-#domain article {
-    display: inline-block;
-}
-
-#domain article section {
-}
-
-#domain article article section {
-}
-
-#domain span {
-    width: 0px;
-    background: rgba(255, 255, 255, 0.2);
-    z-index: 40;
-    position: relative;
-    top: 8px;
-}
-
-#domain aside {
-    width: 50px;
-    height: 30px;
-    position: relative;
-    top: -17px;
-    z-index: 20;
-}
-
-#domain aside p {
-    background: green;
-    display: inline-block;
-    height: 18px;
-    width: 6px;
-    vertical-align: -16px;
-    margin: 0px 0px 0px 2px;
-}
-
-/*******************Correction*************/
-.correction, .evaluer {
-    background: rgb(69, 231, 194);
-}
-
-.correction #fleche, .evaluer #fleche {
-    top: 235px;
-    border-right: 11px solid rgb(69, 231, 194);
-}
-
-#correction section {
-    border: 1px solid black;
-    display: inline-block;
-    padding: 2px;
-    width: 210px;
-    margin-top: 5px;
-}
-
-#correction .name {
-    text-transform: uppercase;
-    margin-bottom: 5px;
-    width: 88%;
-    display: inline-block;
-    font-size: 9px;
-}
-
-#correction .note {
-    width: 10%;
-    display: inline-block;
-}
-
-.taxo div {
-    display: inline-block;
-    width: 52px;
-    text-align: center;
-}
-
-.taxo .awsm {
-    font-size: 17px;
-}
-
-.taxo h5 {
-    font-size: 9px;
-}
-
-.taxo .apprct, .item {
-    width: 100%;
-    text-align: justify;
-    margin-bottom: 5px;
-}
-
-.apprct {
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.graf {
-    font-size: 8px
-}
-
-.item article {
-    display: inline-block;
-    width: 49%;
-}
-
-.item div {
-    display: inline-block;
-}
-
-.item .graf {
-    width: 9%;
-}
-
-.item .libelle {
-    width: 88%;
-    max-height: 26px;
-    overflow: hidden;
-    font-size: 9px;
-}
-
-/*******************items*************/
-.items {
-    background: rgb(216, 216, 216);
-}
-
-.items #fleche {
-    top: 332px;
-    border-right: 11px solid rgb(216, 216, 216);
-}
-
-/*******************new eval*************/
-
-form .titre, form .add {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 10px 0px;
-}
-
-form .add {
-    cursor: pointer;
-}
-
-.titre label {
-    width: 130px;
-}
-
-form h4, input[type="submit"], #creer {
-    display: inline-block;
-    padding: 8px;
-    background: rgb(96, 96, 96);
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
+/* line 59, ../../Application/Stylesheet/include/general.scss */
+.hidden {
+  display: none;
 }
 
-input[type="submit"] {
-    float: right;
-    border-radius: 0px;
-    margin-right: 50px;
-    cursor: pointer;
+/* line 63, ../../Application/Stylesheet/include/general.scss */
+nav {
+  position: absolute;
+  height: 460px;
+  width: 140px;
+  padding-left: 20px;
+  display: inline-block;
+  background: white;
+  top: 0px;
+  z-index: 35;
 }
 
-form section {
-    display: inline-block;
-    border: 1px solid black;
-    margin: 4px;
-    padding: 5px;
+/* line 1, ../../Application/Stylesheet/include/sidebar.scss */
+.logo img {
+  width: 119px;
+  margin: 5px 0px 2px 10px;
 }
 
-form section div {
-    margin: 8px 0px;
+/* line 6, ../../Application/Stylesheet/include/sidebar.scss */
+h1, h3 {
+  text-align: center;
+  text-transform: uppercase;
 }
 
-form label {
-    width: 240px;
-    display: inline-block;
-    text-align: right;
-    vertical-align: middle;
+/* line 11, ../../Application/Stylesheet/include/sidebar.scss */
+nav h3 {
+  padding: 10px 5px;
+  background: #d8d8d8;
+  margin: 10px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
 }
 
-label + select, label + input {
-    margin-left: 5px;
-    vertical-align: middle;
+/* line 20, ../../Application/Stylesheet/include/sidebar.scss */
+.eval {
+  background: #45e7c2;
 }
 
-select, input {
-    text-align: center;
-    width: 300px;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    border-radius: 2px;
-    margin-left: 20px;
-    background: rgb(216, 216, 216);
-    border: none;
-    padding: 3px 0px;
+/* line 24, ../../Application/Stylesheet/include/sidebar.scss */
+footer {
+  position: absolute;
+  bottom: 2px;
+  font-size: 15px;
 }
 
-select:hover, input:hover, input.actif {
-    box-shadow: 0px 0px 5px blue;
+/* line 30, ../../Application/Stylesheet/include/sidebar.scss */
+#fleche {
+  border: 9px solid transparent;
+  width: 0px;
+  position: absolute;
+  left: 130px;
 }
 
-select option:nth-child(2)[selected^="true"] {
-    background: blue;
+/* line 37, ../../Application/Stylesheet/include/sidebar.scss */
+.flechebas {
+  border: 9px solid transparent;
+  width: 0px;
+  position: absolute;
+  left: 65px;
+  border-top: 9px solid #45e7c2;
+  margin-top: -10px;
 }
 
-select {
-    width: 130px;
+/* line 46, ../../Application/Stylesheet/include/sidebar.scss */
+.flechedroite {
+  border: 12px solid transparent;
+  width: 0px;
+  position: absolute;
+  left: 140px;
+  border-left: 9px solid #d8d8d8;
+  top: 12px;
 }
 
-input[type="number"] {
-    width: 50px;
+/* line 2, ../../Application/Stylesheet/include/login.scss */
+#logzone {
+  background: #d8d8d8;
+  position: absolute;
+  right: 10px;
+  top: 2px;
+  padding: 10px;
+  cursor: pointer;
 }
 
-input[type="date"] {
-    width: 190px;
+/* line 11, ../../Application/Stylesheet/include/login.scss */
+.login {
+  text-transform: uppercase;
 }
 
-form .awsm {
-    vertical-align: bottom;
-    margin-left: 5px;
-    cursor: pointer;
+/* line 15, ../../Application/Stylesheet/include/login.scss */
+.logout {
+  font-size: 12px;
+  text-align: center;
 }
 
 /*******************login*************/
+/* line 21, ../../Application/Stylesheet/include/login.scss */
 .login {
-    background: rgb(216, 216, 216);
+  background: #d8d8d8;
 }
 
+/* line 25, ../../Application/Stylesheet/include/login.scss */
 .login section {
-    border: none;
+  border: none;
 }
 
+/* line 29, ../../Application/Stylesheet/include/login.scss */
 .login select {
-    width: 300px;
+  width: 300px;
+}
+
+/* line 2, ../../Application/Stylesheet/include/classes.scss */
+.classes > #contenu > form > section {
+  width: 99%;
+}
+
+/*******************Classes*************/
+/* line 9, ../../Application/Stylesheet/include/classes.scss */
+.classes {
+  background: #d8d8d8;
+}
+
+/* line 13, ../../Application/Stylesheet/include/classes.scss */
+.items h4, .classes h4, .evals h4 {
+  margin: 0px 80px 0px 36px;
+}
+
+/* line 17, ../../Application/Stylesheet/include/classes.scss */
+.items .awsm, .classes .awsm {
+  cursor: pointer;
+}
+
+/* line 21, ../../Application/Stylesheet/include/classes.scss */
+li {
+  list-style: none;
+  cursor: pointer;
+  padding-top: 6px;
+  border-bottom: 1px solid white;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+}
+
+/* line 30, ../../Application/Stylesheet/include/classes.scss */
+li:hover {
+  border-bottom: 1px solid #759ac6;
+}
+
+/* line 34, ../../Application/Stylesheet/include/classes.scss */
+li .del, li .edit {
+  float: right;
+  margin-left: 20px;
+}
+
+/* line 39, ../../Application/Stylesheet/include/classes.scss */
+ul ul {
+  display: none;
+  margin-left: 200px;
+  padding: 0px;
+}
+
+/* line 45, ../../Application/Stylesheet/include/classes.scss */
+#popup ul ul {
+  margin-left: 20px;
+}
+
+/* line 49, ../../Application/Stylesheet/include/classes.scss */
+.classes ul ul {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 50px;
+  -moz-column-count: 2;
+  -moz-column-gap: 50px;
+}
+
+/* line 56, ../../Application/Stylesheet/include/classes.scss */
+li .awsm:hover {
+  color: #759ac6;
+}
+
+/* line 60, ../../Application/Stylesheet/include/classes.scss */
+li.actif {
+  color: #759ac6;
+}
+
+/* line 64, ../../Application/Stylesheet/include/classes.scss */
+li .mdp {
+  visibility: hidden;
+  margin: 10px;
+  font-style: italic;
+}
+
+/* line 70, ../../Application/Stylesheet/include/classes.scss */
+li:hover .mdp {
+  visibility: visible;
+}
+
+/* line 74, ../../Application/Stylesheet/include/classes.scss */
+.classes ul ul {
+  counter-reset: numele;
+}
+
+/* line 78, ../../Application/Stylesheet/include/classes.scss */
+.classes ul ul li {
+  border-left: 1px solid #000;
+}
+
+/* line 82, ../../Application/Stylesheet/include/classes.scss */
+.classes ul ul li:before {
+  counter-increment: numele;
+  content: counter(numele) ". ";
+}
+
+/*******************Correction*************/
+/* line 2, ../../Application/Stylesheet/include/correction.scss */
+.correction, .evaluer {
+  background: #45e7c2;
+}
+
+/* line 6, ../../Application/Stylesheet/include/correction.scss */
+.correction #fleche, .evaluer #fleche {
+  top: 235px;
+  border-right: 11px solid #45e7c2;
+}
+
+/* line 11, ../../Application/Stylesheet/include/correction.scss */
+#correction section {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 2px;
+  width: 210px;
+  margin-top: 5px;
+}
+
+/* line 19, ../../Application/Stylesheet/include/correction.scss */
+#correction .name {
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  width: 88%;
+  display: inline-block;
+  font-size: 9px;
+}
+
+/* line 27, ../../Application/Stylesheet/include/correction.scss */
+#correction .note {
+  width: 10%;
+  display: inline-block;
+}
+
+/* line 32, ../../Application/Stylesheet/include/correction.scss */
+.taxo div {
+  display: inline-block;
+  width: 52px;
+  text-align: center;
+}
+
+/* line 38, ../../Application/Stylesheet/include/correction.scss */
+.taxo .awsm {
+  font-size: 17px;
+}
+
+/* line 42, ../../Application/Stylesheet/include/correction.scss */
+.taxo h5 {
+  font-size: 9px;
+}
+
+/* line 46, ../../Application/Stylesheet/include/correction.scss */
+.taxo .apprct, .item {
+  width: 100%;
+  text-align: justify;
+  margin-bottom: 5px;
+}
+
+/* line 52, ../../Application/Stylesheet/include/correction.scss */
+.apprct {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* line 57, ../../Application/Stylesheet/include/correction.scss */
+.graf {
+  font-size: 8px;
+}
+
+/* line 61, ../../Application/Stylesheet/include/correction.scss */
+.item article {
+  display: inline-block;
+  width: 49%;
+}
+
+/* line 66, ../../Application/Stylesheet/include/correction.scss */
+.item div {
+  display: inline-block;
+}
+
+/* line 70, ../../Application/Stylesheet/include/correction.scss */
+.item .graf {
+  width: 9%;
+}
+
+/* line 74, ../../Application/Stylesheet/include/correction.scss */
+.item .libelle {
+  width: 88%;
+  max-height: 26px;
+  overflow: hidden;
+  font-size: 9px;
+}
+
+/*******************Evaluations*************/
+/* line 2, ../../Application/Stylesheet/include/evaluations.scss */
+.evals, .neweval {
+  background: #d8d8d8;
+}
+
+/* line 6, ../../Application/Stylesheet/include/evaluations.scss */
+.evals .titre {
+  width: 244px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* line 12, ../../Application/Stylesheet/include/evaluations.scss */
+.neweval > section, .items > section, .evals > section, .classes > section {
+  width: 85%;
+}
+
+/*******************Evaluer*************/
+/* line 3, ../../Application/Stylesheet/include/evaluer.scss */
+#cases {
+  background: white;
+}
+
+/* line 7, ../../Application/Stylesheet/include/evaluer.scss */
+.evaluer article {
+  display: inline-block;
+  border: 1px solid black;
+  height: 130px;
+  width: 140px;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* line 17, ../../Application/Stylesheet/include/evaluer.scss */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* line 24, ../../Application/Stylesheet/include/evaluer.scss */
+.evaluer .perso {
+  font-size: 33px;
+}
+
+/* line 28, ../../Application/Stylesheet/include/evaluer.scss */
+.evaluer .nom {
+  height: 40px;
+  font-size: 20px;
+  word-wrap: break-word;
+  hyphens: auto;
+  word-break: break-all;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+}
+
+/* line 40, ../../Application/Stylesheet/include/evaluer.scss */
+.evaluer .taxo {
+  margin: 4px 0px;
+}
+
+/* line 44, ../../Application/Stylesheet/include/evaluer.scss */
+.evaluer .taxo span {
+  margin: 0px 5px;
+}
+
+/* line 48, ../../Application/Stylesheet/include/evaluer.scss */
+.evaluer .prctg {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+/* line 53, ../../Application/Stylesheet/include/evaluer.scss */
+.optaff {
+  background: #ffe96f;
+}
+
+/* line 57, ../../Application/Stylesheet/include/evaluer.scss */
+.inputresult article {
+  width: 250px;
+  display: inline-block;
+  height: 135px;
+  border: 1px solid #759ac6;
+  padding: 0px 1px;
+}
+
+/* line 65, ../../Application/Stylesheet/include/evaluer.scss */
+.inputresult h5 {
+  margin: 0px;
+  font-size: 15px;
+  text-align: center;
+  background: #45e7c2;
+}
+
+/* line 72, ../../Application/Stylesheet/include/evaluer.scss */
+.inputresult aside {
+  height: 95px;
+}
+
+/* line 76, ../../Application/Stylesheet/include/evaluer.scss */
+.inputresult aside div:nth-child(2) {
+  height: 15px;
+  font-style: italic;
+}
+
+/* line 81, ../../Application/Stylesheet/include/evaluer.scss */
+.inputresult aside .note {
+  float: right;
+}
+
+/* line 85, ../../Application/Stylesheet/include/evaluer.scss */
+.inputresult aside div {
+  margin: 2px;
+  font-size: 12px;
+  height: 26px;
+  overflow: hidden;
+}
+
+/* line 92, ../../Application/Stylesheet/include/evaluer.scss */
+input[type=radio], input[type=checkbox] {
+  display: none;
+}
+
+/* line 96, ../../Application/Stylesheet/include/evaluer.scss */
+input[type=radio] + label {
+  content: "";
+  text-align: center;
+  background-color: #aaa;
+  display: inline-block;
+  width: 71px;
+  border-radius: 30px;
+  padding: 5px;
+  cursor: pointer;
+  margin: 0 0;
+  font-size: 25px;
+  height: 20px;
+  line-height: 20px;
+}
+
+/* line 111, ../../Application/Stylesheet/include/evaluer.scss */
+input[type=radio]:hover + label {
+  background-color: yellow;
+}
+
+/* line 114, ../../Application/Stylesheet/include/evaluer.scss */
+input[type=radio]:checked + label {
+  background-color: #ff0000;
+}
+
+/* line 117, ../../Application/Stylesheet/include/evaluer.scss */
+input[type=radio]:checked + label.top {
+  background-color: green;
+}
+
+/* line 120, ../../Application/Stylesheet/include/evaluer.scss */
+input[type=radio]:checked + label.mid {
+  background-color: orange;
+}
+
+/* line 123, ../../Application/Stylesheet/include/evaluer.scss */
+input[type=radio]:checked + label.min {
+  background-color: red;
+}
+
+/* line 127, ../../Application/Stylesheet/include/evaluer.scss */
+.optaffchx input {
+  width: 230px;
+}
+
+/*******************new eval*************/
+/* line 133, ../../Application/Stylesheet/include/evaluer.scss */
+form .titre, form .add {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0px;
+}
+
+/* line 139, ../../Application/Stylesheet/include/evaluer.scss */
+form .add {
+  cursor: pointer;
+}
+
+/* line 143, ../../Application/Stylesheet/include/evaluer.scss */
+.titre label {
+  width: 130px;
+}
+
+/* line 147, ../../Application/Stylesheet/include/evaluer.scss */
+form h4, input[type="submit"], #creer {
+  display: inline-block;
+  padding: 8px;
+  background: #606060;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+/* line 156, ../../Application/Stylesheet/include/evaluer.scss */
+input[type="submit"] {
+  float: right;
+  border-radius: 0px;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+/* line 163, ../../Application/Stylesheet/include/evaluer.scss */
+form section {
+  display: inline-block;
+  border: 1px solid black;
+  margin: 4px;
+  padding: 5px;
+}
+
+/* line 170, ../../Application/Stylesheet/include/evaluer.scss */
+form section div {
+  margin: 8px 0px;
+}
+
+/* line 174, ../../Application/Stylesheet/include/evaluer.scss */
+form label {
+  width: 240px;
+  display: inline-block;
+  text-align: right;
+  vertical-align: middle;
+}
+
+/* line 181, ../../Application/Stylesheet/include/evaluer.scss */
+label + select, label + input {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+/* line 186, ../../Application/Stylesheet/include/evaluer.scss */
+select, input {
+  text-align: center;
+  width: 300px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  border-radius: 2px;
+  margin-left: 20px;
+  background: #d8d8d8;
+  border: none;
+  padding: 3px 0px;
+}
+
+/* line 198, ../../Application/Stylesheet/include/evaluer.scss */
+select:hover, input:hover, input.actif {
+  box-shadow: 0px 0px 5px blue;
+}
+
+/* line 202, ../../Application/Stylesheet/include/evaluer.scss */
+select option:nth-child(2)[selected^="true"] {
+  background: blue;
+}
+
+/* line 206, ../../Application/Stylesheet/include/evaluer.scss */
+select {
+  width: 130px;
+}
+
+/* line 210, ../../Application/Stylesheet/include/evaluer.scss */
+input[type="number"] {
+  width: 50px;
+}
+
+/* line 214, ../../Application/Stylesheet/include/evaluer.scss */
+input[type="date"] {
+  width: 190px;
+}
+
+/* line 218, ../../Application/Stylesheet/include/evaluer.scss */
+form .awsm {
+  vertical-align: bottom;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/*******************items*************/
+/* line 3, ../../Application/Stylesheet/include/items.scss */
+.items {
+  background: #d8d8d8;
+}
+
+/* line 7, ../../Application/Stylesheet/include/items.scss */
+.items #fleche {
+  top: 332px;
+  border-right: 11px solid #d8d8d8;
+}
+
+/* line 1, ../../Application/Stylesheet/include/popup.scss */
+#popup, #popupclasse, #popupevl {
+  position: fixed;
+  top: 0px;
+  height: 700px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 48;
+  display: none;
+}
+
+/* line 11, ../../Application/Stylesheet/include/popup.scss */
+.exit {
+  font-size: 100px;
+  float: right;
+  cursor: pointer;
+  z-index: 50;
+}
+
+/* line 18, ../../Application/Stylesheet/include/popup.scss */
+#inpopup {
+  background: white;
+  margin: 5%;
+  width: 90%;
+  overflow-y: auto;
+  height: 650px;
+}
+
+/* line 26, ../../Application/Stylesheet/include/popup.scss */
+#inpopup .titre {
+  height: 100px;
+}
+
+/* line 30, ../../Application/Stylesheet/include/popup.scss */
+#inpopup h3 {
+  font-size: 36px;
+  padding-top: 33px;
+}
+
+/* line 35, ../../Application/Stylesheet/include/popup.scss */
+#inpopup .contenu {
+  padding: 10px 10px 100px 10px;
+}
+
+/* #inpopup div{margin:10px;} */
+/* line 40, ../../Application/Stylesheet/include/popup.scss */
+#inpopup h6 {
+  background: #606060;
+  font-size: 20px;
+  color: white;
+  padding: 8px;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+  width: 300px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* line 54, ../../Application/Stylesheet/include/popup.scss */
+#inpopup .awsm, #inpopup input {
+  vertical-align: middle;
+}
+
+/* line 58, ../../Application/Stylesheet/include/popup.scss */
+.itemchx .awsm, #chitem .awsm {
+  float: right;
+}
+
+/* line 62, ../../Application/Stylesheet/include/popup.scss */
+#inpopup form {
+  display: inline-block;
+}
+
+/* line 66, ../../Application/Stylesheet/include/popup.scss */
+#chitem {
+  display: inline-block;
+  margin-left: 40px;
+  width: 30%;
+}
+
+/* line 72, ../../Application/Stylesheet/include/popup.scss */
+#corps {
+  padding-left: 160px;
+  min-height: 600px;
+  width: 100%;
+}
+
+/* line 78, ../../Application/Stylesheet/include/popup.scss */
+.classe {
+  background: #ec4c4c;
+}
+
+/* line 82, ../../Application/Stylesheet/include/popup.scss */
+#titre h3 {
+  overflow: hidden;
+  display: none;
+  padding: 10px 0px;
+  font-size: 46px;
+}
+
+/* line 89, ../../Application/Stylesheet/include/popup.scss */
+#classe, #evalchx {
+  cursor: pointer;
+}
+
+/* line 93, ../../Application/Stylesheet/include/popup.scss */
+#corps.evaluer h3, #corps.synthese h3, #corps.correction h3 {
+  display: block;
+}
+
+/* line 97, ../../Application/Stylesheet/include/popup.scss */
+#titre .awsm {
+  margin: 0px 20px;
+}
+
+/*******************synthese*************/
+/* line 2, ../../Application/Stylesheet/include/synthese.scss */
+.synthese {
+  background: #ec4c4c;
+  /* 117,154,198 */
+}
+
+/* line 6, ../../Application/Stylesheet/include/synthese.scss */
+.synthese #contenu {
+  padding-top: 20px;
+}
+
+/* line 10, ../../Application/Stylesheet/include/synthese.scss */
+#listeleve {
+  padding-top: 30px;
+  width: 196px;
+  z-index: 45;
+  background: rgba(255, 255, 255, 0.5);
+  display: inline-block;
+}
+
+/* line 18, ../../Application/Stylesheet/include/synthese.scss */
+#listeleve h5, #domain div {
+  height: 30px;
+  border-bottom: 1px solid black;
+}
+
+/* line 23, ../../Application/Stylesheet/include/synthese.scss */
+#listeleve h5 {
+  background: white;
+  vertical-align: middle;
+}
+
+/* line 28, ../../Application/Stylesheet/include/synthese.scss */
+#listeleve h5 .awsm {
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+/* line 33, ../../Application/Stylesheet/include/synthese.scss */
+#domain {
+  display: inline-block;
+  white-space: nowrap;
+  margin-left: -3px;
+}
+
+/* line 39, ../../Application/Stylesheet/include/synthese.scss */
+#domain section {
+  width: 70px;
+  display: inline-block;
+  background: white;
+  text-align: center;
+  cursor: pointer;
+  border-left: 1px solid black;
+  margin-top: -20px;
+}
+
+/* line 49, ../../Application/Stylesheet/include/synthese.scss */
+#domain h6 {
+  height: 30px;
+  text-align: center;
+  word-wrap: break-word;
+  hyphens: auto;
+  font-size: 10px;
+  word-break: break-all;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  width: 60px;
+  overflow: hidden;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+}
+
+/* line 64, ../../Application/Stylesheet/include/synthese.scss */
+.visuel {
+  color: green;
+  height: 20px;
+  z-index: 50;
+  opacity: 0;
+}
+
+/* line 71, ../../Application/Stylesheet/include/synthese.scss */
+#domain section:hover .visuel {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+}
+
+/* line 77, ../../Application/Stylesheet/include/synthese.scss */
+.visuel.actif {
+  opacity: 1;
+}
+
+/* line 81, ../../Application/Stylesheet/include/synthese.scss */
+#domain section:hover {
+  opacity: 0.8;
+}
+
+/* line 85, ../../Application/Stylesheet/include/synthese.scss */
+#domain section div:nth-child(odd), #listeleve h5:nth-child(even) {
+  background: #f0f0f0;
+}
+
+/* line 89, ../../Application/Stylesheet/include/synthese.scss */
+#domain .ouvert1 h6, #domain .ouvert2 h6 {
+  background: #d8bd78;
+}
+
+/* line 93, ../../Application/Stylesheet/include/synthese.scss */
+#domain article {
+  display: inline-block;
+}
+
+/* line 103, ../../Application/Stylesheet/include/synthese.scss */
+#domain span {
+  width: 0px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 40;
+  position: relative;
+  top: 8px;
+}
+
+/* line 111, ../../Application/Stylesheet/include/synthese.scss */
+#domain aside {
+  width: 50px;
+  height: 30px;
+  position: relative;
+  top: -17px;
+  z-index: 20;
+}
+
+/* line 119, ../../Application/Stylesheet/include/synthese.scss */
+#domain aside p {
+  background: green;
+  display: inline-block;
+  height: 18px;
+  width: 6px;
+  vertical-align: -16px;
+  margin: 0px 0px 0px 2px;
 }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
-
 /**
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-
+/* line 17, ../../Application/Stylesheet/include/normalize.scss */
 html {
-    font-family: sans-serif; /* 1 */
-    -ms-text-size-adjust: 100%; /* 2 */
-    -webkit-text-size-adjust: 100%; /* 2 */
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
 }
 
 /**
  * Remove default margin.
  */
-
+/* line 27, ../../Application/Stylesheet/include/normalize.scss */
 body {
-    margin: 0;
+  margin: 0;
 }
 
 /* HTML5 display definitions
    ========================================================================== */
-
 /**
  * Correct `block` display not defined for any HTML5 element in IE 8/9.
  * Correct `block` display not defined for `details` or `summary` in IE 10/11
  * and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-
+/* line 41, ../../Application/Stylesheet/include/normalize.scss */
 article,
 aside,
 details,
@@ -840,228 +975,229 @@ menu,
 nav,
 section,
 summary {
-    display: block;
+  display: block;
 }
 
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-
+/* line 62, ../../Application/Stylesheet/include/normalize.scss */
 audio,
 canvas,
 progress,
 video {
-    display: inline-block; /* 1 */
-    vertical-align: baseline; /* 2 */
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
 }
 
 /**
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
-
+/* line 75, ../../Application/Stylesheet/include/normalize.scss */
 audio:not([controls]) {
-    display: none;
-    height: 0;
+  display: none;
+  height: 0;
 }
 
 /**
  * Address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
-
+/* line 85, ../../Application/Stylesheet/include/normalize.scss */
 [hidden],
 template {
-    display: none;
+  display: none;
 }
 
 /* Links
    ========================================================================== */
-
 /**
  * Remove the gray background color from active links in IE 10.
  */
-
+/* line 97, ../../Application/Stylesheet/include/normalize.scss */
 a {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-
+/* line 105, ../../Application/Stylesheet/include/normalize.scss */
 a:active,
 a:hover {
-    outline: 0;
+  outline: 0;
 }
 
 /* Text-level semantics
    ========================================================================== */
-
 /**
  * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
  */
-
+/* line 117, ../../Application/Stylesheet/include/normalize.scss */
 abbr[title] {
-    border-bottom: 1px dotted;
+  border-bottom: 1px dotted;
 }
 
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-
+/* line 125, ../../Application/Stylesheet/include/normalize.scss */
 b,
 strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /**
  * Address styling not present in Safari and Chrome.
  */
-
+/* line 134, ../../Application/Stylesheet/include/normalize.scss */
 dfn {
-    font-style: italic;
+  font-style: italic;
 }
 
 /**
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-
+/* line 143, ../../Application/Stylesheet/include/normalize.scss */
 h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
+  font-size: 2em;
+  margin: 0.67em 0;
 }
 
 /**
  * Address styling not present in IE 8/9.
  */
-
+/* line 152, ../../Application/Stylesheet/include/normalize.scss */
 mark {
-    background: #ff0;
-    color: #000;
+  background: #ff0;
+  color: #000;
 }
 
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-
+/* line 161, ../../Application/Stylesheet/include/normalize.scss */
 small {
-    font-size: 80%;
+  font-size: 80%;
 }
 
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-
+/* line 169, ../../Application/Stylesheet/include/normalize.scss */
 sub,
 sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 
+/* line 177, ../../Application/Stylesheet/include/normalize.scss */
 sup {
-    top: -0.5em;
+  top: -0.5em;
 }
 
+/* line 181, ../../Application/Stylesheet/include/normalize.scss */
 sub {
-    bottom: -0.25em;
+  bottom: -0.25em;
 }
 
 /* Embedded content
    ========================================================================== */
-
 /**
  * Remove border when inside `a` element in IE 8/9/10.
  */
-
+/* line 192, ../../Application/Stylesheet/include/normalize.scss */
 img {
-    border: 0;
+  border: 0;
 }
 
 /**
  * Correct overflow not hidden in IE 9/10/11.
  */
-
+/* line 200, ../../Application/Stylesheet/include/normalize.scss */
 svg:not(:root) {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* Grouping content
    ========================================================================== */
-
 /**
  * Address margin not present in IE 8/9 and Safari.
  */
-
+/* line 211, ../../Application/Stylesheet/include/normalize.scss */
 figure {
-    margin: 1em 40px;
+  margin: 1em 40px;
 }
 
 /**
  * Address differences between Firefox and other browsers.
  */
-
+/* line 219, ../../Application/Stylesheet/include/normalize.scss */
 hr {
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 0;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
 }
 
 /**
  * Contain overflow in all browsers.
  */
-
+/* line 229, ../../Application/Stylesheet/include/normalize.scss */
 pre {
-    overflow: auto;
+  overflow: auto;
 }
 
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
-
+/* line 237, ../../Application/Stylesheet/include/normalize.scss */
 code,
 kbd,
 pre,
 samp {
-    font-family: monospace, monospace;
-    font-size: 1em;
+  font-family: monospace, monospace;
+  font-size: 1em;
 }
 
 /* Forms
    ========================================================================== */
-
 /**
  * Known limitation: by default, Chrome and Safari on OS X allow very limited
  * styling of `select`, unless a `border` property is set.
  */
-
 /**
  * 1. Correct color not being inherited.
  *    Known issue: affects color of disabled elements.
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
-
+/* line 260, ../../Application/Stylesheet/include/normalize.scss */
 button,
 input,
 optgroup,
 select,
 textarea {
-    color: inherit; /* 1 */
-    font: inherit; /* 2 */
-    margin: 0; /* 3 */
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
 }
 
 /**
  * Address `overflow` set to `hidden` in IE 8/9/10/11.
  */
-
+/* line 274, ../../Application/Stylesheet/include/normalize.scss */
 button {
-    overflow: visible;
+  overflow: visible;
 }
 
 /**
@@ -1070,10 +1206,10 @@ button {
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
-
+/* line 285, ../../Application/Stylesheet/include/normalize.scss */
 button,
 select {
-    text-transform: none;
+  text-transform: none;
 }
 
 /**
@@ -1083,41 +1219,43 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-
+/* line 298, ../../Application/Stylesheet/include/normalize.scss */
 button,
-html input[type="button"], /* 1 */
+html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-    -webkit-appearance: button; /* 2 */
-    cursor: pointer; /* 3 */
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
 }
 
 /**
  * Re-set default cursor for disabled elements.
  */
-
+/* line 310, ../../Application/Stylesheet/include/normalize.scss */
 button[disabled],
 html input[disabled] {
-    cursor: default;
+  cursor: default;
 }
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-
+/* line 319, ../../Application/Stylesheet/include/normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
 
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-
+/* line 330, ../../Application/Stylesheet/include/normalize.scss */
 input {
-    line-height: normal;
+  line-height: normal;
 }
 
 /**
@@ -1127,11 +1265,13 @@ input {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-
+/* line 342, ../../Application/Stylesheet/include/normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
-    box-sizing: border-box; /* 1 */
-    padding: 0; /* 2 */
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
 }
 
 /**
@@ -1139,10 +1279,10 @@ input[type="radio"] {
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-
+/* line 354, ../../Application/Stylesheet/include/normalize.scss */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    height: auto;
+  height: auto;
 }
 
 /**
@@ -1150,12 +1290,14 @@ input[type="number"]::-webkit-outer-spin-button {
  * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
  *    (include `-moz` to future-proof).
  */
-
+/* line 365, ../../Application/Stylesheet/include/normalize.scss */
 input[type="search"] {
-    -webkit-appearance: textfield; /* 1 */
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box; /* 2 */
-    box-sizing: content-box;
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
 }
 
 /**
@@ -1163,62 +1305,64 @@ input[type="search"] {
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-
+/* line 378, ../../Application/Stylesheet/include/normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 /**
  * Define consistent border, margin, and padding.
  */
-
+/* line 387, ../../Application/Stylesheet/include/normalize.scss */
 fieldset {
-    border: 1px solid #c0c0c0;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
 }
 
 /**
  * 1. Correct `color` not being inherited in IE 8/9/10/11.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
-
+/* line 398, ../../Application/Stylesheet/include/normalize.scss */
 legend {
-    border: 0; /* 1 */
-    padding: 0; /* 2 */
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
 }
 
 /**
  * Remove default vertical scrollbar in IE 8/9/10/11.
  */
-
+/* line 407, ../../Application/Stylesheet/include/normalize.scss */
 textarea {
-    overflow: auto;
+  overflow: auto;
 }
 
 /**
  * Don't inherit the `font-weight` (applied by a rule above).
  * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
  */
-
+/* line 416, ../../Application/Stylesheet/include/normalize.scss */
 optgroup {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /* Tables
    ========================================================================== */
-
 /**
  * Remove most spacing between table cells.
  */
-
+/* line 427, ../../Application/Stylesheet/include/normalize.scss */
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
+/* line 432, ../../Application/Stylesheet/include/normalize.scss */
 td,
 th {
-    padding: 0;
+  padding: 0;
 }

@@ -30,3 +30,6 @@ log:
 install:
 	make db-update
 	$(COMPOSER) update
+
+build:
+	compass compile Application\Stylesheet\maestria.scss Application\Stylesheet\font-awesome.scss

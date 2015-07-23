@@ -1,0 +1,222 @@
+/*******************Evaluer*************/
+
+#cases {
+    background: white;
+}
+
+.evaluer article {
+    display: inline-block;
+    border: 1px solid black;
+    height: 130px;
+    width: 140px;
+    font-size: 23px;
+    text-align: center;
+    cursor: pointer;
+}
+
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.evaluer .perso {
+    font-size: 33px;
+}
+
+.evaluer .nom {
+    height: 40px;
+    font-size: 20px;
+    word-wrap: break-word;
+    hyphens: auto;
+    word-break: break-all;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+}
+
+.evaluer .taxo {
+    margin: 4px 0px;
+}
+
+.evaluer .taxo span {
+    margin: 0px 5px;
+}
+
+.evaluer .prctg {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.optaff {
+    background: rgb(255, 233, 111);
+}
+
+.inputresult article {
+    width: 250px;
+    display: inline-block;
+    height: 135px;
+    border: 1px solid rgb(117, 154, 198);
+    padding: 0px 1px;
+}
+
+.inputresult h5 {
+    margin: 0px;
+    font-size: 15px;
+    text-align: center;
+    background: rgb(69, 231, 194);
+}
+
+.inputresult aside {
+    height: 95px;
+}
+
+.inputresult aside div:nth-child(2) {
+    height: 15px;
+    font-style: italic;
+}
+
+.inputresult aside .note {
+    float: right;
+}
+
+.inputresult aside div {
+    margin: 2px;
+    font-size: 12px;
+    height: 26px;
+    overflow: hidden;
+}
+
+input[type=radio], input[type=checkbox] {
+    display: none;
+}
+
+input[type=radio] + label {
+    content: "";
+    text-align: center;
+    background-color: #aaa;
+    display: inline-block;
+    width: 71px;
+    border-radius: 30px;
+    padding: 5px;
+    cursor: pointer;
+    margin: 0 0;
+    font-size: 25px;
+    height: 20px;
+    line-height: 20px;
+}
+
+input[type=radio]:hover + label {
+    background-color: yellow;
+}
+input[type=radio]:checked + label {
+    background-color: #ff0000;
+}
+input[type=radio]:checked + label.top {
+    background-color: green;
+}
+input[type=radio]:checked + label.mid {
+    background-color: orange;
+}
+input[type=radio]:checked + label.min {
+    background-color: red;
+}
+
+.optaffchx input {
+    width: 230px;
+}
+
+/*******************new eval*************/
+
+form .titre, form .add {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+form .add {
+    cursor: pointer;
+}
+
+.titre label {
+    width: 130px;
+}
+
+form h4, input[type="submit"], #creer {
+    display: inline-block;
+    padding: 8px;
+    background: rgb(96, 96, 96);
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    float: right;
+    border-radius: 0px;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+form section {
+    display: inline-block;
+    border: 1px solid black;
+    margin: 4px;
+    padding: 5px;
+}
+
+form section div {
+    margin: 8px 0px;
+}
+
+form label {
+    width: 240px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+}
+
+label + select, label + input {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+select, input {
+    text-align: center;
+    width: 300px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    border-radius: 2px;
+    margin-left: 20px;
+    background: rgb(216, 216, 216);
+    border: none;
+    padding: 3px 0px;
+}
+
+select:hover, input:hover, input.actif {
+    box-shadow: 0px 0px 5px blue;
+}
+
+select option:nth-child(2)[selected^="true"] {
+    background: blue;
+}
+
+select {
+    width: 130px;
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+input[type="date"] {
+    width: 190px;
+}
+
+form .awsm {
+    vertical-align: bottom;
+    margin-left: 5px;
+    cursor: pointer;
+}

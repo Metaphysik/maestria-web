@@ -4,7 +4,7 @@
 <head>
     <title>Maestria</title>
     <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
     <link href="/css/maestria.css" rel="stylesheet" type="text/css">
     <meta charset="UTF-8"/>
 </head>
@@ -63,11 +63,10 @@
         <h3><a href="<?php echo $this->route->unroute('indexUiaItem'); ?>">ITEMS PEDA</a></h3>
 
     <?php } ?>
-
-    <!--    <footer>
+        <footer>
             <a href="http://metaphysik.fr/manuel/projet.php#contact">Contact</a>|
             <a href="metaphysik.fr">Metaphysik</a>
-        </footer>-->
+        </footer>
 </nav>
 <?php $this->block('popup');
 if (isset($evaluations) and isset($user)) {
