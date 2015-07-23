@@ -1,42 +1,43 @@
 /*******************synthese*************/
 .synthese {
-    background: rgb(236, 76, 76); /* 117,154,198 */
-}
-
-.synthese #contenu {
+  background: rgb(236, 76, 76); /* 117,154,198 */
+  #contenu {
     padding-top: 20px;
+  }
 }
 
 #listeleve {
-    padding-top: 30px;
-    width: 196px;
-    z-index: 45;
-    background: rgba(255, 255, 255, 0.5);
-    display: inline-block;
-}
-
-#listeleve h5, #domain div {
+  padding-top: 30px;
+  width: 196px;
+  z-index: 45;
+  background: rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  h5 {
     height: 30px;
     border-bottom: 1px solid black;
-}
-
-#listeleve h5 {
     background: rgb(255, 255, 255);
     vertical-align: middle;
-}
+    .awsm {
+      font-size: 24px;
+      vertical-align: middle;
+    }
+    &:nth-child(even) {
+      background: rgb(240, 240, 240);
+    }
+  }
 
-#listeleve h5 .awsm {
-    font-size: 24px;
-    vertical-align: middle;
 }
 
 #domain {
-    display: inline-block;
-    white-space: nowrap;
-    margin-left: -3px;
-}
+  display: inline-block;
+  white-space: nowrap;
+  margin-left: -3px;
+  div {
+    height: 30px;
+    border-bottom: 1px solid black;
+  }
 
-#domain section {
+  section {
     width: 70px;
     display: inline-block;
     background: white;
@@ -44,9 +45,9 @@
     cursor: pointer;
     border-left: 1px solid black;
     margin-top: -20px;
-}
+  }
 
-#domain h6 {
+  h6 {
     height: 30px;
     text-align: center;
     word-wrap: break-word;
@@ -59,68 +60,62 @@
     overflow: hidden;
     -ms-hyphens: auto;
     -o-hyphens: auto;
-}
+  }
+  section {
+    &:hover {
+      opacity: 1;
+      -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+    }
+    div:nth-child(odd) {
+      background: rgb(240, 240, 240);
+    }
+  }
 
-.visuel {
-    color: green;
-    height: 20px;
-    z-index: 50;
-    opacity: 0;
-}
-
-#domain section:hover .visuel {
-    opacity: 1;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-}
-
-.visuel.actif {
-    opacity: 1;
-}
-
-#domain section:hover {
-    opacity: 0.8;
-}
-
-#domain section div:nth-child(odd), #listeleve h5:nth-child(even) {
-    background: rgb(240, 240, 240);
-}
-
-#domain .ouvert1 h6, #domain .ouvert2 h6 {
+  .ouvert1 h6, #domain .ouvert2 h6 {
     background: rgb(216, 189, 120);
-}
+  }
 
-#domain article {
+  article {
     display: inline-block;
-}
+  }
 
-#domain article section {
-}
-
-#domain article article section {
-}
-
-#domain span {
+  span {
     width: 0px;
     background: rgba(255, 255, 255, 0.2);
     z-index: 40;
     position: relative;
     top: 8px;
-}
+  }
 
-#domain aside {
+  aside {
     width: 50px;
     height: 30px;
     position: relative;
     top: -17px;
     z-index: 20;
+
+    p {
+      background: green;
+      display: inline-block;
+      height: 18px;
+      width: 6px;
+      vertical-align: -16px;
+      margin: 0px 0px 0px 2px;
+    }
+  }
+
 }
 
-#domain aside p {
-    background: green;
-    display: inline-block;
-    height: 18px;
-    width: 6px;
-    vertical-align: -16px;
-    margin: 0px 0px 0px 2px;
+.visuel {
+  color: green;
+  height: 20px;
+  z-index: 50;
+  opacity: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  .actif {
+    opacity: 1;
+  }
 }
+

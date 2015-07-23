@@ -1,85 +1,74 @@
 
 .classes > #contenu > form > section {
-    width: 99%;
+  width: 99%;
 }
-
-
 
 /*******************Classes*************/
 .classes {
-    background: rgb(216, 216, 216);
-}
+  background: rgb(216, 216, 216);
+  ul ul {
 
-.items h4, .classes h4, .evals h4 {
-    margin: 0px 80px 0px 36px;
-}
-
-.items .awsm, .classes .awsm {
-    cursor: pointer;
-}
-
-li {
-    list-style: none;
-    cursor: pointer;
-    padding-top: 6px;
-    border-bottom: 1px solid white;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-}
-
-li:hover {
-    border-bottom: 1px solid rgb(117, 154, 198);
-}
-
-li .del, li .edit {
-    float: right;
-    margin-left: 20px;
-}
-
-ul ul {
-    display: none;
-    margin-left: 200px;
-    padding: 0px;
-}
-
-#popup ul ul {
-    margin-left: 20px;
-}
-
-.classes ul ul {
     -webkit-column-count: 2;
     -webkit-column-gap: 50px;
     -moz-column-count: 2;
     -moz-column-gap: 50px;
+    counter-reset: numele;
+
+    li {
+      border-left: 1px solid #000;
+      &:before {
+        counter-increment: numele;
+        content: counter(numele) ". ";
+      }
+    }
+  }
 }
 
-li .awsm:hover {
+.items h4, .classes h4, .evals h4 {
+  margin: 0px 80px 0px 36px;
+}
+
+.items .awsm, .classes .awsm {
+  cursor: pointer;
+}
+
+#popup ul ul {
+  margin-left: 20px;
+}
+
+li {
+  list-style: none;
+  cursor: pointer;
+  padding-top: 6px;
+  border-bottom: 1px solid white;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+
+  &:hover {
+    border-bottom: 1px solid rgb(117, 154, 198);
+  }
+
+  .del, .edit {
+    float: right;
+    margin-left: 20px;
+  }
+
+  .awsm:hover {
     color: rgb(117, 154, 198);
-}
+  }
 
-li.actif {
+  .actif {
     color: rgb(117, 154, 198);
-}
+  }
 
-li .mdp {
+  .mdp {
     visibility: hidden;
     margin: 10px;
     font-style: italic;
-}
+  }
 
-li:hover .mdp {
+  &:hover .mdp {
     visibility: visible;
+  }
 }
 
-.classes ul ul {
-    counter-reset: numele;
-}
-
-.classes ul ul li {
-    border-left: 1px solid #000;
-}
-
-.classes ul ul li:before {
-    counter-increment: numele;
-    content: counter(numele) ". ";
-}
