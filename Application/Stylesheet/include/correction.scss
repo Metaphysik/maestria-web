@@ -1,79 +1,78 @@
 /*******************Correction*************/
 .correction, .evaluer {
-    background: rgb(69, 231, 194);
-}
-
-.correction #fleche, .evaluer #fleche {
+  background: rgb(69, 231, 194);
+  #fleche {
     top: 235px;
     border-right: 11px solid rgb(69, 231, 194);
+  }
 }
 
-#correction section {
+#correction {
+  section {
     border: 1px solid black;
     display: inline-block;
     padding: 2px;
     width: 210px;
     margin-top: 5px;
-}
+  }
 
-#correction .name {
+  .name {
     text-transform: uppercase;
     margin-bottom: 5px;
     width: 88%;
     display: inline-block;
     font-size: 9px;
-}
+  }
 
-#correction .note {
+  .note {
     width: 10%;
     display: inline-block;
+  }
 }
 
-.taxo div {
+.taxo {
+  div {
     display: inline-block;
     width: 52px;
     text-align: center;
-}
+  }
 
-.taxo .awsm {
+  .awsm {
     font-size: 17px;
-}
+  }
 
-.taxo h5 {
+  h5 {
     font-size: 9px;
-}
+  }
 
-.taxo .apprct, .item {
+  .apprct, .item {
     width: 100%;
     text-align: justify;
     margin-bottom: 5px;
-}
-
-.apprct {
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.graf {
     font-size: 8px
+  }
 }
 
-.item article {
+
+.item {
+  article {
     display: inline-block;
     width: 49%;
-}
+  }
 
-.item div {
+  div {
     display: inline-block;
-}
+  }
 
-.item .graf {
+  .graf {
     width: 9%;
-}
+    font-size: 8px
+  }
 
-.item .libelle {
+  .libelle {
     width: 88%;
     max-height: 26px;
     overflow: hidden;
     font-size: 9px;
+  }
 }

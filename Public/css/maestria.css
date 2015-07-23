@@ -153,28 +153,22 @@ footer {
 }
 
 /* line 11, ../../Application/Stylesheet/include/login.scss */
-.login {
-  text-transform: uppercase;
-}
-
-/* line 15, ../../Application/Stylesheet/include/login.scss */
 .logout {
   font-size: 12px;
   text-align: center;
 }
 
 /*******************login*************/
-/* line 21, ../../Application/Stylesheet/include/login.scss */
+/* line 17, ../../Application/Stylesheet/include/login.scss */
 .login {
+  text-transform: uppercase;
   background: #d8d8d8;
 }
-
-/* line 25, ../../Application/Stylesheet/include/login.scss */
+/* line 20, ../../Application/Stylesheet/include/login.scss */
 .login section {
   border: none;
 }
-
-/* line 29, ../../Application/Stylesheet/include/login.scss */
+/* line 24, ../../Application/Stylesheet/include/login.scss */
 .login select {
   width: 300px;
 }
@@ -264,8 +258,7 @@ li:hover .mdp {
 .correction, .evaluer {
   background: #45e7c2;
 }
-
-/* line 6, ../../Application/Stylesheet/include/correction.scss */
+/* line 4, ../../Application/Stylesheet/include/correction.scss */
 .correction #fleche, .evaluer #fleche {
   top: 235px;
   border-right: 11px solid #45e7c2;
@@ -279,7 +272,6 @@ li:hover .mdp {
   width: 210px;
   margin-top: 5px;
 }
-
 /* line 19, ../../Application/Stylesheet/include/correction.scss */
 #correction .name {
   text-transform: uppercase;
@@ -288,65 +280,49 @@ li:hover .mdp {
   display: inline-block;
   font-size: 9px;
 }
-
 /* line 27, ../../Application/Stylesheet/include/correction.scss */
 #correction .note {
   width: 10%;
   display: inline-block;
 }
 
-/* line 32, ../../Application/Stylesheet/include/correction.scss */
+/* line 34, ../../Application/Stylesheet/include/correction.scss */
 .taxo div {
   display: inline-block;
   width: 52px;
   text-align: center;
 }
-
-/* line 38, ../../Application/Stylesheet/include/correction.scss */
+/* line 40, ../../Application/Stylesheet/include/correction.scss */
 .taxo .awsm {
   font-size: 17px;
 }
-
-/* line 42, ../../Application/Stylesheet/include/correction.scss */
+/* line 44, ../../Application/Stylesheet/include/correction.scss */
 .taxo h5 {
   font-size: 9px;
 }
-
-/* line 46, ../../Application/Stylesheet/include/correction.scss */
-.taxo .apprct, .item {
+/* line 48, ../../Application/Stylesheet/include/correction.scss */
+.taxo .apprct, .taxo .item {
   width: 100%;
   text-align: justify;
   margin-bottom: 5px;
-}
-
-/* line 52, ../../Application/Stylesheet/include/correction.scss */
-.apprct {
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-/* line 57, ../../Application/Stylesheet/include/correction.scss */
-.graf {
   font-size: 8px;
 }
 
-/* line 61, ../../Application/Stylesheet/include/correction.scss */
+/* line 58, ../../Application/Stylesheet/include/correction.scss */
 .item article {
   display: inline-block;
   width: 49%;
 }
-
-/* line 66, ../../Application/Stylesheet/include/correction.scss */
+/* line 63, ../../Application/Stylesheet/include/correction.scss */
 .item div {
   display: inline-block;
 }
-
-/* line 70, ../../Application/Stylesheet/include/correction.scss */
+/* line 67, ../../Application/Stylesheet/include/correction.scss */
 .item .graf {
   width: 9%;
+  font-size: 8px;
 }
-
-/* line 74, ../../Application/Stylesheet/include/correction.scss */
+/* line 72, ../../Application/Stylesheet/include/correction.scss */
 .item .libelle {
   width: 88%;
   max-height: 26px;
@@ -355,20 +331,24 @@ li:hover .mdp {
 }
 
 /*******************Evaluations*************/
-/* line 2, ../../Application/Stylesheet/include/evaluations.scss */
-.evals, .neweval {
+/* line 3, ../../Application/Stylesheet/include/evaluations.scss */
+.neweval {
   background: #d8d8d8;
 }
 
-/* line 6, ../../Application/Stylesheet/include/evaluations.scss */
+/* line 7, ../../Application/Stylesheet/include/evaluations.scss */
+.evals {
+  background: #d8d8d8;
+}
+/* line 9, ../../Application/Stylesheet/include/evaluations.scss */
 .evals .titre {
   width: 244px;
   overflow: hidden;
   display: inline-block;
 }
 
-/* line 12, ../../Application/Stylesheet/include/evaluations.scss */
-.neweval > section, .items > section, .evals > section, .classes > section {
+/* line 17, ../../Application/Stylesheet/include/evaluations.scss */
+.neweval section, .items section, .evals section, .classes section {
   width: 85%;
 }
 
@@ -619,12 +599,11 @@ input[type="date"] {
 }
 
 /*******************items*************/
-/* line 3, ../../Application/Stylesheet/include/items.scss */
+/* line 2, ../../Application/Stylesheet/include/items.scss */
 .items {
   background: #d8d8d8;
 }
-
-/* line 7, ../../Application/Stylesheet/include/items.scss */
+/* line 4, ../../Application/Stylesheet/include/items.scss */
 .items #fleche {
   top: 332px;
   border-right: 11px solid #d8d8d8;
@@ -657,25 +636,20 @@ input[type="date"] {
   overflow-y: auto;
   height: 650px;
 }
-
-/* line 26, ../../Application/Stylesheet/include/popup.scss */
+/* line 25, ../../Application/Stylesheet/include/popup.scss */
 #inpopup .titre {
   height: 100px;
 }
-
-/* line 30, ../../Application/Stylesheet/include/popup.scss */
+/* line 29, ../../Application/Stylesheet/include/popup.scss */
 #inpopup h3 {
   font-size: 36px;
   padding-top: 33px;
 }
-
-/* line 35, ../../Application/Stylesheet/include/popup.scss */
+/* line 34, ../../Application/Stylesheet/include/popup.scss */
 #inpopup .contenu {
   padding: 10px 10px 100px 10px;
 }
-
-/* #inpopup div{margin:10px;} */
-/* line 40, ../../Application/Stylesheet/include/popup.scss */
+/* line 38, ../../Application/Stylesheet/include/popup.scss */
 #inpopup h6 {
   background: #606060;
   font-size: 20px;
@@ -689,8 +663,7 @@ input[type="date"] {
   text-align: center;
   text-transform: uppercase;
 }
-
-/* line 54, ../../Application/Stylesheet/include/popup.scss */
+/* line 52, ../../Application/Stylesheet/include/popup.scss */
 #inpopup .awsm, #inpopup input {
   vertical-align: middle;
 }
@@ -700,51 +673,50 @@ input[type="date"] {
   float: right;
 }
 
-/* line 62, ../../Application/Stylesheet/include/popup.scss */
+/* line 63, ../../Application/Stylesheet/include/popup.scss */
 #inpopup form {
   display: inline-block;
 }
 
-/* line 66, ../../Application/Stylesheet/include/popup.scss */
+/* line 67, ../../Application/Stylesheet/include/popup.scss */
 #chitem {
   display: inline-block;
   margin-left: 40px;
   width: 30%;
 }
 
-/* line 72, ../../Application/Stylesheet/include/popup.scss */
+/* line 73, ../../Application/Stylesheet/include/popup.scss */
 #corps {
   padding-left: 160px;
   min-height: 600px;
   width: 100%;
 }
 
-/* line 78, ../../Application/Stylesheet/include/popup.scss */
+/* line 79, ../../Application/Stylesheet/include/popup.scss */
 .classe {
   background: #ec4c4c;
 }
 
-/* line 82, ../../Application/Stylesheet/include/popup.scss */
+/* line 83, ../../Application/Stylesheet/include/popup.scss */
+#classe, #evalchx {
+  cursor: pointer;
+}
+
+/* line 89, ../../Application/Stylesheet/include/popup.scss */
+#corps .evaluer h3, #corps .synthese h3, #corps .correction h3 {
+  display: block;
+}
+
+/* line 96, ../../Application/Stylesheet/include/popup.scss */
+#titre .awsm {
+  margin: 0px 20px;
+}
+/* line 100, ../../Application/Stylesheet/include/popup.scss */
 #titre h3 {
   overflow: hidden;
   display: none;
   padding: 10px 0px;
   font-size: 46px;
-}
-
-/* line 89, ../../Application/Stylesheet/include/popup.scss */
-#classe, #evalchx {
-  cursor: pointer;
-}
-
-/* line 93, ../../Application/Stylesheet/include/popup.scss */
-#corps.evaluer h3, #corps.synthese h3, #corps.correction h3 {
-  display: block;
-}
-
-/* line 97, ../../Application/Stylesheet/include/popup.scss */
-#titre .awsm {
-  margin: 0px 20px;
 }
 
 /*******************synthese*************/
@@ -883,7 +855,7 @@ input[type="date"] {
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-/* line 17, ../../Application/Stylesheet/include/normalize.scss */
+/* line 9, ../../Application/Stylesheet/include/normalize.scss */
 html {
   font-family: sans-serif;
   /* 1 */
@@ -896,7 +868,7 @@ html {
 /**
  * Remove default margin.
  */
-/* line 27, ../../Application/Stylesheet/include/normalize.scss */
+/* line 19, ../../Application/Stylesheet/include/normalize.scss */
 body {
   margin: 0;
 }
@@ -909,7 +881,7 @@ body {
  * and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-/* line 41, ../../Application/Stylesheet/include/normalize.scss */
+/* line 33, ../../Application/Stylesheet/include/normalize.scss */
 article,
 aside,
 details,
@@ -930,7 +902,7 @@ summary {
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-/* line 62, ../../Application/Stylesheet/include/normalize.scss */
+/* line 54, ../../Application/Stylesheet/include/normalize.scss */
 audio,
 canvas,
 progress,
@@ -945,7 +917,7 @@ video {
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
-/* line 75, ../../Application/Stylesheet/include/normalize.scss */
+/* line 67, ../../Application/Stylesheet/include/normalize.scss */
 audio:not([controls]) {
   display: none;
   height: 0;
@@ -955,7 +927,7 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
-/* line 85, ../../Application/Stylesheet/include/normalize.scss */
+/* line 77, ../../Application/Stylesheet/include/normalize.scss */
 [hidden],
 template {
   display: none;
@@ -966,7 +938,7 @@ template {
 /**
  * Remove the gray background color from active links in IE 10.
  */
-/* line 97, ../../Application/Stylesheet/include/normalize.scss */
+/* line 89, ../../Application/Stylesheet/include/normalize.scss */
 a {
   background-color: transparent;
 }
@@ -974,7 +946,7 @@ a {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-/* line 105, ../../Application/Stylesheet/include/normalize.scss */
+/* line 97, ../../Application/Stylesheet/include/normalize.scss */
 a:active,
 a:hover {
   outline: 0;
@@ -985,7 +957,7 @@ a:hover {
 /**
  * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
  */
-/* line 117, ../../Application/Stylesheet/include/normalize.scss */
+/* line 109, ../../Application/Stylesheet/include/normalize.scss */
 abbr[title] {
   border-bottom: 1px dotted;
 }
@@ -993,7 +965,7 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-/* line 125, ../../Application/Stylesheet/include/normalize.scss */
+/* line 117, ../../Application/Stylesheet/include/normalize.scss */
 b,
 strong {
   font-weight: bold;
@@ -1002,7 +974,7 @@ strong {
 /**
  * Address styling not present in Safari and Chrome.
  */
-/* line 134, ../../Application/Stylesheet/include/normalize.scss */
+/* line 126, ../../Application/Stylesheet/include/normalize.scss */
 dfn {
   font-style: italic;
 }
@@ -1011,7 +983,7 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-/* line 143, ../../Application/Stylesheet/include/normalize.scss */
+/* line 135, ../../Application/Stylesheet/include/normalize.scss */
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
@@ -1020,7 +992,7 @@ h1 {
 /**
  * Address styling not present in IE 8/9.
  */
-/* line 152, ../../Application/Stylesheet/include/normalize.scss */
+/* line 144, ../../Application/Stylesheet/include/normalize.scss */
 mark {
   background: #ff0;
   color: #000;
@@ -1029,7 +1001,7 @@ mark {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-/* line 161, ../../Application/Stylesheet/include/normalize.scss */
+/* line 153, ../../Application/Stylesheet/include/normalize.scss */
 small {
   font-size: 80%;
 }
@@ -1037,7 +1009,7 @@ small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-/* line 169, ../../Application/Stylesheet/include/normalize.scss */
+/* line 161, ../../Application/Stylesheet/include/normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -1046,12 +1018,12 @@ sup {
   vertical-align: baseline;
 }
 
-/* line 177, ../../Application/Stylesheet/include/normalize.scss */
+/* line 169, ../../Application/Stylesheet/include/normalize.scss */
 sup {
   top: -0.5em;
 }
 
-/* line 181, ../../Application/Stylesheet/include/normalize.scss */
+/* line 173, ../../Application/Stylesheet/include/normalize.scss */
 sub {
   bottom: -0.25em;
 }
@@ -1061,7 +1033,7 @@ sub {
 /**
  * Remove border when inside `a` element in IE 8/9/10.
  */
-/* line 192, ../../Application/Stylesheet/include/normalize.scss */
+/* line 184, ../../Application/Stylesheet/include/normalize.scss */
 img {
   border: 0;
 }
@@ -1069,7 +1041,7 @@ img {
 /**
  * Correct overflow not hidden in IE 9/10/11.
  */
-/* line 200, ../../Application/Stylesheet/include/normalize.scss */
+/* line 192, ../../Application/Stylesheet/include/normalize.scss */
 svg:not(:root) {
   overflow: hidden;
 }
@@ -1079,7 +1051,7 @@ svg:not(:root) {
 /**
  * Address margin not present in IE 8/9 and Safari.
  */
-/* line 211, ../../Application/Stylesheet/include/normalize.scss */
+/* line 203, ../../Application/Stylesheet/include/normalize.scss */
 figure {
   margin: 1em 40px;
 }
@@ -1087,7 +1059,7 @@ figure {
 /**
  * Address differences between Firefox and other browsers.
  */
-/* line 219, ../../Application/Stylesheet/include/normalize.scss */
+/* line 211, ../../Application/Stylesheet/include/normalize.scss */
 hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -1097,7 +1069,7 @@ hr {
 /**
  * Contain overflow in all browsers.
  */
-/* line 229, ../../Application/Stylesheet/include/normalize.scss */
+/* line 221, ../../Application/Stylesheet/include/normalize.scss */
 pre {
   overflow: auto;
 }
@@ -1105,7 +1077,7 @@ pre {
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
-/* line 237, ../../Application/Stylesheet/include/normalize.scss */
+/* line 229, ../../Application/Stylesheet/include/normalize.scss */
 code,
 kbd,
 pre,
@@ -1126,7 +1098,7 @@ samp {
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
-/* line 260, ../../Application/Stylesheet/include/normalize.scss */
+/* line 252, ../../Application/Stylesheet/include/normalize.scss */
 button,
 input,
 optgroup,
@@ -1143,7 +1115,7 @@ textarea {
 /**
  * Address `overflow` set to `hidden` in IE 8/9/10/11.
  */
-/* line 274, ../../Application/Stylesheet/include/normalize.scss */
+/* line 266, ../../Application/Stylesheet/include/normalize.scss */
 button {
   overflow: visible;
 }
@@ -1154,7 +1126,7 @@ button {
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
-/* line 285, ../../Application/Stylesheet/include/normalize.scss */
+/* line 277, ../../Application/Stylesheet/include/normalize.scss */
 button,
 select {
   text-transform: none;
@@ -1167,7 +1139,7 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-/* line 298, ../../Application/Stylesheet/include/normalize.scss */
+/* line 290, ../../Application/Stylesheet/include/normalize.scss */
 button,
 html input[type="button"],
 input[type="reset"],
@@ -1181,7 +1153,7 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-/* line 310, ../../Application/Stylesheet/include/normalize.scss */
+/* line 302, ../../Application/Stylesheet/include/normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -1190,7 +1162,7 @@ html input[disabled] {
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-/* line 319, ../../Application/Stylesheet/include/normalize.scss */
+/* line 311, ../../Application/Stylesheet/include/normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -1201,7 +1173,7 @@ input::-moz-focus-inner {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-/* line 330, ../../Application/Stylesheet/include/normalize.scss */
+/* line 322, ../../Application/Stylesheet/include/normalize.scss */
 input {
   line-height: normal;
 }
@@ -1213,7 +1185,7 @@ input {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-/* line 342, ../../Application/Stylesheet/include/normalize.scss */
+/* line 334, ../../Application/Stylesheet/include/normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -1227,7 +1199,7 @@ input[type="radio"] {
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-/* line 354, ../../Application/Stylesheet/include/normalize.scss */
+/* line 346, ../../Application/Stylesheet/include/normalize.scss */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   height: auto;
@@ -1238,7 +1210,7 @@ input[type="number"]::-webkit-outer-spin-button {
  * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
  *    (include `-moz` to future-proof).
  */
-/* line 365, ../../Application/Stylesheet/include/normalize.scss */
+/* line 357, ../../Application/Stylesheet/include/normalize.scss */
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -1253,7 +1225,7 @@ input[type="search"] {
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-/* line 378, ../../Application/Stylesheet/include/normalize.scss */
+/* line 370, ../../Application/Stylesheet/include/normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -1262,7 +1234,7 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Define consistent border, margin, and padding.
  */
-/* line 387, ../../Application/Stylesheet/include/normalize.scss */
+/* line 379, ../../Application/Stylesheet/include/normalize.scss */
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
@@ -1273,7 +1245,7 @@ fieldset {
  * 1. Correct `color` not being inherited in IE 8/9/10/11.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
-/* line 398, ../../Application/Stylesheet/include/normalize.scss */
+/* line 390, ../../Application/Stylesheet/include/normalize.scss */
 legend {
   border: 0;
   /* 1 */
@@ -1284,7 +1256,7 @@ legend {
 /**
  * Remove default vertical scrollbar in IE 8/9/10/11.
  */
-/* line 407, ../../Application/Stylesheet/include/normalize.scss */
+/* line 399, ../../Application/Stylesheet/include/normalize.scss */
 textarea {
   overflow: auto;
 }
@@ -1293,7 +1265,7 @@ textarea {
  * Don't inherit the `font-weight` (applied by a rule above).
  * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
  */
-/* line 416, ../../Application/Stylesheet/include/normalize.scss */
+/* line 408, ../../Application/Stylesheet/include/normalize.scss */
 optgroup {
   font-weight: bold;
 }
@@ -1303,13 +1275,13 @@ optgroup {
 /**
  * Remove most spacing between table cells.
  */
-/* line 427, ../../Application/Stylesheet/include/normalize.scss */
+/* line 419, ../../Application/Stylesheet/include/normalize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 432, ../../Application/Stylesheet/include/normalize.scss */
+/* line 424, ../../Application/Stylesheet/include/normalize.scss */
 td,
 th {
   padding: 0;

@@ -1,14 +1,20 @@
 /*******************Evaluations*************/
-.evals, .neweval {
-    background: rgb(216, 216, 216);
+
+.neweval {
+  background: rgb(216, 216, 216);
 }
 
-.evals .titre {
+.evals {
+  background: rgb(216, 216, 216);
+  .titre {
     width: 244px;
     overflow: hidden;
     display: inline-block;
+  }
 }
 
-.neweval > section, .items > section, .evals > section, .classes > section {
+.neweval, .items, .evals, .classes {
+  section {
     width: 85%;
+  }
 }
