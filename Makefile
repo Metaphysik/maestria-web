@@ -31,5 +31,6 @@ install:
 	make db-update
 	$(COMPOSER) update
 
-build:
-	compass compile Application\Stylesheet\maestria.scss Application\Stylesheet\font-awesome.scss
+db-dump:
+	sqlite3 Application/Database/Maestria-orm.db .dump > Application/Database/Dump/maestria-orm.sql
+
