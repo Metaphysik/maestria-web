@@ -12,7 +12,8 @@
   },
   "require-dev": {
     "fzaninotto/faker": "1.5.*@dev",
-    "atoum/atoum": "*@dev"
+    "atoum/atoum": "*@dev",
+    "fabpot/php-cs-fixer" : "*"
   },
   "autoload": {
     "psr-4": {
