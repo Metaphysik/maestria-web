@@ -127,10 +127,10 @@ $this->block('js:script');
 
 
                     html += '<article class="note" data-id="' + q.id + '"><aside><h5>' + (i + 1) + ') ' + q.title + '</h5>';
-                    html += '<div><span class="awsm"></span> Appliquer';
+                    html += '<div><i class="fa fa-wrench"></i> Appliquer';
                     html += '<span class="note">/' + q.note + '</span></div>' +
-                        '<div><span class="awsm"></span> ' + q.item1 + '</div>' +
-                        '<div><span class="awsm"></span> ' + q.item2 + '</div>' +
+                        '<div><i class="fa fa-graduation-cap"></i> ' + q.item1 + '</div>' +
+                        '<div><i class="fa fa-cogs"></i>' + q.item2 + '</div>' +
                         '</aside><div class="input">';
 
                     var uid = 'u' + user.id + 'e' + current_eval + 'q' + q.id;

@@ -118,7 +118,7 @@ $this->endBlock() ?>
 <?php $this->endBlock() ?>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="/js/maestria.js"></script>
-<script src="/js/interaction.js?doo=d"></script>
+<script src="/js/interaction.js"></script>
 <?php $this->block('js:script'); ?>
 <?php $this->endBlock(); ?>
 </body>
