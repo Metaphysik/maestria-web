@@ -1,7 +1,6 @@
 <?php
 namespace Application\Maestria;
 
-use Gelf\MessagePublisher;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\GelfHandler;
 use Monolog\Handler\StreamHandler;
@@ -30,7 +29,6 @@ class Log
 
             $streamHandler->setFormatter($formatter);
             $log->pushHandler($streamHandler);
-            $log->pushHandler(new GelfHandler(new MessagePublisher('log.ark.im')));
 
 
             static::$_instance = $log;
