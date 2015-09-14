@@ -52,6 +52,8 @@
         }
         if (isset($selected_evaluation) === true and is_object($selected_evaluation)) {
             ?>
+            <?php var_dump($selected_evaluation); ?>
+
             <div class="flechebas"></div>
             <h3 class="eval"><a href="<?= $this->route->unroute('editUiaEvaluation',
                     ['evaluation_id' => $selected_evaluation->getId()]); ?>"> EDITION</a></h3>
