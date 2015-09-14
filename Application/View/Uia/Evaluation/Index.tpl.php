@@ -9,7 +9,7 @@ $this->block('container');
 ?>
     <section id="corps" class="evals">
         <section id="titre">
-            <h3 class="classe">CLASSE <span class="awsm"> &#xf0da; </span> <span id="classe">3<sup>2</sup></span></h3>
+            <h3 class="classe">CLASSE <span class="awsm"><i class="fa fa-caret-right"></i></span> <span id="classe">3<sup>2</sup></span></h3>
 
             <h1>GESTION DES EVALUATIONS</h1>
 

@@ -9,7 +9,7 @@ $this->block('popup', 'append');
     <section id="popupclasse">
         <section id="inpopup">
             <section class="titre classe">
-                <div class="awsm exit"></div>
+                <div class="awsm exit"><i class="fa fa-close"></i></div>
                 <h3>CHOIX DE LA CLASSE</h3></section>
             <section class="contenu classechx">
 
@@ -26,7 +26,7 @@ $this->block('popup', 'append');
     <section id="popupevl">
         <section id="inpopup">
             <section class="titre eval">
-                <div class="awsm exit"></div>
+                <div class="awsm exit"><i class="fa fa-exit"></i> </div>
                 <h3 class="username"></h3></section>
             <section id="popupevlcontent" class="contenu inputresult">
             </section>
@@ -39,9 +39,9 @@ $this->block('container');
 ?>
     <section id="corps" class="evaluer">
         <section id="titre">
-            <h3 class="classe">CLASSE <span class="awsm">  </span> <span id="classe">?</sup></span></h3>
+            <h3 class="classe">CLASSE <i class="fa fa-caret-right"></i> <span id="classe">?</sup></span></h3>
 
-            <h1>EVALUER <span class="awsm">  </span><span id="evalchx">?</span></h1>
+            <h1>EVALUER <i class="fa fa-caret-right"></i><span id="evalchx">?</span></h1>
 
         </section>
         <section id="contenu" style="width: 90%">

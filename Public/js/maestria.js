@@ -228,7 +228,7 @@ synthese_domaine = {
     ]
 };
 //////////////////////////////G�n�ration pop up
-fixepopup = ['<section class="titre ', '"><div class="awsm exit">&#xf00d;</div><h3>', '</h3></section><section class="contenu ', '</section>'];
+fixepopup = ['<section class="titre ', '"><div class="awsm exit"><i class="fa fa-close"></i></div><h3>', '</h3></section><section class="contenu ', '</section>'];
 
 function genererpopup(clas, titr, clas2, contenu) {
     $('#inpopup').html(fixepopup[0] + clas + fixepopup[1] + titr + fixepopup[2] + clas2 + contenu + fixepopup[3]);
