@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Application\Entities;
-
 
 /**
  * @Entity @Table(name="classroom")
@@ -63,6 +61,4 @@ class Classroom
     {
         $this->label = $label;
     }
-
-
 }

@@ -1,9 +1,10 @@
 <?php
+
 namespace Application\Maestria\Form\Theme;
 
 class Generic
 {
-    protected $_form   = null;
+    protected $_form = null;
     protected $_errors = [];
 
     public function getForm()
@@ -23,23 +24,20 @@ class Generic
 
     public function getError($name)
     {
-
         if ($this->hasError($name) === true) {
             return $this->_errors[$name];
         }
 
-        return null;
+        return;
     }
 
     public function hasError($name)
     {
-
         if (array_key_exists($name, $this->_errors) === false) {
             return false;
         }
 
         foreach ($this->_errors[$name] as $value) {
-
             if ($value !== null) {
                 return true;
             }

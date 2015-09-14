@@ -16,7 +16,7 @@ class Generic extends Kit
     /**
      * @var \Application\Entities\User
      */
-    protected $_user    = null;
+    protected $_user = null;
     protected $_connect = false;
 
     public function construct()
@@ -28,33 +28,32 @@ class Generic extends Kit
 
     protected function readUia()
     {
-        $rule       = &$this->router->getTheRule();
-        $variables  = $rule[6];
-        $_uia       = isset($variables['uia']) ? $variables['uia'] : 'demo';
-        $uia        = new Uia();
-        $uia        = $uia->getBySlug($_uia);
+        $rule = &$this->router->getTheRule();
+        $variables = $rule[6];
+        $_uia = isset($variables['uia']) ? $variables['uia'] : 'demo';
+        $uia = new Uia();
+        $uia = $uia->getBySlug($_uia);
         $this->_uia = $uia;
 
         if (defined('UIA') === false) {
             define('UIA', $uia->getSlug());
         }
-
     }
 
     protected function readUserSession()
     {
         $session = new Session('user');
         if (isset($session['connect']) and $session['connect'] === true) {
-            $this->_user             = $session['user'];
-            $this->_connect          = true;
+            $this->_user = $session['user'];
+            $this->_connect = true;
             $this->data->userIsLogin = true;
-            $this->data->user        = &$this->_user;
+            $this->data->user = &$this->_user;
         }
     }
 
     protected function readEvaluations()
     {
-        $evaluation              = new Evaluation();
+        $evaluation = new Evaluation();
         $this->data->evaluations = $evaluation->all();
     }
 
@@ -93,7 +92,6 @@ class Generic extends Kit
 
     protected function lvlProf()
     {
-
         return ($this->isAdmin() === true || $this->isModerator() === true || $this->isProfessor() === true);
     }
 
@@ -117,7 +115,7 @@ class Generic extends Kit
 
     protected function select_evaluation($id)
     {
-        $eval                            = new Evaluation();
+        $eval = new Evaluation();
         $this->data->selected_evaluation = $eval->get($id)['evaluation'];
     }
 
@@ -125,6 +123,4 @@ class Generic extends Kit
     {
         $this->data->selected_evaluation = false;
     }
-
-
 }

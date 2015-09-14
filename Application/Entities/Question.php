@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Application\Entities;
-
 
 /**
  * @Entity @Table(name="question")
@@ -144,7 +142,6 @@ class Question
         $this->item1id = $id;
     }
 
-
     public function setItem2id($id)
     {
         $this->item2id = $id;
@@ -158,6 +155,4 @@ class Question
     {
         return $this->item2id;
     }
-
-
 }

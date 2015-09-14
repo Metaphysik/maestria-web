@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Application\Controller\Uia;
-
 
 use Application\Controller\Api;
 use Application\Entities\User;
@@ -16,8 +14,8 @@ class Evaluation extends Api
 {
     public function indexAction()
     {
-        $evaluations             = new \Application\Model\Evaluation();
-        $evaluations             = $evaluations->all();
+        $evaluations = new \Application\Model\Evaluation();
+        $evaluations = $evaluations->all();
         $this->data->evaluations = $evaluations;
 
         $this->greut->render();
@@ -25,10 +23,10 @@ class Evaluation extends Api
 
     public function showAction($evaluation_id)
     {
-        $evaluation             = new \Application\Model\Evaluation();
-        $evaluation             = $evaluation->get($evaluation_id);
+        $evaluation = new \Application\Model\Evaluation();
+        $evaluation = $evaluation->get($evaluation_id);
         $this->data->evaluation = $evaluation['evaluation'];
-        $this->data->questions  = $evaluation['questions'];
+        $this->data->questions = $evaluation['questions'];
 
         $this->select_evaluation($evaluation_id);
 
@@ -37,12 +35,11 @@ class Evaluation extends Api
 
     public function destroyAction($uia, $evaluation_id)
     {
-        $model      = new Question();
-        $questions  = $model->getByEvaluation($evaluation_id);
+        $model = new Question();
+        $questions = $model->getByEvaluation($evaluation_id);
         $evaluation = new \Application\Model\Evaluation();
-        $eval       = $evaluation->get($evaluation_id);
-        $eval       = $eval['evaluation'];
-
+        $eval = $evaluation->get($evaluation_id);
+        $eval = $eval['evaluation'];
 
         foreach ($questions as $question) {
             $model->delete($question);
@@ -54,12 +51,12 @@ class Evaluation extends Api
 
     public function editAction($evaluation_id)
     {
-        $evaluation            = new \Application\Model\Evaluation();
-        $evaluation            = $evaluation->get($evaluation_id);
-        $this->data->domain    = new Domain();
-        $this->data->theme     = new Theme();
-        $this->data->item      = new Item();
-        $this->data->eval      = $evaluation['evaluation'];
+        $evaluation = new \Application\Model\Evaluation();
+        $evaluation = $evaluation->get($evaluation_id);
+        $this->data->domain = new Domain();
+        $this->data->theme = new Theme();
+        $this->data->item = new Item();
+        $this->data->eval = $evaluation['evaluation'];
         $this->data->questions = $evaluation['questions'];
 
         $this->no_evaluation();
@@ -68,19 +65,19 @@ class Evaluation extends Api
 
     public function updateAction($uia, $evaluation_id)
     {
-        /**
+        /*
          * @var $evaluation \Application\Entities\Evaluation
          * @var $questions Array
          * @var $question \Application\Entities\Question
          */
 
         $mevaluation = new \Application\Model\Evaluation();
-        $mquestion   = new Question();
-        $stack       = $mevaluation->get($evaluation_id);
-        $evaluation  = $stack['evaluation'];
-        $questions   = $stack['questions'];
-        $title       = $this->checkPost('title');
-        $q           = $this->computeQuestion($_POST);
+        $mquestion = new Question();
+        $stack = $mevaluation->get($evaluation_id);
+        $evaluation = $stack['evaluation'];
+        $questions = $stack['questions'];
+        $title = $this->checkPost('title');
+        $q = $this->computeQuestion($_POST);
 
         if ($title === null) {
             throw new Exception('API Error on create evaluation');
@@ -124,7 +121,7 @@ class Evaluation extends Api
         $newQuestion = new Question();
         foreach ($q as $question) {
             $title = $question['title'];
-            $taxo  = $question['taxo'];
+            $taxo = $question['taxo'];
             $point = $question['note'];
             $item1 = $question['item1'];
             $item2 = $question['item2'];
@@ -153,7 +150,6 @@ class Evaluation extends Api
             $newQuestion->insert($evaluation_id, $title, $taxo, $point, $item1, $item2);
         }
 
-
         $this->redirector->redirect('showUiaEvaluation', ['uia' => $uia, 'evaluation_id' => $evaluation_id]);
     }
 
@@ -164,10 +160,10 @@ class Evaluation extends Api
         $store = function ($i, $key, $value) use (&$questions) {
             $default = [
                 'title' => '',
-                'taxo'  => 0,
-                'note'  => 0,
+                'taxo' => 0,
+                'note' => 0,
                 'item1' => 0,
-                'item2' => 0
+                'item2' => 0,
             ];
 
             if (isset($questions[$i]) === false) {
@@ -183,7 +179,7 @@ class Evaluation extends Api
             if ($key[0] === 'q') {
                 if (preg_match('#q(\-?[0-9]+)_(.*)#', $key, $m) > 0) {
                     $number = intval($m[1]);
-                    $title  = $m[2];
+                    $title = $m[2];
                     $store($number, $title, $value);
                 }
             }
@@ -203,17 +199,16 @@ class Evaluation extends Api
     public function newAction()
     {
         $this->data->domain = new Domain();
-        $this->data->theme  = new Theme();
-        $this->data->item   = new Item();
+        $this->data->theme = new Theme();
+        $this->data->item = new Item();
 
         $this->greut->render();
     }
 
     public function createAction($uia)
     {
-
         $title = $this->checkPost('title');
-        $date  = $this->checkPost('date');
+        $date = $this->checkPost('date');
 
         if ($title === null or $date === null) {
             throw new Exception('API Error on create evaluation');
@@ -236,5 +231,4 @@ class Evaluation extends Api
 
         $this->redirector->redirect('indexUiaEvaluation', ['uia' => $uia]);
     }
-
 }

@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Utilisateur
  * Date: 18/03/2015
- * Time: 13:37
+ * Time: 13:37.
  */
 
 namespace Application\Maestria;
@@ -11,21 +12,21 @@ namespace Application\Maestria;
 class Validator
 {
     private static $_instance = null;
-    private        $_data     = [];
-    private        $_current  = '';
-    private        $_type     = 'validator';
-    private        $_stack    = [];
-    private        $_errors   = [];
+    private $_data = [];
+    private $_current = '';
+    private $_type = 'validator';
+    private $_stack = [];
+    private $_errors = [];
 
     /**
      * @param $id
+     *
      * @return object Validator
      */
-
     public static function get($id)
     {
         if (!isset(static::$_instance[$id])) {
-            static::$_instance[$id] = new Validator();
+            static::$_instance[$id] = new self();
         }
 
         return static::$_instance[$id];
@@ -47,12 +48,12 @@ class Validator
     public function __call($name, $args)
     {
         if ($this->_type === 'validator') {
-            $instance = dnew('\Application\Maestria\Validator\\' . ucfirst($name), $args);
+            $instance = dnew('\Application\Maestria\Validator\\'.ucfirst($name), $args);
             $instance->setData($this->getCurrentData());
             $instance->setName($this->_current);
             $instance->setArguments($args);
         } else {
-            $instance = dnew('\Application\Maestria\Filter\\' . ucfirst($name), $args);
+            $instance = dnew('\Application\Maestria\Filter\\'.ucfirst($name), $args);
         }
 
         $this->_stack[$this->_current][] = ['type' => $this->_type, 'object' => $instance, 'error' => null];
@@ -75,8 +76,7 @@ class Validator
             return $this->_data[$id];
         }
 
-        return null;
-
+        return;
     }
 
     public function _setData($id, $value)
@@ -95,12 +95,12 @@ class Validator
     public function parseData()
     {
         $data = $this->_data;
-        $f    = function ($key) use (&$data) {
+        $f = function ($key) use (&$data) {
             if (isset($data[$key])) {
                 return $data[$key];
             }
 
-            return null;
+            return;
         };
 
         foreach ($this->_stack as $name => $element) {
@@ -121,21 +121,20 @@ class Validator
             return $this->_stack[$name];
         }
 
-        return null;
+        return;
     }
 
     public function isValid($data = null)
     {
-        $data          = ($data === null) ? $this->getData() : $data;
+        $data = ($data === null) ? $this->getData() : $data;
         $this->_errors = [];
-
 
         $f = function ($key) use (&$data) {
             if (isset($data[$key])) {
                 return $data[$key];
             }
 
-            return null;
+            return;
         };
 
         $valid = true;
@@ -146,10 +145,10 @@ class Validator
                     $v = $validate['object']->isValid($f($name));
                     if ($v === false) {
                         $this->_errors[$name][] = [
-                            'class'   => get_class($validate['object']),
-                            'message' => $validate['object']->getMessage()
+                            'class' => get_class($validate['object']),
+                            'message' => $validate['object']->getMessage(),
                         ];
-                        $valid                  = false;
+                        $valid = false;
                     }
                 }
             }
@@ -169,7 +168,6 @@ class Validator
             return $this->_errors[$key];
         }
 
-        return null;
+        return;
     }
-
 }

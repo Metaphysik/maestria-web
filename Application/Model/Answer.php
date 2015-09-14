@@ -1,15 +1,11 @@
 <?php
 
-
 namespace Application\Model;
-
 
 class Answer extends Generic
 {
-
     public function insert($uia, $user, $eval, $answer)
     {
-
         if (is_array($answer)) {
             $answer = json_encode($answer);
         }
@@ -17,23 +13,19 @@ class Answer extends Generic
         if ($this->exists($uia, $user, $eval) === false) {
             $this->_insert($uia, $user, $eval, $answer);
         } else {
-
         }
 
-
         return false;
-
     }
 
     public function exists($uia, $user, $eval)
     {
-
         if ($uia === null) {
             $uia = UIA;
         }
         if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia  = $slug->getBySludId(UIA);
+            $uia = $slug->getBySludId(UIA);
         }
         $e = $this->_repository->findBy(['refUia' => $uia, 'refUser' => $user, 'refEval' => $eval]);
 
@@ -62,7 +54,7 @@ class Answer extends Generic
     public function modify($uia, $user, $eval, $answer)
     {
         /**
-         * @var $a \Application\Entities\Answer
+         * @var \Application\Entities\Answer
          */
         $a = $this->getAnswer($uia, $user, $eval);
         $a = $a[0];
@@ -71,5 +63,4 @@ class Answer extends Generic
 
         $this->update($a);
     }
-
 }

@@ -1,15 +1,16 @@
 <?php
+
 namespace Application\Maestria\Form;
 
 class Form extends Element
 {
-    protected static $_instance  = [];
-    protected        $_name      = 'form';
-    protected        $_formid    = null;
-    protected        $_theme     = null;
-    protected        $_data      = [];
-    protected        $_check     = false;
-    protected        $_validator = null;
+    protected static $_instance = [];
+    protected $_name = 'form';
+    protected $_formid = null;
+    protected $_theme = null;
+    protected $_data = [];
+    protected $_check = false;
+    protected $_validator = null;
 
     private function __construct($name)
     {
@@ -19,7 +20,7 @@ class Form extends Element
     public static function get($name)
     {
         if ($name === null or $name === '') {
-            throw new Exception("You must get an name for the form", 0);
+            throw new Exception('You must get an name for the form', 0);
         }
 
         if (!array_key_exists($name, static::$_instance)) {
@@ -51,7 +52,7 @@ class Form extends Element
             return $this->_data[$name];
         }
 
-        return null;
+        return;
     }
 
     public function setData($data = null)

@@ -1,12 +1,9 @@
 <?php
 
-
 namespace Application\Model;
-
 
 class Uia extends Generic
 {
-
     public function getBySlug($slug)
     {
         return $this->getBy('slug', $slug);
@@ -19,7 +16,6 @@ class Uia extends Generic
 
     public function insert($slug, $name, $address, $city, $dept, $region, $chiefidentity, $logourl)
     {
-
         if ($this->slugExist($slug) === false) {
             return $this->_insert($slug, $name, $address, $city, $dept, $region, $chiefidentity, $logourl);
         }

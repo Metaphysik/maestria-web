@@ -1,15 +1,12 @@
 <?php
+
 namespace Application\Maestria;
 
-use Application\Maestria\Validator;
-
 /**
- * Class Form
- * @package Application\Form
+ * Class Form.
  */
 class Form
 {
-
     /**
      * @var string
      */
@@ -23,18 +20,18 @@ class Form
      */
     protected $_validate = null;
 
-
     /**
      * @param  $data Array
+     *
      * @throws \Application\Maestria\Form\Exception
      */
     public function __construct($data = [])
     {
-        $class           = get_class($this);
-        $id              = substr($class, strrpos($class, '\\') + 1);
-        $id              = strtolower($id);
-        $this->_name     = $id;
-        $this->_form     = \Application\Maestria\Form\Form::get($id);
+        $class = get_class($this);
+        $id = substr($class, strrpos($class, '\\') + 1);
+        $id = strtolower($id);
+        $this->_name = $id;
+        $this->_form = \Application\Maestria\Form\Form::get($id);
         $this->_validate = Validator::get($id);
 
         $this->_form->setValidator($this->_validate);
@@ -58,24 +55,21 @@ class Form
     }
 
     /**
-     * @return null
      */
     public function form()
     {
-        return null;
+        return;
     }
 
     /**
-     * @return null
      */
     public function validate()
     {
-        return null;
+        return;
     }
 
     public function construct()
     {
-
     }
 
     public function __toString()
@@ -86,6 +80,7 @@ class Form
     /**
      * @param null $data
      * @param bool $check
+     *
      * @return mixed
      */
     public function __invoke($data = null, $check = true)
@@ -106,11 +101,11 @@ class Form
                 return $this->noValidation();
             }
         }
-
     }
 
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function withValidation($data)
@@ -118,7 +113,6 @@ class Form
         $this->setData($data);
 
         return $this->_form->render();
-
     }
 
     /**
@@ -127,7 +121,6 @@ class Form
     public function noValidation()
     {
         return $this->_form->render();
-
     }
 
     public function isValid($data = [])
@@ -135,7 +128,6 @@ class Form
         if (empty($data) === false) {
             $this->setData($data);
         }
-
 
         return $this->_validate->isValid();
     }
@@ -149,7 +141,6 @@ class Form
     }
 
     /**
-     * @return null
      */
     public function getForm()
     {

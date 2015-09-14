@@ -1,12 +1,13 @@
 <?php
+
 namespace Application\Maestria\Form;
 
 class Submit extends Element
 {
-    protected $_name       = 'input';
+    protected $_name = 'input';
     protected $_attributes = [
-        'type'  => 'submit',
+        'type' => 'submit',
         'value' => 'Send',
-        'class' => 'btn btn-primary'
+        'class' => 'btn btn-primary',
     ];
 }

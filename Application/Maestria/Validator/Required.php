@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Maestria\Validator;
 
 class Required extends Validator
@@ -12,6 +13,4 @@ class Required extends Validator
     {
         return 'This field is required';
     }
-
 }
-

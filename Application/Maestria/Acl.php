@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Maestria;
 
 class Acl
@@ -6,21 +7,20 @@ class Acl
     /**
      * @var \Hoa\Acl\Acl
      */
-    protected $_acl       = null;
+    protected $_acl = null;
     protected $_framework = null;
-    protected $_resource  = [];
+    protected $_resource = [];
 
     public function __construct(\Sohoa\Framework\Framework $framework)
     {
-
-        $this->_acl       = \Hoa\Acl\Acl::getInstance();
+        $this->_acl = \Hoa\Acl\Acl::getInstance();
         $this->_framework = $framework;
 
-        $admin     = new \Hoa\Acl\Group('admin');
+        $admin = new \Hoa\Acl\Group('admin');
         $professor = new \Hoa\Acl\Group('professor');
         $moderator = new \Hoa\Acl\Group('moderator');
-        $student   = new \Hoa\Acl\Group('student');
-        $resource  = new \Hoa\Acl\Service('foo');
+        $student = new \Hoa\Acl\Group('student');
+        $resource = new \Hoa\Acl\Service('foo');
 
         if ($this->_acl->groupExists('admin') === false) {
             $this->_acl->addGroup($admin);
@@ -43,7 +43,6 @@ class Acl
         }
 
         $this->load();
-
     }
 
     protected function load()
@@ -52,9 +51,8 @@ class Acl
         $router->construct();
         $rules = $router->getRules();
 
-
         foreach ($rules as $rule) {
-            $call   = null;
+            $call = null;
             $action = null;
 
             if (isset($rule[4])) {
@@ -66,22 +64,19 @@ class Acl
             }
 
             if ($call !== null and $action !== null) {
-                $app = 'app.' . strtolower($call) . '.' . strtolower($action);
+                $app = 'app.'.strtolower($call).'.'.strtolower($action);
 
                 if (!in_array($app, $this->_resource)) {
                     $this->_resource[] = $app;
-
                 }
             }
         }
-
     }
 
     public function allow($string, $gid)
     {
         foreach ($this->_resource as $ressource) {
-
-            if (preg_match('#^' . $string . '$#', $ressource) !== 0) {
+            if (preg_match('#^'.$string.'$#', $ressource) !== 0) {
                 if (is_array($gid)) {
                     foreach ($gid as $g) {
                         $this->_acl->allow($g, new \Hoa\Acl\Permission($ressource));
@@ -93,14 +88,12 @@ class Acl
         }
 
         return $this;
-
     }
 
     public function deny($string, $gid)
     {
         foreach ($this->_resource as $ressource) {
-
-            if (preg_match('#^' . $string . '$#', $ressource) !== 0) {
+            if (preg_match('#^'.$string.'$#', $ressource) !== 0) {
                 if (is_array($gid)) {
                     foreach ($gid as $g) {
                         $this->_acl->deny($g, new \Hoa\Acl\Permission($ressource));
@@ -112,7 +105,6 @@ class Acl
         }
 
         return $this;
-
     }
 
     public function isAllow($uid, $resource)
@@ -127,14 +119,13 @@ class Acl
 
     public function addUser($label, $group)
     {
-        $user     = new \Hoa\Acl\User($label);
+        $user = new \Hoa\Acl\User($label);
         $resource = $this->_acl->getResource('foo');
         $user->addGroup($group);
 
         if ($this->_acl->userExists($user) === false) {
             $this->_acl->addUser($user);
         }
-
 
         if ($resource->userExists($user) === false) {
             $resource->addUser($user);

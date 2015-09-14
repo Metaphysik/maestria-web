@@ -1,17 +1,18 @@
 <?php
+
 namespace Application\Maestria\Form;
 
 class Element implements \ArrayAccess
 {
-    protected $_name          = '';
-    protected $_attributes    = [];
+    protected $_name = '';
+    protected $_attributes = [];
     protected $_newAttributes = true;
-    protected $_child         = [];
-    protected $_id            = null;
-    protected $_label         = null;
-    protected $_parent        = null;
-    protected $_optionnal     = false;
-    protected $_need          = [];
+    protected $_child = [];
+    protected $_id = null;
+    protected $_label = null;
+    protected $_parent = null;
+    protected $_optionnal = false;
+    protected $_need = [];
 
     public function __call($name, $value)
     {
@@ -20,7 +21,7 @@ class Element implements \ArrayAccess
             if ($this->_newAttributes === true or array_key_exists($name, $this->_attributes)) {
                 $this->setAttribute($name, $value);
             } else {
-                throw new Exception("You can not add this attribute (%s)", 1, [$name]);
+                throw new Exception('You can not add this attribute (%s)', 1, [$name]);
             }
         }
 
@@ -45,7 +46,7 @@ class Element implements \ArrayAccess
 
     public function id($id)
     {
-        $this->_id               = $id;
+        $this->_id = $id;
         $this->_attributes['id'] = $id;
         $this->name($id);
 
@@ -90,7 +91,7 @@ class Element implements \ArrayAccess
 
     public function insertBeforeLast($string)
     {
-        $last           = array_pop($this->_child);
+        $last = array_pop($this->_child);
         $this->_child[] = $string;
         $this->_child[] = $last;
     }
@@ -155,9 +156,8 @@ class Element implements \ArrayAccess
             return $this->_attributes[$name];
         }
 
-        return null;
+        return;
     }
-
 
     public function optionnal()
     {

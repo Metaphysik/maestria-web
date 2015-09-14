@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Application\Entities;
-
 
 /**
  * @Entity @Table(name="theme")
@@ -65,6 +63,4 @@ class Theme
     {
         $this->refDomain = $refDomain;
     }
-
-
 }

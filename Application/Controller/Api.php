@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Application\Controller;
-
 
 class Api extends Generic
 {
-    public static $ok    = 200;
+    public static $ok = 200;
     public static $error = 500;
 
     private $_message = ['status' => 200, 'error' => [], 'log' => [], 'data' => null];

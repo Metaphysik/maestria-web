@@ -1,9 +1,10 @@
 <?php
+
 namespace Application\Maestria\Form;
 
 class Checkbox extends Select
 {
-    protected $_name       = 'input';
+    protected $_name = 'input';
     protected $_attributes = ['type' => 'checkbox'];
 
     public function option($value, $label, $name, $args = [])
@@ -15,12 +16,12 @@ class Checkbox extends Select
 
     public function name()
     {
-        throw new Exception("Can not define an name or id of checkbox", 0);
+        throw new Exception('Can not define an name or id of checkbox', 0);
     }
 
     public function validate()
     {
-        throw new Exception("Can not define an validator on checkbox", 1);
+        throw new Exception('Can not define an validator on checkbox', 1);
     }
 
     public function getAllName()
@@ -34,4 +35,3 @@ class Checkbox extends Select
         return $o;
     }
 }
-

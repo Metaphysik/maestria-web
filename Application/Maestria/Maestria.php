@@ -1,9 +1,10 @@
 <?php
+
 namespace Application\Maestria;
 
 class Maestria extends \Sohoa\Framework\Framework
 {
-    public    $_router;
+    public $_router;
     protected $_acl;
 
     public function getAcl()
@@ -20,7 +21,7 @@ class Maestria extends \Sohoa\Framework\Framework
                 'student',
                 'professor',
                 'moderator',
-                'admin'
+                'admin',
             ])//->deny('app.evaluation.edit', array('student', 'professor', 'moderator', 'admin'))
         ; //TODO : Make it :D
     }

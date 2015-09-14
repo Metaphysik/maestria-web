@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: camael
  * Date: 01/04/15
- * Time: 20:04
+ * Time: 20:04.
  */
 
 namespace Application\Controller\Uia;
@@ -17,9 +18,8 @@ class Item extends Api
     public function indexAction()
     {
         $this->data->domain = new Domain();
-        $this->data->theme  = new Theme();
-        $this->data->item   = new \Application\Model\Item();
-
+        $this->data->theme = new Theme();
+        $this->data->item = new \Application\Model\Item();
 
         return $this->greut->render();
     }
@@ -27,7 +27,7 @@ class Item extends Api
     public function createDomainActionAsync()
     {
         if (isset($_POST['label'])) {
-            $label  = $_POST['label'];
+            $label = $_POST['label'];
             $domain = new Domain();
             $domain->insert($label);
 
@@ -43,8 +43,8 @@ class Item extends Api
     {
         if (isset($_POST['label']) and isset($_POST['domain'])) {
             $domain_id = $_POST['domain'];
-            $label     = $_POST['label'];
-            $theme     = new Theme();
+            $label = $_POST['label'];
+            $theme = new Theme();
             $theme->insert($label, $domain_id);
 
             $this->ok($label);
@@ -60,7 +60,7 @@ class Item extends Api
         if (isset($_POST['label']) and isset($_POST['theme'])) {
             $label = $_POST['label'];
             $theme = $_POST['theme'];
-            $item  = new \Application\Model\Item();
+            $item = new \Application\Model\Item();
 
             $item->insert($theme, $label, 1, 0, 0);
             $this->ok($label);
@@ -74,15 +74,14 @@ class Item extends Api
     public function updateDomainActionAsync()
     {
         if (isset($_POST['label']) and isset($_POST['id'])) {
-
-            $label  = $_POST['label'];
-            $id     = $_POST['id'];
+            $label = $_POST['label'];
+            $id = $_POST['id'];
             $domain = new Domain();
 
             if ($domain->labelExists($label) === false) {
 
                 /**
-                 * @var $entity \Application\Entities\Domain
+                 * @var \Application\Entities\Domain
                  */
                 $entity = $domain->get($id);
                 $entity->setLabel($label);
@@ -95,23 +94,21 @@ class Item extends Api
             $this->nok('Api error');
         }
 
-
         echo $this->getApiJson();
     }
 
     public function updateThemeActionAsync()
     {
         if (isset($_POST['label']) and isset($_POST['id']) and isset($_POST['ref'])) {
-
-            $label  = $_POST['label'];
-            $id     = $_POST['id'];
+            $label = $_POST['label'];
+            $id = $_POST['id'];
             $domain = $_POST['ref'];
-            $theme  = new Theme();
+            $theme = new Theme();
 
             if ($theme->labelExists($label, $domain) === false) {
 
                 /**
-                 * @var $entity \Application\Entities\Theme
+                 * @var \Application\Entities\Theme
                  */
                 $entity = $theme->get($id);
                 $entity->setLabel($label);
@@ -126,29 +123,26 @@ class Item extends Api
             $this->nok('Api error');
         }
 
-
         echo $this->getApiJson();
     }
 
     public function updateActionAsync()
     {
         if (isset($_POST['label']) and isset($_POST['tid']) and isset($_POST['id'])) {
-
             $label = $_POST['label'];
-            $tid   = $_POST['tid'];
-            $id    = $_POST['id'];
-            $item  = new \Application\Model\Item();
+            $tid = $_POST['tid'];
+            $id = $_POST['id'];
+            $item = new \Application\Model\Item();
 
             if ($item->labelExists($tid, $label) === false) {
                 /**
-                 * @var $entity \Application\Entities\Item
+                 * @var \Application\Entities\Item
                  */
                 $entity = $item->get($id);
 
                 $entity->setLabel($label);
                 $item->update($entity);
                 $this->ok();
-
             } else {
                 $this->nok('Label ever exists');
             }
@@ -161,9 +155,8 @@ class Item extends Api
 
     public function deleteDomainActionAsync()
     {
-
         if (isset($_POST['id'])) {
-            $id  = $_POST['id'];
+            $id = $_POST['id'];
             $dom = new Domain();
             $ent = $dom->get($id);
             if ($ent !== null) {
@@ -181,10 +174,9 @@ class Item extends Api
 
     public function deleteThemeActionAsync()
     {
-
         if (isset($_POST['id'])) {
-            $id     = $_POST['id'];
-            $theme  = new Theme();
+            $id = $_POST['id'];
+            $theme = new Theme();
             $entity = $theme->get($id);
             if ($entity !== null) {
                 $theme->delete($entity);
@@ -192,7 +184,6 @@ class Item extends Api
             } else {
                 $this->nok('Ever deleted');
             }
-
         } else {
             $this->nok('Api error');
         }
@@ -203,8 +194,8 @@ class Item extends Api
     public function deleteActionAsync()
     {
         if (isset($_POST['id'])) {
-            $id     = $_POST['id'];
-            $item   = new \Application\Model\Item();
+            $id = $_POST['id'];
+            $item = new \Application\Model\Item();
             $entity = $item->get($id);
             if ($entity !== null) {
                 $item->pendingTrash($id);
@@ -212,7 +203,6 @@ class Item extends Api
             } else {
                 $this->nok('Ever deleted');
             }
-
         } else {
             $this->nok('Api error');
         }

@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Application\Model;
-
 
 use Application\Entities\Item;
 use Hoa\Core\Exception\Exception;
 
 class Question extends Generic
 {
-
     public function insertMany($eval, $questions)
     {
         if (is_array($questions) === false) {
@@ -18,7 +15,7 @@ class Question extends Generic
 
         foreach ($questions as $question) {
             $title = $question['title'];
-            $taxo  = $question['taxo'];
+            $taxo = $question['taxo'];
             $point = $question['note'];
             $item1 = $question['item1'];
             $item2 = $question['item2'];
@@ -55,7 +52,6 @@ class Question extends Generic
 
     public function insert($eval, $title, $taxo, $point, $item1, $item2)
     {
-
         if ($this->titleExists($eval, $title) === false) {
             $this->_insert($eval, $title, $taxo, $point, $item1, $item2);
         }
@@ -65,7 +61,6 @@ class Question extends Generic
 
     public function titleExists($eval, $title)
     {
-
         $e = $this->_repository->findBy(['title' => $title, 'refEvaluation' => $eval], null, 1);
 
         return (count($e) >= 1);
@@ -81,7 +76,6 @@ class Question extends Generic
         $quest->setItem1($item1);
         $quest->setItem2($item2);
 
-
         $this->_em->persist($quest);
         $this->_em->flush();
 
@@ -95,11 +89,11 @@ class Question extends Generic
         $entites = $this->_repository->findBy([$column => $value]);
 
         foreach ($entites as $i => $entite) {
-            /**
+            /*
              * @var $entite \Application\Entities\Question
              */
 
-            $item  = new \Application\Model\Item();
+            $item = new \Application\Model\Item();
             $item1 = $item->get($entite->getItem1());
             if ($item1 !== null) {
                 if ($item1 instanceof Item) {
@@ -117,7 +111,6 @@ class Question extends Generic
                     $entite->setItem2($item2);
                 }
             }
-
         }
 
         return $entites;

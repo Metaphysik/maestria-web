@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Entities;
 
 /**
@@ -117,13 +118,11 @@ class User
 
     public function isStudent()
     {
-
         $admin = $this->getIsAdmin();
-        $modo  = $this->getIsModerator();
-        $prof  = $this->getIsProfessor();
+        $modo = $this->getIsModerator();
+        $prof = $this->getIsProfessor();
 
         return ($admin === false && $modo === false && $prof === false) ? true : false;
-
     }
 
     /**
@@ -131,7 +130,7 @@ class User
      */
     public function getIsAdmin()
     {
-        return ($this->isAdmin === 1) ? true : false;;
+        return ($this->isAdmin === 1) ? true : false;
     }
 
     /**
@@ -269,6 +268,4 @@ class User
     {
         $this->birthdate = $birthdate;
     } // -1 = Ban, 0 = Non activate, 1 = pending, 2 = activate
-
-
 }

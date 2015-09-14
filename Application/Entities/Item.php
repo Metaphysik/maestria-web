@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Application\Entities;
-
 
 /**
  * @Entity @Table(name="item")
@@ -122,6 +120,4 @@ class Item
     {
         $this->lvl = $lvl;
     }
-
-
 }

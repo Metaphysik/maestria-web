@@ -1,28 +1,25 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: camael
  * Date: 25/03/15
- * Time: 20:35
+ * Time: 20:35.
  */
 
 namespace Application\Model;
 
-
 class UserClass extends Generic
 {
-
     public function associate($uia, $classe, $user)
     {
-
         if ($uia === null) {
             $uia = UIA;
         }
         if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia  = $slug->getBySludId($uia);
+            $uia = $slug->getBySludId($uia);
         }
-
 
         if ($this->isAssociated($uia, $classe, $user) === false) {
             return $this->_insert($uia, $classe, $user);
@@ -31,10 +28,10 @@ class UserClass extends Generic
         return false;
     }
 
-    public function getFirstClasse($uia, $user) {
+    public function getFirstClasse($uia, $user)
+    {
         return $this->_repository->findBy(['refUser' => $user], null, 1);
     }
-
 
     public function isAssociated($uia, $classe, $user)
     {
@@ -43,7 +40,7 @@ class UserClass extends Generic
         }
         if ($uia === null) {
             $slug = new Uia();
-            $uia  = $slug->getBySludId($uia);
+            $uia = $slug->getBySludId($uia);
         }
 
         $e = $this->_repository->findBy(['refUia' => $uia, 'refClassroom' => $classe, 'refUser' => $user], null, 1);
@@ -64,6 +61,4 @@ class UserClass extends Generic
 
         return true;
     }
-
-
 }

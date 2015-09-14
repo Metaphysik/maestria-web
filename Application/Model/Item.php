@@ -1,12 +1,9 @@
 <?php
 
-
 namespace Application\Model;
-
 
 class Item extends Generic
 {
-
     public function getByTheme($themeID)
     {
         return $this->_repository->findBy(['refTheme' => $themeID]);
@@ -14,7 +11,6 @@ class Item extends Generic
 
     public function insert($refTheme, $label, $type, $status, $lvl)
     {
-
         if ($this->labelExists($refTheme, $label) === false) {
             return $this->_insert($refTheme, $label, $type, $status, $lvl);
         }
@@ -24,11 +20,10 @@ class Item extends Generic
 
     public function labelExists($refTheme, $label)
     {
-
         $e = $this->_repository->findBy(
             [
-                'label'    => $label,
-                'refTheme' => $refTheme
+                'label' => $label,
+                'refTheme' => $refTheme,
             ], null, 1);
 
         return (count($e) >= 1);
@@ -54,7 +49,7 @@ class Item extends Generic
     public function pendingTrash($id)
     {
         /**
-         * @var $e \Application\Entities\Item
+         * @var \Application\Entities\Item
          */
         $e = $this->get($id);
 

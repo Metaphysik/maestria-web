@@ -1,15 +1,11 @@
 <?php
 
-
 namespace Application\Model;
-
 
 class Evaluation extends Generic
 {
-
     public function titleExists($title)
     {
-
         $e = $this->_repository->findBy(['title' => $title], null, 1);
 
         return (count($e) >= 1);
@@ -33,7 +29,6 @@ class Evaluation extends Generic
         $eval->setCreatedate($cdate);
         $eval->setUpdatedate($udate);
 
-
         $this->_em->persist($eval);
         $this->_em->flush();
 
@@ -49,7 +44,7 @@ class Evaluation extends Generic
 
     public function get($id)
     {
-        $eval      = $this->getBy('id', $id);
+        $eval = $this->getBy('id', $id);
         $questions = new Question();
         $questions = $questions->getAllBy('refEvaluation', $id);
 

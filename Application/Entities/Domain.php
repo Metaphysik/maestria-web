@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Application\Entities;
-
 
 /**
  * @Entity @Table(name="domain")
@@ -45,6 +43,4 @@ class Domain
     {
         $this->label = $label;
     }
-
-
 }

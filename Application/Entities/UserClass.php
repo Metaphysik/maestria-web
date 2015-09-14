@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: camael
  * Date: 25/03/15
- * Time: 20:29
+ * Time: 20:29.
  */
 
 namespace Application\Entities;
@@ -85,6 +86,4 @@ class UserClass
     {
         $this->refClassroom = $refClassroom;
     }
-
-
 }

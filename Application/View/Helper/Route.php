@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\View\Helper;
 
 use Sohoa\Framework\View;
@@ -9,7 +10,6 @@ class Route extends View\Helper
     public function unroute($rid, $args = [])
     {
         $router = $this->view->getFramework()->getRouter();
-
 
         if (defined('UIA') and isset($args['uia']) === false) {
             $args['uia'] = UIA;
@@ -26,8 +26,5 @@ class Route extends View\Helper
 
     public function __invoke($args)
     {
-
     }
-
-
 }

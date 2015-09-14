@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Application\Entities;
-
 
 /**
  * @Entity @Table(name="answer")
@@ -99,6 +97,4 @@ class Answer
     {
         $this->answer = $answer;
     }
-
-
 }

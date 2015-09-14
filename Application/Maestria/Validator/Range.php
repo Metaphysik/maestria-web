@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Maestria\Validator;
 
 class Range extends Validator
@@ -9,13 +10,11 @@ class Range extends Validator
             return in_array($data, $arguments[0]);
         }
 
-        throw new Exception("Need only one argument", 1);
-
+        throw new Exception('Need only one argument', 1);
     }
 
     protected function setMessage()
     {
         return 'This field are not in authorized option';
     }
-
 }

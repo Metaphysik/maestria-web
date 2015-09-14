@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Model;
 
 use Application\Maestria\Container;
@@ -6,7 +7,6 @@ use Hoa\Core\Exception\Exception;
 
 class Generic
 {
-
     public $id = null;
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -19,15 +19,15 @@ class Generic
 
     public function __construct()
     {
-        $this->_em         = Container::getContainer('em');
-        $class             = get_class($this);
-        $entity            = substr($class, strrpos($class, '\\') + 1);
+        $this->_em = Container::getContainer('em');
+        $class = get_class($this);
+        $entity = substr($class, strrpos($class, '\\') + 1);
         $this->_repository = $this->getRepository($entity);
     }
 
     public function getRepository($entity)
     {
-        return $this->_em->getRepository('Application\Entities\\' . ucfirst($entity));
+        return $this->_em->getRepository('Application\Entities\\'.ucfirst($entity));
     }
 
     public function update($entity)
@@ -44,18 +44,18 @@ class Generic
 
     public function get($id)
     {
-        $class  = get_class($this);
+        $class = get_class($this);
         $entity = substr($class, strrpos($class, '\\') + 1);
 
-        return $this->_em->find('Application\Entities\\' . ucfirst($entity), $id);
+        return $this->_em->find('Application\Entities\\'.ucfirst($entity), $id);
     }
 
     public function all()
     {
-        $class  = get_class($this);
+        $class = get_class($this);
         $entity = substr($class, strrpos($class, '\\') + 1);
 
-        return $this->_em->getRepository('Application\Entities\\' . ucfirst($entity))->findAll();
+        return $this->_em->getRepository('Application\Entities\\'.ucfirst($entity))->findAll();
     }
 
     public function getBy($column, $value)

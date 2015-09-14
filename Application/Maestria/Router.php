@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Se mettre d'accord sur la doc
+ * Se mettre d'accord sur la doc.
  */
+
 namespace Application\Maestria;
 
 class Router extends \Sohoa\Framework\Router
 {
-
     protected static $_everLoad = false;
 
     public static function getDomain()
@@ -21,6 +21,5 @@ class Router extends \Sohoa\Framework\Router
             parent::construct();
             static::$_everLoad = true;
         }
-
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Form;
 
 use Application\Maestria\Form;
@@ -8,7 +9,7 @@ class Login extends Form
 {
     public function form()
     {
-        $form   = $this->_form;
+        $form = $this->_form;
         $form[] = (new Input())->id('mail');
         $form[] = (new Input())->id('mdp');
     }

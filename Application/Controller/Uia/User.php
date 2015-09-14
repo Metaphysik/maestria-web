@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Application\Controller\Uia;
 
 use Application\Controller\Api;
@@ -12,16 +11,15 @@ class User extends Api
     public function createActionAsync($uia)
     {
         if (isset($_POST['label']) and isset($_POST['idclass'])) {
-
             $this->log('Label : %s', $_POST['label']);
             $this->log('Id : %s', $_POST['idclass']);
 
             if (strlen($_POST['label']) > 2) {
                 $label = $_POST['label'];
-                $id    = $_POST['idclass'];
+                $id = $_POST['idclass'];
 
                 $model = new \Application\Model\User();
-                $bool  = $model->insertStudent($uia, $label);
+                $bool = $model->insertStudent($uia, $label);
 
                 if ($bool === true and $model->id !== null) {
                     $m = new UserClass();
@@ -42,45 +40,39 @@ class User extends Api
 
     public function editAction($user_id)
     {
-        /**
+        /*
          * @var $user \Application\Entities\User
          */
-        $user_id            = intval($user_id);
-        $m_user             = new \Application\Model\User();
-        $user               = $m_user->get($user_id);
+        $user_id = intval($user_id);
+        $m_user = new \Application\Model\User();
+        $user = $m_user->get($user_id);
         $this->data->profil = $user;
-
 
         if ($this->lvlProf() || ($this->_user !== null && $this->_user->getId() === $user->getId())) {
             $this->greut->render();
         } else {
             throw new NotAllow('You attempt to acces on user.edit page with a acces level too low');
         }
-
-
     }
 
     public function updateAction($user_id)
     {
         $user_id = intval($user_id);
-        $m_user  = new \Application\Model\User();
-        $user    = $m_user->get($user_id);
-
+        $m_user = new \Application\Model\User();
+        $user = $m_user->get($user_id);
 
         if ($this->lvlProf() || ($this->_user !== null && $this->_user->getId() === $user->getId())) {
-
-
             $realname = $this->checkPost('name');
-            $login    = $this->checkPost('login');
-            $bday     = $this->checkPost('birthdate');
-            $email    = $this->checkPost('email');
-            $psswd    = trim($this->checkPost('psswd'));
-            $cpsswd   = trim($this->checkPost('cpsswd'));
-            $isAdmin  = $this->checkPost('isAdmin', 'off');
-            $isModo   = $this->checkPost('isModo', 'off');
-            $isProf   = $this->checkPost('isProf', 'off');
+            $login = $this->checkPost('login');
+            $bday = $this->checkPost('birthdate');
+            $email = $this->checkPost('email');
+            $psswd = trim($this->checkPost('psswd'));
+            $cpsswd = trim($this->checkPost('cpsswd'));
+            $isAdmin = $this->checkPost('isAdmin', 'off');
+            $isModo = $this->checkPost('isModo', 'off');
+            $isProf = $this->checkPost('isProf', 'off');
 
-            /**
+            /*
              * @var $user \Application\Entities\User
              */
 
@@ -129,11 +121,9 @@ class User extends Api
             $m_user->update($user);
 
             $this->redirector->redirect('editUiaUser', ['user_id' => $user_id]);
-
         } else {
             throw new NotAllow('You attempt to acces on user.edit page with a acces level too low');
         }
-
     }
 
 //    public function updateActionAsync($user_id)

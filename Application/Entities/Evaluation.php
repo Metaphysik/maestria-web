@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Application\Entities;
-
 
 /**
  * @Entity @Table(name="evaluation")
@@ -117,5 +115,4 @@ class Evaluation
     {
         $this->updatedate = $updatedate;
     }
-
 }
