@@ -55,7 +55,7 @@
             <div class="flechebas"></div>
             <h3 class="eval"><a href="<?= $this->route->unroute('editUiaEvaluation', ['evaluation_id' => $selected_evaluation->getId()]); ?>"> EDITION</a></h3>
             <div class="flechebas"></div>
-
+            <h3 class="eval"><a href="<?= $this->route->unroute('showUiaCorrection', ['correction_id' => $selected_evaluation->getId()]); ?>"> CORRECTION</a></h3>
         <?php } ?>
     <?php } ?>
 
