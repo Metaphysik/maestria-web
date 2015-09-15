@@ -34,6 +34,7 @@ $this->any($uia.'/', ['as' => 'mainindex', 'to' => 'Main#Index']);
 $this->any('/', ['as' => 'index', 'to' => 'Main#All']);
 
 $this->get($uia.'/api/classe/(?<classe>[^/]+)/users/', ['as' => 'indexApiUser', 'to' => 'Api\User#index']);
+$this->get($uia.'/api/classe/(?<classe>[^/]+)/correction/(?<correction>[^/]+)/', ['as' => 'getApiCorrect', 'to' => 'Api\Correction#get']);
 $this->get($uia.'/api/eval/(?<eval>[^/]+)/user/(?<user>[^/]+)/', ['as' => 'getApiAnswer', 'to' => 'Api\Answer#get']);
 $this->post($uia.'/api/eval/(?<eval>[^/]+)/', ['as' => 'postApiAnswer', 'to' => 'Api\Answer#post']);
 $this->post($uia.'/question/(?<qid>[^/]+)/delete', ['as' => 'deleteQuestion', 'to' => 'Uia\Question#delete']);

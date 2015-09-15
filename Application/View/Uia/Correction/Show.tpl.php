@@ -42,7 +42,7 @@ $this->block('container');
 ?>
     <section id="corps" class="correction">
         <section id="titre">
-            <h3 class="classe">CLASSE <span class="awsm"><i class="fa fa-caret-right"></i></span> <span id="classe">3<sup>2</sup></span></h3>
+            <h3 class="classe">CLASSE <span class="awsm"><i class="fa fa-caret-right"></i></span> <span id="classe">?</span></h3>
             <h1>CORRECTION <span class="awsm"><i class="fa fa-caret-right"></i></span><span id="evalchx"> ?</span></h1>
 
         </section>
@@ -54,38 +54,7 @@ $this->block('container');
                 <h4 id="comp">SAVOIR-FAIRE/ATTITUDE</h4>
             </div>
             <div id="correction" data-id="<?= $correction ?>">
-                <section>
-                    <div class="name">Nicolas</div>
-                    <div class="note">2</div>
-                    <div class="taxo">
-                        <div>
-                            <div class="awsm"><i class="fa fa-book"></i> </div><h5>Connaître</h5><!--div class="graf">graphe1</div-->
-                        </div>
-                        <div>
-                            <div class="awsm"><i class="fa fa-rotate-left"></i></div><h5>Comprendre</h5><!--div class="graf">graphe2</div-->
-                        </div>
-                        <div>
-                            <div class="awsm"><i class="fa fa-wrench"></i></div><h5>Appliquer</h5><!--div class="graf">graphe3</div-->
-                        </div>
-                        <div>
-                            <div class="awsm"><i class="fa fa-star"></i></div><h5>Analyser</h5><!--div class="graf">graphe4</div-->
-                        </div>
-                        <div class="apprct">Tu dois commencer par apprendre les définitions car elles te serviront souvent,
-                            il faut reformuler les explications pour bien les comprendre.Tu peux progresser encore en travaillant davantage les exercices.</div>
-                    </div>
-                    <div class="item conn">
-                        <article><div class="graf">l</div><div class="libelle">Le feu ça brule</div></article>
-                        <article><div class="graf">l</div><div class="libelle">L'eau, ça mouille</div></article>
-                        <article><div class="graf">l</div><div class="libelle">Tous les oiseaux volent dans le ciel</div></article>
-                        <article><div class="graf">l</div><div class="libelle">Ta soeur bat le beurre à 300 à l'heure sur le cyclo du facteur!</div></article>
-                    </div>
-                    <div class="item comp">
-                        <article><div class="graf">l</div><div class="libelle">Utiliser une fourchette</div></article>
-                        <article><div class="graf">l</div><div class="libelle">Savoir lécher son coude</div></article>
-                        <article><div class="graf">l</div><div class="libelle">Pouvoir écrire son nom dans la neige</div></article>
-                        <article><div class="graf">l</div><div class="libelle">Savoir quand se taire et quand parler à très bon escient ;-)</div></article>
-                    </div>
-                </section>
+
             </div>
         </section>
     </section>
@@ -94,5 +63,85 @@ $this->block('container');
 $this->endBlock();
 $this->block('js:script');
 ?>
+    <script>
+        var current_class = null;
+        var current_eval = null;
+        var current_elv = null;
 
+
+        $('.classechx > h6').click(function () {
+            current_class = $(this).data('idclasse');
+
+
+            $('#classe').html($(this).text());
+            $('#popupclasse').slideUp()
+
+            viewData(current_class, current_eval);
+        });
+
+        $('.itemchx > a').click(function (e) {
+            e.preventDefault();
+            current_eval = $(this).data('ideval');
+
+
+            $('#evalchx').text($(this).text());
+            $('#popup').slideUp()
+
+            viewData(current_class, current_eval);
+
+        });
+
+        var viewData = function (current_class, current_eval) {
+            if (current_class != null && current_eval != null) {
+
+                $.get('/api/classe/' + current_class + '/correction/'+current_eval+'/', function (data) {
+
+//                    var users = JSON.parse(data).log[0];
+                    var html = '';
+
+                    $('#correction').text(data);
+
+                    for (var i = 0; i < 11; i++) {
+//                    for (var i = 0; i < users.length; i++) {
+
+                        html += '<section>';
+                        html += '    <div class="name">Nicolas</div>';
+                        html += '    <div class="note">2</div>';
+                        html += '    <div class="taxo">';
+                        html += '        <div>';
+                        html += '            <div class="awsm"><i class="fa fa-book"></i> </div><h5>Connaître</h5><!--div class="graf">graphe1</div-->';
+                        html += '        </div>';
+                        html += '        <div>';
+                        html += '            <div class="awsm"><i class="fa fa-rotate-left"></i></div><h5>Comprendre</h5><!--div class="graf">graphe2</div-->';
+                        html += '        </div>';
+                        html += '        <div>';
+                        html += '            <div class="awsm"><i class="fa fa-wrench"></i></div><h5>Appliquer</h5><!--div class="graf">graphe3</div-->';
+                        html += '        </div>';
+                        html += '        <div>';
+                        html += '            <div class="awsm"><i class="fa fa-star"></i></div><h5>Analyser</h5><!--div class="graf">graphe4</div-->';
+                        html += '        </div>';
+                        html += '        <div class="apprct">Tu dois commencer par apprendre les définitions car elles te serviront souvent,';
+                        html += '            il faut reformuler les explications pour bien les comprendre.Tu peux progresser encore en travaillant davantage les exercices.</div>';
+                        html += '    </div>';
+                        html += '    <div class="item conn">';
+                        html += '        <article><div class="graf">l</div><div class="libelle">Le feu ça brule</div></article>';
+                        html += '        <article><div class="graf">l</div><div class="libelle">L\'eau, ça mouille</div></article>';
+                        html += '        <article><div class="graf">l</div><div class="libelle">Tous les oiseaux volent dans le ciel</div></article>';
+                        html += '        <article><div class="graf">l</div><div class="libelle">Ta soeur bat le beurre à 300 à l\'heure sur le cyclo du facteur!</div></article>';
+                        html += '    </div>';
+                        html += '    <div class="item comp">';
+                        html += '        <article><div class="graf">l</div><div class="libelle">Utiliser une fourchette</div></article>';
+                        html += '        <article><div class="graf">l</div><div class="libelle">Savoir lécher son coude</div></article>';
+                        html += '        <article><div class="graf">l</div><div class="libelle">Pouvoir écrire son nom dans la neige</div></article>';
+                        html += '        <article><div class="graf">l</div><div class="libelle">Savoir quand se taire et quand parler à très bon escient ;-)</div></article>';
+                        html += '    </div>';
+                        html += '</section>';
+                    }
+
+//                    $('#correction').html(html);
+
+                });
+            }
+        };
+    </script>
 <?php $this->endblock(); ?>
