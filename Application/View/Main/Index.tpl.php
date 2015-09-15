@@ -26,8 +26,9 @@ $this->block('popup', 'append');
     <section id="popupevl">
         <section id="inpopup">
             <section class="titre eval">
-                <div class="awsm exit"><i class="fa fa-exit"></i> </div>
-                <h3 class="username"></h3></section>
+                <div class="awsm exit"><i class="fa fa-close"></i> </div>
+                <h3 class="username"></h3>
+            </section>
             <section id="popupevlcontent" class="contenu inputresult">
             </section>
         </section>
