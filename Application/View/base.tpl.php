@@ -70,6 +70,7 @@
 <!--            <a href="metaphysik.fr">Metaphysik</a>-->
 <!--        </footer>-->
 </nav>
+<div class="container">
 <?php $this->block('popup');
 if (isset($evaluations) and isset($user)) {
     ?>
@@ -118,6 +119,7 @@ if (isset($evaluations) and isset($user)) {
 $this->endBlock() ?>
 <?php $this->block('container'); ?>
 <?php $this->endBlock() ?>
+</div>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="/js/maestria.js"></script>
 <script src="/js/interaction.js"></script>

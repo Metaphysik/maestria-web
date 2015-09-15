@@ -3,8 +3,13 @@
   vertical-align: top;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: Questrial, Arial;
+  height: 100%;
 
   h1 {
     text-align: center;
@@ -73,7 +78,7 @@ h4 {
 
 nav {
   position: absolute;
-  height: 460px;
+  min-height: 100%;
   width: 140px;
   padding-left: 20px;
   display: inline-block;
@@ -81,3 +86,15 @@ nav {
   top: 0px;
   z-index: 35;
 }
+
+.container {
+  min-height: 93%;
+  max-width: 91% !important;
+}
+
+//.neweval, .items, .evals, .classes {
+//  section {
+//    width: 100%;
+//}
+// background-color: #ff0000;
+//}
