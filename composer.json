@@ -4,6 +4,7 @@
     "sohoa/framework": "*@dev",
     "camael24/greut": "dev-master",
     "hoa/database": "~0.0",
+    "hoa/router": "2.15.05.29",
     "hoa/praspel": "~0.0",
     "hoa/acl": "~0.0",
     "monolog/monolog": "~1.11",

@@ -8,6 +8,6 @@ class Correction extends Api
 {
     public function showAction($correction_id)
     {
-        
+
     }
 }
