@@ -7,10 +7,11 @@ use Application\Model\Classroom;
 
 class Correction extends Api
 {
-    public function showAction($uia,$correction_id)
+    public function showAction($uia, $correction_id)
     {
-        $classe = new Classroom();
-        $this->data->classes = $classe->getBySlug($uia);
+        $classe                 = new Classroom();
+        $this->data->classes    = $classe->getBySlug($uia);
+        $this->data->correction = $correction_id;
         $this->greut->render();
     }
 }

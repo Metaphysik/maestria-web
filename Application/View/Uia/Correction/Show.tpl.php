@@ -53,8 +53,7 @@ $this->block('container');
                 <h4 id="conn">CONNAISSANCES</h4>
                 <h4 id="comp">SAVOIR-FAIRE/ATTITUDE</h4>
             </div>
-            <div id="correction">
-                <?php for($i = 0; $i <= 10; $i++): ?>
+            <div id="correction" data-id="<?= $correction ?>">
                 <section>
                     <div class="name">Nicolas</div>
                     <div class="note">2</div>
@@ -87,7 +86,6 @@ $this->block('container');
                         <article><div class="graf">l</div><div class="libelle">Savoir quand se taire et quand parler à très bon escient ;-)</div></article>
                     </div>
                 </section>
-                <?php endfor; ?>
             </div>
         </section>
     </section>
