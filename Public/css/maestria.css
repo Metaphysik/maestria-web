@@ -190,7 +190,7 @@ li:hover .mdp {
   border: 1px solid black;
   display: inline-block;
   padding: 2px;
-  width: 210px;
+  width: 220px;
   margin-top: 5px;
 }
 /* line 19, ../../Application/Stylesheet/include/_correction.scss */
@@ -207,21 +207,21 @@ li:hover .mdp {
   display: inline-block;
 }
 
-/* line 34, ../../Application/Stylesheet/include/_correction.scss */
+/* line 37, ../../Application/Stylesheet/include/_correction.scss */
 .taxo div {
   display: inline-block;
   width: 52px;
   text-align: center;
 }
-/* line 40, ../../Application/Stylesheet/include/_correction.scss */
+/* line 43, ../../Application/Stylesheet/include/_correction.scss */
 .taxo .awsm {
   font-size: 17px;
 }
-/* line 44, ../../Application/Stylesheet/include/_correction.scss */
+/* line 47, ../../Application/Stylesheet/include/_correction.scss */
 .taxo h5 {
   font-size: 9px;
 }
-/* line 48, ../../Application/Stylesheet/include/_correction.scss */
+/* line 51, ../../Application/Stylesheet/include/_correction.scss */
 .taxo .apprct, .taxo .item {
   width: 100%;
   text-align: justify;
@@ -229,21 +229,22 @@ li:hover .mdp {
   font-size: 8px;
 }
 
-/* line 58, ../../Application/Stylesheet/include/_correction.scss */
+/* line 61, ../../Application/Stylesheet/include/_correction.scss */
+.graf {
+  width: 9%;
+  font-size: 8px;
+}
+
+/* line 67, ../../Application/Stylesheet/include/_correction.scss */
 .item article {
   display: inline-block;
   width: 49%;
 }
-/* line 63, ../../Application/Stylesheet/include/_correction.scss */
+/* line 72, ../../Application/Stylesheet/include/_correction.scss */
 .item div {
   display: inline-block;
 }
-/* line 67, ../../Application/Stylesheet/include/_correction.scss */
-.item .graf {
-  width: 9%;
-  font-size: 8px;
-}
-/* line 72, ../../Application/Stylesheet/include/_correction.scss */
+/* line 78, ../../Application/Stylesheet/include/_correction.scss */
 .item .libelle {
   width: 88%;
   max-height: 26px;

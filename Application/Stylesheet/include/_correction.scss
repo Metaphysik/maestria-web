@@ -12,7 +12,7 @@
     border: 1px solid black;
     display: inline-block;
     padding: 2px;
-    width: 210px;
+    width: 220px;
     margin-top: 5px;
   }
 
@@ -28,6 +28,9 @@
     width: 10%;
     display: inline-block;
   }
+
+
+
 }
 
 .taxo {
@@ -51,8 +54,14 @@
     margin-bottom: 5px;
     font-size: 8px
   }
+
 }
 
+
+.graf {
+  width: 9%;
+  font-size: 8px
+}
 
 .item {
   article {
@@ -64,10 +73,7 @@
     display: inline-block;
   }
 
-  .graf {
-    width: 9%;
-    font-size: 8px
-  }
+
 
   .libelle {
     width: 88%;
