@@ -15,7 +15,6 @@ Installation
 ---
 - Your domain must go in `Public/` directory, rewrite_url activate
 - `make install`  => Download composer and do some stuff
-
 - `make db-install` => Init database structure
 - `make db-data` => Generate basic start information
 - `make db-sample` => Generate random information, this step is optional
