@@ -19,7 +19,7 @@ $this->block('popup', 'append');
                     /**
                      * @var $classe \Application\Entities\Classroom
                      */
-                    echo '<h6 data-idclasse="'.$classe->getId().'" data-lvl="3" data-niv="1">'.$classe->getLabel().'</h6>';
+                    echo '<h6 data-idclasse="' . $classe->getId() . '" data-lvl="3" data-niv="1">' . $classe->getLabel() . '</h6>';
                 } ?>
 
             </section>
@@ -28,7 +28,7 @@ $this->block('popup', 'append');
     <section id="popupevl">
         <section id="inpopup">
             <section class="titre eval">
-                <div class="awsm exit"><i class="fa fa-close"></i> </div>
+                <div class="awsm exit"><i class="fa fa-close"></i></div>
                 <h3 class="username"></h3>
             </section>
             <section id="popupevlcontent" class="contenu inputresult">
@@ -42,7 +42,9 @@ $this->block('container');
 ?>
     <section id="corps" class="correction">
         <section id="titre">
-            <h3 class="classe">CLASSE <span class="awsm"><i class="fa fa-caret-right"></i></span> <span id="classe">?</span></h3>
+            <h3 class="classe">CLASSE <span class="awsm"><i class="fa fa-caret-right"></i></span> <span
+                    id="classe">?</span></h3>
+
             <h1>CORRECTION <span class="awsm"><i class="fa fa-caret-right"></i></span><span id="evalchx"> ?</span></h1>
 
         </section>
@@ -91,22 +93,23 @@ $this->block('js:script');
 
         });
 
+
         var viewData = function (current_class, current_eval) {
             if (current_class != null && current_eval != null) {
 
-                $.get('/api/classe/' + current_class + '/correction/'+current_eval+'/', function (data) {
+                $.get('/api/classe/' + current_class + '/correction/' + current_eval + '/', function (data) {
 
-//                    var users = JSON.parse(data).log[0];
+                    var users = JSON.parse(data).log[0];
                     var html = '';
 
-                    $('#correction').text(data);
+//                    $('#correction').text(data);
 
-                    for (var i = 0; i < 11; i++) {
-//                    for (var i = 0; i < users.length; i++) {
-
+//                    for (var i = 0; i < 11; i++) {
+                    for (var i = 0; i < users.length; i++) {
+                        var u = users[i];
                         html += '<section>';
-                        html += '    <div class="name">Nicolas</div>';
-                        html += '    <div class="note">2</div>';
+                        html += '    <div class="name">' + u.name + '</div>';
+                        html += '    <div class="note">' + u.note + '</div>';
                         html += '    <div class="taxo">';
                         html += '        <div>';
                         html += '            <div class="awsm"><i class="fa fa-book"></i> </div><h5>Connaître</h5><!--div class="graf">graphe1</div-->';
@@ -120,28 +123,24 @@ $this->block('js:script');
                         html += '        <div>';
                         html += '            <div class="awsm"><i class="fa fa-star"></i></div><h5>Analyser</h5><!--div class="graf">graphe4</div-->';
                         html += '        </div>';
-                        html += '        <div class="apprct">Tu dois commencer par apprendre les définitions car elles te serviront souvent,';
-                        html += '            il faut reformuler les explications pour bien les comprendre.Tu peux progresser encore en travaillant davantage les exercices.</div>';
+                        html += '        <div class="apprct">' + u.appr + '</div>';
                         html += '    </div>';
-                        html += '    <div class="item conn">';
-                        html += '        <article><div class="graf">l</div><div class="libelle">Le feu ça brule</div></article>';
-                        html += '        <article><div class="graf">l</div><div class="libelle">L\'eau, ça mouille</div></article>';
-                        html += '        <article><div class="graf">l</div><div class="libelle">Tous les oiseaux volent dans le ciel</div></article>';
-                        html += '        <article><div class="graf">l</div><div class="libelle">Ta soeur bat le beurre à 300 à l\'heure sur le cyclo du facteur!</div></article>';
-                        html += '    </div>';
-                        html += '    <div class="item comp">';
-                        html += '        <article><div class="graf">l</div><div class="libelle">Utiliser une fourchette</div></article>';
-                        html += '        <article><div class="graf">l</div><div class="libelle">Savoir lécher son coude</div></article>';
-                        html += '        <article><div class="graf">l</div><div class="libelle">Pouvoir écrire son nom dans la neige</div></article>';
-                        html += '        <article><div class="graf">l</div><div class="libelle">Savoir quand se taire et quand parler à très bon escient ;-)</div></article>';
+                        html += '    <div class="item">';
+                        for (var j = 0; j < u.item.length; j++) {
+                            z = u.item[j];
+                            html += '        <article><div class="graf">' + z.note + '</div><div class="libelle">' + z.name + '</div></article>';
+                        }
+
                         html += '    </div>';
                         html += '</section>';
                     }
 
-//                    $('#correction').html(html);
+                    $('#correction').html(html);
 
                 });
             }
         };
+
+        viewData(1, 1);
     </script>
 <?php $this->endblock(); ?>
