@@ -30,10 +30,7 @@ class Evaluation extends Api
 
         $this->select_evaluation($evaluation_id);
 
-        var_dump($this->router->unroute('editUiaEvaluation',
-            ['evaluation_id' => 1, 'uia' => 'demo']));
-
-//        $this->greut->render();
+        $this->greut->render();
     }
 
     public function destroyAction($uia, $evaluation_id)

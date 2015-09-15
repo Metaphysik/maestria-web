@@ -54,10 +54,7 @@ $this->block('container');
 ?>
     <section id="corps" class="neweval">
         <section id="titre">
-            <h3 class="classe">CLASSE <span class="awsm">  </span> <span id="classe">3<sup>2</sup></span></h3>
-
-            <h1>PARAMETRES DE L'EVALUATION</h1>
-
+            <h1>NOUVELLE EVALUATION</h1>
         </section>
         <section id="contenu">
             <form action="/evaluation/" method="post">

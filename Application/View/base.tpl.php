@@ -35,7 +35,7 @@
     <?php if (isset($user) === true && ($user->getIsProfessor() === true || $user->getIsModerator() === true || $user->getIsAdmin() === true)) { ?>
         <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom'); ?>">CLASSES</a></h3>
 
-        <h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
+        <h3 class="synthese"><a href="#">SYNTHESE</a></h3>
         <br/>
 
         <h3><a href="/evaluation/">EVALUATIONS</a></h3>
@@ -52,23 +52,23 @@
         }
         if (isset($selected_evaluation) === true and is_object($selected_evaluation)) {
             ?>
-            <?php var_dump($selected_evaluation); ?>
-
             <div class="flechebas"></div>
-            <h3 class="eval"><a href="<?= $this->route->unroute('editUiaEvaluation',
-                    ['evaluation_id' => $selected_evaluation->getId()]); ?>"> EDITION</a></h3>
+            <h3 class="eval"><a href="<?= $this->route->unroute('editUiaEvaluation', ['evaluation_id' => $selected_evaluation->getId()]); ?>"> EDITION</a></h3>
+            <div class="flechebas"></div>
+
         <?php } ?>
     <?php } ?>
 
     <?php if (isset($user) === true && $user->getIsAdmin() === true) { ?>
+
         <br/>
         <h3><a href="<?php echo $this->route->unroute('indexUiaItem'); ?>">ITEMS PEDA</a></h3>
 
     <?php } ?>
-        <footer>
-            <a href="http://metaphysik.fr/manuel/projet.php#contact">Contact</a>|
-            <a href="metaphysik.fr">Metaphysik</a>
-        </footer>
+<!--        <footer>-->
+<!--            <a href="http://metaphysik.fr/manuel/projet.php#contact">Contact</a>|-->
+<!--            <a href="metaphysik.fr">Metaphysik</a>-->
+<!--        </footer>-->
 </nav>
 <?php $this->block('popup');
 if (isset($evaluations) and isset($user)) {
