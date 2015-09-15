@@ -60,16 +60,16 @@ $this->block('container');
                     <div class="note">2</div>
                     <div class="taxo">
                         <div>
-                            <div class="awsm"><i class="fa fa-book"></i> </div><h5>Connaître</h5><div class="graf">graphe1</div>
+                            <div class="awsm"><i class="fa fa-book"></i> </div><h5>Connaître</h5><!--div class="graf">graphe1</div-->
                         </div>
                         <div>
-                            <div class="awsm"><i class="fa fa-rotate-left"></i></div><h5>Comprendre</h5><div class="graf">graphe2</div>
+                            <div class="awsm"><i class="fa fa-rotate-left"></i></div><h5>Comprendre</h5><!--div class="graf">graphe2</div-->
                         </div>
                         <div>
-                            <div class="awsm"><i class="fa fa-wrench"></i></div><h5>Appliquer</h5><div class="graf">graphe3</div>
+                            <div class="awsm"><i class="fa fa-wrench"></i></div><h5>Appliquer</h5><!--div class="graf">graphe3</div-->
                         </div>
                         <div>
-                            <div class="awsm"><i class="fa fa-star"></i></div><h5>Analyser</h5><div class="graf">graphe4</div>
+                            <div class="awsm"><i class="fa fa-star"></i></div><h5>Analyser</h5><!--div class="graf">graphe4</div-->
                         </div>
                         <div class="apprct">Tu dois commencer par apprendre les définitions car elles te serviront souvent,
                             il faut reformuler les explications pour bien les comprendre.Tu peux progresser encore en travaillant davantage les exercices.</div>
