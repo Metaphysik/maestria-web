@@ -33,6 +33,7 @@ $report->addField($coverageField);
 
 $script->getRunner()->addTestsFromDirectory(__DIR__ . '/Tests/Unit/Controller');
 $script->getRunner()->addTestsFromDirectory(__DIR__ . '/Tests/Unit/Feature');
+$script->getRunner()->addTestsFromDirectory(__DIR__ . '/Tests/Unit/Maestria');
 
 
 /*

@@ -11,7 +11,6 @@ namespace Application\Bin\Command\Sample;
 use Application\Model\Classroom;
 use Application\Model\Domain;
 use Application\Model\Evaluation;
-use Application\Model\Item;
 use Application\Model\Question;
 use Application\Model\Theme;
 use Application\Model\Uia;
@@ -26,13 +25,19 @@ class Random extends \Hoa\Console\Dispatcher\Kit
      *
      * @var \Hoa\Core\Bin\Welcome array
      */
-    protected $options = [
+    protected $options          = [
         ['help', \Hoa\Console\GetOption::NO_ARGUMENT, 'h'],
         ['help', \Hoa\Console\GetOption::NO_ARGUMENT, '?'],
         ['test', \Hoa\Console\GetOption::NO_ARGUMENT, 't'],
     ];
-
-    protected $uias = [
+    protected $verbose          = true;
+    protected $_countStudent    = 5;
+    protected $_countClasse     = 7;
+    protected $_countEvaluation = 1;
+    protected $_countQuestion   = 1;
+    protected $_countItemImport = 10;
+    protected $_bufferItem      = 0;
+    protected $uias             = [
         'demo',
         'caraminot',
     ];
@@ -56,12 +61,12 @@ class Random extends \Hoa\Console\Dispatcher\Kit
     {
         require 'hoa://Application/Config/Environnement.php';
 
-//        $this->hydrateUia();
-//        $this->hydrateUser();
-//        $this->hydrateClassroom();
-//        $this->hydateStudentAndAssociation();
-//        $this->hydrateDomain();
-//        $this->hydrateThemeItem();
+        $this->hydrateUia();
+        $this->hydrateUser();
+        $this->hydrateClassroom();
+        $this->hydateStudentAndAssociation();
+        $this->hydrateDomain();
+        $this->hydrateThemeItem();
         $this->hydrateEvaluation();
     }
 
@@ -75,7 +80,10 @@ class Random extends \Hoa\Console\Dispatcher\Kit
         $model->insert('caraminot', 'Lycée Professionnel Pierre Caraminot', '15 Avenue du paradis', 'Egletons',
             'Correze', 'Limousin', 'Mr Vraimentbobo', 'https://gmkfreelogos.com/logos/I/img/Its__Demo.gif');
 
-        echo '# UIA'."\n";
+        if ($this->verbose === true) {
+            echo '# UIA' . "\n";
+        }
+
     }
 
     public function hydrateUser()
@@ -88,7 +96,9 @@ class Random extends \Hoa\Console\Dispatcher\Kit
             $user->insert($uia, 'modo', 'modo@nowhere.com', sha1('modo'), 0, 1, 0, 'Maude Erator', 0, time(), '', 2);
             $user->insert($uia, 'prof', 'prof@nowhere.com', sha1('prof'), 0, 1, 0, 'Prof Essor', 0, time(), '', 2);
         }
-        echo '# MASTER USER'."\n";
+        if ($this->verbose === true) {
+            echo '# MASTER USER' . "\n";
+        }
     }
 
     public function hydrateClassroom()
@@ -100,24 +110,28 @@ class Random extends \Hoa\Console\Dispatcher\Kit
                 $class->insert($uia, $classe);
             }
         }
-        echo '# CLASSROOM'."\n";
+        if ($this->verbose === true) {
+            echo '# CLASSROOM' . "\n";
+        }
     }
 
     public function hydateStudentAndAssociation()
     {
         $faker = Factory::create();
-        $uc = new UserClass();
+        $uc    = new UserClass();
 
         foreach ($this->uias as $uia) {
             for ($classe = 0; $classe < 7; ++$classe) {
-                for ($i = 0; $i < 20; ++$i) {
+                for ($i = 0; $i < $this->_countStudent; ++$i) {
                     $id = $this->hydrateStudent($uia, $faker->name);
                     $uc->associate($uia, $classe, $id);
                 }
             }
         }
 
-        echo '# STUDENT'."\n";
+        if ($this->verbose === true) {
+            echo '# STUDENT' . "\n";
+        }
     }
 
     protected function hydrateEvaluation()
@@ -126,27 +140,34 @@ class Random extends \Hoa\Console\Dispatcher\Kit
 
         foreach ($this->uias as $uias) {
             foreach ([3, 6] as $profid) {
-                for ($i = 0; $i <= 6; ++$i) {
+                for ($i = 0; $i <= $this->_countEvaluation; ++$i) {
                     $evaluation = new Evaluation();
-                    echo $faker->sentence()."\n";
+                    if ($this->verbose === true) {
+                        echo $faker->sentence() . "\n";
+                    }
                     $evaluation->insert($uias, $profid, $faker->sentence());
-                    $id = $evaluation->id;
+                    $id        = $evaluation->id;
                     $questions = new Question();
 
-                    for ($i = 1; $i <= 20; ++$i) {
-                        echo "\t".$faker->sentence()."\n";
+                    for ($i = 1; $i <= $this->_countQuestion; ++$i) {
+                        if ($this->verbose === true) {
+                            echo "\t" . $faker->sentence() . "\n";
+                        }
                         $questions->insert($id, $faker->sentence(), 1, $i, $i + 1, $i + 50);
                     }
                 }
             }
         }
     }
+
     protected function hydrateStudent($uia, $name)
     {
         $user = new User();
         $user->insertStudent($uia, $name);
 
-        echo "\t".'> '.$name."\n";
+        if ($this->verbose === true) {
+            echo "\t" . '> ' . $name . "\n";
+        }
 
         return $user->id;
     }
@@ -155,54 +176,62 @@ class Random extends \Hoa\Console\Dispatcher\Kit
     {
         $connaissance = 'hoa://Application/Config/pedagogiques.csv';
         $connaissance = new \Hoa\File\Read($connaissance);
+        $eof          = $connaissance->eof();
 
-        while ($connaissance->eof() !== true) {
+        while ($eof !== true) {
             $line = str_getcsv($connaissance->readLine());
             if ($line[0] !== '' and $line[0] !== '1') {
-                $id = trim($line[0]);
-                $th = trim($line[1]);
-                switch ($id[0]) {
-                    case '1':
-                        $do = 1;
-                        break;
-                    case '3':
-                        $do = 2;
-                        break;
-                    case '4':
-                        $do = 3;
-                        break;
-                    case '5':
-                        $do = 4;
-                        break;
-                    case '6':
-                        $do = 5;
-                        break;
-                    case '7':
-                        $do = 6;
-                        break;
-                    case '9':
-                        $do = 7;
-                        break;
-                    default:
-                        $do = 7;
-                        $ty = 1;
-                        break;
-                }
+                if ($this->_bufferItem > $this->_countItemImport) {
+                    $eof = true;
+                } else {
+                    $this->_bufferItem++;
+                    $id = trim($line[0]);
+                    $th = trim($line[1]);
+                    switch ($id[0]) {
+                        case '1':
+                            $do = 1;
+                            break;
+                        case '3':
+                            $do = 2;
+                            break;
+                        case '4':
+                            $do = 3;
+                            break;
+                        case '5':
+                            $do = 4;
+                            break;
+                        case '6':
+                            $do = 5;
+                            break;
+                        case '7':
+                            $do = 6;
+                            break;
+                        case '9':
+                            $do = 7;
+                            break;
+                        default:
+                            $do = 7;
+                            $ty = 1;
+                            break;
+                    }
 
-                if ($th !== '') {
-                    $idTheme = $this->hydrateTheme($th, $do);
-                    $lvl = 1;
-                    for ($i = 2; $i < count($line); ++$i) {
-                        if ($line[$i] !== '') {
-                            $this->hydrateItem($idTheme, $line[$i], $lvl);
+
+                    if ($th !== '') {
+                        $idTheme = $this->hydrateTheme($th, $do);
+                        $lvl     = 1;
+                        for ($i = 2; $i < count($line); ++$i) {
+                            if ($line[$i] !== '') {
+                                $this->hydrateItem($idTheme, $line[$i], $lvl);
+                            }
+                            ++$lvl;
                         }
-                        ++$lvl;
                     }
                 }
             }
         }
-
-        echo '# ITEM'."\n";
+        if ($this->verbose === true) {
+            echo '# ITEM' . "\n";
+        }
     }
 
     protected function hydrateTheme($label, $ref)
@@ -210,24 +239,28 @@ class Random extends \Hoa\Console\Dispatcher\Kit
         $theme = new Theme();
         $theme->insert($label, $ref);
 
-        echo "\t".'> Theme  '.$label."\n";
+        if ($this->verbose === true) {
+            echo "\t" . '> Theme  ' . $label . "\n";
+        }
 
         return $theme->id;
     }
 
     protected function hydrateItem($theme, $label, $lvl)
     {
+
         $item = new \Application\Model\Item();
         $item->insert($theme, $label, 0, 2, $lvl);
-
-        echo "\t".'> Item '.$label."\n";
+        if ($this->verbose === true) {
+            echo "\t" . '> Item ' . $label . "\n";
+        }
 
         return $item->id;
     }
 
     public function hydrateDomain()
     {
-        $m_do = new Domain();
+        $m_do    = new Domain();
         $domains = [
             'Electricité',
             'Physique',
@@ -241,8 +274,9 @@ class Random extends \Hoa\Console\Dispatcher\Kit
         foreach ($domains as $domain) {
             $m_do->insert($domain);
         }
-
-        echo '# DOMAIN'."\n";
+        if ($this->verbose === true) {
+            echo '# DOMAIN' . "\n";
+        }
     }
 
     /**
@@ -252,8 +286,8 @@ class Random extends \Hoa\Console\Dispatcher\Kit
      */
     public function usage()
     {
-        echo \Hoa\Console\Chrome\Text::colorize('Usage:', 'fg(yellow)')."\n";
-        echo '   Welcome '."\n\n";
+        echo \Hoa\Console\Chrome\Text::colorize('Usage:', 'fg(yellow)') . "\n";
+        echo '   Welcome ' . "\n\n";
 
         echo $this->stylize('Options:', 'h1'), "\n";
         echo $this->makeUsageOptionsList([

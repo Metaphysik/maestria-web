@@ -219,7 +219,7 @@ class Evaluation extends Api
         $evaluation = new \Application\Model\Evaluation();
 
         if ($this->_user instanceof User) {
-            $evaluation->insert($uia, $this->_user->getId(), $title);
+            $evaluation->insert($this->_uia->getId(), $this->_user->getId(), $title);
         }
 
         if ($evaluation->id === null) {

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/cli-config.php';
 
 \atoum\autoloader::get()->addDirectory('Camael\Api\Tests\Unit\Asserters', __DIR__ . '/Tests/Unit/Asserters');
 \atoum\autoloader::get()->addDirectory('Camael\Api\Tests\Unit\Mock', __DIR__ . '/Tests/Unit/Mock');
