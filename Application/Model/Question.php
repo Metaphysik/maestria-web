@@ -2,7 +2,7 @@
 
 namespace Application\Model;
 
-use Application\Entities\Item;
+use Application\Entities\Item as ii;
 use Hoa\Core\Exception\Exception;
 
 class Question extends Generic
@@ -96,7 +96,7 @@ class Question extends Generic
             $item = new \Application\Model\Item();
             $item1 = $item->get($entite->getItem1());
             if ($item1 !== null) {
-                if ($item1 instanceof Item) {
+                if ($item1 instanceof ii) {
                     $item1 = $item1->getLabel();
                     $entite->setItem1id($entite->getItem1());
                     $entite->setItem1($item1);
@@ -105,7 +105,7 @@ class Question extends Generic
 
             $item2 = $item->get($entite->getItem2());
             if ($item2 !== null) {
-                if ($item2 instanceof Item) {
+                if ($item2 instanceof iii) {
                     $item2 = $item2->getLabel();
                     $entite->setItem2id($entite->getItem2());
                     $entite->setItem2($item2);

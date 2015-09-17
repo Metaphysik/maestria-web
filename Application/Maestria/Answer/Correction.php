@@ -141,5 +141,10 @@ class Correction
         }
     }
 
+    public function getNoteTaxoAverage()
+    {
+        return $this->getNoteTaxo(true);
+    }
+
 
 }
