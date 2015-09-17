@@ -18,13 +18,13 @@ class Main extends \atoum\test
     // index   => List all users
     public function testIndex()
     {
-        $request = $this->request;
-        $html    = $request->get('/')->html;
-
-        echo $request;
-        $html = $request->post('/login', ['mail' => 'admin@nowhere.com', 'mdp' => 'admin'])->html;
+//        $request = $this->request;
+//        $html    = $request->get('/')->html;
 //
-        echo $request;
+//        echo $request;
+//        $html = $request->post('/login', ['mail' => 'admin@nowhere.com', 'mdp' => 'admin'])->html;
+//
+//        echo $request;
 //
 //        $this->if($item = $html->xquery('//a[@href="/user/1"]')[0])
 //            ->string(trim($item->nodeValue))->isIdenticalTo('Administrateur');
