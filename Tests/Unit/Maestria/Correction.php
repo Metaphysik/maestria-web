@@ -25,8 +25,9 @@ class Correction extends \atoum\test
         $correction = new \Application\Maestria\Answer\Correction();
         $correction->setProvider($provider);
 
-        var_dump($correction->getGlobalNote());
-        var_dump($correction->getNoteItem());
+//        var_dump($correction->getGlobalNote());
+//        var_dump($correction->getNoteItem());
+        var_dump($correction->getNoteTaxo(true));
 
 
 

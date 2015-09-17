@@ -8,6 +8,7 @@ class Correction
     protected $_questions        = [];
     protected $_percentQuestions = [];
     protected $_percentItems     = [];
+    protected $_percentTaxo      = [];
 
     public function setProvider(Provider $provider)
     {
@@ -106,6 +107,38 @@ class Correction
 
         return $result;
 
+    }
+
+    public function getNoteTaxo($moyenne = false)
+    {
+        if (empty($this->_percentQuestions) === true) {
+            $this->getNoteQuestions();
+        }
+
+        /**
+         * @var $question \Application\Entities\Question
+         */
+        foreach ($this->_questions as $question) {
+            $point = $question->getPoint();
+            if ($point > 0) {
+                $note    = $this->_percentQuestions[$question->getId()];
+                $percent = $note * 100 / $point;
+
+                // Stockage
+                $this->_percentTaxo[$question->getTaxo()][] = $percent;
+            }
+        }
+
+        if ($moyenne === true) {
+            $result = [];
+            foreach ($this->_percentTaxo as $item => $value) {
+                $result[$item] = array_sum($value) / count($value);
+            }
+
+            return $result;
+        } else {
+            return $this->_percentTaxo;
+        }
     }
 
 

@@ -128,7 +128,20 @@ $this->block('js:script');
 
 
                     html += '<article class="note" data-id="' + q.id + '"><aside><h5>' + (i + 1) + ') ' + q.title + '</h5>';
-                    html += '<div><i class="fa fa-wrench"></i> Appliquer';
+                    switch (q.taxo) {
+                        case 1:
+                            html += '<div><i class="fa fa-wrench"></i> Connaissance';
+                            break;
+                        case 2:
+                            html += '<div><i class="fa fa-wrench"></i> Compréhension';
+                            break;
+                        case 3:
+                            html += '<div><i class="fa fa-wrench"></i> Application';
+                            break;
+                        case 4:
+                            html += '<div><i class="fa fa-wrench"></i> Analys';
+                            break;
+                    }
                     html += '<span class="note">/' + q.note + '</span></div>' +
                         '<div><i class="fa fa-graduation-cap"></i> ' + q.item1 + '</div>' +
                         '<div><i class="fa fa-cogs"></i>' + q.item2 + '</div>' +
