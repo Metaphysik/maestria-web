@@ -13,11 +13,14 @@ class Provider
 
     public function setAnswers($answers)
     {
-        if (count($answers) === 1) {
-            /**
-             * @var $answer \Application\Entities\Answer
-             */
-            $answer         = $answers[0];
+        /**
+         * @var $answer \Application\Entities\Answer
+         */
+        if(is_array($answers) && count($answers) === 1) {
+            $answer = $answers[0];
+        }
+        else {
+            $answer = $answers;
             $answer         = $answer->getAnswer();
             $this->_answers = json_decode($answer, true);
         }

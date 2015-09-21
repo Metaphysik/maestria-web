@@ -25,7 +25,7 @@ class Answer extends Generic
         }
         if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia = $slug->getBySludId(UIA);
+            $uia  = $slug->getBySludId(UIA);
         }
         $e = $this->_repository->findBy(['refUia' => $uia, 'refUser' => $user, 'refEval' => $eval]);
 
@@ -49,6 +49,11 @@ class Answer extends Generic
     public function getAnswer($uia, $user, $eval)
     {
         return $this->_repository->findBy(['refUia' => $uia, 'refUser' => $user, 'refEval' => $eval]);
+    }
+
+    public function getUserAnswer($uia, $user)
+    {
+        return $this->_repository->findBy(['refUia' => $uia, 'refUser' => $user]);
     }
 
     public function modify($uia, $user, $eval, $answer)

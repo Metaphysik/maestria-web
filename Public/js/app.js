@@ -20,4 +20,4 @@ $('#popupclasse').on('click', ' .exit', function () {
 
 $('#popupevl').on('click', ' .exit', function () {
     $('#popupevl').slideUp();
-});
+})

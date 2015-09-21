@@ -62,52 +62,41 @@ $this->block('js:script');
         var current_class = null;
         var current_eval = null;
         var current_elv = null;
+        var form_state = false;
 
 
-        $('.classechx > h6').click(function () {
-            current_class = $(this).data('idclasse');
 
 
-            $('#classe').html($(this).text());
-            $('#popupclasse').slideUp()
-        });
-
-        $('.itemchx > a').click(function (e) {
-            e.preventDefault();
-            current_eval = $(this).data('ideval');
-
-
-            $('#evalchx').text($(this).text());
-            $('#popup').slideUp()
-
+        var loadUsers = function (current_class, current_eval) {
             if (current_class != null && current_eval != null) {
 
                 $.get('/api/classe/' + current_class + '/users/', function (data) {
 
-                    var users = JSON.parse(data).log[0];
-                    var html = '';
-
-                    for (var i = 0; i < users.length; i++) {
-
-                        html += '<article class="elv" draggable="true" data-idelv="' + users[i].id + '">';
-                        html += '<div class="awsm perso" style="color:rgb(255,153,0)"><i class="fa fa-user"></i></div>';
-                        html += '<div class="nom">' + users[i].name + '</div>';
-                        html += '<div class="awsm taxo" style="color:rgb(51,255,0)">'; // Make color
-                        html += '<span><i class="fa fa-book"></i></span>'; // Make color
-                        html += '<span><i class="fa fa-rotate-left" style="color:rgb(0,255,0)"></i></span>'; // Make color
-                        html += '<span><i class="fa fa-wrench" style="color:rgb(255,204,0)"></i></span>'; // Make color
-                        html += '<span><i class="fa fa-star" style="color:rgb(0,255,0)"></i></span>'; // Make color
-                        html += '</div>';
-                        html += '</div>';
-                        html += '<div class="prctg">' + users[i].note + '</div>';
-                        html += '</article>';
-                    }
-
-                    $('#cases').html(html);
+                    $('#cases').html('<pre>'+data+'</pre>');
+//                    var users = JSON.parse(data).log[0];
+//                    var html = '';
+//
+//                    for (var i = 0; i < users.length; i++) {
+//
+//                        html += '<article class="elv" draggable="true" data-idelv="' + users[i].id + '">';
+//                        html += '<div class="awsm perso" style="color:rgb(255,153,0)"><i class="fa fa-user"></i></div>';
+//                        html += '<div class="nom">' + users[i].name + '</div>';
+//                        html += '<div class="awsm taxo" style="color:rgb(51,255,0)">'; // Make color
+//                        html += '<span><i class="fa fa-book"></i></span>'; // Make color
+//                        html += '<span><i class="fa fa-rotate-left" style="color:rgb(0,255,0)"></i></span>'; // Make color
+//                        html += '<span><i class="fa fa-wrench" style="color:rgb(255,204,0)"></i></span>'; // Make color
+//                        html += '<span><i class="fa fa-star" style="color:rgb(0,255,0)"></i></span>'; // Make color
+//                        html += '</div>';
+//                        html += '</div>';
+//                        html += '<div class="prctg">' + users[i].note + '</div>';
+//                        html += '</article>';
+//                    }
+//
+//                    $('#cases').html(html);
 
                 });
             }
-        });
+        };
 
         var evaluateAnStudent = function (idStudent, eval) {
             var html = '';
@@ -133,7 +122,7 @@ $this->block('js:script');
                             html += '<div><i class="fa fa-wrench"></i> Connaissance';
                             break;
                         case 2:
-                            html += '<div><i class="fa fa-wrench"></i> Compréhension';
+                            html += '<div><i class="fa fa-wrench"></i> Comprï¿½hension';
                             break;
                         case 3:
                             html += '<div><i class="fa fa-wrench"></i> Application';
@@ -201,7 +190,27 @@ $this->block('js:script');
 
         };
 
-        form_state = false;
+
+
+        $('.classechx > h6').click(function () {
+            current_class = $(this).data('idclasse');
+
+
+            $('#classe').html($(this).text());
+            $('#popupclasse').slideUp()
+        });
+
+        $('.itemchx > a').click(function (e) {
+            e.preventDefault();
+            current_eval = $(this).data('ideval');
+
+
+            $('#evalchx').text($(this).text());
+            $('#popup').slideUp()
+
+            loadUsers(current_class, current_eval);
+
+        });
 
         $('body').on('click', '.elv', function () {
             if (current_class != null && current_eval != null) {
@@ -240,10 +249,12 @@ $this->block('js:script');
 
         }
 
+        loadUsers(1, 1);
+
         //        current_eval = 4;
         //        current_class = 1;
         //        evaluateAnStudent(82);
-        //        $('#popupevl').slideDown();
+//                $('#popupclasse').slideDown();
 
     </script>
 <?php

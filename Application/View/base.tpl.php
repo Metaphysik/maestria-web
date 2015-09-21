@@ -123,7 +123,7 @@
     <?php $this->endBlock() ?>
 </div>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script src="/js/app.js"></script>
+<script src="/js/app.js?<?= time(); ?>"></script>
 <?php $this->block('js:script'); ?>
 <?php $this->endBlock(); ?>
 </body>
