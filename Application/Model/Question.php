@@ -105,7 +105,7 @@ class Question extends Generic
 
             $item2 = $item->get($entite->getItem2());
             if ($item2 !== null) {
-                if ($item2 instanceof iii) {
+                if ($item2 instanceof ii) {
                     $item2 = $item2->getLabel();
                     $entite->setItem2id($entite->getItem2());
                     $entite->setItem2($item2);
