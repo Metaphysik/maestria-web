@@ -132,7 +132,7 @@ class Correction
         if ($moyenne === true) {
             $result = [];
             foreach ($this->_percentTaxo as $item => $value) {
-                $result[$item] = array_sum($value) / count($value);
+                $result['t'.$item] = array_sum($value) / count($value);
             }
 
             return $result;
@@ -144,6 +144,11 @@ class Correction
     public function getNoteTaxoAverage()
     {
         return $this->getNoteTaxo(true);
+    }
+
+    public function getAppreciation()
+    {
+        return 'Fodibar';
     }
 
 

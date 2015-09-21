@@ -20,10 +20,7 @@ class Provider
             $answer         = $answers[0];
             $answer         = $answer->getAnswer();
             $this->_answers = json_decode($answer, true);
-        } else {
-            throw new Exception('No reponse yet');
         }
-
     }
 
 

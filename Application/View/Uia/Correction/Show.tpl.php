@@ -107,21 +107,22 @@ $this->block('js:script');
 //                    for (var i = 0; i < 11; i++) {
                     for (var i = 0; i < users.length; i++) {
                         var u = users[i];
+                        console.log(u);
                         html += '<section>';
                         html += '    <div class="name">' + u.name + '</div>';
                         html += '    <div class="note">' + u.note + '</div>';
                         html += '    <div class="taxo">';
                         html += '        <div>';
-                        html += '            <div class="awsm"><i class="fa fa-book"></i> </div><h5>Connaître</h5><!--div class="graf">graphe1</div-->';
+                        html += '            <div class="awsm"><i class="fa fa-book"></i> </div><h5>Connaître</h5><div class="graf">'+ ((u.taxo.t1 == undefined) ? '' : u.taxo.t1) +'</div>';
                         html += '        </div>';
                         html += '        <div>';
-                        html += '            <div class="awsm"><i class="fa fa-rotate-left"></i></div><h5>Comprendre</h5><!--div class="graf">graphe2</div-->';
+                        html += '            <div class="awsm"><i class="fa fa-rotate-left"></i></div><h5>Comprendre</h5><div class="graf">'+ ((u.taxo.t2 == undefined) ? '' : u.taxo.t2) +'</div>';
                         html += '        </div>';
                         html += '        <div>';
-                        html += '            <div class="awsm"><i class="fa fa-wrench"></i></div><h5>Appliquer</h5><!--div class="graf">graphe3</div-->';
+                        html += '            <div class="awsm"><i class="fa fa-wrench"></i></div><h5>Appliquer</h5><div class="graf">'+ ((u.taxo.t3 == undefined) ? '' : u.taxo.t3) +'</div>';
                         html += '        </div>';
                         html += '        <div>';
-                        html += '            <div class="awsm"><i class="fa fa-star"></i></div><h5>Analyser</h5><!--div class="graf">graphe4</div-->';
+                        html += '            <div class="awsm"><i class="fa fa-star"></i></div><h5>Analyser</h5><div class="graf">'+ ((u.taxo.t4 == undefined) ? '' : u.taxo.t4) +'</div>';
                         html += '        </div>';
                         html += '        <div class="apprct">' + u.appr + '</div>';
                         html += '    </div>';

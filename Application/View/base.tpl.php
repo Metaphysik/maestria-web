@@ -33,11 +33,11 @@
 
 
     <?php if (isset($user) === true && ($user->getIsProfessor() === true || $user->getIsModerator() === true || $user->getIsAdmin() === true)) { ?>
-        <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom'); ?>">CLASSES</a></h3>
+
         <h3><a href="<?php echo $this->route->unroute('mainindex'); ?>">EVALUER</a></h3>
         <h3 class="synthese"><a href="#">SYNTHESE</a></h3>
         <h3 class="eval"><a href="<?= $this->route->unroute('indexUiaCorrection'); ?>"> CORRECTION</a></h3>
-        <br/>
+        <br />
 
 
         <?php if (isset($user) === true && ($user->getIsAdmin() === true || $user->getIsModerator() === true || $user->getIsProfessor())) { ?>
@@ -57,8 +57,10 @@
                 <div class="flechebas"></div>
                 <h3 class="eval"><a href="<?= $this->route->unroute('editUiaEvaluation',
                         ['evaluation_id' => $selected_evaluation->getId()]); ?>"> EDITION</a></h3>
+
             <?php } ?>
         <?php } ?>
+        <h3><a href="<?php echo $this->route->unroute('indexUiaClassroom'); ?>">CLASSES</a></h3>
     <?php } ?>
 
     <?php if (isset($user) === true && $user->getIsAdmin() === true) { ?>
