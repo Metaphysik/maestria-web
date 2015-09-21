@@ -89,7 +89,7 @@ class Question extends Generic
         $entites = $this->_repository->findBy([$column => $value]);
 
         foreach ($entites as $i => $entite) {
-            /*
+            /**
              * @var $entite \Application\Entities\Question
              */
 

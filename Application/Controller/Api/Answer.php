@@ -18,7 +18,7 @@ class Answer extends _Api
 
     public function GetActionAsync($uia, $eval, $user)
     {
-        /*
+        /***
          * @var $evaluation \Application\Entities\Evaluation
          * @var $current_user \Application\Entities\User
          * @var $uc \Application\Entities\UserClass
@@ -32,7 +32,7 @@ class Answer extends _Api
         $evaluations = new Evaluation();
         $evaluation = $evaluations->getInformation($eval);
 
-        /*
+        /***
          * Algo pour déterminer qui est le suivant/precedent dans la liste
          */
 
@@ -50,7 +50,7 @@ class Answer extends _Api
             // Find the user, next, prev
 
             foreach ($current_classe as $k => $i_user) {
-                /**
+                /***
                  * @var \Application\Entities\User
                  */
                 if ($current_user->getId() === $i_user->getId()) {
@@ -60,7 +60,7 @@ class Answer extends _Api
             }
         }
 
-        /*
+        /**
          * Fin de l'algo
          */
 
@@ -102,7 +102,7 @@ class Answer extends _Api
         }
 
         foreach ($question_iterator as $question) {
-            /*
+            /***
              * @var $question \Application\Entities\Question
              */
 

@@ -19,7 +19,7 @@ class Main extends Generic
         $uia = new Uia();
         echo '<ul>';
         foreach ($uia->all() as $a) {
-            /*
+            /**
              * @var $a \Application\Entities\Uia
              */
             echo '<li>'.$a->getName().' : '.$a->getSlug().'</li>';

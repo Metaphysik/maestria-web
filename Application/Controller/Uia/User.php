@@ -40,7 +40,7 @@ class User extends Api
 
     public function editAction($user_id)
     {
-        /*
+        /**
          * @var $user \Application\Entities\User
          */
         $user_id = intval($user_id);
@@ -72,7 +72,7 @@ class User extends Api
             $isModo = $this->checkPost('isModo', 'off');
             $isProf = $this->checkPost('isProf', 'off');
 
-            /*
+            /**
              * @var $user \Application\Entities\User
              */
 

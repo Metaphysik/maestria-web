@@ -16,7 +16,7 @@ class User extends _Api
             $formatClassroom = [];
 
             foreach ($classroom[$classe] as $entity) {
-                /*
+                /**
                  * @var $entity \Application\Entities\User
                  */
                 $formatClassroom[] = [

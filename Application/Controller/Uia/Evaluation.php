@@ -65,7 +65,7 @@ class Evaluation extends Api
 
     public function updateAction($uia, $evaluation_id)
     {
-        /*
+        /**
          * @var $evaluation \Application\Entities\Evaluation
          * @var $questions Array
          * @var $question \Application\Entities\Question

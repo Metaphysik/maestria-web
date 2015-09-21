@@ -30,7 +30,7 @@ class Correction extends _Api
 
             foreach ($users as $userclass) {
 
-                /**
+                /***
                  * @var $user \Application\Entities\User
                  * @var $userclass \Application\Entities\UserClass
                  */
@@ -63,7 +63,7 @@ class Correction extends _Api
         echo $this->getApiJson();
 
 
-        /**
+        /***
          * Dans une lib à part
          * Recherche les réponses à l'éval pour chaque éléves
          * Calculer la note (brut et avec le coefficient)

@@ -27,7 +27,7 @@ $this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
 $this->resource('evaluation', ['prefix' => $uia]);
 $this->resource('correction', ['prefix' => $uia, 'only' => ['show', 'index']]);
 
-/*
+/**
  *  Item, Domain, Theme
  */
 $this->any($uia.'/', ['as' => 'mainindex', 'to' => 'Main#Index']);
