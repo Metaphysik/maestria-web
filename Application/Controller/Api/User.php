@@ -11,6 +11,8 @@ class User extends _Api
     public function IndexActionAsync($uia, $classe)
     {
         $evaluations = new \Application\Maestria\Answer\User($this->_uia->getId(), 12);
+        var_dump($evaluations->getNoteTaxo());
+        var_dump($evaluations->getNote());
 
 
 

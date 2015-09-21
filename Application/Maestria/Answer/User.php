@@ -43,7 +43,34 @@ class User
     }
 
     public function getNoteTaxo() {
-        // TODO : implement this
+        /**
+         * @var $e \Application\Maestria\Answer\Correction
+         */
+        $taxo = [];
+        foreach($this->_evaluations as $e) {
+            $t = $e->getNoteTaxoAverage();
+            foreach($t as $i => $a) {
+                $taxo[$i][] = $a;
+            }
+        }
+
+        foreach($taxo as $id => $value) {
+            $taxo[$id] = array_sum($value) / count($value);
+        }
+
+        return $taxo;
+    }
+
+    public function getNote() {
+        /**
+         * @var $e \Application\Maestria\Answer\Correction
+         */
+        $note = [];
+        foreach($this->_evaluations as $e) {
+            $note[] = $e->getNote();
+        }
+
+        return (array_sum($note) / count($note));
     }
 
 }
