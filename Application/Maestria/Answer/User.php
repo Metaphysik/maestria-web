@@ -56,7 +56,7 @@ class User
         }
 
         foreach ($taxo as $id => $value) {
-            $taxo[$id] = array_sum($value) / count($value);
+            $taxo[$id] = $this->avg($value);
         }
 
         return $taxo;
@@ -72,11 +72,7 @@ class User
             $note[] = $e->getNote();
         }
 
-        if (count($note) >= 1) {
-            return (array_sum($note) / count($note));
-        }
-
-        return 0;
+        return $this->avg($note);
     }
 
     public function getSuccessRate()
@@ -89,11 +85,21 @@ class User
             $rate[] = $e->getSuccessRate();
         }
 
-        if (count($rate) >= 1) {
-            return (array_sum($rate) / count($rate));
+        return $this->avg($rate);
+    }
+
+    protected function avg($array)
+    {
+        $avg = 0;
+        if (count($array) >= 1) {
+            $avg = array_sum($array) / count($array);
         }
 
-        return 0;
+        if (is_float($avg)) {
+            return number_format($avg, 0);
+        } else {
+            return $avg;
+        }
     }
 
 }

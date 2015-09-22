@@ -102,7 +102,7 @@ class Correction
 
         $result = [];
         foreach ($this->_percentItems as $item => $value) {
-            $result[$item] = array_sum($value) / count($value);
+            $result[$item] = $this->avg($value);
         }
 
         return $result;
@@ -132,7 +132,7 @@ class Correction
         if ($moyenne === true) {
             $result = [];
             foreach ($this->_percentTaxo as $item => $value) {
-                $result['t' . $item] = array_sum($value) / count($value);
+                $result['t' . $item] = $this->avg($value);
             }
 
             return $result;
@@ -154,7 +154,7 @@ class Correction
         $appliquer  = (isset($taxo['t3'])) ? $taxo['t3'] : 0;
         $analyser   = (isset($taxo['t4'])) ? $taxo['t4'] : 0;
 
-        $commentaire =  $this->commentaire($connaitre, $comprendre, $appliquer, $analyser);
+        $commentaire = $this->commentaire($connaitre, $comprendre, $appliquer, $analyser);
 
         return utf8_encode($commentaire);
     }
@@ -199,6 +199,20 @@ class Correction
 
         // TODO : Utiliser la Taxo analyse
         return $commentaire;
+    }
+
+    protected function avg($array)
+    {
+        $avg = 0;
+        if (count($array) >= 1) {
+            $avg = array_sum($array) / count($array);
+        }
+
+        if (is_float($avg)) {
+            return number_format($avg, 0);
+        } else {
+            return $avg;
+        }
     }
 
 
