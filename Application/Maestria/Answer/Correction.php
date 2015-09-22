@@ -132,7 +132,7 @@ class Correction
         if ($moyenne === true) {
             $result = [];
             foreach ($this->_percentTaxo as $item => $value) {
-                $result['t'.$item] = array_sum($value) / count($value);
+                $result['t' . $item] = array_sum($value) / count($value);
             }
 
             return $result;
@@ -148,7 +148,57 @@ class Correction
 
     public function getAppreciation()
     {
-        return 'Fodibar';
+        $taxo       = $this->getNoteTaxo();
+        $connaitre  = (isset($taxo['t1'])) ? $taxo['t1'] : 0;
+        $comprendre = (isset($taxo['t2'])) ? $taxo['t2'] : 0;
+        $appliquer  = (isset($taxo['t3'])) ? $taxo['t3'] : 0;
+        $analyser   = (isset($taxo['t4'])) ? $taxo['t4'] : 0;
+
+        $commentaire =  $this->commentaire($connaitre, $comprendre, $appliquer, $analyser);
+
+        return utf8_encode($commentaire);
+    }
+
+
+    protected function commentaire($co, $cp, $ap, $an)
+    {
+        $commentaire = '';
+        if ($co < 0.6) {
+            $commentaire = 'Tu dois commencer par apprendre les définitions car elles te serviront souvent, ';
+            $bon         = 0;
+        } else {
+            $commentaire = 'Tes définitions sont sues, c\'est bien, ';
+            $bon         = 1;
+        }
+        if ($cp < 0.6) {
+            if ($bon == 1) {
+                $commentaire .= 'par contre ';
+            }
+
+            $commentaire .= 'il faut reformuler les explications pour bien les comprendre et ';
+            $bon = 0;
+        } else {
+            if ($bon == 0) {
+                $commentaire .= 'par contre ';
+            }
+
+            $commentaire .= 'les explications ont été comprises et ';
+            $bon = 1;
+        }
+
+        if ($ap < 0.6) {
+            if ($bon == 1) {
+                $commentaire .= 'néanmoins, ';
+            }
+
+            $commentaire .= 'tu peux progresser encore en travaillant davantage les exercices ';
+            $bon = 0;
+        } else {
+            $commentaire .= 'le travail sur les exercices a porté ses fruits ';
+        }
+
+        // TODO : Utiliser la Taxo analyse
+        return $commentaire;
     }
 
 

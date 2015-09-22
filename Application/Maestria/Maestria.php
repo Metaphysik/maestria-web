@@ -4,7 +4,7 @@ namespace Application\Maestria;
 
 class Maestria extends \Sohoa\Framework\Framework
 {
-    public $_router;
+    public    $_router;
     protected $_acl;
 
     public function getAcl()
@@ -36,4 +36,6 @@ class Maestria extends \Sohoa\Framework\Framework
 
         return $this;
     }
+
+
 }

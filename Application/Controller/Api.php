@@ -2,6 +2,8 @@
 
 namespace Application\Controller;
 
+use Hoa\Core\Exception\Exception;
+
 class Api extends Generic
 {
     public static $ok = 200;
@@ -63,6 +65,12 @@ class Api extends Generic
 
     public function getApiJson()
     {
-        return json_encode($this->_message);
+        $json = json_encode($this->_message);
+
+        if($json === false) {
+            throw new Exception('Error when encode json data return %b', 0, [$json]);
+        }
+
+        return $json;
     }
 }
