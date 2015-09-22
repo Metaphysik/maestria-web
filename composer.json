@@ -9,7 +9,8 @@
     "hoa/acl": "~0.0",
     "monolog/monolog": "~1.11",
     "doctrine/orm": "2.4.*",
-    "symfony/yaml": "2.6.*"
+    "symfony/yaml": "2.6.*",
+    "goat1000/svggraph": "^2.19"
   },
   "require-dev": {
     "fzaninotto/faker": "1.5.*@dev",
