@@ -35,7 +35,7 @@
     <?php if (isset($user) === true && ($user->getIsProfessor() === true || $user->getIsModerator() === true || $user->getIsAdmin() === true)) { ?>
 
         <h3><a href="<?php echo $this->route->unroute('mainindex'); ?>">EVALUER</a></h3>
-        <h3 class="synthese"><a href="#">SYNTHESE</a></h3>
+        <h3 class="synthese"><a href="<?= $this->route->unroute('indexUiaSynthese'); ?>">SYNTHESE</a></h3>
         <h3 class="eval"><a href="<?= $this->route->unroute('indexUiaCorrection'); ?>"> CORRECTION</a></h3>
         <br />
 

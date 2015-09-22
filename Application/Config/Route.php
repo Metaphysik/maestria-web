@@ -26,6 +26,7 @@ $this->resource('classroom', ['prefix' => $uia, 'except' => ['new', 'show']]);
 $this->resource('user', ['prefix' => $uia, 'except' => ['index', 'new']]);
 $this->resource('evaluation', ['prefix' => $uia]);
 $this->resource('correction', ['prefix' => $uia, 'only' => ['show', 'index']]);
+$this->resource('synthese', ['prefix' => $uia, 'only' => ['index']]);
 
 /**
  *  Item, Domain, Theme
