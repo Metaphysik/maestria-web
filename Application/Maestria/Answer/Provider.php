@@ -4,7 +4,7 @@
 namespace Application\Maestria\Answer;
 
 
-use Hoa\Core\Exception\Exception;
+use Application\Entities\Answer;
 
 class Provider
 {
@@ -13,17 +13,18 @@ class Provider
 
     public function setAnswers($answers)
     {
-        /**
-         * @var $answer \Application\Entities\Answer
-         */
-        if(is_array($answers) && count($answers) === 1) {
-            $answer = $answers[0];
+        if(is_array($answers) === true && count($answers) === 1) {
+            $this->storeObject($answers[0]);
         }
-        else {
-            $answer = $answers;
-            $answer         = $answer->getAnswer();
-            $this->_answers = json_decode($answer, true);
+
+        if(is_object($answers)) {
+            $this->storeObject($answers);
         }
+
+    }
+
+    protected function storeObject(Answer $answer) {
+        $this->_answers = json_decode($answer->getAnswer(), true);
     }
 
 

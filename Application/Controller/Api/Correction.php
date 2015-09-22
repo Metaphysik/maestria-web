@@ -46,28 +46,28 @@ class Correction extends _Api
                  * @var $userclass \Application\Entities\UserClass
                  */
 
-
-
                 $provider = new Provider();
                 $provider->setQuestions($questions->getByEvaluation($correction));
                 $provider->setAnswers($m_answer->getAnswer($uid, $userclass->getRefUser(), $correction));
 
-                $correction = new \Application\Maestria\Answer\Correction();
-                $correction->setProvider($provider);
+                $cor = new \Application\Maestria\Answer\Correction();
+                $cor->setProvider($provider);
 
                 $user   = $m_user->get($userclass->getRefUser());
                 $a      = [
                     'name' => $user->getRealName(),
-                    'note' => $correction->getNote().'/'.$correction->getGlobalNote(),
-                    'appr' => $correction->getAppreciation(),
-                    'taxo' => $correction->getNoteTaxo(true),
+                    'note' => $cor->getNote().'/'.$cor->getGlobalNote(),
+                    'appr' => $cor->getAppreciation(),
+                    'taxo' => $cor->getNoteTaxo(true),
                 ];
 
-                foreach($correction->getNoteItem() as $i => $c)
+
+                foreach($cor->getNoteItem() as $i => $c)
                 {
                     /**
                      * @var $item \Application\Entities\Item
                      */
+
                     $item = $m_item->get($i);
                     $a['item'][] = [
                         'name' => $item->getLabel(),
@@ -78,7 +78,6 @@ class Correction extends _Api
                 $data[] = $a;
 
             }
-
             $this->log($data);
         } else {
             $this->nok('Class not exists');

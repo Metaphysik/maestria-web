@@ -64,6 +64,23 @@ $this->block('js:script');
         var current_elv = null;
         var form_state = false;
 
+        function couleur(y) {
+
+            if (y == '') {
+                return '0,0';
+            }
+
+            var vert, rouge;
+            if (y < 50) {
+                vert = Math.round(y * 5.1);
+                rouge = 255;
+            }
+            else {
+                vert = 255;
+                rouge = Math.round(255 - (y - 50) * 5.1);
+            }
+            return rouge + ',' + vert;
+        }
 
 
 
@@ -72,27 +89,27 @@ $this->block('js:script');
 
                 $.get('/api/classe/' + current_class + '/users/', function (data) {
 
-                    $('#cases').html('<pre>'+data+'</pre>');
-//                    var users = JSON.parse(data).log[0];
-//                    var html = '';
-//
-//                    for (var i = 0; i < users.length; i++) {
-//
-//                        html += '<article class="elv" draggable="true" data-idelv="' + users[i].id + '">';
-//                        html += '<div class="awsm perso" style="color:rgb(255,153,0)"><i class="fa fa-user"></i></div>';
-//                        html += '<div class="nom">' + users[i].name + '</div>';
-//                        html += '<div class="awsm taxo" style="color:rgb(51,255,0)">'; // Make color
-//                        html += '<span><i class="fa fa-book"></i></span>'; // Make color
-//                        html += '<span><i class="fa fa-rotate-left" style="color:rgb(0,255,0)"></i></span>'; // Make color
-//                        html += '<span><i class="fa fa-wrench" style="color:rgb(255,204,0)"></i></span>'; // Make color
-//                        html += '<span><i class="fa fa-star" style="color:rgb(0,255,0)"></i></span>'; // Make color
-//                        html += '</div>';
-//                        html += '</div>';
-//                        html += '<div class="prctg">' + users[i].note + '</div>';
-//                        html += '</article>';
-//                    }
-//
-//                    $('#cases').html(html);
+//                    $('#cases').html('<pre>'+data+'</pre>');
+                    var users = JSON.parse(data).log[0];
+                    var html = '';
+
+                    for (var i = 0; i < users.length; i++) {
+
+                        html += '<article class="elv" draggable="true" data-idelv="' + users[i].id + '">';
+                        html += '<div class="awsm perso" style="color:rgb(255,153,0)"><i class="fa fa-user"></i></div>';
+                        html += '<div class="nom">' + users[i].name + '</div>';
+                        html += '<div class="awsm taxo" style="color:rgb(51,255,0)">'; // Make color
+                        html += '<span><i class="fa fa-book" style="color:rgb('+couleur(users[i].connaitre)+',0)"></i></span>'; // Make color
+                        html += '<span><i class="fa fa-rotate-left" style="color:rgb('+couleur(users[i].comprendre)+',0)"></i></span>'; // Make color
+                        html += '<span><i class="fa fa-wrench" style="color:rgb('+couleur(users[i].appliquer)+',0)"></i></span>'; // Make color
+                        html += '<span><i class="fa fa-star" style="color:rgb('+couleur(users[i].analyser)+',0)"></i></span>'; // Make color
+                        html += '</div>';
+                        html += '</div>';
+                        html += '<div class="prctg">' + users[i].note + ' - '+ users[i].rate +'%</div>';
+                        html += '</article>';
+                    }
+
+                    $('#cases').html(html);
 
                 });
             }
@@ -248,14 +265,6 @@ $this->block('js:script');
             $.post('/api/eval/' + current_eval + '/', 'elmt=' + table);
 
         }
-
-        loadUsers(1, 1);
-
-        //        current_eval = 4;
-        //        current_class = 1;
-        //        evaluateAnStudent(82);
-//                $('#popupclasse').slideDown();
-
     </script>
 <?php
 $this->endblock();
