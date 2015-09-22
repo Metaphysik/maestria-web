@@ -174,7 +174,5 @@ $this->block('js:script');
                 });
             }
         };
-
-        viewData(1, 1);
     </script>
 <?php $this->endblock(); ?>
