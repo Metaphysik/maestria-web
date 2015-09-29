@@ -28,6 +28,12 @@ $this->block('popup', 'append');
 <?php
 $this->endblock();
 $this->block('container');
+/**
+ * @var $users Array
+ * @var $user  \Application\Entities\User
+ * @var $uid Array
+ *
+ */
 ?>
     <section id="corps" class="synthese">
         <section id="titre">
@@ -39,357 +45,14 @@ $this->block('container');
         </section>
         <section id="contenu">
             <div id="synthese">
-                <section id="listeleve"><h5><span class="awsm" style="color:rgb(51,255,0)"></span>Nicolass</h5>
-                    <h5><span
-                            class="awsm" style="color:rgb(102,255,0)"></span>Allann Wauters de Besterfeld</h5><h5><span
-                            class="awsm" style="color:rgb(153,255,0)"></span>Nanana Cerise</h5><h5><span class="awsm"
-                                                                                                          style="color:rgb(204,255,0)"></span>Bertrand
-                    </h5><h5><span class="awsm" style="color:rgb(255,255,0)"></span>Alizé</h5><h5><span class="awsm"
-                                                                                                         style="color:rgb(255,229,0)"></span>Massilia
-                    </h5><h5><span class="awsm" style="color:rgb(255,204,0)"></span>Ernest</h5><h5><span class="awsm"
-                                                                                                          style="color:rgb(255,153,0)"></span>Biroute
-                    </h5><h5><span class="awsm" style="color:rgb(255,102,0)"></span>Julien</h5><h5><span class="awsm"
-                                                                                                          style="color:rgb(255,51,0)"></span>Maxime
-                    </h5><h5><span class="awsm" style="color:rgb(255,0,0)"></span>Laurent</h5><h5><span class="awsm"
-                                                                                                         style="color:rgb(26,255,0)"></span>Catherine
-                    </h5><h5><span class="awsm" style="color:rgb(0,255,0)"></span>Le Suisse</h5><h5><span class="awsm"
-                                                                                                           style="color:rgb(102,255,0)"></span>Berthe
-                        aux grands pieds</h5><h5><span class="awsm" style="color:rgb(51,255,0)"></span>Bruno</h5>
-                    <h5><span
-                            class="awsm" style="color:rgb(255,10,0)"></span>Phillipe</h5><h5><span class="awsm"
-                                                                                                    style="color:rgb(102,255,0)"></span>Kuntakinté
-                    </h5><h5><span class="awsm" style="color:rgb(51,255,0)"></span>Zoubida</h5></section>
+                <section id="listeleve" data-uid="<?= json_encode($uid); ?>">
+                    <?php foreach ($users as $user): ?>
+                        <h5><span class="awsm" style="color:rgb(51,255,0)"><i
+                                    class="fa fa-user"></i></span><?= $user->getRealName(); ?></h5>
+                    <?php endforeach; ?>
+                </section>
                 <section id="domain" class="">
-                    <section data-id="1">
-                        <button class="visuel awsm" title="Colore l'icône élève en fonction de cette colonne"> 
-                        </button>
-                        <h6>Physique</h6>
 
-                        <div><span>5%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>10%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>20%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>25%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>35%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>40%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>45%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>55%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>60%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>65%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>70%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>75%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>85%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>90%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>95%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>99%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                    </section>
-                    <section data-id="2">
-                        <button class="visuel awsm" title="Colore l'icône élève en fonction de cette colonne"> 
-                        </button>
-                        <h6>Chimie</h6>
-
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>52%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                    </section>
-                    <section data-id="3">
-                        <button class="visuel awsm" title="Colore l'icône élève en fonction de cette colonne"> 
-                        </button>
-                        <h6>Savoir-faire</h6>
-
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>52%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                    </section>
-                    <section data-id="4">
-                        <button class="visuel awsm" title="Colore l'icône élève en fonction de cette colonne"> 
-                        </button>
-                        <h6>Attitude</h6>
-
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>52%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                    </section>
-                    <section data-id="5">
-                        <button class="visuel awsm" title="Colore l'icône élève en fonction de cette colonne"> 
-                        </button>
-                        <h6>Résumé</h6>
-
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>52%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>30%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>80%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                        <div><span>50%</span>
-                            <aside>Graphe</aside>
-                        </div>
-                    </section>
                 </section>
 
             </div>
@@ -401,6 +64,67 @@ $this->endBlock();
 $this->block('js:script');
 ?>
     <script>
-        var current_class = null;
+        $(function () {
+
+
+            function readTheme(header, content) {
+                console.log(header.label);
+                var list = $('#listeleve').data('uid');
+                var html = '<section data-id="' + header.id + '"><button class="visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>A ' + header.label + '</h6>';
+
+
+                for ($i = 0; $i < list.length; $i++) {
+                    var c = content['u' + list[$i]]; // get the note & graph ?
+                    html += '<div><span>' + c[0] + '</span><aside>' + c[1] + '</aside></div>';
+                }
+
+                return html + '</section>';
+            }
+
+            function readDomain(header, content) {
+                var list = $('#listeleve').data('uid');
+                console.log(header.label);
+                var html = '<section data-id="' + header.id + '"><button class="visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>' + header.label + '</h6>';
+                for ($i = 0; $i < list.length; $i++) {
+                    var c = content['u' + list[$i]]; // get the note & graph ?
+                    html += '<div><span>' + c[0] + '</span><aside>' + c[1] + '</aside></div>';
+                }
+                $('#domain').append(html);
+
+
+
+                $.getJSON('/api/synthese/theme/' + header.id + '/', function (data) { // TODO : do this sync
+
+                    var domain_header = data.data.domainHeader;
+                    var domain_data = data.data.domainData;
+
+                    if (domain_header != undefined) {
+
+                        for (var $i = 0; $i < domain_header.length; $i++) {
+                            $('#domain').append(readTheme(domain_header[$i], domain_data[$i]));
+                        }
+                    }
+
+                });
+
+
+                $('#domain').append('</section>');
+
+            }
+
+
+            $.getJSON('/api/synthese/domain/', function (data) {
+
+                var domain_header = data.data.domainHeader;
+                var domain_data = data.data.domainData;
+
+
+                for (var $i = 0; $i < domain_header.length; $i++) {
+                    readDomain(domain_header[$i], domain_data[$i]);
+                }
+
+
+            })
+        });
     </script>
 <?php $this->endblock(); ?>

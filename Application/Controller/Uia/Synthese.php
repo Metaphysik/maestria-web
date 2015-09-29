@@ -3,22 +3,30 @@
 namespace Application\Controller\Uia;
 
 use Application\Controller\Api;
-use Application\Maestria\Answer\Aggregate;
 use Application\Model\Classroom;
+use Application\Model\User;
+use Application\Model\UserClass;
 
 class Synthese extends Api
 {
     public function indexAction($uia)
     {
-        $uid  = $this->_uia->getId();
-        $data = Aggregate::get($uid, 1, 1);
+        $classroom = 1;
+//        $uid        = $this->_uia->getId();
+        $user              = new User();
+        $usersclass        = new UserClass();
+        $users             = $usersclass->getAllBy('refClassroom', $classroom);
+        $this->data->users = [];
+        $this->data->uid   = [];
 
-
-        foreach($data as $e)
-            echo $e['name'].'<br />';
-
-//        $this->render($uia);
-//        $this->greut->render();
+        foreach ($users as $u) {
+            /**
+             * @var $u \Application\Entities\UserClass
+             */
+            $this->data->users[] = $user->get($u->getRefUser());
+            $this->data->uid[]   = $u->getRefUser();
+        }
+        $this->greut->render();
     }
 
     protected function render($uia, $correction_id = null)
@@ -30,5 +38,5 @@ class Synthese extends Api
         }
     }
 
-
+//    protected function
 }

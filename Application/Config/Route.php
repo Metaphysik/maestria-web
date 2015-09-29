@@ -36,10 +36,16 @@ $this->any('/', ['as' => 'index', 'to' => 'Main#All']);
 
 $this->get($uia.'/api/classe/(?<classe>[^/]+)/users/', ['as' => 'indexApiUser', 'to' => 'Api\User#index']);
 $this->get($uia.'/api/classe/(?<classe>[^/]+)/correction/(?<correction>[^/]+)/', ['as' => 'getApiCorrect', 'to' => 'Api\Correction#get']);
+// Evaluation
 $this->get($uia.'/api/eval/(?<eval>[^/]+)/user/(?<user>[^/]+)/', ['as' => 'getApiAnswer', 'to' => 'Api\Answer#get']);
 $this->post($uia.'/api/eval/(?<eval>[^/]+)/', ['as' => 'postApiAnswer', 'to' => 'Api\Answer#post']);
-$this->post($uia.'/question/(?<qid>[^/]+)/delete', ['as' => 'deleteQuestion', 'to' => 'Uia\Question#delete']);
+// Synthese
+$this->get($uia.'/api/synthese/domain/', ['as' => 'getApiSyntheseDomain', 'to' => 'Api\Item#domain']);
+$this->get($uia.'/api/synthese/theme/(?<theme>[^/]+)/', ['as' => 'getApiSyntheseTheme', 'to' => 'Api\Item#theme']);
 
+
+// Uia
+$this->post($uia.'/question/(?<qid>[^/]+)/delete', ['as' => 'deleteQuestion', 'to' => 'Uia\Question#delete']);
 $this->get($uia.'/item/', ['as' => 'indexUiaItem', 'to' => 'Uia\Item#index']);
 $this->post($uia.'/item/', ['as' => 'createUiaItemDomainTheme', 'to' => 'Uia\Item#createItem']);
 $this->post($uia.'/item/domain', ['as' => 'createUiaItemDomain', 'to' => 'Uia\Item#createDomain']);
@@ -50,6 +56,8 @@ $this->post($uia.'/item/domain/theme/delete', ['as' => 'deleteUiaItemTheme', 'to
 $this->post($uia.'/item/domain/theme/update', ['as' => 'updateUiaItemTheme', 'to' => 'Uia\Item#updateTheme']);
 $this->post($uia.'/item/(?<item_id>[^/]+)/update', ['as' => 'updateUiaItem', 'to' => 'Uia\Item#update']);
 $this->post($uia.'/item/(?<item_id>[^/]+)/delete', ['as' => 'deleteUiaItem', 'to' => 'Uia\Item#delete']);
+
+// General
 $this->any($uia.'/error/exception', ['as' => 'errorexception', 'to' => 'Error#Exception']);
 $this->any($uia.'/error/404', ['as' => 'errornotfound', 'to' => 'Error#Notfound']);
 $this->any('/error/404', ['as' => 'errornotfoundNoUia', 'to' => 'Error#Notfound']);
