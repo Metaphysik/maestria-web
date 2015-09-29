@@ -11,8 +11,7 @@ class Synthese extends Api
 {
     public function indexAction($uia)
     {
-        $classroom = 1;
-//        $uid        = $this->_uia->getId();
+        $classroom         = 1;
         $user              = new User();
         $usersclass        = new UserClass();
         $users             = $usersclass->getAllBy('refClassroom', $classroom);
@@ -26,17 +25,14 @@ class Synthese extends Api
             $this->data->users[] = $user->get($u->getRefUser());
             $this->data->uid[]   = $u->getRefUser();
         }
+
+        $this->render($uia);
         $this->greut->render();
     }
 
-    protected function render($uia, $correction_id = null)
+    protected function render($uia)
     {
         $classe              = new Classroom();
         $this->data->classes = $classe->getBySlug($uia);
-        if ($correction_id !== null) {
-            $this->data->correction = $correction_id;
-        }
     }
-
-//    protected function
 }

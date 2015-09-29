@@ -67,33 +67,33 @@ $this->block('js:script');
         $(function () {
 
 
-            function readTheme(header, content) {
+            function readTheme(parent, header, content) {
                 console.log(header.label);
                 var list = $('#listeleve').data('uid');
-                var html = '<section data-id="' + header.id + '"><button class="visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>A ' + header.label + '</h6>';
-
-
+                var html = '<section data-parent="' + parent + '" data-id="' + header.id + '" style="display: none">' +
+                    '<button class="visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>' + header.label + '</h6>';
                 for ($i = 0; $i < list.length; $i++) {
                     var c = content['u' + list[$i]]; // get the note & graph ?
                     html += '<div><span>' + c[0] + '</span><aside>' + c[1] + '</aside></div>';
                 }
-
                 return html + '</section>';
             }
 
             function readDomain(header, content) {
                 var list = $('#listeleve').data('uid');
                 console.log(header.label);
-                var html = '<section data-id="' + header.id + '"><button class="visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>' + header.label + '</h6>';
+                var html = '<section data-id="' + header.id + '"><button class="vDom visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>' + header.label + '</h6>';
+
                 for ($i = 0; $i < list.length; $i++) {
                     var c = content['u' + list[$i]]; // get the note & graph ?
                     html += '<div><span>' + c[0] + '</span><aside>' + c[1] + '</aside></div>';
                 }
+
                 $('#domain').append(html);
-
-
-
-                $.getJSON('/api/synthese/theme/' + header.id + '/', function (data) { // TODO : do this sync
+                $.ajax('/api/synthese/theme/' + header.id + '/', {
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) { // TODO : do this sync
 
                     var domain_header = data.data.domainHeader;
                     var domain_data = data.data.domainData;
@@ -101,30 +101,35 @@ $this->block('js:script');
                     if (domain_header != undefined) {
 
                         for (var $i = 0; $i < domain_header.length; $i++) {
-                            $('#domain').append(readTheme(domain_header[$i], domain_data[$i]));
+                            $('#domain').append(readTheme(header.id, domain_header[$i], domain_data[$i]));
                         }
                     }
 
+                }
+
                 });
-
-
                 $('#domain').append('</section>');
-
             }
-
 
             $.getJSON('/api/synthese/domain/', function (data) {
 
                 var domain_header = data.data.domainHeader;
                 var domain_data = data.data.domainData;
 
-
                 for (var $i = 0; $i < domain_header.length; $i++) {
                     readDomain(domain_header[$i], domain_data[$i]);
                 }
-
-
             })
+
+            $('#domain').on('click', '.vDom', function () {
+
+                var parent = $(this).parent().data('id');
+                $('section[data-parent="'+parent+'"').toggle();
+            }).on('click', 'section[data-parent]', function () {
+
+                console.log('foo');
+            })
+
         });
     </script>
 <?php $this->endblock(); ?>
