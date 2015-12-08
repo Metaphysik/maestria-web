@@ -80,6 +80,7 @@ $this->block('js:script');
             }
 
             function readDomain(header, content) {
+                var $domain = $('#domain');
                 var list = $('#listeleve').data('uid');
                 console.log(header.label);
                 var html = '<section data-id="' + header.id + '" class="foo"><button class="vDom visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>' + header.label + '</h6>';
@@ -89,7 +90,7 @@ $this->block('js:script');
                     html += '<div><span>' + c[0] + '</span><aside>' + c[1] + '</aside></div>';
                 }
 
-                $('#domain').append(html);
+                $domain.append(html);
                 $.ajax('/api/synthese/theme/' + header.id + '/', {
                     async: false,
                     dataType: 'json',
@@ -108,7 +109,7 @@ $this->block('js:script');
                     }
 
                 });
-                $('#domain').append('</section>');
+                $domain.append('</section>');
             }
 
             $.getJSON('/api/synthese/domain/', function (data) {
