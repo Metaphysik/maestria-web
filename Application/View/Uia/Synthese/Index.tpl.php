@@ -82,7 +82,7 @@ $this->block('js:script');
             function readDomain(header, content) {
                 var list = $('#listeleve').data('uid');
                 console.log(header.label);
-                var html = '<section data-id="' + header.id + '"><button class="vDom visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>' + header.label + '</h6>';
+                var html = '<section data-id="' + header.id + '" class="foo"><button class="vDom visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>' + header.label + '</h6>';
 
                 for ($i = 0; $i < list.length; $i++) {
                     var c = content['u' + list[$i]]; // get the note & graph ?
@@ -95,17 +95,17 @@ $this->block('js:script');
                     dataType: 'json',
                     success: function (data) { // TODO : do this sync
 
-                    var domain_header = data.data.domainHeader;
-                    var domain_data = data.data.domainData;
+                        var domain_header = data.data.domainHeader;
+                        var domain_data = data.data.domainData;
 
-                    if (domain_header != undefined) {
+                        if (domain_header != undefined) {
 
-                        for (var $i = 0; $i < domain_header.length; $i++) {
-                            $('#domain').append(readTheme(header.id, domain_header[$i], domain_data[$i]));
+                            for (var $i = 0; $i < domain_header.length; $i++) {
+                                $('#domain').append(readTheme(header.id, domain_header[$i], domain_data[$i]));
+                            }
                         }
-                    }
 
-                }
+                    }
 
                 });
                 $('#domain').append('</section>');
@@ -121,14 +121,44 @@ $this->block('js:script');
                 }
             })
 
+
             $('#domain').on('click', '.vDom', function () {
 
                 var parent = $(this).parent().data('id');
-                $('section[data-parent="'+parent+'"').toggle();
-            }).on('click', 'section[data-parent]', function () {
+                $('section[data-parent="' + parent + '"').toggle();
 
-                console.log('foo');
-            })
+
+                // Next
+
+                $(this).parent().nextAll().each(function () {
+                    var c = $(this);
+
+                    if (c.hasClass('foo')) {
+                        if (c.css('display') == "none") {
+                            c.show();
+                        }
+                        else {
+                            c.hide();
+                        }
+                    }
+
+                })
+                $(this).parent().prevAll().each(function () {
+                    var c = $(this);
+
+                    if (c.hasClass('foo')) {
+                        if (c.css('display') == "none") {
+                            c.show();
+                        }
+                        else {
+                            c.hide();
+                        }
+                    }
+
+                })
+
+
+            });
 
         });
     </script>
