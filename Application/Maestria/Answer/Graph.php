@@ -42,6 +42,6 @@ class Graph
         $graph->colours = array('#FFDD00');
 
         $graph->Values($values);
-        $graph->Render('BarGraph');
+        return $graph->Render('BarGraph');
     }
 }
