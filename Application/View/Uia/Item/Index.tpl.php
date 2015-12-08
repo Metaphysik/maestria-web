@@ -33,7 +33,7 @@ $this->block('container');
                         <i class="aws del fa fa-trash-o"></i>
                         <i class="aws edit fa fa-pencil"></i>
                     </li>
-                    <ul data-domain="<?php echo $d->getId(); ?>">
+                    <ul data-domain="<?php echo $d->getId(); ?>" style="display: none">
                         <?php foreach ($theme->getByRef($d->getId()) as $t) { ?>
                             <li data-theme="<?php echo $t->getId(); ?>" data-domain="<?php echo $d->getId(); ?>"
                                 class="theme">
@@ -41,7 +41,7 @@ $this->block('container');
                                 <i class="aws del  fa fa-trash-o"></i>
                                 <i class="aws edit fa fa-pencil"></i>
                             </li>
-                            <ul data-theme="<?php echo $t->getId(); ?>">
+                            <ul data-theme="<?php echo $t->getId(); ?>" style="display: none">
                                 <?php foreach ($item->getByTheme($t->getId()) as $i) {
                                     if ($i->getStatus() >= 2) {
                                         ?>
