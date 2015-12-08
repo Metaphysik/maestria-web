@@ -174,5 +174,11 @@ $this->block('js:script');
                 });
             }
         };
+
+
+        $('.boutons h4').on('click', function(){
+            classe='.'+$(this).toggleClass('actif').attr('id');
+            $(classe).slideToggle();
+        });
     </script>
 <?php $this->endblock(); ?>
