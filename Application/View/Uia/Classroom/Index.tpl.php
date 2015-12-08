@@ -25,7 +25,7 @@ $this->block('container');
                         <i class="aws edit fa fa-pencil" data-type="classe"
                            data-id="<?php echo $classe->getId(); ?>"></i>
                     </li>
-                    <ul>
+                    <ul style="display: none">
                         <?php
                         if (isset($userByClasses[$classe->getId()]) === true) {
                             foreach ($userByClasses[$classe->getId()] as $user) {
