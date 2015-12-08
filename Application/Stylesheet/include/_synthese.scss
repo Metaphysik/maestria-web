@@ -111,10 +111,10 @@
   color: green;
   height: 20px;
   z-index: 50;
-  opacity: 1;
+  opacity: 0.1;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
-  .actif {
+  &:hover {
     opacity: 1;
   }
 }

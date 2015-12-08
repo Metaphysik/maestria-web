@@ -5,7 +5,7 @@
     <title>Maestria</title>
     <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
     <link href="/css/font-awesome.css" rel="stylesheet">
-    <link href="/css/maestria.css" rel="stylesheet" type="text/css">
+    <link href="/css/maestria.css?t=<?= time() ?>" rel="stylesheet" type="text/css">
     <meta charset="UTF-8"/>
 </head>
 <body>

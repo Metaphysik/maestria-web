@@ -47,8 +47,12 @@ $this->block('container');
             <div id="synthese">
                 <section id="listeleve" data-uid="<?= json_encode($uid); ?>">
                     <?php foreach ($users as $user): ?>
-                        <h5><span class="awsm" style="color:rgb(51,255,0)"><i
-                                    class="fa fa-user"></i></span><?= $user->getRealName(); ?></h5>
+                        <h5>
+                            <span class="awsm" style="color:rgb(51,255,0)">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <?= $user->getRealName(); ?>
+                        </h5>
                     <?php endforeach; ?>
                 </section>
                 <section id="domain" class="">
