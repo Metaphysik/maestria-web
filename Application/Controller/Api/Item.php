@@ -34,9 +34,15 @@ class Item extends Api
     }
 
 
-    public function themeActionAsync($theme) {
+    public function themeAction($theme)
+    {
+        $this->themeActionAsync($theme);
+    }
 
-        $d      = [];
+    public function themeActionAsync($theme)
+    {
+
+        $d = [];
         $t = new Theme();
         $t = $t->getByRef($theme);
 
@@ -68,7 +74,7 @@ class Item extends Api
              * @var $u \Application\Entities\UserClass
              */
 
-            $data['u'.$u->getRefUser()] = [50, 'Foo'];
+            $data['u' . $u->getRefUser()] = [60, 'Foo'];
 
         }
 
