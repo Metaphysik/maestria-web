@@ -5,6 +5,7 @@ namespace Application\Controller\Api;
 
 
 use Application\Controller\Api;
+use Application\Maestria\Answer\Graph;
 use Application\Model\Domain;
 use Application\Model\Theme;
 use Application\Model\UserClass;
@@ -68,13 +69,13 @@ class Item extends Api
         $users             = $usersclass->getAllBy('refClassroom', $classroom);
         $this->data->users = [];
         $this->data->uid   = [];
+        $graph = new Graph();
 
         foreach ($users as $u) {
             /**
              * @var $u \Application\Entities\UserClass
              */
-
-            $data['u' . $u->getRefUser()] = [60, 'Foo'];
+            $data['u' . $u->getRefUser()] = [60, $graph->render()];
 
         }
 

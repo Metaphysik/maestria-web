@@ -20,28 +20,26 @@ class Graph
     public function render()
     {
         $settings = array(
-            'back_colour'          => '#eee',
-            'stroke_colour'        => '#000',
-            'back_stroke_width'    => 0,
-            'back_stroke_colour'   => '#eee',
-            'axis_colour'          => '#333',
-            'axis_overlap'         => 2,
-            'axis_font'            => 'Georgia',
-            'axis_font_size'       => 10,
-            'grid_colour'          => '#666',
-            'label_colour'         => '#000',
-            'pad_right'            => 20,
-            'pad_left'             => 20,
-            'link_base'            => '/',
-            'link_target'          => '_top',
-            'minimum_grid_spacing' => 20
+
+            'show_grid'         => false,
+            'show_axes'         => false,
+            'show_tooltips'     => false,
+            'bar_space'         => 1,
+            'bar_width'         => 8,
+            'crosshairs'        => false,
+            'division_style'    => 'none',
+            'log_axis_y'        => false,
+            'pad_top'           => 5,
+            'pad_bottom'        => 5,
+            'back_stroke_width' => 0,
+            'stroke_width'      => 0
         );
 
-        $values         = array('Dough' => 50, 'Ray' => 100, 'Me' => 25, 'So' => 25, 'Far' => 45, 'Lard' => 35);
-        $graph          = new \SVGGraph(300, 200, $settings);
-        $graph->colours = array('#FFDD00');
+        $values         = array(50, 100, 25, 25, 45, 35);
+        $graph          = new \SVGGraph(70, 30, $settings);
+        $graph->colours = array('#FF0000', '#FFDD00');
 
         $graph->Values($values);
-        return $graph->Render('BarGraph');
+        return $graph->Fetch('BarGraph', false, false);
     }
 }
