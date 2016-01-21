@@ -29,7 +29,7 @@ class Item extends Api
              */
             $valuesByUser        = $synt->getAnswerByDomain($a->getId());
             $d['domainHeader'][] = ['id' => $a->getId(), 'label' => $a->getLabel()];
-            $d['domainData'][]   = $this->getUserNote($valuesByUser); // TODO change this behind
+            $d['domainData'][]   = $this->getUserNote($valuesByUser);
         }
 
 
@@ -57,9 +57,10 @@ class Item extends Api
             /**
              * @var $a \Application\Entities\Theme
              */
+
             $valuesByUser        = $synt->getAnswerByTheme($a->getId());
             $d['domainHeader'][] = ['id' => $a->getId(), 'label' => $a->getLabel()];
-            $d['domainData'][]   = $this->getUserNote($valuesByUser); // TODO change this behind
+            $d['domainData'][]   = $this->getUserNote($valuesByUser); // TODO : Bug ... Data = []
         }
 
         $this->data($d);
