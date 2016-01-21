@@ -13,6 +13,7 @@ class User extends _Api
         $classroom   = new Classroom();
         $classroom   = $classroom->getStudentOrderByClasses($uia);
 
+
         if (array_key_exists($classe, $classroom)) {
             $formatClassroom = [];
 
@@ -21,6 +22,7 @@ class User extends _Api
                 /**
                  * @var $entity \Application\Entities\User
                  */
+
                 $evaluations = new \Application\Maestria\Answer\User($this->_uia->getId(), $entity->getId());
                 $a = [
                     'id'         => $entity->getId(),

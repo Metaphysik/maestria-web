@@ -77,8 +77,15 @@ $this->block('js:script');
                 var html = '<section data-parent="' + parent + '" data-id="' + header.id + '" style="display: none">' +
                     '<button class="visuel awsm"><i class="fa fa-arrow-right"></i><i class="fa fa-user"></i> </button><h6>' + header.label + '</h6>';
                 for ($i = 0; $i < list.length; $i++) {
-                    var c = content['u' + list[$i]]; // get the note & graph ?
-                    html += '<div><span>' + c[0] + '</span><aside>' + c[1] + '</aside></div>';
+                    if(content.length > 0) {
+                        var c = content['u' + list[$i]]; // get the note & graph ?
+                        html += '<div><span>' + c[0] + '</span><aside>' + c[1] + '</aside></div>';
+                    }
+                    else {
+                        html += '<div><span></span><aside></aside></div>';
+                    }
+
+
                 }
                 return html + '</section>';
             }

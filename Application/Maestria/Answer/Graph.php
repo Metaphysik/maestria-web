@@ -11,13 +11,7 @@ namespace Application\Maestria\Answer;
 
 class Graph
 {
-    public function getOutput($uid)
-    {
-
-
-    }
-
-    public function render()
+    public function render($values)
     {
         $settings = array(
 
@@ -35,7 +29,7 @@ class Graph
             'stroke_width'      => 0
         );
 
-        $values         = array(50, 100, 25, 25, 45, 35);
+
         $graph          = new \SVGGraph(70, 30, $settings);
         $graph->colours = array('#FF0000', '#FFDD00');
 

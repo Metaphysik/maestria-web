@@ -8,7 +8,7 @@ class Classroom extends Generic
     {
         $slug = new Uia();
         $slug = $slug->getBySlug($uia);
-        $uia = $slug->getId();
+        $uia  = $slug->getId();
 
         if ($this->classExist($label, $uia) === false) {
             return $this->_insert($uia, $label);
@@ -24,7 +24,7 @@ class Classroom extends Generic
         }
         if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia = $slug->getBySludId(UIA);
+            $uia  = $slug->getBySludId(UIA);
         }
         $e = $this->_repository->findBy(['refUia' => $uia, 'label' => $label], null, 1);
 
@@ -47,7 +47,7 @@ class Classroom extends Generic
     {
         $slug = new Uia();
         $slug = $slug->getBySlug($uia);
-        $uia = $slug->getId();
+        $uia  = $slug->getId();
 
         return $this->_repository->findBy(['refUia' => $uia]);
     }
@@ -59,22 +59,23 @@ class Classroom extends Generic
         }
         if (is_string($uia) === true) {
             $slug = new Uia();
-            $uia = $slug->getBySludId(UIA);
+            $uia  = $slug->getBySludId(UIA);
         }
 
-        $element = [];
-        $user = new User();
+        $element  = [];
+        $user     = new User();
         $entities = $this->getRepository('UserClass')->findBy(['refUia' => $uia]);
 
         foreach ($entities as $entity) {
             /**
-             * @var \Application\Entities\UserClass
-             * @var \Application\Entities\User
+             * @var $entity \Application\Entities\UserClass
+             * @var $e \Application\Entities\User
              */
             $e = $user->get($entity->getRefUser());
             if ($e->getStatus() >= 0) {
-                $element[$entity->getRefClassroom()][] = $e;
+            $element[$entity->getRefClassroom()][] = $e;
             }
+
         }
 
         return $element;

@@ -10,6 +10,7 @@ namespace Application\Maestria\Answer;
 
 use Application\Maestria\Answer\Provider;
 use Application\Model\Answer;
+use Application\Model\Classroom;
 use Application\Model\Evaluation;
 use Application\Model\Item;
 use Application\Model\Question;
@@ -21,13 +22,15 @@ class Aggregate
 {
     public static function get($uid, $classe, $correction)
     {
-        $m_class   = new UserClass();
+
         $m_user    = new User();
         $m_answer  = new Answer();
         $questions = new Question();
         $m_item    = new Item();
-        $users     = $m_class->getAllBy('refClassroom', $classe);
         $data      = [];
+        $classroom = new Classroom();
+        $users     = $classroom->getStudentOrderByClasses($uid);
+        $users     = $users[$classe];
 
 
         if (count($users) > 0) {
@@ -35,17 +38,15 @@ class Aggregate
             foreach ($users as $userclass) {
                 /***
                  * @var $user \Application\Entities\User
-                 * @var $userclass \Application\Entities\UserClass
+                 * @var $userclass \Application\Entities\User
                  */
 
-                $provider = new Provider();
+                $provider = static::getProvider($correction, $userclass->getId(), $uid);
                 $cor      = new \Application\Maestria\Answer\Correction();
 
-                $provider->setQuestions($questions->getByEvaluation($correction));
-                $provider->setAnswers($m_answer->getAnswer($uid, $userclass->getRefUser(), $correction));
                 $cor->setProvider($provider);
 
-                $user = $m_user->get($userclass->getRefUser());
+                $user = $m_user->get($userclass->getId());
                 $a    = [
                     'name' => $user->getRealName(),
                     'note' => $cor->getNote() . '/' . $cor->getGlobalNote(),
@@ -74,4 +75,27 @@ class Aggregate
             throw new Exception('Class not exists');
         }
     }
+
+    /**
+     * @param $correction
+     * @param $refuser
+     * @param $uid
+     * @return \Application\Maestria\Answer\Provider
+     */
+
+    public static function getProvider($correction, $refuser, $uid)
+    {
+        $m_answer  = new Answer();
+        $questions = new Question();
+        $provider  = new Provider();
+
+
+        $provider->setQuestions($questions->getByEvaluation($correction));
+        $provider->setAnswers($m_answer->getAnswer($uid, $refuser, $correction));
+
+        return $provider;
+
+    }
+
+
 }

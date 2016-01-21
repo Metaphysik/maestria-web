@@ -10,6 +10,13 @@ class Correction
     protected $_percentItems     = [];
     protected $_percentTaxo      = [];
 
+    public function __construct($provider = null)
+    {
+        if ($provider !== null) {
+            $this->setProvider($provider);
+        }
+    }
+
     public function setProvider(Provider $provider)
     {
         $this->_answers   = $provider->getAnswers();
@@ -45,6 +52,8 @@ class Correction
 
             }
         }
+
+        return $this->_percentQuestions;
     }
 
     public function getGlobalNote()
@@ -95,8 +104,8 @@ class Correction
                 $percent = $note * 100 / $point;
 
                 // Stockage
-                $this->_percentItems[$question->getItem1id()][] = $percent;
-                $this->_percentItems[$question->getItem2id()][] = $percent;
+                $this->_percentItems[$question->getItem1id()][] = intval($percent);
+                $this->_percentItems[$question->getItem2id()][] = intval($percent);
             }
         }
 
@@ -164,10 +173,10 @@ class Correction
     {
         $commentaire = '';
         if ($co < 0.6) {
-            $commentaire = 'Tu dois commencer par apprendre les définitions car elles te serviront souvent, ';
+            $commentaire = 'Tu dois commencer par apprendre les dï¿½finitions car elles te serviront souvent, ';
             $bon         = 0;
         } else {
-            $commentaire = 'Tes définitions sont sues, c\'est bien, ';
+            $commentaire = 'Tes dï¿½finitions sont sues, c\'est bien, ';
             $bon         = 1;
         }
         if ($cp < 0.6) {
@@ -182,19 +191,19 @@ class Correction
                 $commentaire .= 'par contre ';
             }
 
-            $commentaire .= 'les explications ont été comprises et ';
+            $commentaire .= 'les explications ont ï¿½tï¿½ comprises et ';
             $bon = 1;
         }
 
         if ($ap < 0.6) {
             if ($bon == 1) {
-                $commentaire .= 'néanmoins, ';
+                $commentaire .= 'nï¿½anmoins, ';
             }
 
             $commentaire .= 'tu peux progresser encore en travaillant davantage les exercices ';
             $bon = 0;
         } else {
-            $commentaire .= 'le travail sur les exercices a porté ses fruits ';
+            $commentaire .= 'le travail sur les exercices a portï¿½ ses fruits ';
         }
 
         // TODO : Utiliser la Taxo analyse
@@ -211,7 +220,7 @@ class Correction
         if (is_float($avg)) {
             return number_format($avg, 0);
         } else {
-            return $avg;
+            return intval($avg);
         }
     }
 

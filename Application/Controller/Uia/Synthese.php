@@ -11,28 +11,26 @@ class Synthese extends Api
 {
     public function indexAction($uia)
     {
-        $classroom         = 1;
-        $user              = new User();
-        $usersclass        = new UserClass();
-        $users             = $usersclass->getAllBy('refClassroom', $classroom);
-        $this->data->users = [];
-        $this->data->uid   = [];
+        $classroom           = 1;
+        $user                = new User();
+        $this->data->users   = [];
+        $this->data->uid     = [];
+        $classe              = new Classroom();
+        $this->data->classes = $classe->getBySlug($uia);
 
-        foreach ($users as $u) {
+
+        $users = $classe->getStudentOrderByClasses($uia);
+
+        foreach ($users[$classroom] as $u) {
             /**
-             * @var $u \Application\Entities\UserClass
+             * @var $u \Application\Entities\User
              */
-            $this->data->users[] = $user->get($u->getRefUser());
-            $this->data->uid[]   = $u->getRefUser();
+            $this->data->users[] = $user->get($u->getId());
+            $this->data->uid[]   = $u->getId();
         }
 
-        $this->render($uia);
+
         $this->greut->render();
     }
 
-    protected function render($uia)
-    {
-        $classe              = new Classroom();
-        $this->data->classes = $classe->getBySlug($uia);
-    }
 }
