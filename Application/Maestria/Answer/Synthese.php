@@ -19,6 +19,7 @@ class Synthese
     public function getAnswerByTheme($themeid)
     {
 
+        $data  = [];
         $tmp   = [];
         $users = $this->getStudentInTheClassroom(1);
         $item  = new Item();
